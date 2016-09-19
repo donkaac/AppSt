@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Appplatform" table="appplatform" catalog="appstore" optimistic-lock="version">
+        <id name="idAppplatform" type="java.lang.Integer">
+            <column name="idAppplatform" />
+            <generator class="identity" />
+        </id>
+        <property name="appplatform" type="string">
+            <column name="Appplatform" length="45" not-null="true" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
+        </property>
+        <set name="apptypes" table="apptype" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Appplatform_idAppplatform" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Apptype" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="appstore"/>
+  <table-filter match-name="staffhassubmenu"/>
+  <table-filter match-name="country"/>
+  <table-filter match-name="emailvarified"/>
+  <table-filter match-name="developerhascomment"/>
+  <table-filter match-name="apphasstaffvalid"/>
+  <table-filter match-name="roles"/>
+  <table-filter match-name="staff"/>
+  <table-filter match-name="discrict"/>
+  <table-filter match-name="customer"/>
+  <table-filter match-name="login"/>
+  <table-filter match-name="serialkeys"/>
+  <table-filter match-name="customerhascomment"/>
+  <table-filter match-name="apptype"/>
+  <table-filter match-name="developinglanguages"/>
+  <table-filter match-name="cart"/>
+  <table-filter match-name="developerhaslanguages"/>
+  <table-filter match-name="wishlist"/>
+  <table-filter match-name="developer"/>
+  <table-filter match-name="staffcokie"/>
+  <table-filter match-name="delopercokie"/>
+  <table-filter match-name="comment"/>
+  <table-filter match-name="application"/>
+  <table-filter match-name="appplatform"/>
+  <table-filter match-name="submenu"/>
+  <table-filter match-name="coustomercokiesid"/>
+  <table-filter match-name="menu"/>
+  <table-filter match-name="developervalid"/>
+  <table-filter match-name="province"/>
+  <table-filter match-name="category"/>
+  <table-filter match-name="city"/>
+  <table-filter match-name="customerhasapplication"/>
+</hibernate-reverse-engineering>

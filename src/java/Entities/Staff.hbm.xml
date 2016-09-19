@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Staff" table="staff" catalog="appstore" optimistic-lock="version">
+        <id name="idStaff" type="java.lang.Integer">
+            <column name="idStaff" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="city" class="Entities.City" fetch="select">
+            <column name="City_idCity" not-null="true" />
+        </many-to-one>
+        <many-to-one name="emailvarified" class="Entities.Emailvarified" fetch="select">
+            <column name="emailvarified_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="roles" class="Entities.Roles" fetch="select">
+            <column name="roles_idroles" not-null="true" />
+        </many-to-one>
+        <property name="staffFname" type="string">
+            <column name="StaffFName" length="45" />
+        </property>
+        <property name="staffMname" type="string">
+            <column name="StaffMName" length="45" />
+        </property>
+        <property name="staffLname" type="string">
+            <column name="StaffLName" length="45" />
+        </property>
+        <property name="staffPassword" type="string">
+            <column name="StaffPassword" length="45" not-null="true" />
+        </property>
+        <property name="username" type="string">
+            <column name="Username" length="100" not-null="true" />
+        </property>
+        <property name="staffRegDateAndTime" type="timestamp">
+            <column name="StaffRegDateAndTime" length="19" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="65535" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
+        </property>
+        <set name="staffcokies" table="staffcokie" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Staff_idStaff" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Staffcokie" />
+        </set>
+        <set name="developervalids" table="developervalid" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Staff_idStaff" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Developervalid" />
+        </set>
+        <set name="logins" table="login" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Staff_idStaff" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Login" />
+        </set>
+        <set name="staffhassubmenus" table="staffhassubmenu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Staff_idStaff" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Staffhassubmenu" />
+        </set>
+        <set name="apphasstaffvalids" table="apphasstaffvalid" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Staff_idStaff" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Apphasstaffvalid" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Roles" table="roles" catalog="appstore" optimistic-lock="version">
+        <id name="idroles" type="java.lang.Integer">
+            <column name="idroles" />
+            <generator class="identity" />
+        </id>
+        <property name="roles" type="string">
+            <column name="roles" length="45" not-null="true" />
+        </property>
+        <set name="staffs" table="staff" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="roles_idroles" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Staff" />
+        </set>
+    </class>
+</hibernate-mapping>

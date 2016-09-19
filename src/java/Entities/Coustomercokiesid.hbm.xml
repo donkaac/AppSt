@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Coustomercokiesid" table="coustomercokiesid" catalog="appstore" optimistic-lock="version">
+        <id name="idCokiesId" type="java.lang.Integer">
+            <column name="idCokiesID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customer" class="Entities.Customer" fetch="select">
+            <column name="Customer_idCustomer" not-null="true" />
+        </many-to-one>
+        <property name="cokiesId" type="string">
+            <column name="CokiesID" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

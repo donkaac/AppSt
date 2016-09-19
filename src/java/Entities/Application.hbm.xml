@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Application" table="application" catalog="appstore" optimistic-lock="version">
+        <id name="idApplication" type="java.lang.Integer">
+            <column name="idApplication" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="category" class="Entities.Category" fetch="select">
+            <column name="category_idcategory" not-null="true" />
+        </many-to-one>
+        <many-to-one name="developer" class="Entities.Developer" fetch="select">
+            <column name="Developer_idDeveloper" not-null="true" />
+        </many-to-one>
+        <property name="applicationName" type="string">
+            <column name="ApplicationName" length="45" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="Price" precision="22" scale="0" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="450" />
+        </property>
+        <property name="userManualUrl" type="string">
+            <column name="UserManualURL" length="200" />
+        </property>
+        <property name="videoUrl" type="string">
+            <column name="VideoURL" length="200" />
+        </property>
+        <property name="interface1" type="string">
+            <column name="Interface1" length="200" />
+        </property>
+        <property name="interface2" type="string">
+            <column name="Interface2" length="200" />
+        </property>
+        <property name="interface3" type="string">
+            <column name="Interface3" length="200" />
+        </property>
+        <property name="lastmodifiedDate" type="date">
+            <column name="LastmodifiedDate" length="10" />
+        </property>
+        <property name="applicationLuanchDate" type="date">
+            <column name="ApplicationLuanchDate" length="10" not-null="true" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="State" not-null="true" />
+        </property>
+        <set name="customerhasapplications" table="customerhasapplication" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Application_idApplication" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Customerhasapplication" />
+        </set>
+        <set name="serialkeyses" table="serialkeys" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Application_idApplication" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Serialkeys" />
+        </set>
+        <set name="wishlists" table="wishlist" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Application_idApplication" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Wishlist" />
+        </set>
+        <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Application_idApplication" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Comment" />
+        </set>
+        <set name="carts" table="cart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Application_idApplication" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Cart" />
+        </set>
+        <set name="apphasstaffvalids" table="apphasstaffvalid" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Application_idApplication" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Apphasstaffvalid" />
+        </set>
+    </class>
+</hibernate-mapping>

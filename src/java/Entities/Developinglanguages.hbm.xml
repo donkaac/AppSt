@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Developinglanguages" table="developinglanguages" catalog="appstore" optimistic-lock="version">
+        <id name="idDevelopingLanguages" type="java.lang.Integer">
+            <column name="idDevelopingLanguages" />
+            <generator class="identity" />
+        </id>
+        <property name="developingLanguages" type="string">
+            <column name="DevelopingLanguages" length="45" />
+        </property>
+        <set name="developerhaslanguageses" table="developerhaslanguages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="DevelopingLanguages_idDevelopingLanguages" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Developerhaslanguages" />
+        </set>
+    </class>
+</hibernate-mapping>

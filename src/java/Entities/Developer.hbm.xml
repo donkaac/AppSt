@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Developer" table="developer" catalog="appstore" optimistic-lock="version">
+        <id name="idDeveloper" type="java.lang.Integer">
+            <column name="idDeveloper" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="city" class="Entities.City" fetch="select">
+            <column name="City_idCity" not-null="true" />
+        </many-to-one>
+        <many-to-one name="emailvarified" class="Entities.Emailvarified" fetch="select">
+            <column name="emailvarified_id" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="Username" length="80" not-null="true" />
+        </property>
+        <property name="developerFname" type="string">
+            <column name="DeveloperFName" length="45" not-null="true" />
+        </property>
+        <property name="developerMname" type="string">
+            <column name="DeveloperMName" length="45" />
+        </property>
+        <property name="developerLname" type="string">
+            <column name="DeveloperLName" length="45" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="developerPhone" type="string">
+            <column name="DeveloperPhone" length="45" />
+        </property>
+        <property name="developerMobile" type="string">
+            <column name="DeveloperMobile" length="45" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="65535" not-null="true" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
+        </property>
+        <set name="delopercokies" table="delopercokie" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Developer_idDeveloper" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Delopercokie" />
+        </set>
+        <set name="applications" table="application" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Developer_idDeveloper" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Application" />
+        </set>
+        <set name="developerhaslanguageses" table="developerhaslanguages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Developer_idDeveloper" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Developerhaslanguages" />
+        </set>
+        <set name="developervalids" table="developervalid" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Developer_idDeveloper" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Developervalid" />
+        </set>
+        <set name="developerhascomments" table="developerhascomment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Developer_idDeveloper" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Developerhascomment" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Country" table="country" catalog="appstore" optimistic-lock="version">
+        <id name="idCountry" type="java.lang.Integer">
+            <column name="idCountry" />
+            <generator class="identity" />
+        </id>
+        <property name="countryName" type="string">
+            <column name="CountryName" length="45" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
+        </property>
+        <set name="provinces" table="province" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Country_idCountry" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Province" />
+        </set>
+    </class>
+</hibernate-mapping>

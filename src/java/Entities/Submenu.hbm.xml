@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Submenu" table="submenu" catalog="appstore" optimistic-lock="version">
+        <id name="idsubmenu" type="int">
+            <column name="idsubmenu" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="menu" class="Entities.Menu" fetch="select">
+            <column name="menu_idmenu" not-null="true" />
+        </many-to-one>
+        <property name="submenu" type="string">
+            <column name="submenu" length="45" not-null="true" />
+        </property>
+        <property name="pageurl" type="string">
+            <column name="pageurl" length="45" />
+        </property>
+        <set name="staffhassubmenus" table="staffhassubmenu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="submenu_idsubmenu" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Staffhassubmenu" />
+        </set>
+    </class>
+</hibernate-mapping>

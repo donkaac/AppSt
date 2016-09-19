@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Customer" table="customer" catalog="appstore" optimistic-lock="version">
+        <id name="idCustomer" type="java.lang.Integer">
+            <column name="idCustomer" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="city" class="Entities.City" fetch="select">
+            <column name="City_idCity" not-null="true" />
+        </many-to-one>
+        <many-to-one name="emailvarified" class="Entities.Emailvarified" fetch="select">
+            <column name="emailvarified_id" />
+        </many-to-one>
+        <property name="customerFname" type="string">
+            <column name="CustomerFName" length="45" not-null="true" />
+        </property>
+        <property name="customerMname" type="string">
+            <column name="CustomerMName" length="45" />
+        </property>
+        <property name="customerLname" type="string">
+            <column name="CustomerLName" length="45" />
+        </property>
+        <property name="customerImage" type="string">
+            <column name="CustomerImage" length="200" />
+        </property>
+        <property name="customerRegDateAndTime" type="timestamp">
+            <column name="CustomerRegDateAndTime" length="19" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" length="45" not-null="true" />
+        </property>
+        <property name="username" type="string">
+            <column name="Username" length="45" not-null="true" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="State" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="65535" not-null="true" />
+        </property>
+        <set name="customerhascomments" table="customerhascomment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Customer_idCustomer" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Customerhascomment" />
+        </set>
+        <set name="coustomercokiesids" table="coustomercokiesid" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Customer_idCustomer" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Coustomercokiesid" />
+        </set>
+        <set name="wishlists" table="wishlist" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Customer_idCustomer" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Wishlist" />
+        </set>
+        <set name="carts" table="cart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Customer_idCustomer" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Cart" />
+        </set>
+        <set name="customerhasapplications" table="customerhasapplication" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Customer_idCustomer" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Customerhasapplication" />
+        </set>
+    </class>
+</hibernate-mapping>

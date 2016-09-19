@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/appstore?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">1234</property>
+    <mapping resource="Entities/Staff.hbm.xml"/>
+    <mapping resource="Entities/Customerhasapplication.hbm.xml"/>
+    <mapping resource="Entities/Category.hbm.xml"/>
+    <mapping resource="Entities/Province.hbm.xml"/>
+    <mapping resource="Entities/Cart.hbm.xml"/>
+    <mapping resource="Entities/Country.hbm.xml"/>
+    <mapping resource="Entities/Developerhascomment.hbm.xml"/>
+    <mapping resource="Entities/Customerhascomment.hbm.xml"/>
+    <mapping resource="Entities/Comment.hbm.xml"/>
+    <mapping resource="Entities/Delopercokie.hbm.xml"/>
+    <mapping resource="Entities/Appplatform.hbm.xml"/>
+    <mapping resource="Entities/Staffcokie.hbm.xml"/>
+    <mapping resource="Entities/Emailvarified.hbm.xml"/>
+    <mapping resource="Entities/Developinglanguages.hbm.xml"/>
+    <mapping resource="Entities/Apptype.hbm.xml"/>
+    <mapping resource="Entities/Customer.hbm.xml"/>
+    <mapping resource="Entities/Developerhaslanguages.hbm.xml"/>
+    <mapping resource="Entities/Wishlist.hbm.xml"/>
+    <mapping resource="Entities/Login.hbm.xml"/>
+    <mapping resource="Entities/Apphasstaffvalid.hbm.xml"/>
+    <mapping resource="Entities/Discrict.hbm.xml"/>
+    <mapping resource="Entities/Roles.hbm.xml"/>
+    <mapping resource="Entities/City.hbm.xml"/>
+    <mapping resource="Entities/Developervalid.hbm.xml"/>
+    <mapping resource="Entities/Staffhassubmenu.hbm.xml"/>
+    <mapping resource="Entities/Application.hbm.xml"/>
+    <mapping resource="Entities/Submenu.hbm.xml"/>
+    <mapping resource="Entities/Menu.hbm.xml"/>
+    <mapping resource="Entities/Developer.hbm.xml"/>
+    <mapping resource="Entities/Coustomercokiesid.hbm.xml"/>
+    <mapping resource="Entities/Serialkeys.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

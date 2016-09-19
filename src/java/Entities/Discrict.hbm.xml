@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Discrict" table="discrict" catalog="appstore" optimistic-lock="version">
+        <id name="idDiscrict" type="java.lang.Integer">
+            <column name="idDiscrict" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="province" class="Entities.Province" fetch="select">
+            <column name="province_idprovince" not-null="true" />
+        </many-to-one>
+        <property name="discrictName" type="string">
+            <column name="DiscrictName" length="45" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
+        </property>
+        <set name="cities" table="city" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Discrict_idDiscrict" not-null="true" />
+            </key>
+            <one-to-many class="Entities.City" />
+        </set>
+    </class>
+</hibernate-mapping>
