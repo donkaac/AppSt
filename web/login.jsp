@@ -24,6 +24,8 @@
         <link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="./assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
         <link href="./assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <link href="./assets/global/plugins/pace/themes/pace-theme-flash.css" rel="stylesheet" type="text/css"/>
+        <script src="./assets/global/plugins/pace/pace.min.js"></script>
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link href="./assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
@@ -41,11 +43,20 @@
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
 
-    <body class=" login">
+    <body class="login">
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.html">
                 <img src="./assets/pages/img/logo-big.png" alt="" /> </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="dashboard-stat purple">
+                <div class="">
+                    <a href="javascript:;" class="btn green btn-block btn-lg m-icon-big"> Member Area
+                        <i class="m-icon-big-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
@@ -449,6 +460,7 @@
         <script src="./assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
         <script src="./assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
         <script src="./assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <script src="./assets/global/plugins/pace/pace.min.js" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="./assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
