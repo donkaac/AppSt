@@ -5,6 +5,7 @@
  */
 package Entities.Logic;
 
+import Entities.City;
 import Entities.Customer;
 import java.io.Serializable;
 import java.util.Iterator;
@@ -78,7 +79,7 @@ public class CustomerDAO {
         }
     }
 
-    public static Customer save(Session session,) {
+    public static Customer save(Session session,Object o) {
         try {
             Customer c = new Customer();
             
@@ -93,8 +94,8 @@ public class CustomerDAO {
 
     public static boolean update(Session session, Customer al, String name, String RoleOrder) {
         try {
-            al.setRoleName(name);
-            al.setRoleOrder(Integer.valueOf(RoleOrder));
+            al.setCustomerFname(name);
+            al.setCity((new City()));
             session.update((Object)al);
             return true;
         }
