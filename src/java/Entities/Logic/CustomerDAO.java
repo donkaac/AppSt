@@ -79,10 +79,8 @@ public class CustomerDAO {
         }
     }
 
-    public static Customer save(Session session,Object o) {
-        try {
-            Customer c = new Customer();
-            
+    public static Customer save(Session session,Customer c) {
+        try {        
             session.save((Object)c);
             return c;
         }
@@ -92,11 +90,9 @@ public class CustomerDAO {
         }
     }
 
-    public static boolean update(Session session, Customer al, String name, String RoleOrder) {
+    public static boolean update(Session session, Customer c) {
         try {
-            al.setCustomerFname(name);
-            al.setCity((new City()));
-            session.update((Object)al);
+            session.update((Object)c);
             return true;
         }
         catch (Exception e) {
@@ -105,9 +101,9 @@ public class CustomerDAO {
         }
     }
 
-    public static boolean delete(Session session, Customer al) {
+    public static boolean delete(Session session, Customer c) {
         try {
-            session.delete((Object)al);
+            session.delete((Object)c);
             return true;
         }
         catch (Exception e) {
