@@ -140,7 +140,7 @@
             </form>
             <!-- END FORGOT PASSWORD FORM -->
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="index.html" method="post">
+            <form class="register-form" action="javascript:;" method="post">
                 <h3>Sign Up</h3>
                 <p> Enter your personal details below: </p>
                 <div class="form-group">
