@@ -47,12 +47,13 @@
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.html">
-                <img src="./assets/pages/img/logo-big.png" alt="" /> </a>
+                <!--<img src="./assets/pages/img/logo-big.png" alt="" />--> 
+            </a>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="dashboard-stat purple">
                 <div class="">
-                    <a href="javascript:;" class="btn green btn-block btn-lg m-icon-big"> Member Area
+                    <a href="./admin/login.jsp" class="btn green btn-block btn-lg m-icon-big"> Member Area
                         <i class="m-icon-big-swapright m-icon-white"></i>
                     </a>
                 </div>
