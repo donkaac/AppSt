@@ -12,6 +12,10 @@
         <servlet-name>search</servlet-name>
         <servlet-class>Servlets.search</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>saveDevelopervalidation</servlet-name>
+        <servlet-class>Servlets.saveDevelopervalidation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>search</servlet-name>
         <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveDevelopervalidation</servlet-name>
+        <url-pattern>/saveDevelopervalidation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
