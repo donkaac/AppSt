@@ -4,9 +4,25 @@
         <servlet-name>admin_login</servlet-name>
         <servlet-class>Servlets.admin_login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdvacedSearchApp</servlet-name>
+        <servlet-class>Servlets.AdvacedSearchApp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>Servlets.search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdvacedSearchApp</servlet-name>
+        <url-pattern>/AdvacedSearchApp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
