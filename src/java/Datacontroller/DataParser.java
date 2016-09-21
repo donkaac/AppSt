@@ -33,6 +33,11 @@ public class DataParser {
         return dataparser;
     }
 
+    public static Object getuniqeresault(Object o, int id) {
+        Session Session = Entities.HibernateUtil.getSessionFactory().openSession();
+        return Session.get(o.getClass(), id);
+    }
+
     public static boolean Savedata(Object o) {
         try {
             Session Session = Entities.HibernateUtil.getSessionFactory().openSession();
