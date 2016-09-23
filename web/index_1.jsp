@@ -85,7 +85,7 @@
                         <%if (true) {%>
                         <li>
                             <div>
-                                <h3><span class="glyphicon glyphicon-shopping-cart"></span></h3>
+                                <a  href=""><h3><span class="glyphicon glyphicon-shopping-cart"></span></h3></a>
                             </div>
                         </li>
                         <li>
