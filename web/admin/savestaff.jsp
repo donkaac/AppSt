@@ -18,27 +18,27 @@
             <meta content="" name="author"/>
             <!-- BEGIN GLOBAL MANDATORY STYLES -->
             <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
             <!-- END GLOBAL MANDATORY STYLES -->
             <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-            <link href="./assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
             <!-- END PAGE LEVEL PLUGIN STYLES -->
             <!-- BEGIN PAGE STYLES -->
-            <link href="././assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
             <!-- END PAGE STYLES -->
             <!-- BEGIN THEME STYLES -->
-            <link href="./assets/global/css/components.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-            <link href="./assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-            <link href="./assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+            <link href="../assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
             <!-- END THEME STYLES -->
             <link rel="shortcut icon" href="favicon.ico"/>
         </head>
@@ -51,7 +51,7 @@
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
                         <a href="index.html">
-                            <img src="./assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                            <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
                     <!-- END LOGO -->
@@ -352,7 +352,7 @@
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="./assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
                                     <span class="username username-hide-on-mobile"> Nick </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
@@ -1738,7 +1738,7 @@
                                     </div>
                                     <div class="portlet-body">
                                         <div id="site_statistics_loading">
-                                            <img src="./assets/global/img/loading.gif" alt="loading" /> </div>
+                                            <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
                                         <div id="site_statistics_content" class="display-none">
                                             <div id="site_statistics" class="chart"> </div>
                                         </div>
@@ -1787,7 +1787,7 @@
                                     </div>
                                     <div class="portlet-body">
                                         <div id="site_activities_loading">
-                                            <img src="./assets/global/img/loading.gif" alt="loading" /> </div>
+                                            <img src="../assets/global/img/loading.gif" alt="loading" /> </div>
                                         <div id="site_activities_content" class="display-none">
                                             <div id="site_activities" style="height: 228px;"> </div>
                                         </div>
@@ -1840,7 +1840,7 @@
                                                 <div class="mt-comments">
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="./assets/pages/media/users/avatar1.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar1.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Michael Baker</span>
@@ -1865,7 +1865,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="./assets/pages/media/users/avatar6.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar6.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Larisa Maskalyova</span>
@@ -1890,7 +1890,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="./assets/pages/media/users/avatar8.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar8.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Natasha Kim</span>
@@ -1915,7 +1915,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="./assets/pages/media/users/avatar4.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar4.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Sebastian Davidson</span>
@@ -1946,7 +1946,7 @@
                                                 <div class="mt-comments">
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="./assets/pages/media/users/avatar4.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar4.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Michael Baker</span>
@@ -1971,7 +1971,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="./assets/pages/media/users/avatar8.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar8.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Larisa Maskalyova</span>
@@ -1996,7 +1996,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="./assets/pages/media/users/avatar6.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar6.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Natasha Kim</span>
@@ -2021,7 +2021,7 @@
                                                     </div>
                                                     <div class="mt-comment">
                                                         <div class="mt-comment-img">
-                                                            <img src="./assets/pages/media/users/avatar1.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar1.jpg" /> </div>
                                                         <div class="mt-comment-body">
                                                             <div class="mt-comment-info">
                                                                 <span class="mt-comment-author">Sebastian Davidson</span>
@@ -2074,7 +2074,7 @@
                                                 <div class="mt-actions">
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="./assets/pages/media/users/avatar10.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar10.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -2102,7 +2102,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="./assets/pages/media/users/avatar3.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar3.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -2130,7 +2130,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="./assets/pages/media/users/avatar2.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar2.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -2158,7 +2158,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="./assets/pages/media/users/avatar7.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar7.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -2186,7 +2186,7 @@
                                                     </div>
                                                     <div class="mt-action">
                                                         <div class="mt-action-img">
-                                                            <img src="./assets/pages/media/users/avatar8.jpg" /> </div>
+                                                            <img src="../assets/pages/media/users/avatar8.jpg" /> </div>
                                                         <div class="mt-action-body">
                                                             <div class="mt-action-row">
                                                                 <div class="mt-action-info ">
@@ -3760,7 +3760,7 @@
                                         <div class="scroller" style="height: 525px;" data-always-visible="1" data-rail-visible1="1">
                                             <ul class="chats">
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar2.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Lisa Wong </a>
@@ -3769,7 +3769,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar2.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Lisa Wong </a>
@@ -3778,7 +3778,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="in">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar1.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar1.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Bob Nilson </a>
@@ -3787,7 +3787,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="in">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar1.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar1.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Bob Nilson </a>
@@ -3796,7 +3796,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar3.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Richard Doe </a>
@@ -3805,7 +3805,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="in">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar3.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Richard Doe </a>
@@ -3814,7 +3814,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar1.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar1.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Bob Nilson </a>
@@ -3823,7 +3823,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="in">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar3.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Richard Doe </a>
@@ -3832,7 +3832,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="out">
-                                                    <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar1.jpg" />
+                                                    <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar1.jpg" />
                                                     <div class="message">
                                                         <span class="arrow"> </span>
                                                         <a href="javascript:;" class="name"> Bob Nilson </a>
@@ -3912,14 +3912,14 @@
                                             <div class="media-status">
                                                 <span class="badge badge-success">8</span>
                                             </div>
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar3.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar3.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Bob Nilson</h4>
                                                 <div class="media-heading-sub"> Project Manager </div>
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar1.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar1.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Nick Larson</h4>
                                                 <div class="media-heading-sub"> Art Director </div>
@@ -3929,14 +3929,14 @@
                                             <div class="media-status">
                                                 <span class="badge badge-danger">3</span>
                                             </div>
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar4.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar4.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Deon Hubert</h4>
                                                 <div class="media-heading-sub"> CTO </div>
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar2.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar2.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Ella Wong</h4>
                                                 <div class="media-heading-sub"> CEO </div>
@@ -3949,7 +3949,7 @@
                                             <div class="media-status">
                                                 <span class="badge badge-warning">2</span>
                                             </div>
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar6.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar6.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Lara Kunis</h4>
                                                 <div class="media-heading-sub"> CEO, Loop Inc </div>
@@ -3960,7 +3960,7 @@
                                             <div class="media-status">
                                                 <span class="label label-sm label-success">new</span>
                                             </div>
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar7.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar7.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Ernie Kyllonen</h4>
                                                 <div class="media-heading-sub"> Project Manager,
@@ -3968,7 +3968,7 @@
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar8.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar8.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Lisa Stone</h4>
                                                 <div class="media-heading-sub"> CTO, Keort Inc </div>
@@ -3979,14 +3979,14 @@
                                             <div class="media-status">
                                                 <span class="badge badge-success">7</span>
                                             </div>
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar9.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar9.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Deon Portalatin</h4>
                                                 <div class="media-heading-sub"> CFO, H&D LTD </div>
                                             </div>
                                         </li>
                                         <li class="media">
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar10.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar10.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Irina Savikova</h4>
                                                 <div class="media-heading-sub"> CEO, Tizda Motors Inc </div>
@@ -3996,7 +3996,7 @@
                                             <div class="media-status">
                                                 <span class="badge badge-danger">4</span>
                                             </div>
-                                            <img class="media-object" src="./assets/layouts/layout/img/avatar11.jpg" alt="...">
+                                            <img class="media-object" src="../assets/layouts/layout/img/avatar11.jpg" alt="...">
                                             <div class="media-body">
                                                 <h4 class="media-heading">Maria Gomez</h4>
                                                 <div class="media-heading-sub"> Manager, Infomatic Inc </div>
@@ -4013,7 +4013,7 @@
                                         </div>
                                         <div class="page-quick-sidebar-chat-user-messages">
                                             <div class="post out">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar3.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Bob Nilson</a>
@@ -4022,7 +4022,7 @@
                                                 </div>
                                             </div>
                                             <div class="post in">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar2.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Ella Wong</a>
@@ -4031,7 +4031,7 @@
                                                 </div>
                                             </div>
                                             <div class="post out">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar3.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Bob Nilson</a>
@@ -4040,7 +4040,7 @@
                                                 </div>
                                             </div>
                                             <div class="post in">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar2.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Ella Wong</a>
@@ -4049,7 +4049,7 @@
                                                 </div>
                                             </div>
                                             <div class="post out">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar3.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Bob Nilson</a>
@@ -4058,7 +4058,7 @@
                                                 </div>
                                             </div>
                                             <div class="post in">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar2.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Ella Wong</a>
@@ -4067,7 +4067,7 @@
                                                 </div>
                                             </div>
                                             <div class="post out">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar3.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Bob Nilson</a>
@@ -4076,7 +4076,7 @@
                                                 </div>
                                             </div>
                                             <div class="post in">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar2.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar2.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Ella Wong</a>
@@ -4085,7 +4085,7 @@
                                                 </div>
                                             </div>
                                             <div class="post out">
-                                                <img class="avatar" alt="" src="./assets/layouts/layout/img/avatar3.jpg" />
+                                                <img class="avatar" alt="" src="../assets/layouts/layout/img/avatar3.jpg" />
                                                 <div class="message">
                                                     <span class="arrow"></span>
                                                     <a href="javascript:;" class="name">Bob Nilson</a>
@@ -4107,316 +4107,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
-                                <div class="page-quick-sidebar-alerts-list">
-                                    <h3 class="list-heading">General</h3>
-                                    <ul class="feeds list-items">
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-check"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 4 pending tasks.
-                                                            <span class="label label-sm label-warning "> Take action
-                                                                <i class="fa fa-share"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> Just now </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-success">
-                                                                <i class="fa fa-bar-chart-o"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> Finance Report for year 2013 has been released. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> 20 mins </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-danger">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 5 pending membership that requires a quick review. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 24 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> New order received with
-                                                            <span class="label label-sm label-success"> Reference Number: DR23923 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 30 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-success">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 5 pending membership that requires a quick review. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 24 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> Web server hardware needs to be upgraded.
-                                                            <span class="label label-sm label-warning"> Overdue </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 2 hours </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-default">
-                                                                <i class="fa fa-briefcase"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> IPO Report for year 2013 has been released. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> 20 mins </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <h3 class="list-heading">System</h3>
-                                    <ul class="feeds list-items">
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-check"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 4 pending tasks.
-                                                            <span class="label label-sm label-warning "> Take action
-                                                                <i class="fa fa-share"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> Just now </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-danger">
-                                                                <i class="fa fa-bar-chart-o"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> Finance Report for year 2013 has been released. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> 20 mins </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-default">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 5 pending membership that requires a quick review. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 24 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-info">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> New order received with
-                                                            <span class="label label-sm label-success"> Reference Number: DR23923 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 30 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-success">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> You have 5 pending membership that requires a quick review. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 24 mins </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm label-warning">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc"> Web server hardware needs to be upgraded.
-                                                            <span class="label label-sm label-default "> Overdue </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <div class="date"> 2 hours </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <div class="col1">
-                                                    <div class="cont">
-                                                        <div class="cont-col1">
-                                                            <div class="label label-sm label-info">
-                                                                <i class="fa fa-briefcase"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="cont-col2">
-                                                            <div class="desc"> IPO Report for year 2013 has been released. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col2">
-                                                    <div class="date"> 20 mins </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="tab-pane page-quick-sidebar-settings" id="quick_sidebar_tab_3">
-                                <div class="page-quick-sidebar-settings-list">
-                                    <h3 class="list-heading">General Settings</h3>
-                                    <ul class="list-items borderless">
-                                        <li> Enable Notifications
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Allow Tracking
-                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="info" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Log Errors
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Auto Sumbit Issues
-                                            <input type="checkbox" class="make-switch" data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Enable SMS Alerts
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="success" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    </ul>
-                                    <h3 class="list-heading">System Settings</h3>
-                                    <ul class="list-items borderless">
-                                        <li> Security Level
-                                            <select class="form-control input-inline input-sm input-small">
-                                                <option value="1">Normal</option>
-                                                <option value="2" selected>Medium</option>
-                                                <option value="e">High</option>
-                                            </select>
-                                        </li>
-                                        <li> Failed Email Attempts
-                                            <input class="form-control input-inline input-sm input-small" value="5" /> </li>
-                                        <li> Secondary SMTP Port
-                                            <input class="form-control input-inline input-sm input-small" value="3560" /> </li>
-                                        <li> Notify On System Error
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="danger" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                        <li> Notify On SMTP Error
-                                            <input type="checkbox" class="make-switch" checked data-size="small" data-on-color="warning" data-on-text="ON" data-off-color="default" data-off-text="OFF"> </li>
-                                    </ul>
-                                    <div class="inner-content">
-                                        <button class="btn btn-success">
-                                            <i class="icon-settings"></i> Save Changes</button>
-                                    </div>
-                                </div>
+                            
                             </div>
                         </div>
                     </div>
@@ -4439,56 +4130,56 @@
     <script src="./assets/global/plugins/excanvas.min.js"></script> 
     <![endif]-->
             <!-- BEGIN CORE PLUGINS -->
-            <script src="./assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
             <!-- END CORE PLUGINS -->
             <!-- BEGIN PAGE LEVEL PLUGINS -->
-            <script src="./assets/global/plugins/moment.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-            <script src="./assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
             <!-- END PAGE LEVEL PLUGINS -->
             <!-- BEGIN THEME GLOBAL SCRIPTS -->
-            <script src="./assets/global/scripts/app.min.js" type="text/javascript"></script>
+            <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
             <!-- END THEME GLOBAL SCRIPTS -->
             <!-- BEGIN PAGE LEVEL SCRIPTS -->
-            <script src="./assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+            <script src="../assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
             <!-- END PAGE LEVEL SCRIPTS -->
             <!-- BEGIN THEME LAYOUT SCRIPTS -->
-            <script src="./assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-            <script src="./assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-            <script src="./assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+            <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+            <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+            <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
             <!-- END THEME LAYOUT SCRIPTS -->
         </body>
 
