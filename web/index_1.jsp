@@ -3,12 +3,12 @@
     Created on : Sep 6, 2016, 8:57:03 PM
     Author     : Ish
 --%>
- 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>One Movies an Entertainment Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+        <title>Apps Store</title>
         <!-- for-mobile-apps -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -303,7 +303,7 @@
             <div class="container">
                 <div class="w3_agile_banner_bottom_grid">
                     <div id="owl-demo" class="owl-carousel owl-theme">
-                      <% for(int i=0;i<20;++i){ %>
+                        <% for (int i = 0; i < 20; ++i) { %>
                         <div class="item">
                             <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
                                 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m7.jpg" title="album-name" class="img-responsive" alt=" " />
@@ -348,7 +348,7 @@
                 </ul>
             </nav>
         </div>
-        
+
         <!-- general -->
         <div class="general">
             <h4 class="latest-text w3_latest_text">Featured Movies</h4>
@@ -363,7 +363,7 @@
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-                                <%for(int i=0;i<10;++i){%>
+                                <%for (int i = 0; i < 10; ++i) {%>
                                 <div class="col-md-2 w3l-movie-gride-agile">
                                     <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m15.jpg" title="album-name" class="img-responsive" alt=" " />
                                         <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
@@ -390,17 +390,17 @@
                                         <p>NEW</p>
                                     </div>
                                 </div>
-                               <%}%>
+                                <%}%>
                                 <div class="clearfix"> </div>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                             <%for(int i=0; i<3;++i){%>
+                            <%for (int i = 0; i < 3; ++i) {%>
                             <div class="col-md-2 w3l-movie-gride-agile">
                                 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m22.jpg" title="album-name" class="img-responsive" alt=" " />
                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                 </a>
-                               
+
                                 <div class="mid-1 agileits_w3layouts_mid_1_home">
                                     <div class="w3l-movie-text">
                                         <h6><a href="single.html">Assassin's Creed 3</a></h6>							
@@ -427,7 +427,7 @@
                             <div class="clearfix"> </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                             <%for(int i=0; i<3;++i){%>
+                            <%for (int i = 0; i < 3; ++i) {%>
                             <div class="col-md-2 w3l-movie-gride-agile">
                                 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m7.jpg" title="album-name" class="img-responsive" alt=" " />
                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
@@ -455,11 +455,11 @@
                                 </div>
                             </div>
                             <%}%>
-                            
+
                             <div class="clearfix"> </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="imdb" aria-labelledby="imdb-tab">
-                             <%for(int i=0; i<3;++i){%>
+                            <%for (int i = 0; i < 3; ++i) {%>
                             <div class="col-md-2 w3l-movie-gride-agile">
                                 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m22.jpg" title="album-name" class="img-responsive" alt=" " />
                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
@@ -487,7 +487,7 @@
                                 </div>
                             </div>
                             <%}%>
-                          
+
                             <div class="clearfix"> </div>
                         </div>
                     </div>
@@ -502,7 +502,7 @@
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
-                            <%for(int i=0;i<4;++i){%>
+                            <%for (int i = 0; i < 4; ++i) {%>
                             <li>
                                 <div class="agile_tv_series_grid">
                                     <div class="col-md-6 agile_tv_series_grid_left">
