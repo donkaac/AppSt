@@ -19,6 +19,11 @@ import javax.mail.internet.MimeMessage;
 public class Mails {
     public static void main(String[] args) {
         String username="ishu.nimantha@gmail.com";
+        String password="imkthecvheetjula";
+        String reciver[]={"ishannimantha.al@gmail.com"};
+        String subject ="Test Mail";
+        String Body ="It Works password =  imkthecvheetjula";
+        sendFromGMail(username, password, reciver, subject, Body);
     }
     
      public static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
