@@ -321,8 +321,9 @@
                          </ul>
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                             <div class="scroller" style="height: 525px;" data-always-visible="1" data-rail-visible1="1">
                             <div class="w3_agile_featured_movies">
-                                <%for (int i = 0; i < 10; ++i) {%>
+                                <%for (int i = 0; i < 30; ++i) {%>
                                 <div class="col-md-2 w3l-movie-gride-agile">
                                     <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m1.jpg" title="album-name" class="img-responsive" alt=" " />
                                         <div class="w3l-action-icon"><i class=" fa-adn" aria-hidden="true"></i></div>
@@ -353,7 +354,7 @@
                                 <div class="clearfix"> </div>
                             </div>
                         </div>
-
+                        </div>
                     </div>
                 </div>
             </div>
