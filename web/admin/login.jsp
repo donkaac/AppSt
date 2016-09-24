@@ -48,7 +48,7 @@
                 <div class="col-md-6 login-container bs-reset">
                     <!--<img class="login-logo login-6" src="../assets/pages/img/login/login-invert.png" />-->
                     <div class="login-content">
-                        <h1>APPS Member Login</h1>
+                        <h1>APPS Staff Login</h1>
                         <p> Lorem ipsum dolor sit amet, coectetuer adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum dolor sit amet, coectetuer adipiscing. </p>
                         <form action="javascript:;" class="login-form" method="post">
                             <div class="alert alert-danger display-hide">
