@@ -2,7 +2,7 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>admin_login</servlet-name>
-        <servlet-class>Servlets.addressdetails.loard</servlet-class>
+        <servlet-class>Servlets.userLogin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdvacedSearchApp</servlet-name>
@@ -15,6 +15,10 @@
     <servlet>
         <servlet-name>saveDevelopervalidation</servlet-name>
         <servlet-class>Servlets.saveDevelopervalidation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>Servlets.logout</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
@@ -32,9 +36,21 @@
         <servlet-name>saveDevelopervalidation</servlet-name>
         <url-pattern>/saveDevelopervalidation</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/system_404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/system_500.jsp</location>
+    </error-page>
 </web-app>

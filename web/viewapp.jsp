@@ -3,6 +3,9 @@
     Created on : Sep 16, 2016, 4:24:49 PM
     Author     : Ish
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Entities.Application"%>
+<%@page import="Entities.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +84,6 @@
                 </div>
                 <div class="w3l_sign_in_register">
                     <ul>
-                        <%if (true) {%>
                         <li>
                             <div>
                                 <h3><span class="glyphicon glyphicon-shopping-cart"></span></h3>
@@ -92,6 +94,11 @@
                                 <h3><span class="glyphicon glyphicon-list"></span></h3>
                             </div>
                         </li>
+
+                        <%
+                            try {
+                                Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getAttribute("userid").toString()));
+                                if (request.getSession().getAttribute("username").equals(c.getIdCustomer())) {%>
                         <li class="dropdown profile_details_drop">
                             <span href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">	
@@ -112,7 +119,13 @@
 
                         <li><i class="fa fa-phone" aria-hidden="true"></i> (+000) 123 345 653</li>
                         <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
-                            <%}%>
+                            <%}
+                            } catch (Exception e) {
+                            %>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i> (+000) 123 345 653</li>
+                        <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+                            <%
+    }%>
 
                     </ul>
                 </div>
@@ -137,9 +150,9 @@
                                     </div>
                                     <div class="form">
                                         <h3>Login to your account</h3>
-                                        <form action="#" method="post">
-                                            <input type="text" name="Username" placeholder="Username" required="">
-                                            <input type="password" name="Password" placeholder="Password" required="">
+                                        <form action="admin_login" method="post">
+                                            <input type="text" name="user_email" placeholder="Email" required="">
+                                            <input type="password" name="password" placeholder="Password" required="">
                                             <input type="submit" value="Login">
                                         </form>
                                     </div>
@@ -300,40 +313,114 @@
         <!-- banner-bottom -->
         <div class="banner-bottom">
             <div class="container">
-                <div class="w3_agile_banner_bottom_grid">
-                    <div id="owl-demo" class="owl-carousel owl-theme">
-                      <% for(int i=0;i<20;++i){ %>
-                        <div class="item">
-                            <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
-                                <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m7.jpg" title="album-name" class="img-responsive" alt=" " />
-                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
-                                </a>
-                                <div class="mid-1 agileits_w3layouts_mid_1_home">
-                                    <div class="w3l-movie-text">
-                                        <h6><a href="single.html">Light B/t Oceans</a></h6>							
-                                    </div>
-                                    <div class="mid-2 agile_mid_2_home">
-                                        <p>2016</p>
-                                        <div class="block-stars">
-                                            <ul class="w3l-ratings">
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <div class="ribben">
-                                    <p>NEW</p>
-                                </div>
+                <% 
+                try{
+                   ArrayList<Object> appslist= Datacontroller.DataParser.Searchdata(new Application());
+                   Application ap=null;
+                   for(Object o:appslist){
+                       ap=(Application)o;
+                       if(ap.getIdApplication().equals(7)){break;}else{ap=null;}
+                       
+                   }
+                   
+                   if(!ap.equals(null)){
+                  %>
+                <div class="col-md-8 wthree-top-news-left">
+                    <div class="wthree-news-left">
+                        <div class="wthree-news-left-img">
+                            <img src="images/7.jpg" alt="">
+                            <h4><%=ap.getApplicationName()%></h4>
+                            <div class="s-author">
+                                <p>Develop By <a href="#"><i class="fa fa-user" aria-hidden="true"></i><%=ap.getDeveloper().getDeveloperFname()+ap.getDeveloper().getDeveloperLname()%>  </a> &nbsp;&nbsp; <i class="fa fa-calendar" aria-hidden="true"></i> <%=ap.getLastmodifiedDate()%> &nbsp;&nbsp; <a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Comments (<%=ap.getComments().size()%>)</a></p>
+                            </div>
+                            <div id="fb-root"></div>
+                            <div class="news-shar-buttons">
+                                <ul>
+                                    <li>
+                                        <div class="fb-like" data-href="https://www.facebook.com/ishannimantha" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                                        <script>(function (d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0];
+                                                if (d.getElementById(id))
+                                                    return;
+                                                js = d.createElement(s);
+                                                js.id = id;
+                                                js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7";
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }(document, 'script', 'facebook-jssdk'));</script>
+                                    </li>
+                                    <li>
+                                        <div class="fb-share-button" data-href="https://www.facebook.com/ishannimantha" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fw3layouts&amp;src=sdkpreparse">Share</a></div>
+                                    </li>
+                                    
+                                    <li>
+                                        <!-- Place this tag where you want the +1 button to render. -->
+                                        <div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1474790437474" name="I0_1474790437474" src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;size=medium&amp;origin=file%3A%2F%2F&amp;url=file%3A%2F%2F%2FC%3A%2FUsers%2FIsh%2FDownloads%2FCompressed%2Fone_movies%2Fweb%2Fnews-single.html&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.JQHX-0gt2nQ.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAGLTcCMxCHba3O2oARJ4ftjU5nmghOlA8w#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1474790437474&amp;parent=file%3A%2F%2F&amp;pfname=&amp;rpctoken=38552038" data-gapiattached="true"></iframe></div><div class="g-plusone" data-size="medium" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
+
+                                        <!-- Place this tag after the last +1 button tag. -->
+                                        <script type="text/javascript">
+                                            (function () {
+                                                var po = document.createElement('script');
+                                                po.type = 'text/javascript';
+                                                po.async = true;
+                                                po.src = 'https://apis.google.com/js/platform.js';
+                                                var s = document.getElementsByTagName('script')[0];
+                                                s.parentNode.insertBefore(po, s);
+                                            })();
+                                        </script>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w3-agile-news-text">
+                                <p><%=ap.getDescription()%> </p>
                             </div>
                         </div>
-                        <%}%>
                     </div>
-                </div>			
+                    <div class="wthree-related-news-left">
+                        <h4>Related News</h4>
+                        <div class="wthree-news-top-left">
+                            <div class="col-md-6 w3-agileits-news-left">
+                                <div class="col-sm-5 wthree-news-img">
+                                    <a href="news-single.html"><img src="images/m1.jpg" alt=""></a>
+                                </div>
+                                <div class="col-sm-7 wthree-news-info">
+                                    <ul>
+                                        <li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+                                        <li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="col-md-6 w3-agileits-news-left">
+                                <div class="col-sm-5 wthree-news-img">
+                                    <a href="news-single.html"><img src="images/m2.jpg" alt=""></a>
+                                </div>
+                                <div class="col-sm-7 wthree-news-info">
+                                    
+                                    <ul>
+                                        <li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+                                        <li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+                                    </ul>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                    <!-- agile-comments -->
+                    <div class="agile-news-comments">
+                        <div class="agile-news-comments-info">
+                            <h4>Comments</h4>
+                            <div class="fb-comments" data-href="https://w3layouts.com/" data-width="100%" data-numposts="5"></div>
+                        </div>
+                    </div>
+                    <!-- //agile-comments -->
+                    <div class="news-related">
+
+                    </div>
+                </div>	
+                <%
+                }}catch(Exception e){}
+                %>
             </div>
         </div>
         <!-- //banner-bottom -->
@@ -347,7 +434,7 @@
                 </ul>
             </nav>
         </div>
-        
+
         <!-- general -->
         <div class="general">
             <h4 class="latest-text w3_latest_text">Featured Movies</h4>
@@ -362,7 +449,7 @@
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="w3_agile_featured_movies">
-                                <%for(int i=0;i<10;++i){%>
+                                <%for (int i = 0; i < 10; ++i) {%>
                                 <div class="col-md-2 w3l-movie-gride-agile">
                                     <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m15.jpg" title="album-name" class="img-responsive" alt=" " />
                                         <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
@@ -389,17 +476,17 @@
                                         <p>NEW</p>
                                     </div>
                                 </div>
-                               <%}%>
+                                <%}%>
                                 <div class="clearfix"> </div>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                             <%for(int i=0; i<3;++i){%>
+                            <%for (int i = 0; i < 3; ++i) {%>
                             <div class="col-md-2 w3l-movie-gride-agile">
                                 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m22.jpg" title="album-name" class="img-responsive" alt=" " />
                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                 </a>
-                               
+
                                 <div class="mid-1 agileits_w3layouts_mid_1_home">
                                     <div class="w3l-movie-text">
                                         <h6><a href="single.html">Assassin's Creed 3</a></h6>							
@@ -426,7 +513,7 @@
                             <div class="clearfix"> </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                             <%for(int i=0; i<3;++i){%>
+                            <%for (int i = 0; i < 3; ++i) {%>
                             <div class="col-md-2 w3l-movie-gride-agile">
                                 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m7.jpg" title="album-name" class="img-responsive" alt=" " />
                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
@@ -454,11 +541,11 @@
                                 </div>
                             </div>
                             <%}%>
-                            
+
                             <div class="clearfix"> </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="imdb" aria-labelledby="imdb-tab">
-                             <%for(int i=0; i<3;++i){%>
+                            <%for (int i = 0; i < 3; ++i) {%>
                             <div class="col-md-2 w3l-movie-gride-agile">
                                 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m22.jpg" title="album-name" class="img-responsive" alt=" " />
                                     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
@@ -486,7 +573,7 @@
                                 </div>
                             </div>
                             <%}%>
-                          
+
                             <div class="clearfix"> </div>
                         </div>
                     </div>
@@ -501,7 +588,7 @@
                 <section class="slider">
                     <div class="flexslider">
                         <ul class="slides">
-                            <%for(int i=0;i<4;++i){%>
+                            <%for (int i = 0; i < 4; ++i) {%>
                             <li>
                                 <div class="agile_tv_series_grid">
                                     <div class="col-md-6 agile_tv_series_grid_left">
@@ -700,14 +787,14 @@
                 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
                 <script defer src="js/jquery.flexslider.js"></script>
                 <script type="text/javascript">
-            $(window).load(function () {
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    start: function (slider) {
-                        $('body').removeClass('loading');
-                    }
-                });
-            });
+                                            $(window).load(function () {
+                                                $('.flexslider').flexslider({
+                                                    animation: "slide",
+                                                    start: function (slider) {
+                                                        $('body').removeClass('loading');
+                                                    }
+                                                });
+                                            });
                 </script>
                 <!-- //flexSlider -->
             </div>
@@ -725,20 +812,20 @@
             <iframe src="https://player.vimeo.com/video/165197924?color=ffffff&title=0&byline=0&portrait=0"></iframe>
         </div>
         <script>
-            $(document).ready(function () {
-                $('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
-                    type: 'inline',
-                    fixedContentPos: false,
-                    fixedBgPos: true,
-                    overflowY: 'auto',
-                    closeBtnInside: true,
-                    preloader: false,
-                    midClick: true,
-                    removalDelay: 300,
-                    mainClass: 'my-mfp-zoom-in'
-                });
+                                            $(document).ready(function () {
+                                                $('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
+                                                    type: 'inline',
+                                                    fixedContentPos: false,
+                                                    fixedBgPos: true,
+                                                    overflowY: 'auto',
+                                                    closeBtnInside: true,
+                                                    preloader: false,
+                                                    midClick: true,
+                                                    removalDelay: 300,
+                                                    mainClass: 'my-mfp-zoom-in'
+                                                });
 
-            });
+                                            });
         </script>
         <!-- //Latest-tv-series -->
         <!-- footer -->
@@ -796,18 +883,18 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
         <script>
-            $(document).ready(function () {
-                $(".dropdown").hover(
-                        function () {
-                            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-                            $(this).toggleClass('open');
-                        },
-                        function () {
-                            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-                            $(this).toggleClass('open');
-                        }
-                );
-            });
+                                            $(document).ready(function () {
+                                                $(".dropdown").hover(
+                                                        function () {
+                                                            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                                                            $(this).toggleClass('open');
+                                                        },
+                                                        function () {
+                                                            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                                                            $(this).toggleClass('open');
+                                                        }
+                                                );
+                                            });
         </script>
         <!-- //Bootstrap Core JavaScript -->
         <!-- here stars scrolling icon -->
