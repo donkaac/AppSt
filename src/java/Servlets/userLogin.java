@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import Datacontroller.*;
 import Entities.*;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Ish
@@ -38,12 +39,17 @@ public class userLogin extends HttpServlet {
             
             System.out.println(email+""+password);
             boolean loginstate=false;
+            Customer c=null;
             ArrayList<Object> Searchdata = DataParser.Searchdata(new Customer());
             for (Object customer : Searchdata) {
-                Customer c=(Customer) customer;
-                if((c.getUsername().equals(email))&(c.getPassword().equals(password))){loginstate=true;}
+                 c=(Customer) customer;
+                if((c.getUsername().equals(email))&(c.getPassword().equals(password))&(c.isState()==true)){loginstate=true; break;}
             }
             if (loginstate) {
+                HttpSession s= request.getSession();
+                        s.setAttribute("userid",c.getIdCustomer());
+                        s.setAttribute("username", c.getUsername());
+                       
                   out.print("ok");
             }else{
                 out.print("email or password does not exist.");
