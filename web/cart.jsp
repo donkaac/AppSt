@@ -4,6 +4,9 @@
     Author     : Ish
 --%>
 
+<%@page import="Entities.Customerhasapplication"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Entities.Cart"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -323,14 +326,23 @@
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                              <div class="scroller" style="height: 525px;" data-always-visible="1" data-rail-visible1="1">
                             <div class="w3_agile_featured_movies">
-                                <%for (int i = 0; i < 30; ++i) {%>
+                                <%
+                                    double total=0;
+                                    try{
+                                   ArrayList<Object> Searchdata= Datacontroller.DataParser.Searchdata(new Cart());        
+                                    for(Object o:Searchdata) {
+                                Cart cart=(Cart)o;
+                                 if(!cart.getCustomer().getUsername().equals(session.getAttribute("username"))){
+                                     total=+cart.getApplication().getPrice();
+                                 
+                                %>
                                 <div class="col-md-2 w3l-movie-gride-agile">
                                     <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m1.jpg" title="album-name" class="img-responsive" alt=" " />
                                         <div class="w3l-action-icon"><i class=" fa-adn" aria-hidden="true"></i></div>
                                     </a>
                                     <div class="mid-1 agileits_w3layouts_mid_1_home">
                                         <div class="w3l-movie-text">
-                                            <h6><a href="single.html">God’s Compass</a></h6>							
+                                            <h6><a href="single.html"><%=cart.getApplication().getApplicationName()%></a></h6>							
                                         </div>
                                         <div class="mid-2 agile_mid_2_home">
                                             <p>2016</p>
@@ -350,9 +362,11 @@
                                          
                                     </div>
                                 </div>
-                                <%}%>
+                                <%}} }catch(Exception e){}%>
                                 <div class="clearfix"> </div>
                             </div>
+                                <h3>Total : <%=total%></h3>
+                                <h3>CheckOut</h3>
                         </div>
                         </div>
                     </div>
@@ -368,7 +382,16 @@
                     <div class="container">
                         <div class="w3_agile_banner_bottom_grid">
                             <div id="owl-demo" class="owl-carousel owl-theme">
-                                <% for (int i = 0; i < 6; ++i) { %>
+                                <% 
+                                    try{
+                                    ArrayList<Object> data= Datacontroller.DataParser.Searchdata(new Customerhasapplication());        
+                                    for(Object o:data) { 
+                                Customerhasapplication c=(Customerhasapplication)o;
+                                if(c.getRate()==5){
+                                    
+                                
+                                %>
+                                    
                                 <div class="item">
                                     <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
                                         <a href="single.html" class="hvr-shutter-out-horizontal"><img src="images/m7.jpg" title="album-name" class="img-responsive" alt=" " />
@@ -376,9 +399,9 @@
                                         </a>
                                         <div class="mid-1 agileits_w3layouts_mid_1_home">
                                             <div class="w3l-movie-text">
-                                                <h6><a href="single.html">Light B/t Oceans</a></h6>							
+                                                <h6><a href="single.html"><%=c.getApplication().getApplicationName()%></a></h6>							
                                             </div>
-                                            <div class="mid-2 agile_mid_2_home">
+                                            <div class="mid-2 agile_mid_2_home">`
                                                 <p>2016</p>
                                                 <div class="block-stars">
                                                     <ul class="w3l-ratings">
@@ -397,7 +420,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <%}%>
+                                <%}}}catch(Exception e){}%>
                             </div>
                         </div>			
                     </div>

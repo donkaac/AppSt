@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 9, 2016 7:00:01 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Sep 25, 2016 11:13:05 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Staff" table="staff" catalog="appstore" optimistic-lock="version">
         <id name="idStaff" type="java.lang.Integer">
@@ -12,19 +12,19 @@
             <column name="City_idCity" not-null="true" />
         </many-to-one>
         <many-to-one name="emailvarified" class="Entities.Emailvarified" fetch="select">
-            <column name="emailvarified_id" not-null="true" />
+            <column name="emailvarified_id" />
         </many-to-one>
         <many-to-one name="roles" class="Entities.Roles" fetch="select">
-            <column name="roles_idroles" not-null="true" />
+            <column name="roles_idroles" />
         </many-to-one>
         <property name="staffFname" type="string">
-            <column name="StaffFName" length="45" />
+            <column name="StaffFName" length="45" not-null="true" />
         </property>
         <property name="staffMname" type="string">
             <column name="StaffMName" length="45" />
         </property>
         <property name="staffLname" type="string">
-            <column name="StaffLName" length="45" />
+            <column name="StaffLName" length="45" not-null="true" />
         </property>
         <property name="staffPassword" type="string">
             <column name="StaffPassword" length="45" not-null="true" />
@@ -36,7 +36,7 @@
             <column name="StaffRegDateAndTime" length="19" not-null="true" />
         </property>
         <property name="address" type="string">
-            <column name="address" length="65535" />
+            <column name="address" length="65535" not-null="true" />
         </property>
         <property name="state" type="boolean">
             <column name="state" not-null="true" />

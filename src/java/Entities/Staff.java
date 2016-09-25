@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 9, 2016 6:59:56 PM by Hibernate Tools 4.3.1
+// Generated Sep 25, 2016 11:13:03 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -34,13 +34,14 @@ public class Staff  implements java.io.Serializable {
     }
 
 	
-    public Staff(City city, Emailvarified emailvarified, Roles roles, String staffPassword, String username, Date staffRegDateAndTime, boolean state) {
+    public Staff(City city, String staffFname, String staffLname, String staffPassword, String username, Date staffRegDateAndTime, String address, boolean state) {
         this.city = city;
-        this.emailvarified = emailvarified;
-        this.roles = roles;
+        this.staffFname = staffFname;
+        this.staffLname = staffLname;
         this.staffPassword = staffPassword;
         this.username = username;
         this.staffRegDateAndTime = staffRegDateAndTime;
+        this.address = address;
         this.state = state;
     }
     public Staff(City city, Emailvarified emailvarified, Roles roles, String staffFname, String staffMname, String staffLname, String staffPassword, String username, Date staffRegDateAndTime, String address, boolean state, Set<Staffcokie> staffcokies, Set<Developervalid> developervalids, Set<Login> logins, Set<Staffhassubmenu> staffhassubmenus, Set<Apphasstaffvalid> apphasstaffvalids) {

@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 9, 2016 6:59:56 PM by Hibernate Tools 4.3.1
+// Generated Sep 25, 2016 11:13:03 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -19,6 +19,7 @@ public class Customerhasapplication  implements java.io.Serializable {
      private Date payedDateAndTimeToDeveloper;
      private double developerPayementPrice;
      private double incomePrice;
+     private Integer rate;
 
     public Customerhasapplication() {
     }
@@ -32,7 +33,7 @@ public class Customerhasapplication  implements java.io.Serializable {
         this.developerPayementPrice = developerPayementPrice;
         this.incomePrice = incomePrice;
     }
-    public Customerhasapplication(Application application, Customer customer, Serialkeys serialkeys, Date customerHasApplicationDateAndTime, Boolean isPayedDeveloper, Date payedDateAndTimeToDeveloper, double developerPayementPrice, double incomePrice) {
+    public Customerhasapplication(Application application, Customer customer, Serialkeys serialkeys, Date customerHasApplicationDateAndTime, Boolean isPayedDeveloper, Date payedDateAndTimeToDeveloper, double developerPayementPrice, double incomePrice, Integer rate) {
        this.application = application;
        this.customer = customer;
        this.serialkeys = serialkeys;
@@ -41,6 +42,7 @@ public class Customerhasapplication  implements java.io.Serializable {
        this.payedDateAndTimeToDeveloper = payedDateAndTimeToDeveloper;
        this.developerPayementPrice = developerPayementPrice;
        this.incomePrice = incomePrice;
+       this.rate = rate;
     }
    
     public Integer getIdCustomerHasApplication() {
@@ -105,6 +107,13 @@ public class Customerhasapplication  implements java.io.Serializable {
     
     public void setIncomePrice(double incomePrice) {
         this.incomePrice = incomePrice;
+    }
+    public Integer getRate() {
+        return this.rate;
+    }
+    
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
 

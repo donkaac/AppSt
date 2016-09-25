@@ -40,7 +40,10 @@
             <link href="../assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
             <link href="../assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
             <!-- END THEME STYLES -->
+            <!-- AJAX FILE -->
+            <script type="text/javascript" src="../ajaxjs/addressdetails.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
+            
         </head>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
@@ -180,7 +183,7 @@
                                             <li>
                                                 <a href="#">
                                                     <span class="photo">
-                                                        <img src="./assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                                     <span class="subject">
                                                         <span class="from"> Lisa Wong </span>
                                                         <span class="time">Just Now </span>
@@ -191,7 +194,7 @@
                                             <li>
                                                 <a href="#">
                                                     <span class="photo">
-                                                        <img src="./assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                                     <span class="subject">
                                                         <span class="from"> Richard Doe </span>
                                                         <span class="time">16 mins </span>
@@ -202,7 +205,7 @@
                                             <li>
                                                 <a href="#">
                                                     <span class="photo">
-                                                        <img src="./assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
                                                     <span class="subject">
                                                         <span class="from"> Bob Nilson </span>
                                                         <span class="time">2 hrs </span>
@@ -213,7 +216,7 @@
                                             <li>
                                                 <a href="#">
                                                     <span class="photo">
-                                                        <img src="./assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                                     <span class="subject">
                                                         <span class="from"> Lisa Wong </span>
                                                         <span class="time">40 mins </span>
@@ -224,7 +227,7 @@
                                             <li>
                                                 <a href="#">
                                                     <span class="photo">
-                                                        <img src="./assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                                     <span class="subject">
                                                         <span class="from"> Richard Doe </span>
                                                         <span class="time">46 mins </span>
@@ -571,6 +574,245 @@
                              
                         </div>
                         
+                        <div class="row">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class=" icon-layers font-green"></i>
+                                        <span class="caption-subject font-green sbold uppercase">Register New Staff Members</span>
+                                    </div>
+                                    <div class="actions">
+                                       
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->
+                                    <form action="#" class="form-horizontal">
+                                        <div class="form-body">
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label" for="form_control_1">First Name</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label" for="form_control_1">Middle Name</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label" for="form_control_1">Last Name</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+                                         
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label" for="form_control_1">Input Group</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group has-success">
+                                                        <input type="text" class="form-control" placeholder="Email Address">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-envelope"></i>
+                                                        </span>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label" for="form_control_1">Country</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" id="Countrylist" name="">
+                                                        <option value="">Option 1</option>
+                                                        <option value="">Option 2</option>
+                                                        <option value="">Option 3</option>
+                                                    </select>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+                                             <div class="form-group form-md-line-input">
+                                                 <label class="col-md-3 control-label" id="provincelist" for="form_control_1">Province</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" id="countylist" name="">
+                                                        <option value="">Option 1</option>
+                                                        <option value="">Option 2</option>
+                                                        <option value="">Option 3</option>
+                                                    </select>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+                                             <div class="form-group form-md-line-input">
+                                                 <label class="col-md-3 control-label" id="districtlist" for="form_control_1">District</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" id="countylist" name="">
+                                                        <option value="">Option 1</option>
+                                                        <option value="">Option 2</option>
+                                                        <option value="">Option 3</option>
+                                                    </select>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label" id="citylist" for="form_control_1">City</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" id="citylist" name="">
+                                                        <option value="">Option 1</option>
+                                                        <option value="">Option 2</option>
+                                                        <option value="">Option 3</option>
+                                                    </select>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input has-success">
+                                                <label class="col-md-3 control-label" for="form_control_1">Textarea</label>
+                                                <div class="col-md-9">
+                                                    <textarea class="form-control" name="" rows="3"></textarea>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-checkboxes">
+                                                <label class="col-md-3 control-label" for="form_control_1">Checkboxes</label>
+                                                <div class="col-md-9">
+                                                    <div class="md-checkbox-list">
+                                                        <div class="md-checkbox">
+                                                            <input type="checkbox" id="checkbox1_1" class="md-check">
+                                                            <label for="checkbox1_1">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 1 </label>
+                                                        </div>
+                                                        <div class="md-checkbox">
+                                                            <input type="checkbox" id="checkbox1_2" class="md-check">
+                                                            <label for="checkbox1_2">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 2 </label>
+                                                        </div>
+                                                        <div class="md-checkbox">
+                                                            <input type="checkbox" id="checkbox1_211" class="md-check">
+                                                            <label for="checkbox1_211">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 3 </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-checkboxes has-error">
+                                                <label class="col-md-3 control-label" for="form_control_1">Checkboxes(error)</label>
+                                                <div class="col-md-9">
+                                                    <div class="md-checkbox-inline">
+                                                        <div class="md-checkbox">
+                                                            <input type="checkbox" id="checkbox1_3" class="md-check">
+                                                            <label for="checkbox1_3">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 1 </label>
+                                                        </div>
+                                                        <div class="md-checkbox">
+                                                            <input type="checkbox" id="checkbox1_4" class="md-check" checked="">
+                                                            <label for="checkbox1_4">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 2 </label>
+                                                        </div>
+                                                        <div class="md-checkbox">
+                                                            <input type="checkbox" id="checkbox1_5" class="md-check">
+                                                            <label for="checkbox1_5">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 3 </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-radios has-success">
+                                                <label class="col-md-3 control-label" for="form_control_1">Radios(success)</label>
+                                                <div class="col-md-9">
+                                                    <div class="md-radio-list">
+                                                        <div class="md-radio">
+                                                            <input type="radio" id="checkbox1_6" name="radio211" class="md-radiobtn">
+                                                            <label for="checkbox1_6">
+                                                                <span class="inc"></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 1 </label>
+                                                        </div>
+                                                        <div class="md-radio">
+                                                            <input type="radio" id="checkbox1_7" name="radio211" class="md-radiobtn" checked="">
+                                                            <label for="checkbox1_6">
+                                                                <span class="inc"></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 2 </label>
+                                                        </div>
+                                                        <div class="md-radio">
+                                                            <input type="radio" id="checkbox1_611" name="radio211" class="md-radiobtn" checked="">
+                                                            <label for="checkbox1_611">
+                                                                <span></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 3 </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-radios has-warning">
+                                                <label class="col-md-3 control-label" for="form_control_1">Radios(warning)</label>
+                                                <div class="col-md-9">
+                                                    <div class="md-radio-inline">
+                                                        <div class="md-radio">
+                                                            <input type="radio" id="checkbox1_8" name="radio2" class="md-radiobtn">
+                                                            <label for="checkbox1_8">
+                                                                <span class="inc"></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 1 </label>
+                                                        </div>
+                                                        <div class="md-radio">
+                                                            <input type="radio" id="checkbox1_9" name="radio2" class="md-radiobtn" checked="">
+                                                            <label for="checkbox1_9">
+                                                                <span class="inc"></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 2 </label>
+                                                        </div>
+                                                        <div class="md-radio">
+                                                            <input type="radio" id="checkbox1_10" name="radio2" class="md-radiobtn">
+                                                            <label for="checkbox1_10">
+                                                                <span class="inc"></span>
+                                                                <span class="check"></span>
+                                                                <span class="box"></span> Option 3 </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <a href="javascript:;" class="btn green">Submit</a>
+                                                    <a href="javascript:;" class="btn default">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                            <!-- END VALIDATION STATES-->
+                        </div>
                         <div class="clearfix"></div>
 
 
