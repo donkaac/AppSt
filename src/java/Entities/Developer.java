@@ -1,7 +1,8 @@
 package Entities;
-// Generated Sep 25, 2016 11:13:03 AM by Hibernate Tools 4.3.1
+// Generated Sep 26, 2016 8:05:57 PM by Hibernate Tools 4.3.1
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +24,7 @@ public class Developer  implements java.io.Serializable {
      private String developerMobile;
      private String address;
      private boolean state;
+     private Date developerRegdate;
      private Set<Delopercokie> delopercokies = new HashSet<Delopercokie>(0);
      private Set<Application> applications = new HashSet<Application>(0);
      private Set<Developerhaslanguages> developerhaslanguageses = new HashSet<Developerhaslanguages>(0);
@@ -33,15 +35,16 @@ public class Developer  implements java.io.Serializable {
     }
 
 	
-    public Developer(City city, String username, String developerFname, String password, String address, boolean state) {
+    public Developer(City city, String username, String developerFname, String password, String address, boolean state, Date developerRegdate) {
         this.city = city;
         this.username = username;
         this.developerFname = developerFname;
         this.password = password;
         this.address = address;
         this.state = state;
+        this.developerRegdate = developerRegdate;
     }
-    public Developer(City city, Emailvarified emailvarified, String username, String developerFname, String developerMname, String developerLname, String password, String developerPhone, String developerMobile, String address, boolean state, Set<Delopercokie> delopercokies, Set<Application> applications, Set<Developerhaslanguages> developerhaslanguageses, Set<Developervalid> developervalids, Set<Developerhascomment> developerhascomments) {
+    public Developer(City city, Emailvarified emailvarified, String username, String developerFname, String developerMname, String developerLname, String password, String developerPhone, String developerMobile, String address, boolean state, Date developerRegdate, Set<Delopercokie> delopercokies, Set<Application> applications, Set<Developerhaslanguages> developerhaslanguageses, Set<Developervalid> developervalids, Set<Developerhascomment> developerhascomments) {
        this.city = city;
        this.emailvarified = emailvarified;
        this.username = username;
@@ -53,6 +56,7 @@ public class Developer  implements java.io.Serializable {
        this.developerMobile = developerMobile;
        this.address = address;
        this.state = state;
+       this.developerRegdate = developerRegdate;
        this.delopercokies = delopercokies;
        this.applications = applications;
        this.developerhaslanguageses = developerhaslanguageses;
@@ -143,6 +147,13 @@ public class Developer  implements java.io.Serializable {
     
     public void setState(boolean state) {
         this.state = state;
+    }
+    public Date getDeveloperRegdate() {
+        return this.developerRegdate;
+    }
+    
+    public void setDeveloperRegdate(Date developerRegdate) {
+        this.developerRegdate = developerRegdate;
     }
     public Set<Delopercokie> getDelopercokies() {
         return this.delopercokies;

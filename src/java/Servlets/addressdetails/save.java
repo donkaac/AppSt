@@ -6,26 +6,25 @@
 package Servlets.addressdetails;
 
 import Datacontroller.DataParser;
+import Entities.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Entities.*;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  *
  * @author Ish
  */
 public class save extends HttpServlet {
-
+  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try (PrintWriter out = response.getWriter()) {
+         try (PrintWriter out = response.getWriter()) {
 
             String type = request.getParameter("type");
             boolean state = Boolean.parseBoolean(request.getParameter("state"));
@@ -39,7 +38,8 @@ public class save extends HttpServlet {
                     Country country = new Country();
                     country.setCountryName(countryname);
                     country.setState(true);
-                    DataParser.Savedata(country);
+                    boolean Savedata = DataParser.Savedata(country);
+                    out.write(""+Savedata);
                 } else {
                    
                     out.write("Allredy Exist!");
@@ -181,4 +181,4 @@ public class save extends HttpServlet {
 
         }
     }
-}
+    }

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets;
+package Servlets.addressdetails;
 
-import Entities.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ish
  */
-public class search extends HttpServlet {
-
+public class deactive extends HttpServlet {
+  
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -30,18 +29,11 @@ public class search extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        try {
-            boolean state = Boolean.parseBoolean(request.getParameter("state"));
-            String type = request.getParameter("type");
-            if(type.equals("appid")){
-            int appid = Integer.parseInt(request.getParameter("appid"));
-                Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
-                 
-            
-            }
-        } catch (Exception e) {
-        }
+          try (PrintWriter out = response.getWriter()) {
+          
+          
+          }
+
     }
 
     /**
@@ -49,4 +41,9 @@ public class search extends HttpServlet {
      *
      * @return a String containing servlet description
      */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

@@ -45,7 +45,7 @@ public class DataParser {
 
             Session.save(o);
             beginTransaction.commit();
-
+ 
         } catch (Exception e) {
             return false;
         }
@@ -74,6 +74,7 @@ public class DataParser {
             }
             List<Object> list = q.list();
             resualt = (ArrayList<Object>) list;
+             
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -91,6 +92,7 @@ public class DataParser {
             Query q = s.createQuery(hql);
             List<Object> list = q.list();
             resualt = (ArrayList<Object>) list;
+            
         } catch (Exception e) {
 
             return null;
@@ -110,6 +112,7 @@ public class DataParser {
             }
             List<Object> list = q.list();
             resualt = (ArrayList<Object>) list;
+             
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -125,6 +128,7 @@ public class DataParser {
             Object deleteob = s.load(o.getClass(), id);
             s.delete(deleteob);
             t.commit();
+             
         } catch (Exception e) {
             return false;
         }
@@ -138,6 +142,7 @@ public class DataParser {
             tx.begin();
             s.merge(o);
             tx.commit();
+             
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 25, 2016 11:13:03 AM by Hibernate Tools 4.3.1
+// Generated Sep 26, 2016 8:05:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,6 +26,8 @@ public class Application  implements java.io.Serializable {
      private Date lastmodifiedDate;
      private Date applicationLuanchDate;
      private boolean state;
+     private String appurl;
+     private String appIconurl;
      private Set<Customerhasapplication> customerhasapplications = new HashSet<Customerhasapplication>(0);
      private Set<Serialkeys> serialkeyses = new HashSet<Serialkeys>(0);
      private Set<Wishlist> wishlists = new HashSet<Wishlist>(0);
@@ -37,13 +39,15 @@ public class Application  implements java.io.Serializable {
     }
 
 	
-    public Application(Category category, Developer developer, Date applicationLuanchDate, boolean state) {
+    public Application(Category category, Developer developer, Date applicationLuanchDate, boolean state, String appurl, String appIconurl) {
         this.category = category;
         this.developer = developer;
         this.applicationLuanchDate = applicationLuanchDate;
         this.state = state;
+        this.appurl = appurl;
+        this.appIconurl = appIconurl;
     }
-    public Application(Category category, Developer developer, String applicationName, Double price, String description, String userManualUrl, String videoUrl, String interface1, String interface2, String interface3, Date lastmodifiedDate, Date applicationLuanchDate, boolean state, Set<Customerhasapplication> customerhasapplications, Set<Serialkeys> serialkeyses, Set<Wishlist> wishlists, Set<Comment> comments, Set<Cart> carts, Set<Apphasstaffvalid> apphasstaffvalids) {
+    public Application(Category category, Developer developer, String applicationName, Double price, String description, String userManualUrl, String videoUrl, String interface1, String interface2, String interface3, Date lastmodifiedDate, Date applicationLuanchDate, boolean state, String appurl, String appIconurl, Set<Customerhasapplication> customerhasapplications, Set<Serialkeys> serialkeyses, Set<Wishlist> wishlists, Set<Comment> comments, Set<Cart> carts, Set<Apphasstaffvalid> apphasstaffvalids) {
        this.category = category;
        this.developer = developer;
        this.applicationName = applicationName;
@@ -57,6 +61,8 @@ public class Application  implements java.io.Serializable {
        this.lastmodifiedDate = lastmodifiedDate;
        this.applicationLuanchDate = applicationLuanchDate;
        this.state = state;
+       this.appurl = appurl;
+       this.appIconurl = appIconurl;
        this.customerhasapplications = customerhasapplications;
        this.serialkeyses = serialkeyses;
        this.wishlists = wishlists;
@@ -162,6 +168,20 @@ public class Application  implements java.io.Serializable {
     
     public void setState(boolean state) {
         this.state = state;
+    }
+    public String getAppurl() {
+        return this.appurl;
+    }
+    
+    public void setAppurl(String appurl) {
+        this.appurl = appurl;
+    }
+    public String getAppIconurl() {
+        return this.appIconurl;
+    }
+    
+    public void setAppIconurl(String appIconurl) {
+        this.appIconurl = appIconurl;
     }
     public Set<Customerhasapplication> getCustomerhasapplications() {
         return this.customerhasapplications;

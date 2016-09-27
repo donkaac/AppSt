@@ -6,7 +6,7 @@
 package Servlets.addressdetails;
 
 import Datacontroller.DataParser;
-import Entities.Developinglanguages;
+import Entities.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,19 +14,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Entities.*;
 
 /**
  *
  * @author Ish
  */
 public class loard extends HttpServlet {
-
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try (PrintWriter out = response.getWriter()) {
+         try (PrintWriter out = response.getWriter()) {
 
             boolean state = Boolean.parseBoolean(request.getParameter("state"));
             String type = request.getParameter("type");
@@ -90,6 +88,7 @@ public class loard extends HttpServlet {
                         }
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
             } else if ("city".equals(type)) {
@@ -102,7 +101,7 @@ public class loard extends HttpServlet {
                     for (Object resualt : Searchdata) {
 
                         City d = (City) resualt;
-
+                        System.out.println(d.getCityName());
                         if (d.isState() == state) {
                             if ((d.getDiscrict().getProvince().getCountry().isState()==state)&(d.getDiscrict().getProvince().getCountry().getCountryName().equals(request.getParameter("country")))) {
                                 if ((d.getDiscrict().getProvince().isState()==state)&(d.getDiscrict().getProvince().getProvinceName().equals(request.getParameter("province")))) {
@@ -118,6 +117,7 @@ public class loard extends HttpServlet {
                         }
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
             } else {
@@ -126,5 +126,5 @@ public class loard extends HttpServlet {
 
         }
     }
-
+ 
 }

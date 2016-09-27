@@ -49,6 +49,7 @@
             <!-- END THEME STYLES -->
             <!-- AJAX FILE -->
             <script type="text/javascript" src="ajaxjs/category.js"></script>
+            <script type="text/javascript" src="ajaxjs/loardapplication.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head>
@@ -207,11 +208,11 @@
                                                         Set<Application> applications = category.getApplications();
                                                         for (Application appl : applications) {
                                                             if (appl.isState()) {
-                                                              
+                                                             
                                                              
                                                     %>
                                                      <li class="nav-item start">
-                                                    <a href="javascript:;" class="nav-link nav-item">
+                                                         <a onclick="loardsingleapplication(<%= appl.getIdApplication()%>)" class="nav-link nav-item">
                                                     
                                                     <i class="icon-game-controller"></i>
                                                     <span class="title"><%=  appl.getApplicationName()%></span>
@@ -353,7 +354,24 @@
                         </div>
                         <%-- Main--%>
 
-
+                        <div id="applicationArea">
+                            <%
+                            for(int i=0;i<20;++i){
+                            %>
+      
+                            
+                            
+                            
+                            <%
+                            }
+                            %>
+                        </div>
+                            
+                    </div>
+                            
+                            
+                          
+                        </div>   
 
 
 
