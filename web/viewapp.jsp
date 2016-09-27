@@ -334,42 +334,7 @@
                                 <p>Develop By <a href="#"><i class="fa fa-user" aria-hidden="true"></i><%=ap.getDeveloper().getDeveloperFname()+ap.getDeveloper().getDeveloperLname()%>  </a> &nbsp;&nbsp; <i class="fa fa-calendar" aria-hidden="true"></i> <%=ap.getLastmodifiedDate()%> &nbsp;&nbsp; <a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Comments (<%=ap.getComments().size()%>)</a></p>
                             </div>
                             <div id="fb-root"></div>
-                            <div class="news-shar-buttons">
-                                <ul>
-                                    <li>
-                                        <div class="fb-like" data-href="https://www.facebook.com/ishannimantha" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
-                                        <script>(function (d, s, id) {
-                                                var js, fjs = d.getElementsByTagName(s)[0];
-                                                if (d.getElementById(id))
-                                                    return;
-                                                js = d.createElement(s);
-                                                js.id = id;
-                                                js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7";
-                                                fjs.parentNode.insertBefore(js, fjs);
-                                            }(document, 'script', 'facebook-jssdk'));</script>
-                                    </li>
-                                    <li>
-                                        <div class="fb-share-button" data-href="https://www.facebook.com/ishannimantha" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fw3layouts&amp;src=sdkpreparse">Share</a></div>
-                                    </li>
-                                    
-                                    <li>
-                                        <!-- Place this tag where you want the +1 button to render. -->
-                                        <div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1474790437474" name="I0_1474790437474" src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;size=medium&amp;origin=file%3A%2F%2F&amp;url=file%3A%2F%2F%2FC%3A%2FUsers%2FIsh%2FDownloads%2FCompressed%2Fone_movies%2Fweb%2Fnews-single.html&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.JQHX-0gt2nQ.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAGLTcCMxCHba3O2oARJ4ftjU5nmghOlA8w#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1474790437474&amp;parent=file%3A%2F%2F&amp;pfname=&amp;rpctoken=38552038" data-gapiattached="true"></iframe></div><div class="g-plusone" data-size="medium" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
-
-                                        <!-- Place this tag after the last +1 button tag. -->
-                                        <script type="text/javascript">
-                                            (function () {
-                                                var po = document.createElement('script');
-                                                po.type = 'text/javascript';
-                                                po.async = true;
-                                                po.src = 'https://apis.google.com/js/platform.js';
-                                                var s = document.getElementsByTagName('script')[0];
-                                                s.parentNode.insertBefore(po, s);
-                                            })();
-                                        </script>
-                                    </li>
-                                </ul>
-                            </div>
+                            
                             <div class="w3-agile-news-text">
                                 <p><%=ap.getDescription()%> </p>
                             </div>
@@ -378,18 +343,7 @@
                     <div class="wthree-related-news-left">
                         <h4>Related News</h4>
                         <div class="wthree-news-top-left">
-                            <div class="col-md-6 w3-agileits-news-left">
-                                <div class="col-sm-5 wthree-news-img">
-                                    <a href="news-single.html"><img src="images/m1.jpg" alt=""></a>
-                                </div>
-                                <div class="col-sm-7 wthree-news-info">
-                                    <ul>
-                                        <li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
-                                        <li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
+                            <% %>
                             <div class="col-md-6 w3-agileits-news-left">
                                 <div class="col-sm-5 wthree-news-img">
                                     <a href="news-single.html"><img src="images/m2.jpg" alt=""></a>
@@ -403,6 +357,7 @@
                                 </div>
                                 <div class="clearfix"> </div>
                             </div>
+                            <% %>
                             <div class="clearfix"> </div>
                         </div>
                     </div>

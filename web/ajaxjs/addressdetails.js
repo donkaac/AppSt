@@ -22,7 +22,7 @@ function loardcountry() {
                     alert("Something wrong !");
                 }
                  
-                alert(ResponseText);
+                 
                 document.getElementById("Countrylist").innerHTML = ResponseText;
             }
         };

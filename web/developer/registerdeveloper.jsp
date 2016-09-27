@@ -1,9 +1,9 @@
 <%-- 
-    Document   : savestaff
-    Created on : Sep 22, 2016, 10:44:13 AM
+    Document   : registerdeveloper
+    Created on : Sep 26, 2016, 11:04:51 AM
     Author     : Ish
 --%>
-
+ 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -299,7 +299,7 @@
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class=" icon-layers font-green"></i>
-                                        <span class="caption-subject font-green sbold uppercase">Register New Staff Members</span>
+                                        <span class="caption-subject font-green sbold uppercase">Register New Developer</span>
                                     </div>
                                     <div class="actions">
                                        
@@ -307,7 +307,7 @@
                                 </div>
                                 <div class="portlet-body">
                                     <!-- BEGIN FORM-->
-                                    <form action="../savestaff"  method="POST"  class="form-horizontal">
+                                    <form action="../savedeveloper"  method="POST"  class="form-horizontal">
                                         <div class="form-body">
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">First Name</label>
@@ -370,7 +370,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Country</label>
                                                 <div class="col-md-9">
-                                                    <select class="form-control" id="Countrylist" onchange="loardProvince()" name="Countrylist">
+                                                    <select class="form-control" id="Countrylist" ondblclick="loardcountry()" onchange="loardProvince()" name="Countrylist">
                                                          
                                                     </select>
                                                     <div class="form-control-focus"> </div>

@@ -85,17 +85,18 @@
                 </div>
                 <div class="w3l_sign_in_register">
                     <ul>
+                        
+                        <li>
+                            <div>
+                                <h3><span href="cart.jsp" class="glyphicon glyphicon-shopping-cart"></span></h3>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3><span href="wishlist.jsp" class="glyphicon glyphicon-list"></span></h3>
+                            </div>
+                        </li>
                         <%if (true) {%>
-                        <li>
-                            <div>
-                                <h3><span class="glyphicon glyphicon-shopping-cart"></span></h3>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <h3><span class="glyphicon glyphicon-list"></span></h3>
-                            </div>
-                        </li>
                         <li class="dropdown profile_details_drop">
                             <span href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">	

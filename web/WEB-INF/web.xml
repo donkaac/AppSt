@@ -20,9 +20,57 @@
         <servlet-name>logout</servlet-name>
         <servlet-class>Servlets.logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>coustomerlogin</servlet-name>
+        <servlet-class>Servlets.coustomerlogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loard</servlet-name>
+        <servlet-class>Servlets.addressdetails.loard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>save</servlet-name>
+        <servlet-class>Servlets.addressdetails.save</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deactive</servlet-name>
+        <servlet-class>Servlets.addressdetails.deactive</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>savestaff</servlet-name>
+        <servlet-class>Servlets.savestaff</servlet-class>
+    </servlet>
+      <servlet>
+        <servlet-name>savedeveloper</servlet-name>
+        <servlet-class>Servlets.savedeveloper</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>Servlets.test</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loardcat</servlet-name>
+        <servlet-class>Servlets.loardcat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>savecat</servlet-name>
+        <servlet-class>Servlets.savecat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SiteHitsCounter</servlet-name>
+        <servlet-class>Servlets.SiteHitsCounter</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>savestaff</servlet-name>
+        <url-pattern>/savestaff</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>savedeveloper</servlet-name>
+        <url-pattern>/savedeveloper</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdvacedSearchApp</servlet-name>
@@ -40,6 +88,38 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>coustomerlogin</servlet-name>
+        <url-pattern>/coustomerlogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loard</servlet-name>
+        <url-pattern>/loard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>save</servlet-name>
+        <url-pattern>/save</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deactive</servlet-name>
+        <url-pattern>/deactive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loardcat</servlet-name>
+        <url-pattern>/loardcat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>savecat</servlet-name>
+        <url-pattern>/savecat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SiteHitsCounter</servlet-name>
+        <url-pattern>/SiteHitsCounter</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -47,10 +127,27 @@
     </session-config>
     <error-page>
         <error-code>404</error-code>
-        <location>/system_404.jsp</location>
+        <location>/error/system_404.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/system_500.jsp</location>
+        <location>/error/system_500.jsp</location>
     </error-page>
+    
+    <filter>
+   <filter-name>SiteHitsCounter</filter-name>
+   <filter-class>Servlets.SiteHitsCounter</filter-class>
+</filter>
+
+<filter-mapping>
+   <filter-name>SiteHitsCounter</filter-name>
+   <url-pattern>/*</url-pattern>
+</filter-mapping>
+<context-param> 
+    <description>Location to store uploaded file</description> 
+    <param-name>file-upload</param-name> 
+    <param-value>
+         c:\apache-tomcat-5.5.29\webapps\data\
+     </param-value> 
+</context-param>
 </web-app>
