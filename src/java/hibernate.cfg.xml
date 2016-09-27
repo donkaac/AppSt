@@ -10,8 +10,8 @@
     <mapping resource="Entities/City.hbm.xml"/>
     <mapping resource="Entities/Roles.hbm.xml"/>
     <mapping resource="Entities/Submenu.hbm.xml"/>
-    <mapping resource="Entities/Appplatform.hbm.xml"/>
     <mapping resource="Entities/Developer.hbm.xml"/>
+    <mapping resource="Entities/Appplatform.hbm.xml"/>
     <mapping resource="Entities/Province.hbm.xml"/>
     <mapping resource="Entities/Apphasstaffvalid.hbm.xml"/>
     <mapping resource="Entities/Apptype.hbm.xml"/>
@@ -26,8 +26,8 @@
     <mapping resource="Entities/Application.hbm.xml"/>
     <mapping resource="Entities/Coustomercokiesid.hbm.xml"/>
     <mapping resource="Entities/Emailvarified.hbm.xml"/>
-    <mapping resource="Entities/Staff.hbm.xml"/>
     <mapping resource="Entities/Staffhassubmenu.hbm.xml"/>
+    <mapping resource="Entities/Staff.hbm.xml"/>
     <mapping resource="Entities/Cart.hbm.xml"/>
     <mapping resource="Entities/Developervalid.hbm.xml"/>
     <mapping resource="Entities/Developinglanguages.hbm.xml"/>

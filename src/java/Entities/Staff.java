@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 26, 2016 8:05:57 PM by Hibernate Tools 4.3.1
+// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -24,6 +24,7 @@ public class Staff  implements java.io.Serializable {
      private Date staffRegDateAndTime;
      private String address;
      private boolean state;
+     private String staffImage;
      private Set<Staffcokie> staffcokies = new HashSet<Staffcokie>(0);
      private Set<Developervalid> developervalids = new HashSet<Developervalid>(0);
      private Set<Login> logins = new HashSet<Login>(0);
@@ -44,7 +45,7 @@ public class Staff  implements java.io.Serializable {
         this.address = address;
         this.state = state;
     }
-    public Staff(City city, Emailvarified emailvarified, Roles roles, String staffFname, String staffMname, String staffLname, String staffPassword, String username, Date staffRegDateAndTime, String address, boolean state, Set<Staffcokie> staffcokies, Set<Developervalid> developervalids, Set<Login> logins, Set<Staffhassubmenu> staffhassubmenus, Set<Apphasstaffvalid> apphasstaffvalids) {
+    public Staff(City city, Emailvarified emailvarified, Roles roles, String staffFname, String staffMname, String staffLname, String staffPassword, String username, Date staffRegDateAndTime, String address, boolean state, String staffImage, Set<Staffcokie> staffcokies, Set<Developervalid> developervalids, Set<Login> logins, Set<Staffhassubmenu> staffhassubmenus, Set<Apphasstaffvalid> apphasstaffvalids) {
        this.city = city;
        this.emailvarified = emailvarified;
        this.roles = roles;
@@ -56,6 +57,7 @@ public class Staff  implements java.io.Serializable {
        this.staffRegDateAndTime = staffRegDateAndTime;
        this.address = address;
        this.state = state;
+       this.staffImage = staffImage;
        this.staffcokies = staffcokies;
        this.developervalids = developervalids;
        this.logins = logins;
@@ -146,6 +148,13 @@ public class Staff  implements java.io.Serializable {
     
     public void setState(boolean state) {
         this.state = state;
+    }
+    public String getStaffImage() {
+        return this.staffImage;
+    }
+    
+    public void setStaffImage(String staffImage) {
+        this.staffImage = staffImage;
     }
     public Set<Staffcokie> getStaffcokies() {
         return this.staffcokies;

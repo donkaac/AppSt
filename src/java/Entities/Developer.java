@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 26, 2016 8:05:57 PM by Hibernate Tools 4.3.1
+// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -25,6 +25,7 @@ public class Developer  implements java.io.Serializable {
      private String address;
      private boolean state;
      private Date developerRegdate;
+     private String developerImage;
      private Set<Delopercokie> delopercokies = new HashSet<Delopercokie>(0);
      private Set<Application> applications = new HashSet<Application>(0);
      private Set<Developerhaslanguages> developerhaslanguageses = new HashSet<Developerhaslanguages>(0);
@@ -44,7 +45,7 @@ public class Developer  implements java.io.Serializable {
         this.state = state;
         this.developerRegdate = developerRegdate;
     }
-    public Developer(City city, Emailvarified emailvarified, String username, String developerFname, String developerMname, String developerLname, String password, String developerPhone, String developerMobile, String address, boolean state, Date developerRegdate, Set<Delopercokie> delopercokies, Set<Application> applications, Set<Developerhaslanguages> developerhaslanguageses, Set<Developervalid> developervalids, Set<Developerhascomment> developerhascomments) {
+    public Developer(City city, Emailvarified emailvarified, String username, String developerFname, String developerMname, String developerLname, String password, String developerPhone, String developerMobile, String address, boolean state, Date developerRegdate, String developerImage, Set<Delopercokie> delopercokies, Set<Application> applications, Set<Developerhaslanguages> developerhaslanguageses, Set<Developervalid> developervalids, Set<Developerhascomment> developerhascomments) {
        this.city = city;
        this.emailvarified = emailvarified;
        this.username = username;
@@ -57,6 +58,7 @@ public class Developer  implements java.io.Serializable {
        this.address = address;
        this.state = state;
        this.developerRegdate = developerRegdate;
+       this.developerImage = developerImage;
        this.delopercokies = delopercokies;
        this.applications = applications;
        this.developerhaslanguageses = developerhaslanguageses;
@@ -154,6 +156,13 @@ public class Developer  implements java.io.Serializable {
     
     public void setDeveloperRegdate(Date developerRegdate) {
         this.developerRegdate = developerRegdate;
+    }
+    public String getDeveloperImage() {
+        return this.developerImage;
+    }
+    
+    public void setDeveloperImage(String developerImage) {
+        this.developerImage = developerImage;
     }
     public Set<Delopercokie> getDelopercokies() {
         return this.delopercokies;

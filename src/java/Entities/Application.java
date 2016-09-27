@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 26, 2016 8:05:57 PM by Hibernate Tools 4.3.1
+// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class Application  implements java.io.Serializable {
      private Category category;
      private Developer developer;
      private String applicationName;
-     private Double price;
+     private double price;
      private String description;
      private String userManualUrl;
      private String videoUrl;
@@ -27,7 +27,7 @@ public class Application  implements java.io.Serializable {
      private Date applicationLuanchDate;
      private boolean state;
      private String appurl;
-     private String appIconurl;
+     private String appImage;
      private Set<Customerhasapplication> customerhasapplications = new HashSet<Customerhasapplication>(0);
      private Set<Serialkeys> serialkeyses = new HashSet<Serialkeys>(0);
      private Set<Wishlist> wishlists = new HashSet<Wishlist>(0);
@@ -39,15 +39,21 @@ public class Application  implements java.io.Serializable {
     }
 
 	
-    public Application(Category category, Developer developer, Date applicationLuanchDate, boolean state, String appurl, String appIconurl) {
+    public Application(Category category, Developer developer, String applicationName, double price, String description, String interface1, String interface2, String interface3, Date applicationLuanchDate, boolean state, String appurl, String appImage) {
         this.category = category;
         this.developer = developer;
+        this.applicationName = applicationName;
+        this.price = price;
+        this.description = description;
+        this.interface1 = interface1;
+        this.interface2 = interface2;
+        this.interface3 = interface3;
         this.applicationLuanchDate = applicationLuanchDate;
         this.state = state;
         this.appurl = appurl;
-        this.appIconurl = appIconurl;
+        this.appImage = appImage;
     }
-    public Application(Category category, Developer developer, String applicationName, Double price, String description, String userManualUrl, String videoUrl, String interface1, String interface2, String interface3, Date lastmodifiedDate, Date applicationLuanchDate, boolean state, String appurl, String appIconurl, Set<Customerhasapplication> customerhasapplications, Set<Serialkeys> serialkeyses, Set<Wishlist> wishlists, Set<Comment> comments, Set<Cart> carts, Set<Apphasstaffvalid> apphasstaffvalids) {
+    public Application(Category category, Developer developer, String applicationName, double price, String description, String userManualUrl, String videoUrl, String interface1, String interface2, String interface3, Date lastmodifiedDate, Date applicationLuanchDate, boolean state, String appurl, String appImage, Set<Customerhasapplication> customerhasapplications, Set<Serialkeys> serialkeyses, Set<Wishlist> wishlists, Set<Comment> comments, Set<Cart> carts, Set<Apphasstaffvalid> apphasstaffvalids) {
        this.category = category;
        this.developer = developer;
        this.applicationName = applicationName;
@@ -62,7 +68,7 @@ public class Application  implements java.io.Serializable {
        this.applicationLuanchDate = applicationLuanchDate;
        this.state = state;
        this.appurl = appurl;
-       this.appIconurl = appIconurl;
+       this.appImage = appImage;
        this.customerhasapplications = customerhasapplications;
        this.serialkeyses = serialkeyses;
        this.wishlists = wishlists;
@@ -99,11 +105,11 @@ public class Application  implements java.io.Serializable {
     public void setApplicationName(String applicationName) {
         this.applicationName = applicationName;
     }
-    public Double getPrice() {
+    public double getPrice() {
         return this.price;
     }
     
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
     public String getDescription() {
@@ -176,12 +182,12 @@ public class Application  implements java.io.Serializable {
     public void setAppurl(String appurl) {
         this.appurl = appurl;
     }
-    public String getAppIconurl() {
-        return this.appIconurl;
+    public String getAppImage() {
+        return this.appImage;
     }
     
-    public void setAppIconurl(String appIconurl) {
-        this.appIconurl = appIconurl;
+    public void setAppImage(String appImage) {
+        this.appImage = appImage;
     }
     public Set<Customerhasapplication> getCustomerhasapplications() {
         return this.customerhasapplications;
