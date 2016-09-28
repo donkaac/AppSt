@@ -20,9 +20,9 @@ public class Mails {
     public static void main(String[] args) {
         String username="ishu.nimantha@gmail.com";
         String password="imkthecvheetjula";
-        String reciver[]={"ishannimantha.al@gmail.com"};
+        String reciver[]={"jkcp.me@gmail.com"};
         String subject ="Test Mail";
-        String Body ="It Works password =  imkthecvheetjula";
+        String Body ="It Works password ";
         sendFromGMail(username, password, reciver, subject, Body);
     }
     

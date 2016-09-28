@@ -10,7 +10,11 @@
 <%@page import="java.util.Set"%>
 <%@page import="Entities.Appplatform"%>
 <%@page import="java.util.ArrayList"%>
-
+<script>
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +34,7 @@
             <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
             <link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
             <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+            <link href="css/animate.css" rel="stylesheet" type="text/css"/>
             <!-- END GLOBAL MANDATORY STYLES -->
             <!-- BEGIN PGE LEVEL PLUGIN STYLES -->
             <link href="assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
@@ -354,38 +359,32 @@
                         </div>
                         <%-- Main--%>
 
-                        <div id="applicationArea">
-                            <%
-                            for(int i=0;i<20;++i){
-                            %>
+                        <div class="page-container" id="applicationArea">
+                            
       
-                            
-                            
-                            
-                            <%
-                            }
-                            %>
+     
+      
+	</div>
+</div>
                         </div>
-                            
+                                      <%-- Main--%>
+                                      
+                                      
+                                      
                     </div>
                             
                             
-                          
-                        </div>   
+                      
 
 
 
                         <div class="clearfix"></div>
 
 
-
-                    </div>
-                    <!-- END CONTENT BODY -->
-                </div>
-
-            </div>
-            <!-- END QUICK SIDEBAR -->
-        </div>
+ 
+                 
+ 
+  
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">

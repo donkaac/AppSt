@@ -50,7 +50,7 @@
                     <!--<img class="login-logo login-6" src="../assets/pages/img/login/login-invert.png" />-->
                     <div class="login-content">
                         <h1>APPS Member Login</h1>
-                        <p> Lorem ipsum dolor sit amet, coectetuer adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum dolor sit amet, coectetuer adipiscing. </p>
+                        <p> Can You Sell Your Apps To Connect With Us </p>
                         <form action="javascript:;" class="login-form" method="post">
                             <div class="alert alert-danger display-hide">
                                 <button class="close" data-close="alert"></button>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-xs-7 bs-reset">
                                 <div class="login-copyright text-right">
-                                    <p>Copyright &copy; Keenthemes 2015</p>
+                                    <p>App Store</p>
                                 </div>
                             </div>
                         </div>
@@ -125,11 +125,7 @@
                 </div>
             </div>
         </div>
-        <!-- END : LOGIN PAGE 5-2 -->
-        <!--[if lt IE 9]>
-<script src="../assets/global/plugins/respond.min.js"></script>
-<script src="../assets/global/plugins/excanvas.min.js"></script> 
-<![endif]-->
+      
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -152,8 +148,7 @@
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="../assets/pages/scripts/login-5.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <!-- END THEME LAYOUT SCRIPTS -->
+ 
     </body>
 
 </html>
