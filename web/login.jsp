@@ -200,6 +200,7 @@
                  <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Gender</label>
                     <select name="gender" class="form-control" id="gender" class="select2 form-control">
+                        <option>Select Gender</option>
                      <%
                     ArrayList<Object> genderobject= Datacontroller.DataParser.Searchdata(new Gender());
                     for(Object genobject:genderobject){
