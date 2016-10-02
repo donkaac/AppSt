@@ -131,7 +131,7 @@ public class savecat extends HttpServlet {
                     }
 
                 } else {
-                    System.out.println("country null");
+                    System.out.println("Type null");
                 }
 
             } else {

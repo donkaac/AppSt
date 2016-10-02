@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
+// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,7 +15,7 @@ public class Submenu  implements java.io.Serializable {
      private Menu menu;
      private String submenu;
      private String pageurl;
-     private Set<Staffhassubmenu> staffhassubmenus = new HashSet<Staffhassubmenu>(0);
+     private Set<Rolehassubmenu> rolehassubmenus = new HashSet<Rolehassubmenu>(0);
 
     public Submenu() {
     }
@@ -26,12 +26,12 @@ public class Submenu  implements java.io.Serializable {
         this.menu = menu;
         this.submenu = submenu;
     }
-    public Submenu(int idsubmenu, Menu menu, String submenu, String pageurl, Set<Staffhassubmenu> staffhassubmenus) {
+    public Submenu(int idsubmenu, Menu menu, String submenu, String pageurl, Set<Rolehassubmenu> rolehassubmenus) {
        this.idsubmenu = idsubmenu;
        this.menu = menu;
        this.submenu = submenu;
        this.pageurl = pageurl;
-       this.staffhassubmenus = staffhassubmenus;
+       this.rolehassubmenus = rolehassubmenus;
     }
    
     public int getIdsubmenu() {
@@ -62,12 +62,12 @@ public class Submenu  implements java.io.Serializable {
     public void setPageurl(String pageurl) {
         this.pageurl = pageurl;
     }
-    public Set<Staffhassubmenu> getStaffhassubmenus() {
-        return this.staffhassubmenus;
+    public Set<Rolehassubmenu> getRolehassubmenus() {
+        return this.rolehassubmenus;
     }
     
-    public void setStaffhassubmenus(Set<Staffhassubmenu> staffhassubmenus) {
-        this.staffhassubmenus = staffhassubmenus;
+    public void setRolehassubmenus(Set<Rolehassubmenu> rolehassubmenus) {
+        this.rolehassubmenus = rolehassubmenus;
     }
 
 

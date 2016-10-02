@@ -1,18 +1,25 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 27, 2016 8:18:04 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2016 12:23:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Wishlist" table="wishlist" catalog="appstore" optimistic-lock="version">
-        <id name="idWishlist" type="java.lang.Integer">
-            <column name="idWishlist" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="application" class="Entities.Application" fetch="select">
+        <composite-id name="id" class="Entities.WishlistId">
+            <key-property name="customerIdCustomer" type="int">
+                <column name="Customer_idCustomer" />
+            </key-property>
+            <key-property name="applicationIdApplication" type="int">
+                <column name="Application_idApplication" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="application" class="Entities.Application" update="false" insert="false" fetch="select">
             <column name="Application_idApplication" not-null="true" />
         </many-to-one>
-        <many-to-one name="customer" class="Entities.Customer" fetch="select">
+        <many-to-one name="customer" class="Entities.Customer" update="false" insert="false" fetch="select">
             <column name="Customer_idCustomer" not-null="true" />
         </many-to-one>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

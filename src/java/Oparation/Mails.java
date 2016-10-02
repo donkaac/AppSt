@@ -17,22 +17,17 @@ import javax.mail.internet.MimeMessage;
  * @author Ish
  */
 public class Mails {
-    public static void main(String[] args) {
-        String username="ishu.nimantha@gmail.com";
-        String password="imkthecvheetjula";
-        String reciver[]={"jkcp.me@gmail.com"};
-        String subject ="Test Mail";
-        String Body ="It Works password ";
-        sendFromGMail(username, password, reciver, subject, Body);
-    }
+     
     
-     public static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
+     public static void sendFromGMail(String[] to, String subject, String body) {
+         String from="ishu.nimantha@gmail.com";
+        String password="imkthecvheetjula";
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.user", from);
-        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.password", password);
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
 
@@ -55,7 +50,7 @@ public class Mails {
             message.setSubject(subject);
             message.setText(body);
             Transport transport = session.getTransport("smtp");
-            transport.connect(host, from, pass);
+            transport.connect(host, from, password);
             transport.sendMessage(message, message.getAllRecipients());
             System.out.print("Successfully Sent"+"\n");
             transport.close();

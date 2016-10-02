@@ -64,7 +64,7 @@ public class loardcat extends HttpServlet {
                         if (p.isState() == state) {
                             if ((p.isState() == state) & (p.getAppplatform().getAppplatform().equals(request.getParameter("Appplatform")))) {
                                 if (b) {
-                                    out.write("<option>Select Province</option>");
+                                    out.write("<option>Select App Type</option>");
                                     b = false;
                                 }
                                 out.write("<option>" + p.getApptype() + "</option>");

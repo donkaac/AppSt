@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
+// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,6 +15,7 @@ public class Developer  implements java.io.Serializable {
      private Integer idDeveloper;
      private City city;
      private Emailvarified emailvarified;
+     private Gender gender;
      private String username;
      private String developerFname;
      private String developerMname;
@@ -26,28 +27,32 @@ public class Developer  implements java.io.Serializable {
      private boolean state;
      private Date developerRegdate;
      private String developerImage;
+     private int developercreditcartNo;
+     private Set<Commenthasreply> commenthasreplies = new HashSet<Commenthasreply>(0);
      private Set<Delopercokie> delopercokies = new HashSet<Delopercokie>(0);
      private Set<Application> applications = new HashSet<Application>(0);
      private Set<Developerhaslanguages> developerhaslanguageses = new HashSet<Developerhaslanguages>(0);
      private Set<Developervalid> developervalids = new HashSet<Developervalid>(0);
-     private Set<Developerhascomment> developerhascomments = new HashSet<Developerhascomment>(0);
 
     public Developer() {
     }
 
 	
-    public Developer(City city, String username, String developerFname, String password, String address, boolean state, Date developerRegdate) {
+    public Developer(City city, Gender gender, String username, String developerFname, String password, String address, boolean state, Date developerRegdate, int developercreditcartNo) {
         this.city = city;
+        this.gender = gender;
         this.username = username;
         this.developerFname = developerFname;
         this.password = password;
         this.address = address;
         this.state = state;
         this.developerRegdate = developerRegdate;
+        this.developercreditcartNo = developercreditcartNo;
     }
-    public Developer(City city, Emailvarified emailvarified, String username, String developerFname, String developerMname, String developerLname, String password, String developerPhone, String developerMobile, String address, boolean state, Date developerRegdate, String developerImage, Set<Delopercokie> delopercokies, Set<Application> applications, Set<Developerhaslanguages> developerhaslanguageses, Set<Developervalid> developervalids, Set<Developerhascomment> developerhascomments) {
+    public Developer(City city, Emailvarified emailvarified, Gender gender, String username, String developerFname, String developerMname, String developerLname, String password, String developerPhone, String developerMobile, String address, boolean state, Date developerRegdate, String developerImage, int developercreditcartNo, Set<Commenthasreply> commenthasreplies, Set<Delopercokie> delopercokies, Set<Application> applications, Set<Developerhaslanguages> developerhaslanguageses, Set<Developervalid> developervalids) {
        this.city = city;
        this.emailvarified = emailvarified;
+       this.gender = gender;
        this.username = username;
        this.developerFname = developerFname;
        this.developerMname = developerMname;
@@ -59,11 +64,12 @@ public class Developer  implements java.io.Serializable {
        this.state = state;
        this.developerRegdate = developerRegdate;
        this.developerImage = developerImage;
+       this.developercreditcartNo = developercreditcartNo;
+       this.commenthasreplies = commenthasreplies;
        this.delopercokies = delopercokies;
        this.applications = applications;
        this.developerhaslanguageses = developerhaslanguageses;
        this.developervalids = developervalids;
-       this.developerhascomments = developerhascomments;
     }
    
     public Integer getIdDeveloper() {
@@ -86,6 +92,13 @@ public class Developer  implements java.io.Serializable {
     
     public void setEmailvarified(Emailvarified emailvarified) {
         this.emailvarified = emailvarified;
+    }
+    public Gender getGender() {
+        return this.gender;
+    }
+    
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
     public String getUsername() {
         return this.username;
@@ -164,6 +177,20 @@ public class Developer  implements java.io.Serializable {
     public void setDeveloperImage(String developerImage) {
         this.developerImage = developerImage;
     }
+    public int getDevelopercreditcartNo() {
+        return this.developercreditcartNo;
+    }
+    
+    public void setDevelopercreditcartNo(int developercreditcartNo) {
+        this.developercreditcartNo = developercreditcartNo;
+    }
+    public Set<Commenthasreply> getCommenthasreplies() {
+        return this.commenthasreplies;
+    }
+    
+    public void setCommenthasreplies(Set<Commenthasreply> commenthasreplies) {
+        this.commenthasreplies = commenthasreplies;
+    }
     public Set<Delopercokie> getDelopercokies() {
         return this.delopercokies;
     }
@@ -191,13 +218,6 @@ public class Developer  implements java.io.Serializable {
     
     public void setDevelopervalids(Set<Developervalid> developervalids) {
         this.developervalids = developervalids;
-    }
-    public Set<Developerhascomment> getDeveloperhascomments() {
-        return this.developerhascomments;
-    }
-    
-    public void setDeveloperhascomments(Set<Developerhascomment> developerhascomments) {
-        this.developerhascomments = developerhascomments;
     }
 
 

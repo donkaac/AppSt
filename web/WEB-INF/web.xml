@@ -40,7 +40,7 @@
         <servlet-name>savestaff</servlet-name>
         <servlet-class>Servlets.savestaff</servlet-class>
     </servlet>
-      <servlet>
+    <servlet>
         <servlet-name>savedeveloper</servlet-name>
         <servlet-class>Servlets.savedeveloper</servlet-class>
     </servlet>
@@ -60,6 +60,34 @@
         <servlet-name>SiteHitsCounter</servlet-name>
         <servlet-class>Servlets.SiteHitsCounter</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>frogetpasssendmail</servlet-name>
+        <servlet-class>Servlets.frogetpasssendmail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>saveuser</servlet-name>
+        <servlet-class>Servlets.saveuser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addtocart</servlet-name>
+        <servlet-class>Servlets.addtocart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>removecart</servlet-name>
+        <servlet-class>Servlets.removecart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addtowishlist</servlet-name>
+        <servlet-class>Servlets.addtowishlist</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>removewishlist</servlet-name>
+        <servlet-class>Servlets.removewishlist</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatecustomerdata</servlet-name>
+        <servlet-class>Servlets.updatecustomerdata</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -68,7 +96,7 @@
         <servlet-name>savestaff</servlet-name>
         <url-pattern>/savestaff</url-pattern>
     </servlet-mapping>
-      <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>savedeveloper</servlet-name>
         <url-pattern>/savedeveloper</url-pattern>
     </servlet-mapping>
@@ -120,6 +148,34 @@
         <servlet-name>SiteHitsCounter</servlet-name>
         <url-pattern>/SiteHitsCounter</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>frogetpasssendmail</servlet-name>
+        <url-pattern>/frogetpasssendmail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveuser</servlet-name>
+        <url-pattern>/saveuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addtocart</servlet-name>
+        <url-pattern>/addtocart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>removecart</servlet-name>
+        <url-pattern>/removecart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addtowishlist</servlet-name>
+        <url-pattern>/addtowishlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>removewishlist</servlet-name>
+        <url-pattern>/removewishlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatecustomerdata</servlet-name>
+        <url-pattern>/updatecustomerdata</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -133,21 +189,19 @@
         <error-code>500</error-code>
         <location>/error/system_500.jsp</location>
     </error-page>
-    
     <filter>
-   <filter-name>SiteHitsCounter</filter-name>
-   <filter-class>Servlets.SiteHitsCounter</filter-class>
-</filter>
-
-<filter-mapping>
-   <filter-name>SiteHitsCounter</filter-name>
-   <url-pattern>/*</url-pattern>
-</filter-mapping>
-<context-param> 
-    <description>Location to store uploaded file</description> 
-    <param-name>file-upload</param-name> 
-    <param-value>
+        <filter-name>SiteHitsCounter</filter-name>
+        <filter-class>Servlets.SiteHitsCounter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SiteHitsCounter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
          c:\apache-tomcat-5.5.29\webapps\data\
-     </param-value> 
-</context-param>
+     </param-value>
+    </context-param>
 </web-app>

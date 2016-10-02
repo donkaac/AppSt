@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
+// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,50 +15,56 @@ public class Customer  implements java.io.Serializable {
      private Integer idCustomer;
      private City city;
      private Emailvarified emailvarified;
+     private Gender gender;
      private String customerFname;
      private String customerMname;
      private String customerLname;
-     private String customerImage;
      private Date customerRegDateAndTime;
      private String password;
      private String username;
      private boolean state;
      private String address;
-     private Set<Customerhascomment> customerhascomments = new HashSet<Customerhascomment>(0);
+     private String customerImage;
+     private int developercreditcartNo;
      private Set<Coustomercokiesid> coustomercokiesids = new HashSet<Coustomercokiesid>(0);
      private Set<Wishlist> wishlists = new HashSet<Wishlist>(0);
      private Set<Cart> carts = new HashSet<Cart>(0);
+     private Set<Comment> comments = new HashSet<Comment>(0);
      private Set<Customerhasapplication> customerhasapplications = new HashSet<Customerhasapplication>(0);
 
     public Customer() {
     }
 
 	
-    public Customer(City city, String customerFname, Date customerRegDateAndTime, String password, String username, boolean state, String address) {
+    public Customer(City city, Gender gender, String customerFname, Date customerRegDateAndTime, String password, String username, boolean state, String address, int developercreditcartNo) {
         this.city = city;
+        this.gender = gender;
         this.customerFname = customerFname;
         this.customerRegDateAndTime = customerRegDateAndTime;
         this.password = password;
         this.username = username;
         this.state = state;
         this.address = address;
+        this.developercreditcartNo = developercreditcartNo;
     }
-    public Customer(City city, Emailvarified emailvarified, String customerFname, String customerMname, String customerLname, String customerImage, Date customerRegDateAndTime, String password, String username, boolean state, String address, Set<Customerhascomment> customerhascomments, Set<Coustomercokiesid> coustomercokiesids, Set<Wishlist> wishlists, Set<Cart> carts, Set<Customerhasapplication> customerhasapplications) {
+    public Customer(City city, Emailvarified emailvarified, Gender gender, String customerFname, String customerMname, String customerLname, Date customerRegDateAndTime, String password, String username, boolean state, String address, String customerImage, int developercreditcartNo, Set<Coustomercokiesid> coustomercokiesids, Set<Wishlist> wishlists, Set<Cart> carts, Set<Comment> comments, Set<Customerhasapplication> customerhasapplications) {
        this.city = city;
        this.emailvarified = emailvarified;
+       this.gender = gender;
        this.customerFname = customerFname;
        this.customerMname = customerMname;
        this.customerLname = customerLname;
-       this.customerImage = customerImage;
        this.customerRegDateAndTime = customerRegDateAndTime;
        this.password = password;
        this.username = username;
        this.state = state;
        this.address = address;
-       this.customerhascomments = customerhascomments;
+       this.customerImage = customerImage;
+       this.developercreditcartNo = developercreditcartNo;
        this.coustomercokiesids = coustomercokiesids;
        this.wishlists = wishlists;
        this.carts = carts;
+       this.comments = comments;
        this.customerhasapplications = customerhasapplications;
     }
    
@@ -83,6 +89,13 @@ public class Customer  implements java.io.Serializable {
     public void setEmailvarified(Emailvarified emailvarified) {
         this.emailvarified = emailvarified;
     }
+    public Gender getGender() {
+        return this.gender;
+    }
+    
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
     public String getCustomerFname() {
         return this.customerFname;
     }
@@ -103,13 +116,6 @@ public class Customer  implements java.io.Serializable {
     
     public void setCustomerLname(String customerLname) {
         this.customerLname = customerLname;
-    }
-    public String getCustomerImage() {
-        return this.customerImage;
-    }
-    
-    public void setCustomerImage(String customerImage) {
-        this.customerImage = customerImage;
     }
     public Date getCustomerRegDateAndTime() {
         return this.customerRegDateAndTime;
@@ -146,12 +152,19 @@ public class Customer  implements java.io.Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    public Set<Customerhascomment> getCustomerhascomments() {
-        return this.customerhascomments;
+    public String getCustomerImage() {
+        return this.customerImage;
     }
     
-    public void setCustomerhascomments(Set<Customerhascomment> customerhascomments) {
-        this.customerhascomments = customerhascomments;
+    public void setCustomerImage(String customerImage) {
+        this.customerImage = customerImage;
+    }
+    public int getDevelopercreditcartNo() {
+        return this.developercreditcartNo;
+    }
+    
+    public void setDevelopercreditcartNo(int developercreditcartNo) {
+        this.developercreditcartNo = developercreditcartNo;
     }
     public Set<Coustomercokiesid> getCoustomercokiesids() {
         return this.coustomercokiesids;
@@ -173,6 +186,13 @@ public class Customer  implements java.io.Serializable {
     
     public void setCarts(Set<Cart> carts) {
         this.carts = carts;
+    }
+    public Set<Comment> getComments() {
+        return this.comments;
+    }
+    
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
     public Set<Customerhasapplication> getCustomerhasapplications() {
         return this.customerhasapplications;

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 2, 2016 12:23:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Gender" table="gender" catalog="appstore" optimistic-lock="version">
+        <id name="idgender" type="int">
+            <column name="idgender" />
+            <generator class="assigned" />
+        </id>
+        <property name="gender" type="string">
+            <column name="gender" length="45" not-null="true" />
+        </property>
+        <set name="customers" table="customer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="gender_idgender" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Customer" />
+        </set>
+        <set name="staffs" table="staff" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="gender_idgender" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Staff" />
+        </set>
+        <set name="developers" table="developer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="gender_idgender" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Developer" />
+        </set>
+    </class>
+</hibernate-mapping>

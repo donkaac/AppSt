@@ -41,7 +41,7 @@ public class search extends HttpServlet {
 "            <article class=\"col-item\">\n" +
 "        		<div class=\"photo\">\n" +
 "        			<div class=\"options\">\n" +
-"        				<button class=\"btn btn-default\" type=\"submit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add to wish list\">\n" +
+"        				<button class=\"btn btn-default\" onclick=\"addtowishlist("+app.getIdApplication()+")\"  type=\"submit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add to wish list\">\n" +
 "        					<i class=\"fa fa-heart\"></i>\n" +
 "        				</button>\n" +
 "        				<button class=\"btn btn-default\" type=\"submit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Buy\">\n" +
@@ -49,7 +49,7 @@ public class search extends HttpServlet {
 "        				</button>\n" +
 "        			</div>\n" +
 "        			<div class=\"options-cart\">\n" +
-"        				<button class=\"btn btn-default\" title=\"Add to cart\">\n" +
+"        				<button onclick=\"addtocart("+app.getIdApplication()+")\" class=\"btn btn-default\" title=\"Add to cart\">\n" +
 "        					<span class=\"fa fa-shopping-cart\"></span>\n" +
 "        				</button>\n" +
 "        			</div>\n" +
@@ -69,6 +69,8 @@ public class search extends HttpServlet {
 "        	</article>\n" +
 "        </div>");
             
+            }else if(type.equals("appname")){
+                
             }
         } catch (Exception e) {
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 27, 2016 8:18:04 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2016 12:23:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Comment" table="comment" catalog="appstore" optimistic-lock="version">
         <id name="idComment" type="java.lang.Integer">
@@ -10,6 +10,9 @@
         </id>
         <many-to-one name="application" class="Entities.Application" fetch="select">
             <column name="Application_idApplication" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customer" class="Entities.Customer" fetch="select">
+            <column name="customer_idCustomer" not-null="true" />
         </many-to-one>
         <property name="comment" type="string">
             <column name="Comment" length="65535" />
@@ -20,17 +23,11 @@
         <property name="state" type="boolean">
             <column name="State" not-null="true" />
         </property>
-        <set name="customerhascomments" table="customerhascomment" inverse="true" lazy="true" fetch="select">
+        <set name="commenthasreplies" table="commenthasreply" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="Comment_idComment" not-null="true" />
+                <column name="comment_idComment" not-null="true" />
             </key>
-            <one-to-many class="Entities.Customerhascomment" />
-        </set>
-        <set name="developerhascomments" table="developerhascomment" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="Comment_idComment" not-null="true" />
-            </key>
-            <one-to-many class="Entities.Developerhascomment" />
+            <one-to-many class="Entities.Commenthasreply" />
         </set>
     </class>
 </hibernate-mapping>

@@ -7,11 +7,15 @@ package Servlets;
 
 
 import Entities.Application;
+import Entities.Cart;
+import Entities.Customer;
+import Entities.Wishlist;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -84,6 +88,13 @@ if(i==4){i=0;}
             }
 
         }
+        Customer c=new Customer();
+        Set<Wishlist> wishlists = c.getWishlists();
+        for (Wishlist wishlist : wishlists) {
+        
+            
+        }
+       
     }
  
 }

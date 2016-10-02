@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 27, 2016 8:18:04 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2016 12:23:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Customer" table="customer" catalog="appstore" optimistic-lock="version">
         <id name="idCustomer" type="java.lang.Integer">
@@ -14,6 +14,9 @@
         <many-to-one name="emailvarified" class="Entities.Emailvarified" fetch="select">
             <column name="emailvarified_id" />
         </many-to-one>
+        <many-to-one name="gender" class="Entities.Gender" fetch="select">
+            <column name="gender_idgender" not-null="true" />
+        </many-to-one>
         <property name="customerFname" type="string">
             <column name="CustomerFName" length="45" not-null="true" />
         </property>
@@ -22,9 +25,6 @@
         </property>
         <property name="customerLname" type="string">
             <column name="CustomerLName" length="45" />
-        </property>
-        <property name="customerImage" type="string">
-            <column name="CustomerImage" length="200" />
         </property>
         <property name="customerRegDateAndTime" type="timestamp">
             <column name="CustomerRegDateAndTime" length="19" not-null="true" />
@@ -41,12 +41,12 @@
         <property name="address" type="string">
             <column name="address" length="65535" not-null="true" />
         </property>
-        <set name="customerhascomments" table="customerhascomment" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="Customer_idCustomer" not-null="true" />
-            </key>
-            <one-to-many class="Entities.Customerhascomment" />
-        </set>
+        <property name="customerImage" type="string">
+            <column name="customerImage" length="65535" />
+        </property>
+        <property name="developercreditcartNo" type="int">
+            <column name="developercreditcartNo" not-null="true" />
+        </property>
         <set name="coustomercokiesids" table="coustomercokiesid" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Customer_idCustomer" not-null="true" />
@@ -64,6 +64,12 @@
                 <column name="Customer_idCustomer" not-null="true" />
             </key>
             <one-to-many class="Entities.Cart" />
+        </set>
+        <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_idCustomer" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Comment" />
         </set>
         <set name="customerhasapplications" table="customerhasapplication" inverse="true" lazy="true" fetch="select">
             <key>

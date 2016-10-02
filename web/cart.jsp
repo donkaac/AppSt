@@ -4,6 +4,10 @@
     Author     : Ish
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Entities.Cart"%>
+<%@page import="Datacontroller.DataParser"%>
+<%@page import="Entities.Customer"%>
 <%@page import="Entities.Application"%>
 <%@page import="Entities.Category"%>
 <%@page import="Entities.Apptype"%>
@@ -55,6 +59,36 @@
         </head>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+
+            <%
+                String username = "Guest";
+                boolean loging = false;
+                Customer c = new Customer();
+                if (!request.getSession().equals(null)) {
+                    try {
+
+                        HttpSession s = request.getSession();
+
+                        int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+                        c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
+                        username = c.getCustomerFname();
+                        loging = true;
+                    } catch (Exception e) {
+
+                    }
+                }
+String cartqty ="";
+if(!c.getCarts().isEmpty()){
+        cartqty=""+c.getCarts().size();
+}
+String wishlistqty ="";
+if(!c.getWishlists().isEmpty()){
+        wishlistqty=""+c.getWishlists().size();
+}
+
+            %>
+
+
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
@@ -80,33 +114,36 @@
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <span class="username username-hide-on-mobile"> <%=username%> </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
+                                    <%if (loging) {%>
                                     <li>
                                         <a href="page_user_profile_1.html">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
-
+                                    <%}%>
                                     <li>
-                                        <a href="app_inbox.html">
+                                        <a href="cart.jsp">
                                             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
-                                            <span class="badge badge-danger"> 3 </span>
+                                            <span class="badge badge-danger"> <%=cartqty%> </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="app_inbox.html">
+                                        <a href="wishlist.jsp">
                                             <i class="icon-wallet"></i> WishList
-                                            <span class="badge badge-default"> 3 </span>
+                                            <span class="badge badge-default"><%=wishlistqty%> </span>
                                         </a>
                                     </li>
-
+                                    <%if (loging) {%>
                                     <li>
 
                                         <a href="logout">
                                             <i class="icon-key"></i> Log Out </a>
                                     </li>
+                                    <%}%>
+
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
@@ -184,7 +221,7 @@
                                     <li class="nav-item start">
                                         <a href="javascript:;" class="nav-link nav-toggle">
                                             <i class="icon-tag"></i>
-                                            
+
                                             <span class="title"><%=apptype.getApptype()%></span>
                                             <span class="selected"></span>
                                             <span class="arrow open"></span>
@@ -197,7 +234,7 @@
                                             %>
                                             <li class="nav-item start">
                                                 <a href="javascript:;" class="nav-link nav-toggle">
-                                                     
+
                                                     <i class="icon-folder"></i>
                                                     <span class="title"><%=category.getCategory()%></span>
                                                     <span class="selected"></span>
@@ -208,18 +245,18 @@
                                                         Set<Application> applications = category.getApplications();
                                                         for (Application appl : applications) {
                                                             if (appl.isState()) {
-                                                             
-                                                             
+
+
                                                     %>
-                                                     <li class="nav-item start">
-                                                         <a onclick="loardsingleapplication(<%= appl.getIdApplication()%>)" class="nav-link nav-item">
-                                                    
-                                                    <i class="icon-game-controller"></i>
-                                                    <span class="title"><%=  appl.getApplicationName()%></span>
-                                                    <span class="selected"></span>
-                                                    <span class="views"></span>
-                                                </a>
-                                                     </li>
+                                                    <li class="nav-item start">
+                                                        <a href="index.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
+
+                                                            <i class="icon-game-controller"></i>
+                                                            <span class="title"><%=  appl.getApplicationName()%></span>
+                                                            <span class="selected"></span>
+                                                            <span class="views"></span>
+                                                        </a>
+                                                    </li>
 
                                                     <%
                                                             }
@@ -229,16 +266,16 @@
                                                 </ul>
                                             </li>
                                             <%}
-                                         }%>
+                                                }%>
                                         </ul>
                                         <%}
-     }%>
+                                            }%>
 
                                 </ul>
 
                             </li>
-                            <%}
-                                }%>
+                            <%}}
+                            %>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->
@@ -342,7 +379,7 @@
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
-                                    <span>Dashboard</span>
+                                    <span>Cart</span>
                                 </li>
                             </ul>
 
@@ -355,185 +392,168 @@
                         <%-- Main--%>
 
                         <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th></th>
+                                                <th class="text-center"></th>
+                                                <th class="text-center">Price</th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                double total=0.00;
+                                                Set<Cart> carts = null;
+                                                if (loging) {
+                                                    carts = c.getCarts();
+                                                } else {
+
+                                                }
+                                                for (Cart cart : carts) {
+                                                    
+                                                total+=cart.getApplication().getPrice();
+                                               
+                                            %>
+                                            <tr>
+                                                <td class="col-sm-8 col-md-6">
+                                                    <div class="media">
+                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=cart.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading"><a href="#"><%=cart.getApplication().getApplicationName()%></a></h4>
+                                                            <h5 class="media-heading"> by <a href="#"><%=cart.getApplication().getCategory().getCategory()%></a></h5>
+                                                            <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                                        </div>
+                                                    </div></td>
+                                                <td class="col-sm-1 col-md-1" style="text-align: center">
+
+                                                </td>
+                                                <td class="col-sm-1 col-md-1 text-center"><strong></strong></td>
+                                                <td class="col-sm-1 col-md-1 text-center"><strong>$<%=cart.getApplication().getPrice()%></strong></td>
+                                                <td class="col-sm-1 col-md-1">
+                                                    <button type="button" onclick="removecart(<%=cart.getApplication().getIdApplication()%>)" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-remove"></span> Remove
+                                                    </button></td>
+                                            </tr>
+                                            <%}%>
+                                            <tr>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td><h3>Total</h3></td>
+                                                <td class="text-right"><h3><strong>$<%=total%></strong></h3></td>
+                                            </tr>
+                                            <tr>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>
+                                                    <a href="index.jsp">
+                                                    <button type="button" class="btn btn-default">
+                                                        <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                                    </button>
+                                                    </a>
+                                                    </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-success">
+                                                        Checkout <span class="glyphicon glyphicon-play"></span>
+                                                    </button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
-                        <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
-                            </div>
-                        </div></td>
-                        <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="2">
-                        </td>
-                        <td class="col-md-1 text-center"><strong>$4.99</strong></td>
-                        <td class="col-md-1 text-center"><strong>$9.98</strong></td>
-                        <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
-                        <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
-                    </tr>
-                </tbody>
-            </table>
+                        </div>
+
+                    </div>
+
+
+
+                </div>   
+
+
+
+                <div class="clearfix"></div>
+
+
+
+            </div>
+            <!-- END CONTENT BODY -->
         </div>
+
+    </div>
+    <!-- END QUICK SIDEBAR -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
+        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
     </div>
 </div>
-                            
-                    </div>
-                            
-                            
-                          
-                        </div>   
-
-
-
-                        <div class="clearfix"></div>
-
-
-
-                    </div>
-                    <!-- END CONTENT BODY -->
-                </div>
-
-            </div>
-            <!-- END QUICK SIDEBAR -->
-        </div>
-        <!-- END CONTAINER -->
-        <!-- BEGIN FOOTER -->
-        <div class="page-footer">
-            <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-            </div>
-            <div class="scroll-to-top">
-                <i class="icon-arrow-up"></i>
-            </div>
-        </div>
-        <!-- END FOOTER -->
-        <!--[if lt IE 9]>
+<!-- END FOOTER -->
+<!--[if lt IE 9]>
 <script src="./assets/global/plugins/respond.min.js"></script>
 <script src="./assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
-        <!-- BEGIN CORE PLUGINS -->
-        <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-        <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-        <!-- END THEME LAYOUT SCRIPTS -->
-    </body>
+<!-- BEGIN CORE PLUGINS -->
+<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+<script src="assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN THEME LAYOUT SCRIPTS -->
+<script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+<script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+<script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<!-- END THEME LAYOUT SCRIPTS -->
+</body>
 
 </html>

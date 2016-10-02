@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 27, 2016 8:18:04 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2016 12:23:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Developer" table="developer" catalog="appstore" optimistic-lock="version">
         <id name="idDeveloper" type="java.lang.Integer">
@@ -13,6 +13,9 @@
         </many-to-one>
         <many-to-one name="emailvarified" class="Entities.Emailvarified" fetch="select">
             <column name="emailvarified_id" />
+        </many-to-one>
+        <many-to-one name="gender" class="Entities.Gender" fetch="select">
+            <column name="gender_idgender" not-null="true" />
         </many-to-one>
         <property name="username" type="string">
             <column name="Username" length="80" not-null="true" />
@@ -47,6 +50,15 @@
         <property name="developerImage" type="string">
             <column name="developerImage" length="65535" />
         </property>
+        <property name="developercreditcartNo" type="int">
+            <column name="developercreditcartNo" not-null="true" />
+        </property>
+        <set name="commenthasreplies" table="commenthasreply" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="developer_idDeveloper" not-null="true" />
+            </key>
+            <one-to-many class="Entities.Commenthasreply" />
+        </set>
         <set name="delopercokies" table="delopercokie" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Developer_idDeveloper" not-null="true" />
@@ -70,12 +82,6 @@
                 <column name="Developer_idDeveloper" not-null="true" />
             </key>
             <one-to-many class="Entities.Developervalid" />
-        </set>
-        <set name="developerhascomments" table="developerhascomment" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="Developer_idDeveloper" not-null="true" />
-            </key>
-            <one-to-many class="Entities.Developerhascomment" />
         </set>
     </class>
 </hibernate-mapping>

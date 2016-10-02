@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 27, 2016 8:18:04 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2016 12:23:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Serialkeys" table="serialkeys" catalog="appstore" optimistic-lock="version">
         <id name="idserialkeys" type="java.lang.Integer">
@@ -12,7 +12,7 @@
             <column name="Application_idApplication" not-null="true" />
         </many-to-one>
         <property name="serialkey" type="string">
-            <column name="serialkey" length="45" />
+            <column name="serialkey" length="45" not-null="true" />
         </property>
         <property name="state" type="java.lang.Boolean">
             <column name="state" />

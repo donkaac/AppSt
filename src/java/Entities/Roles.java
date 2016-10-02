@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
+// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ public class Roles  implements java.io.Serializable {
      private Integer idroles;
      private String roles;
      private Set<Staff> staffs = new HashSet<Staff>(0);
+     private Set<Rolehassubmenu> rolehassubmenus = new HashSet<Rolehassubmenu>(0);
 
     public Roles() {
     }
@@ -22,9 +23,10 @@ public class Roles  implements java.io.Serializable {
     public Roles(String roles) {
         this.roles = roles;
     }
-    public Roles(String roles, Set<Staff> staffs) {
+    public Roles(String roles, Set<Staff> staffs, Set<Rolehassubmenu> rolehassubmenus) {
        this.roles = roles;
        this.staffs = staffs;
+       this.rolehassubmenus = rolehassubmenus;
     }
    
     public Integer getIdroles() {
@@ -47,6 +49,13 @@ public class Roles  implements java.io.Serializable {
     
     public void setStaffs(Set<Staff> staffs) {
         this.staffs = staffs;
+    }
+    public Set<Rolehassubmenu> getRolehassubmenus() {
+        return this.rolehassubmenus;
+    }
+    
+    public void setRolehassubmenus(Set<Rolehassubmenu> rolehassubmenus) {
+        this.rolehassubmenus = rolehassubmenus;
     }
 
 

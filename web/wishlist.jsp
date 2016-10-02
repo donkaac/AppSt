@@ -4,6 +4,9 @@
     Author     : Ish
 --%>
 
+<%@page import="Entities.Wishlist"%>
+<%@page import="Entities.Customer"%>
+<%@page import="Datacontroller.DataParser"%>
 <%@page import="Entities.Application"%>
 <%@page import="Entities.Category"%>
 <%@page import="Entities.Apptype"%>
@@ -18,7 +21,7 @@
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Metronic | Admin Dashboard Template</title>
+            <title>Wish List</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -53,6 +56,32 @@
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head>
+        <%
+                String username = "Guest";
+                boolean loging=false;
+                Customer c = new Customer();
+                if (!request.getSession().equals(null)) {
+                    try {
+
+                        HttpSession s = request.getSession();
+
+                        int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+                        c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
+                        username = c.getCustomerFname();
+                        loging=true;
+                    } catch (Exception e) {
+
+                    }
+                }
+String cartqty ="";
+if(!c.getCarts().isEmpty()){
+        cartqty=""+c.getCarts().size();
+}
+String wishlistqty ="";
+if(!c.getWishlists().isEmpty()){
+        wishlistqty=""+c.getWishlists().size();
+}
+            %>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
             <!-- BEGIN HEADER -->
@@ -80,25 +109,25 @@
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_profile_1.html">
+                                        <a href="profile.jsp">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
 
                                     <li>
-                                        <a href="app_inbox.html">
+                                        <a href="cart.jsp">
                                             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
-                                            <span class="badge badge-danger"> 3 </span>
+                                            <span class="badge badge-danger"><%=cartqty%></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="app_inbox.html">
+                                        <a href="wishlist.jsp">
                                             <i class="icon-wallet"></i> WishList
-                                            <span class="badge badge-default"> 3 </span>
+                                            <span class="badge badge-default"><%=wishlistqty%> </span>
                                         </a>
                                     </li>
 
@@ -212,7 +241,7 @@
                                                              
                                                     %>
                                                      <li class="nav-item start">
-                                                         <a onclick="loardsingleapplication(<%= appl.getIdApplication()%>)" class="nav-link nav-item">
+                                                         <a href="index.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
                                                     
                                                     <i class="icon-game-controller"></i>
                                                     <span class="title"><%=  appl.getApplicationName()%></span>
@@ -338,7 +367,7 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="index.jsp">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
@@ -368,12 +397,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%
+                    Set<Wishlist> wishlists = c.getWishlists();
+        for (Wishlist wishlist : wishlists) {
+           
+                    %>
                     <tr>
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=wishlist.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
+                                <h4 class="media-heading"><a href="#"><%=wishlist.getApplication().getApplicationName()%></a></h4>
                                 <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
@@ -381,18 +415,18 @@
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                         
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$<%=wishlist.getApplication().getPrice()%></strong></td>
                        
                         <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
+                            <button type="button" onclick="removewishlist(<%=wishlist.getApplication().getIdApplication()%>)" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></td>
                          <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart
+                        <button type="button" class="btn btn-default" onclick="addtocart(<%=wishlist.getApplication().getIdApplication()%>)">
+                            <span  class="glyphicon glyphicon-shopping-cart"></span> Add To Cart
                         </button></td>
                     </tr>
-                   
+                   <%}%>
                 </tbody>
             </table>
         </div>

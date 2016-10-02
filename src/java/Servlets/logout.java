@@ -32,6 +32,7 @@ public class logout extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            request.getSession().invalidate();
+           response.sendRedirect("login.jsp");
         }
     }
 

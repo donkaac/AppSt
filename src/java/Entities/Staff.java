@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
+// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,6 +15,7 @@ public class Staff  implements java.io.Serializable {
      private Integer idStaff;
      private City city;
      private Emailvarified emailvarified;
+     private Gender gender;
      private Roles roles;
      private String staffFname;
      private String staffMname;
@@ -28,15 +29,15 @@ public class Staff  implements java.io.Serializable {
      private Set<Staffcokie> staffcokies = new HashSet<Staffcokie>(0);
      private Set<Developervalid> developervalids = new HashSet<Developervalid>(0);
      private Set<Login> logins = new HashSet<Login>(0);
-     private Set<Staffhassubmenu> staffhassubmenus = new HashSet<Staffhassubmenu>(0);
      private Set<Apphasstaffvalid> apphasstaffvalids = new HashSet<Apphasstaffvalid>(0);
 
     public Staff() {
     }
 
 	
-    public Staff(City city, String staffFname, String staffLname, String staffPassword, String username, Date staffRegDateAndTime, String address, boolean state) {
+    public Staff(City city, Gender gender, String staffFname, String staffLname, String staffPassword, String username, Date staffRegDateAndTime, String address, boolean state) {
         this.city = city;
+        this.gender = gender;
         this.staffFname = staffFname;
         this.staffLname = staffLname;
         this.staffPassword = staffPassword;
@@ -45,9 +46,10 @@ public class Staff  implements java.io.Serializable {
         this.address = address;
         this.state = state;
     }
-    public Staff(City city, Emailvarified emailvarified, Roles roles, String staffFname, String staffMname, String staffLname, String staffPassword, String username, Date staffRegDateAndTime, String address, boolean state, String staffImage, Set<Staffcokie> staffcokies, Set<Developervalid> developervalids, Set<Login> logins, Set<Staffhassubmenu> staffhassubmenus, Set<Apphasstaffvalid> apphasstaffvalids) {
+    public Staff(City city, Emailvarified emailvarified, Gender gender, Roles roles, String staffFname, String staffMname, String staffLname, String staffPassword, String username, Date staffRegDateAndTime, String address, boolean state, String staffImage, Set<Staffcokie> staffcokies, Set<Developervalid> developervalids, Set<Login> logins, Set<Apphasstaffvalid> apphasstaffvalids) {
        this.city = city;
        this.emailvarified = emailvarified;
+       this.gender = gender;
        this.roles = roles;
        this.staffFname = staffFname;
        this.staffMname = staffMname;
@@ -61,7 +63,6 @@ public class Staff  implements java.io.Serializable {
        this.staffcokies = staffcokies;
        this.developervalids = developervalids;
        this.logins = logins;
-       this.staffhassubmenus = staffhassubmenus;
        this.apphasstaffvalids = apphasstaffvalids;
     }
    
@@ -85,6 +86,13 @@ public class Staff  implements java.io.Serializable {
     
     public void setEmailvarified(Emailvarified emailvarified) {
         this.emailvarified = emailvarified;
+    }
+    public Gender getGender() {
+        return this.gender;
+    }
+    
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
     public Roles getRoles() {
         return this.roles;
@@ -176,13 +184,6 @@ public class Staff  implements java.io.Serializable {
     
     public void setLogins(Set<Login> logins) {
         this.logins = logins;
-    }
-    public Set<Staffhassubmenu> getStaffhassubmenus() {
-        return this.staffhassubmenus;
-    }
-    
-    public void setStaffhassubmenus(Set<Staffhassubmenu> staffhassubmenus) {
-        this.staffhassubmenus = staffhassubmenus;
     }
     public Set<Apphasstaffvalid> getApphasstaffvalids() {
         return this.apphasstaffvalids;

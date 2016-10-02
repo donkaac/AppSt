@@ -110,7 +110,7 @@ public class loard extends HttpServlet {
                                           out.write("<option>Select City</option>");
                                           b=false;
                                         }
-                                        out.write("<option>" + d.getCityName() + "</option>");
+                                        out.write("<option  value="+d.getIdCity()+">" + d.getCityName() + "</option>");
                                     }
                                 }
                             }

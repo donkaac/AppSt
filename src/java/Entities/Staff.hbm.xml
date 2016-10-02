@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 27, 2016 8:18:04 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 2, 2016 12:23:09 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Staff" table="staff" catalog="appstore" optimistic-lock="version">
         <id name="idStaff" type="java.lang.Integer">
@@ -13,6 +13,9 @@
         </many-to-one>
         <many-to-one name="emailvarified" class="Entities.Emailvarified" fetch="select">
             <column name="emailvarified_id" />
+        </many-to-one>
+        <many-to-one name="gender" class="Entities.Gender" fetch="select">
+            <column name="gender_idgender" not-null="true" />
         </many-to-one>
         <many-to-one name="roles" class="Entities.Roles" fetch="select">
             <column name="roles_idroles" />
@@ -61,12 +64,6 @@
                 <column name="Staff_idStaff" not-null="true" />
             </key>
             <one-to-many class="Entities.Login" />
-        </set>
-        <set name="staffhassubmenus" table="staffhassubmenu" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="Staff_idStaff" not-null="true" />
-            </key>
-            <one-to-many class="Entities.Staffhassubmenu" />
         </set>
         <set name="apphasstaffvalids" table="apphasstaffvalid" inverse="true" lazy="true" fetch="select">
             <key>

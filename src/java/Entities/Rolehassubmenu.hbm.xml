@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 2, 2016 12:23:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entities.Rolehassubmenu" table="rolehassubmenu" catalog="appstore" optimistic-lock="version">
+        <composite-id name="id" class="Entities.RolehassubmenuId">
+            <key-property name="rolesIdroles" type="int">
+                <column name="roles_idroles" />
+            </key-property>
+            <key-property name="submenuIdsubmenu" type="int">
+                <column name="submenu_idsubmenu" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="roles" class="Entities.Roles" update="false" insert="false" fetch="select">
+            <column name="roles_idroles" not-null="true" />
+        </many-to-one>
+        <many-to-one name="submenu" class="Entities.Submenu" update="false" insert="false" fetch="select">
+            <column name="submenu_idsubmenu" not-null="true" />
+        </many-to-one>
+        <property name="state" type="java.lang.Boolean">
+            <column name="state" />
+        </property>
+    </class>
+</hibernate-mapping>

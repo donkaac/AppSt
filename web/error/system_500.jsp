@@ -43,7 +43,7 @@
                     <p> We are fixing it! Please come back in a while.
                         <br/> </p>
                     <p>
-                        <a href="./index.jsp" class="btn red btn-outline"> Return home </a>
+                        <a href="../index.jsp" class="btn red btn-outline"> Return home </a>
                         <br> </p>
                 </div>
             </div>

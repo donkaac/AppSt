@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
+// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,24 +9,27 @@ package Entities;
 public class Cart  implements java.io.Serializable {
 
 
-     private Integer idCart;
+     private CartId id;
      private Application application;
      private Customer customer;
+     private boolean state;
 
     public Cart() {
     }
 
-    public Cart(Application application, Customer customer) {
+    public Cart(CartId id, Application application, Customer customer, boolean state) {
+       this.id = id;
        this.application = application;
        this.customer = customer;
+       this.state = state;
     }
    
-    public Integer getIdCart() {
-        return this.idCart;
+    public CartId getId() {
+        return this.id;
     }
     
-    public void setIdCart(Integer idCart) {
-        this.idCart = idCart;
+    public void setId(CartId id) {
+        this.id = id;
     }
     public Application getApplication() {
         return this.application;
@@ -41,6 +44,13 @@ public class Cart  implements java.io.Serializable {
     
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+    public boolean isState() {
+        return this.state;
+    }
+    
+    public void setState(boolean state) {
+        this.state = state;
     }
 
 

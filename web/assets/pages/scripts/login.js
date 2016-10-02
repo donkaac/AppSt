@@ -134,8 +134,8 @@ var Login = function() {
             return $state;
         }
 
-        if (jQuery().select2 && $('#country_list').size() > 0) {
-            $("#country_list").select2({
+        if (jQuery().select2 && $('#countrylist').size() > 0) {
+            $("#countrylist").select2({
 	            placeholder: '<i class="fa fa-map-marker"></i>&nbsp;Select a Country',
 	            templateResult: format,
                 templateSelection: format,
@@ -146,7 +146,7 @@ var Login = function() {
 	        });
 
 
-	        $('#country_list').change(function() {
+	        $('#countrylist').change(function() {
 	            $('.register-form').validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
 	        });
     	}

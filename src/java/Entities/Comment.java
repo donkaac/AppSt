@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
+// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,28 +14,29 @@ public class Comment  implements java.io.Serializable {
 
      private Integer idComment;
      private Application application;
+     private Customer customer;
      private String comment;
      private Date commentDateAndTime;
      private boolean state;
-     private Set<Customerhascomment> customerhascomments = new HashSet<Customerhascomment>(0);
-     private Set<Developerhascomment> developerhascomments = new HashSet<Developerhascomment>(0);
+     private Set<Commenthasreply> commenthasreplies = new HashSet<Commenthasreply>(0);
 
     public Comment() {
     }
 
 	
-    public Comment(Application application, Date commentDateAndTime, boolean state) {
+    public Comment(Application application, Customer customer, Date commentDateAndTime, boolean state) {
         this.application = application;
+        this.customer = customer;
         this.commentDateAndTime = commentDateAndTime;
         this.state = state;
     }
-    public Comment(Application application, String comment, Date commentDateAndTime, boolean state, Set<Customerhascomment> customerhascomments, Set<Developerhascomment> developerhascomments) {
+    public Comment(Application application, Customer customer, String comment, Date commentDateAndTime, boolean state, Set<Commenthasreply> commenthasreplies) {
        this.application = application;
+       this.customer = customer;
        this.comment = comment;
        this.commentDateAndTime = commentDateAndTime;
        this.state = state;
-       this.customerhascomments = customerhascomments;
-       this.developerhascomments = developerhascomments;
+       this.commenthasreplies = commenthasreplies;
     }
    
     public Integer getIdComment() {
@@ -51,6 +52,13 @@ public class Comment  implements java.io.Serializable {
     
     public void setApplication(Application application) {
         this.application = application;
+    }
+    public Customer getCustomer() {
+        return this.customer;
+    }
+    
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     public String getComment() {
         return this.comment;
@@ -73,19 +81,12 @@ public class Comment  implements java.io.Serializable {
     public void setState(boolean state) {
         this.state = state;
     }
-    public Set<Customerhascomment> getCustomerhascomments() {
-        return this.customerhascomments;
+    public Set<Commenthasreply> getCommenthasreplies() {
+        return this.commenthasreplies;
     }
     
-    public void setCustomerhascomments(Set<Customerhascomment> customerhascomments) {
-        this.customerhascomments = customerhascomments;
-    }
-    public Set<Developerhascomment> getDeveloperhascomments() {
-        return this.developerhascomments;
-    }
-    
-    public void setDeveloperhascomments(Set<Developerhascomment> developerhascomments) {
-        this.developerhascomments = developerhascomments;
+    public void setCommenthasreplies(Set<Commenthasreply> commenthasreplies) {
+        this.commenthasreplies = commenthasreplies;
     }
 
 

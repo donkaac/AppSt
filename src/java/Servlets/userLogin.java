@@ -34,16 +34,17 @@ public class userLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             String email = request.getParameter("user_email");
+             String email = request.getParameter("username");
             String password = request.getParameter("password");
             
             System.out.println(email+""+password);
             boolean loginstate=false;
             Customer c=null;
-            ArrayList<Object> Searchdata = DataParser.Searchdata(new Customer());
+            String [][]ar={{"username",email},{"password",password}};
+            ArrayList<Object> Searchdata = DataParser.Searchdata(new Customer(),ar);
             for (Object customer : Searchdata) {
                  c=(Customer) customer;
-                if((c.getUsername().equals(email))&(c.getPassword().equals(password))&(c.isState()==true)){loginstate=true; break;}
+                if((c.getUsername().equals(email))&(c.getPassword().equals(password))&(c.isState()==true)){loginstate=true;}
             }
             if (loginstate) {
                 HttpSession s= request.getSession();
@@ -51,8 +52,10 @@ public class userLogin extends HttpServlet {
                         s.setAttribute("username", c.getUsername());
                        
                   out.print("ok");
+                  System.out.println("ok");
             }else{
-                out.print("email or password does not exist.");
+                out.print("error");
+                System.out.println("error");
             }
         }catch(Exception e){
             response.getWriter().write(e.getMessage());

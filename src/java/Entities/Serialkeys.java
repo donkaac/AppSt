@@ -1,5 +1,5 @@
 package Entities;
-// Generated Sep 27, 2016 8:18:01 PM by Hibernate Tools 4.3.1
+// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -21,8 +21,9 @@ public class Serialkeys  implements java.io.Serializable {
     }
 
 	
-    public Serialkeys(Application application) {
+    public Serialkeys(Application application, String serialkey) {
         this.application = application;
+        this.serialkey = serialkey;
     }
     public Serialkeys(Application application, String serialkey, Boolean state, Set<Customerhasapplication> customerhasapplications) {
        this.application = application;

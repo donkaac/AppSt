@@ -24,6 +24,10 @@ public class DataParser {
 
     private static DataParser dataparser;
 
+    public static void getuniqeresault(Application application, String appid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private DataParser DataParser() {
 
         if (dataparser.equals(null)) {
@@ -35,6 +39,8 @@ public class DataParser {
 
     public static Object getuniqeresault(Object o, int id) {
         Session Session = Entities.HibernateUtil.getSessionFactory().openSession();
+        
+        Session.beginTransaction().commit();
         return Session.get(o.getClass(), id);
     }
 
@@ -45,7 +51,7 @@ public class DataParser {
 
             Session.save(o);
             beginTransaction.commit();
- 
+            Session.flush();
         } catch (Exception e) {
             return false;
         }
@@ -69,12 +75,11 @@ public class DataParser {
             }
             System.out.println(hql);
             Query q = s.createQuery(hql);
-            if (q.equals(null)) {
-                return null;
-            }
+             
             List<Object> list = q.list();
             resualt = (ArrayList<Object>) list;
-             
+             s.flush();
+             s.beginTransaction().commit();
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -92,7 +97,7 @@ public class DataParser {
             Query q = s.createQuery(hql);
             List<Object> list = q.list();
             resualt = (ArrayList<Object>) list;
-            
+            s.flush();
         } catch (Exception e) {
 
             return null;
@@ -112,7 +117,7 @@ public class DataParser {
             }
             List<Object> list = q.list();
             resualt = (ArrayList<Object>) list;
-             
+             s.flush();
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -121,20 +126,31 @@ public class DataParser {
     }
 
     public static boolean DeleteDataById(Object o, int id) {
-
         try {
             Session s = Entities.HibernateUtil.getSessionFactory().openSession();
             Transaction t = s.beginTransaction();
             Object deleteob = s.load(o.getClass(), id);
             s.delete(deleteob);
             t.commit();
-             
+             s.flush();
         } catch (Exception e) {
             return false;
         }
         return true;
     }
-
+  public static boolean DeleteDataByObject(Object o) {
+        try {
+            Session s = Entities.HibernateUtil.getSessionFactory().openSession();
+        
+             
+            s.delete(o);
+            
+             s.flush();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
     public static boolean UpdateData(Object o) {
         try {
             Session s = Entities.HibernateUtil.getSessionFactory().openSession();
@@ -142,7 +158,7 @@ public class DataParser {
             tx.begin();
             s.merge(o);
             tx.commit();
-             
+             s.flush();
         } catch (Exception e) {
             e.printStackTrace();
         }

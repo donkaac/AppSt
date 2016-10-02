@@ -24,6 +24,9 @@ function loardcountry() {
                  
                  
                 document.getElementById("Countrylist").innerHTML = ResponseText;
+                 document.getElementById("provincelist").innerHTML = "";
+                 document.getElementById("citylist").innerHTML = "";
+                 document.getElementById("districtlist").innerHTML = "";
             }
         };
         Object.open("POST", "loard", true);
@@ -55,6 +58,8 @@ function loardProvince() {
                 }
                  
                 document.getElementById("provincelist").innerHTML = ResponseText;
+                 document.getElementById("citylist").innerHTML = "";
+                 document.getElementById("districtlist").innerHTML = "";
             }
         };
         Object.open("POST", "loard", true);
@@ -83,6 +88,7 @@ function loardDistrict() {
               
                 
                 document.getElementById("districtlist").innerHTML = ResponseText;
+                 document.getElementById("citylist").innerHTML = "";
             }
         };
         Object.open("POST", "loard", true);
