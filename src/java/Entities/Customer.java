@@ -25,7 +25,6 @@ public class Customer  implements java.io.Serializable {
      private boolean state;
      private String address;
      private String customerImage;
-     private int developercreditcartNo;
      private Set<Coustomercokiesid> coustomercokiesids = new HashSet<Coustomercokiesid>(0);
      private Set<Wishlist> wishlists = new HashSet<Wishlist>(0);
      private Set<Cart> carts = new HashSet<Cart>(0);
@@ -36,7 +35,7 @@ public class Customer  implements java.io.Serializable {
     }
 
 	
-    public Customer(City city, Gender gender, String customerFname, Date customerRegDateAndTime, String password, String username, boolean state, String address, int developercreditcartNo) {
+    public Customer(City city, Gender gender, String customerFname, Date customerRegDateAndTime, String password, String username, boolean state, String address) {
         this.city = city;
         this.gender = gender;
         this.customerFname = customerFname;
@@ -45,9 +44,9 @@ public class Customer  implements java.io.Serializable {
         this.username = username;
         this.state = state;
         this.address = address;
-        this.developercreditcartNo = developercreditcartNo;
+        
     }
-    public Customer(City city, Emailvarified emailvarified, Gender gender, String customerFname, String customerMname, String customerLname, Date customerRegDateAndTime, String password, String username, boolean state, String address, String customerImage, int developercreditcartNo, Set<Coustomercokiesid> coustomercokiesids, Set<Wishlist> wishlists, Set<Cart> carts, Set<Comment> comments, Set<Customerhasapplication> customerhasapplications) {
+    public Customer(City city, Emailvarified emailvarified, Gender gender, String customerFname, String customerMname, String customerLname, Date customerRegDateAndTime, String password, String username, boolean state, String address, String customerImage, Set<Coustomercokiesid> coustomercokiesids, Set<Wishlist> wishlists, Set<Cart> carts, Set<Comment> comments, Set<Customerhasapplication> customerhasapplications) {
        this.city = city;
        this.emailvarified = emailvarified;
        this.gender = gender;
@@ -60,7 +59,7 @@ public class Customer  implements java.io.Serializable {
        this.state = state;
        this.address = address;
        this.customerImage = customerImage;
-       this.developercreditcartNo = developercreditcartNo;
+       
        this.coustomercokiesids = coustomercokiesids;
        this.wishlists = wishlists;
        this.carts = carts;
@@ -158,13 +157,6 @@ public class Customer  implements java.io.Serializable {
     
     public void setCustomerImage(String customerImage) {
         this.customerImage = customerImage;
-    }
-    public int getDevelopercreditcartNo() {
-        return this.developercreditcartNo;
-    }
-    
-    public void setDevelopercreditcartNo(int developercreditcartNo) {
-        this.developercreditcartNo = developercreditcartNo;
     }
     public Set<Coustomercokiesid> getCoustomercokiesids() {
         return this.coustomercokiesids;

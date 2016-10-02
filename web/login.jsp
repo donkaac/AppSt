@@ -4,6 +4,8 @@
     Author     : Achi
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Entities.Gender"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -195,12 +197,20 @@
                         <i class="fa fa-font"></i>
                         <input class="form-control placeholder-no-fix" type="text" placeholder="Last Name" name="lname" /> </div>
                 </div>
-                <div class="form-group">
-                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Email</label>
-                    <div class="input-icon">
-                        <i class="fa fa-envelope"></i>
-                        <input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" /> </div>
+                 <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Gender</label>
+                    <select name="gender" class="form-control" id="gender" class="select2 form-control">
+                     <%
+                    ArrayList<Object> genderobject= Datacontroller.DataParser.Searchdata(new Gender());
+                    for(Object genobject:genderobject){
+                        Gender gen=(Gender)genobject;
+                    
+                     %>
+                     
+                     <option value="<%=gen.getIdgender()%>"><%=gen.getGender()%></option>
+                     
+                     <%}%>
+                    </select>
                 </div>
                    <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -246,10 +256,10 @@
                 </div>
                 <p> Enter your account details below: </p>
                 <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">Username</label>
+                    <label class="control-label visible-ie8 visible-ie9">Email</label>
                     <div class="input-icon">
                         <i class="fa fa-user"></i>
-                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" /> </div>
+                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>

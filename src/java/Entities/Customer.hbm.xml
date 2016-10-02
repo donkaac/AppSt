@@ -44,9 +44,6 @@
         <property name="customerImage" type="string">
             <column name="customerImage" length="65535" />
         </property>
-        <property name="developercreditcartNo" type="int">
-            <column name="developercreditcartNo" not-null="true" />
-        </property>
         <set name="coustomercokiesids" table="coustomercokiesid" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Customer_idCustomer" not-null="true" />

@@ -51,7 +51,7 @@ public class coustomerlogin extends HttpServlet {
             for (Object customer : Searchdata) {
                  c=(Customer) customer;
                 System.out.println(c.getPassword()+c.getUsername());
-             if((c.getUsername().equals(email))&(c.getPassword().equals(password))&(c.isState()==true)){loginstate=true; break;}
+             if((c.getUsername().equals(email))&(c.getPassword().equals(Datacontroller.EncryptUtils.base64encode(password)))&(c.isState()==true)){loginstate=true; break;}
             }
             if (loginstate) {
                 if(request.getParameter("remember").equals("1")){

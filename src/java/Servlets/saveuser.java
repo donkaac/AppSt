@@ -5,10 +5,13 @@
  */
 package Servlets;
 
+import Datacontroller.DataParser;
 import Entities.City;
 import Entities.Customer;
+import Entities.Gender;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,41 +36,73 @@ public class saveuser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
-             PrintWriter writer = response.getWriter();
-             String fname = request.getParameter("fname");
-             String mname = request.getParameter("mname");
-             String lname = request.getParameter("lname");
-             String email = request.getParameter("email");
-             String address = request.getParameter("address");
-             String cityid = request.getParameter("city");
-             String username = request.getParameter("username");
-             String password = request.getParameter("password");
-             String rpassword = request.getParameter("rpassword");
-             String mobile = request.getParameter("mobile");
-             
-             if(!(fname.equals("")|fname.equals(null)|mname.equals("")|mname.equals(null)|lname.equals("")|lname.equals(null)|email.equals("")|email.equals(null)|address.equals("")|address.equals(null)|cityid.equals("")|cityid.equals(null)|username.equals("")|username.equals(null)|password.equals("")|password.equals(null)|rpassword.equals("")|rpassword.equals(null)|mobile.equals("")|mobile.equals(null))){
-                 if (password.equals(rpassword)) {
-                     Object city = Datacontroller.DataParser.getuniqeresault(new City(), Integer.parseInt(cityid));
-                     Customer c=new Customer();
-                     c.setCustomerFname(fname);
-                     c.setCustomerMname(mname);
-                     c.setCustomerLname(lname);
-                     c.setCustomerRegDateAndTime(new Date());
-                     c.setCity((City) city);
-                     c.setPassword(password);
-                     c.setUsername(username);
-                     c.setAddress(address);
-                     c.setState(true);
-                     boolean Savedata = Datacontroller.DataParser.Savedata(c);
-                     writer.write(""+Savedata);
-                 }else{
-                     writer.write("match password");
-                 }
-             }else{
-                 writer.write("null data");
-             }
+        try {
+            System.out.println("request revice");
+            PrintWriter writer = response.getWriter();
+            String fname = request.getParameter("fname");
+            String mname = request.getParameter("mname");
+            String lname = request.getParameter("lname");
             
+            String address = request.getParameter("address");
+            String cityid = request.getParameter("city");
+            String username = request.getParameter("email");
+            String password = request.getParameter("password");
+            String rpassword = request.getParameter("rpassword");
+            String mobile = request.getParameter("mobile");
+            String genderid = request.getParameter("gender");
+            boolean emailexist = true;
+            Customer customer = new Customer();
+            ArrayList<Object> Searchdata = DataParser.Searchdata(new Customer());
+            for (Object object : Searchdata) {
+                customer = (Customer) object;
+                if (customer.getUsername().equals(username)) {
+                    emailexist = false;
+                    break;
+                }
+            }
+            if (emailexist) {
+                System.out.println("Email not exist");
+                if (!(fname.equals("") | fname.equals(null) | mname.equals("") | mname.equals(null) | lname.equals("") | lname.equals(null) | username.equals("") | username.equals(null) | address.equals("") | address.equals(null) | cityid.equals("") | cityid.equals(null) | password.equals("") | password.equals(null) | rpassword.equals("") | rpassword.equals(null) | mobile.equals("") | mobile.equals(null))) {
+                    try {
+
+                        if (password.equals(rpassword)) {
+                            City city = (City) Datacontroller.DataParser.getuniqeresault(new City(), Integer.parseInt(cityid));
+                            Gender gender = (Gender) Datacontroller.DataParser.getuniqeresault(new Gender(), Integer.parseInt(genderid));
+                            Customer c = new Customer();
+                            c.setCustomerFname(fname);
+                            c.setCustomerMname(mname);
+                            c.setCustomerLname(lname);
+                            c.setCustomerRegDateAndTime(new Date());
+                            c.setCity(city);
+                            c.setGender(gender);
+                            c.setPassword(Datacontroller.EncryptUtils.base64encode(password));
+                            c.setUsername(username);
+                            c.setAddress(address);
+                            c.setState(true);
+                            String[] reviver = {username};
+
+                            boolean Savedata = Datacontroller.DataParser.Savedata(c);
+                            System.out.println(Savedata);
+                            writer.write("" + Savedata);
+                            try {
+                                Oparation.Mails.sendFromGMail(reviver, "Email Conform", "" + Oparation.EmailValidationCodeGenaration.EmailValidationCode());
+
+                            } catch (Exception e) {
+                            }
+
+                        } else {
+                            writer.write("match password");
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    writer.write("null data");
+                }
+            } else {
+                writer.write("emailexist");
+            }
         } catch (Exception e) {
         }
     }
