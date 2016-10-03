@@ -5,12 +5,20 @@
  */
 package Servlets;
 
+import Datacontroller.DataParser;
+import Entities.City;
+import Entities.Customer;
+import Entities.Emailvarified;
+import Entities.Gender;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,16 +39,60 @@ public class updatecustomerdata extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet updatecustomerdata</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet updatecustomerdata at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            try {
+                System.out.println("request revice");
+                PrintWriter writer = response.getWriter();
+                String fname = request.getParameter("fname");
+                String mname = request.getParameter("mname");
+                String lname = request.getParameter("lname");
+
+                String address = request.getParameter("address");
+                String cityid = request.getParameter("city");
+                
+
+     
+                String genderid = request.getParameter("gender");
+                boolean emailexist = true;
+                HttpSession s = request.getSession();
+                int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+             
+                if (!(fname.equals("") | fname.equals(null) | mname.equals("") | mname.equals(null) | lname.equals("") | lname.equals(null) |  address.equals("") | address.equals(null) | cityid.equals("") | cityid.equals(null))) {
+                    try {
+
+                        Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(cityid));
+                        City city = (City) Datacontroller.DataParser.getuniqeresault(new City(), Integer.parseInt(cityid));
+                        Gender gender = (Gender) Datacontroller.DataParser.getuniqeresault(new Gender(), Integer.parseInt(genderid));
+
+                        c.setCustomerFname(fname);
+                        c.setCustomerMname(mname);
+                        c.setCustomerLname(lname);
+                        c.setCustomerRegDateAndTime(new Date());
+                        c.setCity(city);
+                        c.setGender(gender);
+                        
+                        
+                        c.setAddress(address);
+                        c.setState(true);
+
+              
+
+           
+
+                        boolean Savedata = Datacontroller.DataParser.Savedata(c);
+                        System.out.println(Savedata);
+                        writer.write("" + Savedata);
+                   
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    writer.write("null data");
+                }
+
+            } catch (Exception e) {
+            }
+            response.sendRedirect("profile.jsp");
         }
     }
 

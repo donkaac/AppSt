@@ -46,7 +46,7 @@ public class coustomerlogin extends HttpServlet {
             System.out.println(email+""+password);
             boolean loginstate=false;
             Customer c=null;
-            String [][]ar={{"username",email},{"password",password}};
+            String [][]ar={{"username",email},{"password",Datacontroller.EncryptUtils.base64encode(password)}};
             ArrayList<Object> Searchdata = DataParser.Searchdata(new Customer(),ar);
             for (Object customer : Searchdata) {
                  c=(Customer) customer;

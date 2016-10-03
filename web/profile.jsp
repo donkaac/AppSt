@@ -13,6 +13,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="Entities.Appplatform"%>
 <%@page import="java.util.ArrayList"%>
+<%@ page import="java.io.*,java.util.*" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Wish List</title>
+            <title>Profile</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -58,22 +59,29 @@
 
         </head>
         <%
+
+            HttpSession s = request.getSession();
+
             String username = "Guest";
             boolean loging = false;
             Customer c = new Customer();
-            if (!request.getSession().equals(null)) {
+            try{
+            if (!(s.getAttribute("userid")==null)) {
                 try {
-
-                    HttpSession s = request.getSession();
 
                     int cusid = Integer.parseInt(s.getAttribute("userid").toString());
                     c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
                     username = c.getCustomerFname();
                     loging = true;
                 } catch (Exception e) {
-
+                    response.sendRedirect("login.jsp");
                 }
-            }
+            } 
+                  } catch (Exception e) {
+                      
+                  } 
+            
+
             String cartqty = "";
             if (!c.getCarts().isEmpty()) {
                 cartqty = "" + c.getCarts().size();
@@ -81,6 +89,12 @@
             String wishlistqty = "";
             if (!c.getWishlists().isEmpty()) {
                 wishlistqty = "" + c.getWishlists().size();
+            }
+            String image="";
+            if (!c.getCustomerImage().isEmpty()) {
+                image = c.getCustomerImage();
+            }else{
+                image="assets/layouts/layout/img/avatar3_small.jpg";
             }
         %>
         <!-- END HEAD -->
@@ -92,7 +106,7 @@
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
                         <a href="index.jsp">
-                            <img src="assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                            <img src="<%=image%>" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
                     <!-- END LOGO -->
@@ -379,184 +393,196 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                
+
                             </div>
                         </div>
                         <%-- Main--%>
 
                         <div class="container">
                             <div>
-                            <div class="general">
-                                
-                                <h4 class="latest-text w3_latest_text">Change Password</h4>
-                                <div class="container">
-                                    
-                                    <%--      password chage are       ---%>
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label"  for="form_control_1">Password</label>
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" name="pass1" id="pass1" class="form-control" placeholder="">
-                                                                        <div class="form-control-focus"> </div>
+                                <div class="general">
 
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label" for="form_control_1">Retype Password</label>
-                                                                    <div class="col-md-6">
-                                                                        <input type="password" name="pass2" id="pass2" class="form-control" placeholder="">
-                                                                        <div class="form-control-focus"> </div>
+                                    <h4 class="latest-text w3_latest_text">Change Password</h4>
+                                    <div class="container">
 
-                                                                    </div>
-                                                                </div>
-                                                                <br>
-                                                         <div class="form-actions">
-                                                                <div class="row">
-                                                                    <div class="col-md-offset-3 col-md-6">
-                                                                        <input type="submit" value="Change Password"  class="btn green"/>
-                                                                        <a href="" class="btn default">Cancel</a>
-                                                                    </div>
-                                                                </div>
+                                        <%--      password chage are       ---%>
+                                        <form onsubmit="return checkpassword()" action="changepassword"><div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label"  for="form_control_1">Current Password</label>
+                                                <div class="col-md-6">
+                                                    <input type="password" name="oldpassword" id="pass1" class="form-control" placeholder="">
+                                                    <div class="form-control-focus"> </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label"  for="form_control_1">Password</label>
+                                                <div class="col-md-6">
+                                                    <input type="password" name="pass1" id="pass1" class="form-control" placeholder="">
+                                                    <div class="form-control-focus"> </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label" for="form_control_1">Retype Password</label>
+                                                <div class="col-md-6">
+                                                    <input type="password" name="pass2" id="pass2" class="form-control" placeholder="">
+                                                    <div class="form-control-focus"> </div>
+
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-offset-3 col-md-6">
+                                                        <input type="submit" value="Change Password"  class="btn green"/>
+                                                        <a href="profile.jsp" class="btn default">Cancel</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </form>
+                                        <%--      password chage are end      ---%>
+
+                                        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                                            <ul id="myTab" class="nav nav-tabs" role="tablist">
+                                            </ul>
+                                            <div id="myTabContent" class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                                                    <div class="scroller" style="height: 525px;" data-always-visible="1" data-rail-visible1="1">
+                                                        <div class="portlet-body">
+                                                            <div>
+                                                                <img class="profile-image" src="<%=image%>"/>
                                                             </div>
-                                                                <br>
-                                    
-                                    <%--      password chage are end      ---%>
-                                    
-                                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-                                        <ul id="myTab" class="nav nav-tabs" role="tablist">
-                                        </ul>
-                                        <div id="myTabContent" class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
-                                                <div class="scroller" style="height: 525px;" data-always-visible="1" data-rail-visible1="1">
-                                                    <div class="portlet-body">
-                                                        <!-- BEGIN FORM-->
-                                                        <form action="updatecustomerdata"  method="POST"  class="form-horizontal">
-                                                            <div class="form-body">
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label" for="form_control_1">First Name</label>
-                                                                    <div class="col-md-6">
-                                                                        <input type="text" id="fname" name="fname" value="<%=c.getCustomerFname()%>" class="form-control" placeholder="">
-                                                                        <div class="form-control-focus"> </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label" for="form_control_1">Middle Name</label>
-                                                                    <div class="col-md-6">
-                                                                        <input type="text" id="maname" value="<%=c.getCustomerMname()%>" name="mname" class="form-control" placeholder="">
-                                                                        <div class="form-control-focus"> </div>
-
-                                                                    </div>
-                                                                </div>
-
-
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label" for="form_control_1">Last Name</label>
-                                                                    <div class="col-md-6">
-                                                                        <input type="text" name="lname" value="<%=c.getCustomerLname()%>" id="lname" class="form-control" placeholder="">
-                                                                        <div class="form-control-focus"> </div>
-
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label" for="form_control_1">Email</label>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <input type="email" id="email" name="email" value="<%=c.getUsername()%>" class="form-control" placeholder="Email Address">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-envelope"></i>
-                                                                            </span>
+                                                            <!-- BEGIN FORM-->
+                                                            <form action="updatecustomerdata" onsubmit="return checkprofiledata()"  method="POST"  class="form-horizontal">
+                                                                <div class="form-body">
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label" for="form_control_1">First Name</label>
+                                                                        <div class="col-md-6">
+                                                                            <input type="text" id="fname" name="fname" value="<%=c.getCustomerFname()%>" class="form-control" placeholder="">
                                                                             <div class="form-control-focus"> </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label" for="form_control_1">Middle Name</label>
+                                                                        <div class="col-md-6">
+                                                                            <input type="text" id="maname" value="<%=c.getCustomerMname()%>" name="mname" class="form-control" placeholder="">
+                                                                            <div class="form-control-focus"> </div>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label" for="form_control_1">Last Name</label>
+                                                                        <div class="col-md-6">
+                                                                            <input type="text" name="lname" value="<%=c.getCustomerLname()%>" id="lname" class="form-control" placeholder="">
+                                                                            <div class="form-control-focus"> </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label" for="form_control_1">Email</label>
+                                                                        <div class="col-md-6">
+                                                                            <div class="input-group">
+                                                                                <input type="reset" id="email" name="email" value="<%=c.getUsername()%>" class="form-control" placeholder="Email Address">
+                                                                                <span class="input-group-addon">
+                                                                                    <i class="fa fa-envelope"></i>
+                                                                                </span>
+                                                                                <div class="form-control-focus"> </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label"  for="form_control_1">Country</label>
+                                                                        <div class="col-md-6">
+                                                                            <select class="form-control" id="Countrylist" ondblclick="loardcountry()" onchange="loardProvince()" name="Countrylist">
+                                                                                <option><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></option>
+                                                                            </select>
+                                                                            <div class="form-control-focus"> </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label"   for="form_control_1">Province</label>
+                                                                        <div class="col-md-6">
+                                                                            <select class="form-control"  id="provincelist" onchange="loardDistrict()" name="provincelist">
+                                                                                <option><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></option>
+                                                                            </select>
+                                                                            <div class="form-control-focus"> </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label"   for="form_control_1">District</label>
+                                                                        <div class="col-md-6">
+                                                                            <select class="form-control"  id="districtlist" onchange="loardCity()" name="districtlist">
+                                                                                <option><%=c.getCity().getDiscrict().getDiscrictName()%></option>
+                                                                            </select>
+                                                                            <div class="form-control-focus"> </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label"  for="form_control_1">City</label>
+                                                                        <div class="col-md-6">
+                                                                            <select class="form-control"  id="citylist" name="citylist">
+                                                                                <option><%=c.getCity().getCityName()%></option>
+                                                                            </select>
+                                                                            <div class="form-control-focus"> </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-md-line-input">
+                                                                        <label class="col-md-3 control-label" for="form_control_1">Address</label>
+                                                                        <div class="col-md-6">
+                                                                            <input type="text" name="address"value="<%=c.getAddress()%>" id="address" class="form-control" placeholder="">
+                                                                            <div class="form-control-focus"> </div>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="form-group form-md-radios  ">
+                                                                        <label class="col-md-3 control-label"  for="form_control_1">Select Gender</label>
+                                                                        <div class="col-md-6">
+                                                                            <div class="md-radio-inline">
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio" id="checkbox1_8" checked="" name="gender" value="male" class="md-radiobtn">
+                                                                                    <label for="checkbox1_8">
+                                                                                        <span class="inc"></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span> Male</label>
+                                                                                </div>
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio" id="checkbox1_9" name="gender" value="female" class="md-radiobtn">
+                                                                                    <label for="checkbox1_9">
+                                                                                        <span class="inc"></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span> Female </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-actions">
+                                                                    <div class="row">
+                                                                        <div class="col-md-offset-3 col-md-6">
+                                                                            <input type="submit" value="Save Changes" class="btn green"/>
+                                                                            <a href="profile.jsp" class="btn default">Cancel</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
 
-
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label"  for="form_control_1">Country</label>
-                                                                    <div class="col-md-6">
-                                                                        <select class="form-control" id="Countrylist" ondblclick="loardcountry()" onchange="loardProvince()" name="Countrylist">
-                                                                            <option><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></option>
-                                                                        </select>
-                                                                        <div class="form-control-focus"> </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label"   for="form_control_1">Province</label>
-                                                                    <div class="col-md-6">
-                                                                        <select class="form-control"  id="provincelist" onchange="loardDistrict()" name="provincelist">
-                                                                            <option><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></option>
-                                                                        </select>
-                                                                        <div class="form-control-focus"> </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label"   for="form_control_1">District</label>
-                                                                    <div class="col-md-6">
-                                                                        <select class="form-control"  id="districtlist" onchange="loardCity()" name="districtlist">
-                                                                            <option><%=c.getCity().getDiscrict().getDiscrictName()%></option>
-                                                                        </select>
-                                                                        <div class="form-control-focus"> </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label"  for="form_control_1">City</label>
-                                                                    <div class="col-md-6">
-                                                                        <select class="form-control"  id="citylist" name="citylist">
-                                                                            <option><%=c.getCity().getCityName()%></option>
-                                                                        </select>
-                                                                        <div class="form-control-focus"> </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group form-md-line-input">
-                                                                    <label class="col-md-3 control-label" for="form_control_1">Address</label>
-                                                                    <div class="col-md-6">
-                                                                        <input type="text" name="address"value="<%=c.getAddress()%>" id="address" class="form-control" placeholder="">
-                                                                        <div class="form-control-focus"> </div>
-
-                                                                    </div>
-                                                                </div>
-
-
-                                                                <div class="form-group form-md-radios  ">
-                                                                    <label class="col-md-3 control-label"  for="form_control_1">Select Gender</label>
-                                                                    <div class="col-md-6">
-                                                                        <div class="md-radio-inline">
-                                                                            <div class="md-radio">
-                                                                                <input type="radio" id="checkbox1_8" checked="" name="gender" value="male" class="md-radiobtn">
-                                                                                <label for="checkbox1_8">
-                                                                                    <span class="inc"></span>
-                                                                                    <span class="check"></span>
-                                                                                    <span class="box"></span> Male</label>
-                                                                            </div>
-                                                                            <div class="md-radio">
-                                                                                <input type="radio" id="checkbox1_9" name="gender" value="female" class="md-radiobtn">
-                                                                                <label for="checkbox1_9">
-                                                                                    <span class="inc"></span>
-                                                                                    <span class="check"></span>
-                                                                                    <span class="box"></span> Female </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-actions">
-                                                                <div class="row">
-                                                                    <div class="col-md-offset-3 col-md-6">
-                                                                        <input type="submit"  class="btn green"/>
-                                                                        <a href="" class="btn default">Cancel</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-                                                        </form>
-                                                        <!-- END FORM-->
+                                                            </form>
+                                                            <!-- END FORM-->
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -565,31 +591,30 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
 
                 </div>
 
-                </div>   
+            </div>   
 
 
 
-                <div class="clearfix"></div>
+            <div class="clearfix"></div>
 
 
 
-            </div>
-            <!-- END CONTENT BODY -->
         </div>
-
+        <!-- END CONTENT BODY -->
     </div>
-    <!-- END QUICK SIDEBAR -->
+
+</div>
+<!-- END QUICK SIDEBAR -->
 </div>
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    <div class="page-footer-inner">  
+
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
@@ -653,5 +678,4 @@
 <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
-
 </html>

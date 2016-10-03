@@ -24,9 +24,7 @@ public class DataParser {
 
     private static DataParser dataparser;
 
-    public static void getuniqeresault(Application application, String appid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     private DataParser DataParser() {
 

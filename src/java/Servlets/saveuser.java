@@ -8,6 +8,7 @@ package Servlets;
 import Datacontroller.DataParser;
 import Entities.City;
 import Entities.Customer;
+import Entities.Emailvarified;
 import Entities.Gender;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -79,13 +80,23 @@ public class saveuser extends HttpServlet {
                             c.setUsername(username);
                             c.setAddress(address);
                             c.setState(true);
+                            
+                            String EmailValidationCode = Oparation.EmailValidationCodeGenaration.EmailValidationCode();
+                                Emailvarified emailvarified = new Emailvarified();
+                                emailvarified.setToken(EmailValidationCode);
+                                emailvarified.setEmailvarifiedDate(new Date());
+                                emailvarified.setEmail(username);
+                               emailvarified.setState(true);
+                             c.setEmailvarified(emailvarified);
+                            
                             String[] reviver = {username};
 
                             boolean Savedata = Datacontroller.DataParser.Savedata(c);
                             System.out.println(Savedata);
                             writer.write("" + Savedata);
                             try {
-                                Oparation.Mails.sendFromGMail(reviver, "Email Conform", "" + Oparation.EmailValidationCodeGenaration.EmailValidationCode());
+                                
+                                Oparation.Mails.sendFromGMail(reviver, "Email Conform", "Your Account Activation Code Is :");
 
                             } catch (Exception e) {
                             }
