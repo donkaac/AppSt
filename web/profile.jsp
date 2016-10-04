@@ -58,47 +58,22 @@
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head>
-        <%
 
-            HttpSession s = request.getSession();
-
-            String username = "Guest";
-            boolean loging = false;
-            Customer c = new Customer();
-            try{
-            if (!(s.getAttribute("userid")==null)) {
-                try {
-
-                    int cusid = Integer.parseInt(s.getAttribute("userid").toString());
-                    c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
-                    username = c.getCustomerFname();
-                    loging = true;
-                } catch (Exception e) {
-                    response.sendRedirect("login.jsp");
-                }
-            } 
-                  } catch (Exception e) {
-                      
-                  } 
-            
-
-            String cartqty = "";
-            if (!c.getCarts().isEmpty()) {
-                cartqty = "" + c.getCarts().size();
-            }
-            String wishlistqty = "";
-            if (!c.getWishlists().isEmpty()) {
-                wishlistqty = "" + c.getWishlists().size();
-            }
-            String image="";
-            if (!c.getCustomerImage().isEmpty()) {
-                image = c.getCustomerImage();
-            }else{
-                image="assets/layouts/layout/img/avatar3_small.jpg";
-            }
-        %>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+            <%
+                try {
+                    Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
+                    if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
+                        String image = "assets/layouts/layout/img/avatar3_small.jpg";
+                        if (!(c.getCustomerImage() == null)) {
+                            image = c.getCustomerImage();
+                        }
+                        String cartqty = "";
+                        String wishlistqty = "";
+                        String username = c.getCustomerFname();
+
+            %>
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
@@ -106,7 +81,7 @@
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
                         <a href="index.jsp">
-                            <img src="<%=image%>" alt="logo" class="logo-default" /> </a>
+                            <img src="assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
                     <!-- END LOGO -->
@@ -123,7 +98,7 @@
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <img alt="" class="img-circle" src="<%=image%>" />
                                     <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
@@ -397,7 +372,6 @@
                             </div>
                         </div>
                         <%-- Main--%>
-
                         <div class="container">
                             <div>
                                 <div class="general">
@@ -406,7 +380,7 @@
                                     <div class="container">
 
                                         <%--      password chage are       ---%>
-                                        <form onsubmit="return checkpassword()" action="changepassword"><div class="form-group form-md-line-input">
+                                        <form onsubmit="return checkpassword()" action="changepassword" method="POST"><div class="form-group form-md-line-input" >
                                                 <label class="col-md-3 control-label"  for="form_control_1">Current Password</label>
                                                 <div class="col-md-6">
                                                     <input type="password" name="oldpassword" id="pass1" class="form-control" placeholder="">
@@ -450,8 +424,44 @@
                                                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                                                     <div class="scroller" style="height: 525px;" data-always-visible="1" data-rail-visible1="1">
                                                         <div class="portlet-body">
-                                                            <div>
-                                                                <img class="profile-image" src="<%=image%>"/>
+                                                            <div class="form-inline">
+
+                                                                <script type="text/javascript">
+
+                                                                    function checkimage() {
+
+                                                                        var input = document.forms['file_upload']['image_file'];
+
+                                                                        if (input.files[0].size > 600000) {
+
+                                                                            document.getElementById('msg').innerHTML = "File Size Too Large.. ";
+                                                                            document.getElementById('msg').style.color = "RED";
+                                                                            return false;
+
+                                                                        } else {
+
+                                                                            return true;
+
+                                                                        }
+
+                                                                    }
+
+                                                                </script>
+                                                                <form action="changeprofileimage" onsubmit="return checkimage()" name="file_upload" enctype="multipart/form-data" method="POST">
+                                                                    <div class="panel right inline">
+                                                                        <div class="col-md-offset-3">
+                                                                            <img width="100px" id="pimage" class="pull-xs-left" src="<%=image%>"/>
+                                                                            <p id="msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-offset-3">
+                                                                            <input type="file"  name="image" onselect="document.getElementById('pimage').src = document.getElementById('image').value" class="btn-default" />
+                                                                            <div class="col-md-offset-6">
+                                                                                <input type="submit" value="Change Image"  class="btn green"/>
+                                                                            </div>
+                                                                        </div>  
+
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                             <!-- BEGIN FORM-->
                                                             <form action="updatecustomerdata" onsubmit="return checkprofiledata()"  method="POST"  class="form-horizontal">
@@ -467,7 +477,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label" for="form_control_1">Middle Name</label>
                                                                         <div class="col-md-6">
-                                                                            <input type="text" id="maname" value="<%=c.getCustomerMname()%>" name="mname" class="form-control" placeholder="">
+                                                                            <input type="text" id="mname" value="<%=c.getCustomerMname()%>" name="mname" class="form-control" placeholder="">
                                                                             <div class="form-control-focus"> </div>
 
                                                                         </div>
@@ -501,7 +511,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label"  for="form_control_1">Country</label>
                                                                         <div class="col-md-6">
-                                                                            <select class="form-control" id="Countrylist" ondblclick="loardcountry()" onchange="loardProvince()" name="Countrylist">
+                                                                            <select class="form-control" id="Countrylist" onclick="loardcountry()" onchange="loardProvince()" name="Countrylist">
                                                                                 <option><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></option>
                                                                             </select>
                                                                             <div class="form-control-focus"> </div>
@@ -532,7 +542,7 @@
                                                                         <label class="col-md-3 control-label"  for="form_control_1">City</label>
                                                                         <div class="col-md-6">
                                                                             <select class="form-control"  id="citylist" name="citylist">
-                                                                                <option><%=c.getCity().getCityName()%></option>
+                                                                                <option value="<%=c.getCity().getIdCity()%>"><%=c.getCity().getCityName()%></option>
                                                                             </select>
                                                                             <div class="form-control-focus"> </div>
 
@@ -588,6 +598,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -678,4 +689,8 @@
 <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
+<%}
+    } catch (Exception e) {
+        response.sendRedirect("index.jsp");
+    }%>
 </html>

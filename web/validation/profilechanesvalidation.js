@@ -11,5 +11,13 @@ function checkpassword() {
     }
 }
 function checkprofiledata(){
-    
+   if (!(document.getElementById("fname").value === "" |document.getElementById("address").value === "" | document.getElementById("citylist").value === ""| document.getElementById("citylist").value === ""| document.getElementById("citylist").value === ""| document.getElementById("lname").value === ""| document.getElementById("maname").value === "")) {
+        alert(true);
+        return true;
+        
+   }else{
+        alert(false);
+        return false;
+        
+   }
 }

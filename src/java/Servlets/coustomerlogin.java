@@ -24,8 +24,7 @@ import javax.servlet.http.HttpSession;
  * @author Ish
  */
 public class coustomerlogin extends HttpServlet {
- 
-   
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -37,85 +36,92 @@ public class coustomerlogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      try (PrintWriter out = response.getWriter()) {
-             String email = request.getParameter("username");
+        try (PrintWriter out = response.getWriter()) {
+            String email = request.getParameter("username");
             String password = request.getParameter("password");
-               Cookie[] cookies = request.getCookies();
-           System.out.println(request.getParameter("remember"));
-            
-            System.out.println(email+""+password);
-            boolean loginstate=false;
-            Customer c=null;
-            String [][]ar={{"username",email},{"password",Datacontroller.EncryptUtils.base64encode(password)}};
-            ArrayList<Object> Searchdata = DataParser.Searchdata(new Customer(),ar);
+            Cookie[] cookies = request.getCookies();
+            System.out.println(request.getParameter("remember"));
+
+            System.out.println(email + "" + password);
+            boolean loginstate = false;
+            Customer c = null;
+            String[][] ar = {{"username", email}, {"password", Datacontroller.EncryptUtils.base64encode(password)}};
+            ArrayList<Object> Searchdata = DataParser.Searchdata(new Customer(), ar);
             for (Object customer : Searchdata) {
-                 c=(Customer) customer;
-                System.out.println(c.getPassword()+c.getUsername());
-             if((c.getUsername().equals(email))&(c.getPassword().equals(Datacontroller.EncryptUtils.base64encode(password)))&(c.isState()==true)){loginstate=true; break;}
+                c = (Customer) customer;
+                System.out.println(c.getPassword() + c.getUsername());
+                if ((c.getUsername().equals(email)) & (c.getPassword().equals(Datacontroller.EncryptUtils.base64encode(password))) & (c.isState() == true)) {
+                    loginstate = true;
+                    break;
+                }
             }
             if (loginstate) {
-                if(request.getParameter("remember").equals("1")){
+                if (request.getParameter("remember").equals("1")) {
                     System.out.println("Set cokies");
-                     Cookie usernameCookie = new Cookie("username-cookie", email);
-                Cookie passwordCookie = new Cookie("password-cookie", password);
-                usernameCookie.setMaxAge(24 * 60 * 60);
-                passwordCookie.setMaxAge(24 * 60 * 60);
-                usernameCookie.setHttpOnly(true);
-                passwordCookie.setHttpOnly(true);
-                response.addCookie(usernameCookie);
-                response.addCookie(passwordCookie);
-                }else{
-              
-                    System.out.println("no coikes");
-                    try {
-                        
-                        
-                     Cookie usernameCookie = new Cookie("username-cookie", "");
-                Cookie passwordCookie = new Cookie("password-cookie", "");
-                usernameCookie.setMaxAge(1);
-                passwordCookie.setMaxAge(1);
-                usernameCookie.setHttpOnly(true);
-                passwordCookie.setHttpOnly(true);
-                response.addCookie(usernameCookie);
-                response.addCookie(passwordCookie);
-                        
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    Cookie usernameCookie = new Cookie("username-cookie", email);
+                    Cookie passwordCookie = new Cookie("password-cookie", password);
+                    usernameCookie.setMaxAge(24 * 60 * 60);
+                    passwordCookie.setMaxAge(24 * 60 * 60);
+                    usernameCookie.setHttpOnly(true);
+                    passwordCookie.setHttpOnly(true);
+                    response.addCookie(usernameCookie);
+                    response.addCookie(passwordCookie);
+                } else {
+
+                    Cookie cookie = null;
+                    Cookie[] cookiess = request.getCookies();
+                    if (cookies != null) {
+                        out.println("<h2> Found Cookies Name and Value</h2>");
+                        for (int i = 0; i < cookiess.length; i++) {
+                            cookie = cookies[i];
+                            if ((cookie.getName()).compareTo("first_name") == 0) {
+                                cookie.setMaxAge(0);
+                                response.addCookie(cookie);
+                                out.print("Deleted cookie: "
+                                        + cookie.getName() + "<br/>");
+                            }
+                            out.print("Name : " + cookie.getName() + ",  ");
+                            out.print("Value: " + cookie.getValue() + " <br/>");
+                        }
                     }
+                }
+              
+
             
-        
-                }
-                try {
-                    HttpSession s= request.getSession();
-                        s.setAttribute("userid",c.getIdCustomer());
-                        s.setAttribute("username", c.getUsername());
-                        s.setAttribute("usertype", "costomer");
-                } catch (Exception e) {
-                    System.out.println("exception");
-                    e.printStackTrace(); 
-                }
-                        
-                        
-                  out.print("ok");
-                  System.out.println("ok");
-            }else{
+            try {
+                HttpSession s = request.getSession();
+                s.setAttribute("userid", c.getIdCustomer());
+                s.setAttribute("username", c.getUsername());
+                s.setAttribute("usertype", "customer");
+            } catch (Exception e) {
+                System.out.println("exception");
+                e.printStackTrace();
+            }
+
+            out.print("ok");
+            System.out.println("ok");
+        }else{
                 out.print("error");
                 System.out.println("error");
             }
-        
-    }catch(Exception e){
+
+    }
+    catch(Exception e
+
+    
+        ){
             
             response.getWriter().write(e.getMessage());
-        }
     }
+}
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+/**
+ * Returns a short description of the servlet.
+ *
+ * @return a String containing servlet description
+ */
+@Override
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

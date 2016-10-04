@@ -20,25 +20,9 @@ import java.util.Set;
  */
 public class NewClass {
     public static void main(String[] args) {
-        ArrayList<Object> apps= Datacontroller.DataParser.Searchdata(new Appplatform());
-                            for (Object o : apps) {
-            Appplatform app=(Appplatform) o;
-            app.getAppplatform();
-            
-            Set<Apptype> apptypes = app.getApptypes();
-                                for (Apptype apptype : apptypes) {
-                                    apptype.getApptype();
-                                    
-                Set<Category> categories = apptype.getCategories();
-                                    for (Category category : categories) {
-                                        category.getCategory();
-                                        Set<Application> applications = category.getApplications();
-                                        for (Application application : applications) {
-                                            application.getApplicationName();
-                                        }
-                                                
-                                    }
-                                }
-        }
+     
+                            
+        String base64decode = Datacontroller.EncryptUtils.base64encode("hhjk");
+        System.out.println(base64decode);
     }
 }

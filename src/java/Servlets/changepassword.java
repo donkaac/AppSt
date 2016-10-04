@@ -36,19 +36,28 @@ public class changepassword extends HttpServlet {
             String pass1 = request.getParameter("pass1");
             String pass2 = request.getParameter("pass2");
             HttpSession s = request.getSession();
-            if (!s.getAttribute("userid").toString().equals(null)) {
+            if (!(s.getAttribute("userid").toString() == null)) {
                 
-              if (pass1 == pass2) {
+              if (pass1 == null ? pass2 == null : pass1.equals(pass2)) {
                 int cusid = Integer.parseInt(s.getAttribute("userid").toString());
                 Customer cusObject = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
-                if (cusObject.getPassword() == Datacontroller.EncryptUtils.base64encode(oldapass)) {
-                    cusObject.setPassword(pass1);
-                }
-              }}else{
+                  System.out.println("ok");
+                if (!(null == cusObject.getPassword() ? null == Datacontroller.EncryptUtils.base64encode(oldapass) : (cusObject.getPassword() == null ? (Datacontroller.EncryptUtils.base64encode(oldapass)) == null : cusObject.getPassword().equals(Datacontroller.EncryptUtils.base64encode(oldapass))))) {
+                } else {
+                    cusObject.setPassword(Datacontroller.EncryptUtils.base64encode(pass2));
+                    System.out.println("ok");
+                    boolean UpdateData = Datacontroller.DataParser.UpdateData(cusObject);
+                    response.sendRedirect("profle.jsp");
+                  }
+              }else{
+                  response.sendRedirect("profle.jsp");
+              }
+            }else{
                 response.sendRedirect("index.jsp");
             }
             
-        } catch (Exception e) {
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
         }
     }
 
