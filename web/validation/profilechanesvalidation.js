@@ -11,7 +11,7 @@ function checkpassword() {
     }
 }
 function checkprofiledata(){
-   if (!(document.getElementById("fname").value === "" |document.getElementById("address").value === "" | document.getElementById("citylist").value === ""| document.getElementById("citylist").value === ""| document.getElementById("citylist").value === ""| document.getElementById("lname").value === ""| document.getElementById("maname").value === "")) {
+   if (!(document.document.forms["updatecusdata"]["fname"].value === "" |document.document.forms["updatecusdata"]["mname"].value === "" | document.document.forms["updatecusdata"]["lname"].value === ""| document.document.forms["updatecusdata"]["citylist"].value === ""| document.document.forms["updatecusdata"]["address"].value === "")) {
         alert(true);
         return true;
         

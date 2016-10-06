@@ -92,17 +92,8 @@
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.html">
-                <!--<img src="./assets/pages/img/logo-big.png" alt="" />--> 
+                <img src="../assets/pages/img/logo-big.png" alt="" />
             </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="dashboard-stat purple">
-                <div class="">
-                    <a href="../developer/login.jsp" class="btn green btn-block btn-lg m-icon-big"> Member Area
-                        <i class="m-icon-big-swapright m-icon-white"></i>
-                    </a>
-                </div>
-            </div>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
@@ -322,7 +313,7 @@
         <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="../assets/pages/scripts/login-5.min.js" type="text/javascript"></script>
+        <script src="../assets/pages/scripts/developerlogin.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->

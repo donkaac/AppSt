@@ -4,6 +4,7 @@
     Author     : Ish
 --%>
 
+<%@page import="Entities.Gender"%>
 <%@page import="Entities.Wishlist"%>
 <%@page import="Entities.Customer"%>
 <%@page import="Datacontroller.DataParser"%>
@@ -464,7 +465,7 @@
                                                                 </form>
                                                             </div>
                                                             <!-- BEGIN FORM-->
-                                                            <form action="updatecustomerdata" onsubmit="return checkprofiledata()"  method="POST"  class="form-horizontal">
+                                                            <form action="updatecustomerdata" onsubmit="return checkprofiledata()" name="updatecusdata"   method="POST"  class="form-horizontal">
                                                                 <div class="form-body">
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label" for="form_control_1">First Name</label>
@@ -561,21 +562,37 @@
                                                                     <div class="form-group form-md-radios  ">
                                                                         <label class="col-md-3 control-label"  for="form_control_1">Select Gender</label>
                                                                         <div class="col-md-6">
+                                                                            <%
+                                                                                ArrayList<Object> Searchdata = DataParser.Searchdata(new Gender());
+                                                                                for (Object o : Searchdata) {
+                                                                                    Gender gen = (Gender) o;
+
+
+                                                                            %>
                                                                             <div class="md-radio-inline">
+
+                                                                                <% if (c.getGender().getIdgender()==(gen.getIdgender())) {
+
+                                                                                %>
                                                                                 <div class="md-radio">
-                                                                                    <input type="radio" id="checkbox1_8" checked="" name="gender" value="male" class="md-radiobtn">
+                                                                                    <input type="radio" id="checkbox1_8" checked="false" name="gender" value="<%=gen.getIdgender()%>" class="md-radiobtn">
                                                                                     <label for="checkbox1_8">
                                                                                         <span class="inc"></span>
                                                                                         <span class="check"></span>
-                                                                                        <span class="box"></span> Male</label>
+                                                                                        <span class="box"></span><%=gen.getGender()%></label>
                                                                                 </div>
+                                                                                <%} else {%>
                                                                                 <div class="md-radio">
-                                                                                    <input type="radio" id="checkbox1_9" name="gender" value="female" class="md-radiobtn">
-                                                                                    <label for="checkbox1_9">
+                                                                                    <input type="radio"  id="checkbox1_8" name="gender" value="<%=gen.getIdgender()%>" class="md-radiobtn">
+                                                                                    <label for="checkbox1_8">
                                                                                         <span class="inc"></span>
                                                                                         <span class="check"></span>
-                                                                                        <span class="box"></span> Female </label>
+                                                                                        <span class="box"></span><%=gen.getGender()%></label>
                                                                                 </div>
+
+                                                                                <%}%>
+
+                                                                                <%}%>
                                                                             </div>
                                                                         </div>
                                                                     </div>

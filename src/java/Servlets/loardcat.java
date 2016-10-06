@@ -10,6 +10,7 @@ import Entities.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +47,8 @@ public class loardcat extends HttpServlet {
                     for (Object resualt : Searchdata) {
                         Appplatform c = (Appplatform) resualt;
                         if (c.isState() == state) {
-                            out.write("<option>" + c.getAppplatform() + "</option>");
+                            out.write("<option value='"+c.getIdAppplatform()+"'>" + c.getAppplatform() + "</option>");
+                            System.out.println(c.getAppplatform());
                         }
                     }
                 } catch (Exception e) {
@@ -54,20 +56,22 @@ public class loardcat extends HttpServlet {
             } else if ("apptype".equals(type)) {
                 System.out.println(type);
                 try {
-                    ArrayList<Object> Searchdata = DataParser.Searchdata(new Apptype());
+                   Appplatform c = (Appplatform) DataParser.getuniqeresault(new Appplatform(), Integer.parseInt(request.getParameter("Appplatform")));
 
                     boolean b = true;
-                    for (Object resualt : Searchdata) {
+                    Set<Apptype> apptypes = c.getApptypes();
+                    for (Apptype p  : apptypes) {
 
-                        Apptype p = (Apptype) resualt;
+                         
 
                         if (p.isState() == state) {
-                            if ((p.isState() == state) & (p.getAppplatform().getAppplatform().equals(request.getParameter("Appplatform")))) {
+                            if (p.isState() == state ) {
                                 if (b) {
                                     out.write("<option>Select App Type</option>");
                                     b = false;
                                 }
-                                out.write("<option>" + p.getApptype() + "</option>");
+                                System.out.println(p.getApptype());
+                                out.write("<option value='"+p.getIdApptype()+"'>" + p.getApptype() + "</option>");
                             }
                         }
                     }
@@ -78,23 +82,21 @@ public class loardcat extends HttpServlet {
             } else if ("appcategory".equals(type)) {
                 System.out.println(type);
                 try {
-                    ArrayList<Object> Searchdata = DataParser.Searchdata(new Category());
+                 Apptype Searchdata=(Apptype) DataParser.getuniqeresault(new Apptype(),Integer.parseInt(request.getParameter("apptype")));
                     boolean b = true;
-
-                    for (Object resualt : Searchdata) {
-
-                        Category d = (Category) resualt;
-
+                    
+                    for (Category d : Searchdata.getCategories()) {
+ 
                         if (d.isState() == state) {
-                            if ((d.getApptype().getAppplatform().isState() == state) & (d.getApptype().getAppplatform().getAppplatform().equals(request.getParameter("Appplatform")))) {
-                                if ((d.isState() == state) & (d.getApptype().getApptype().equals(request.getParameter("apptype")))) {
+                            System.out.println(d.getCategory());
+                             
                                     if (b) {
                                         out.write("<option>Select app Category</option>");
                                         b = false;
                                     }
-                                    out.write("<option>" + d.getCategory() + "</option>");
-                                }
-                            }
+                                    out.write("<option value='"+d.getIdcategory()+"'>" + d.getCategory() + "</option>");
+                                
+                            
                         }
                     }
                 } catch (Exception e) {

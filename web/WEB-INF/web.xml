@@ -96,6 +96,10 @@
         <servlet-name>changeprofileimage</servlet-name>
         <servlet-class>Servlets.changeprofileimage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deactivecategory</servlet-name>
+        <servlet-class>Servlets.deactivecategory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>changeprofileimage</servlet-name>
         <url-pattern>/changeprofileimage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deactivecategory</servlet-name>
+        <url-pattern>/deactivecategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

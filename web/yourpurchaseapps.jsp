@@ -4,28 +4,26 @@
     Author     : Ish
 --%>
 
-<%@page import="Entities.Customer"%>
+<%@page import="Entities.Customerhasapplication"%>
+<%@page import="java.util.List"%>
+<%@page import="Entities.Cart"%>
 <%@page import="Datacontroller.DataParser"%>
+<%@page import="Entities.Customer"%>
 <%@page import="Entities.Application"%>
 <%@page import="Entities.Category"%>
 <%@page import="Entities.Apptype"%>
 <%@page import="java.util.Set"%>
 <%@page import="Entities.Appplatform"%>
 <%@page import="java.util.ArrayList"%>
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <html>   
         <!-- BEGIN HEAD -->
-        <head>   
-            
+        <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Home</title>
+            <title>Purchase Apps</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -37,7 +35,6 @@
             <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
             <link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
             <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
-            <link href="css/animate.css" rel="stylesheet" type="text/css"/>
             <!-- END GLOBAL MANDATORY STYLES -->
             <!-- BEGIN PGE LEVEL PLUGIN STYLES -->
             <link href="assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
@@ -61,28 +58,9 @@
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head>
-        <%
-            String appid = "";
-            try {
-                if (!request.getParameter("appid").equals(null)) {
-                    appid = request.getParameter("appid");
-                }
-            } catch (Exception e) {
-
-            }
-        %>
         <!-- END HEAD -->
+        <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 
-        <body onload="loardapp()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-            <input type="hidden" name="appid" id="appid" value="<%=appid%>"/>
-            <script type="text/javascript">
-                function loardapp() {
-                    if (!document.getElementById("appid").value == "") {
-
-                        loardsingleapplication(document.getElementById("appid").value);
-                    }
-                }
-            </script>
             <%
                 String username = "Guest";
                 boolean loging = false;
@@ -99,17 +77,21 @@
                     } catch (Exception e) {
 
                     }
-                }
-                String cartqty = "";
-                if (!c.getCarts().isEmpty()) {
-                    cartqty = "" + c.getCarts().size();
-                }
+                }else{
+                response.sendRedirect("index.jsp");
+            }
+String cartqty ="";
+if(!c.getCarts().isEmpty()){
+        cartqty=""+c.getCarts().size();
+}
+String wishlistqty ="";
+if(!c.getWishlists().isEmpty()){
+        wishlistqty=""+c.getWishlists().size();
+}
 
-                String wishlistqty = "";
-                if (!c.getWishlists().isEmpty()) {
-                    wishlistqty = "" + c.getWishlists().size();
-                }
             %>
+
+
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
@@ -120,7 +102,6 @@
                             <img src="assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
-
                     <!-- END LOGO -->
                     <!-- BEGIN RESPONSIVE MENU TOGGLER -->
                     <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
@@ -136,26 +117,26 @@
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"><%=username%></span>
+                                    <span class="username username-hide-on-mobile"> <%=username%> </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <%if (loging) {%>
                                     <li>
-                                        <a href="profile.jsp">
+                                        <a href="page_user_profile_1.html">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
                                     <%}%>
                                     <li>
                                         <a href="cart.jsp">
                                             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
-                                            <span class="badge badge-danger"> <%=cartqty%></span>
+                                            <span class="badge badge-danger"> <%=cartqty%> </span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="wishlist.jsp">
                                             <i class="icon-wallet"></i> WishList
-                                            <span class="badge badge-default"> <%=wishlistqty%> </span>
+                                            <span class="badge badge-default"><%=wishlistqty%> </span>
                                         </a>
                                     </li>
                                     <%if (loging) {%>
@@ -165,13 +146,14 @@
                                             <i class="icon-key"></i> Log Out </a>
                                     </li>
                                     <%}%>
+
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
                             <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                             <li class="dropdown dropdown-quick-sidebar-toggler">
-                                <a href="login.jsp" class="dropdown-toggle">
+                                <a href="javascript:;" class="dropdown-toggle">
                                     <i class="icon-logout"></i>
                                 </a>
                             </li>
@@ -270,7 +252,7 @@
 
                                                     %>
                                                     <li class="nav-item start">
-                                                        <a onclick="loardsingleapplication(<%= appl.getIdApplication()%>)" class="nav-link nav-item">
+                                                        <a href="index.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
 
                                                             <i class="icon-game-controller"></i>
                                                             <span class="title"><%=  appl.getApplicationName()%></span>
@@ -295,8 +277,8 @@
                                 </ul>
 
                             </li>
-                            <%}
-                                }%>
+                            <%}}
+                            %>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->
@@ -396,11 +378,11 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.jsp">Home</a>
+                                    <a href="index.html">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
-                                    <span>Home</span>
+                                    <span>Cart</span>
                                 </li>
                             </ul>
 
@@ -412,144 +394,100 @@
                         </div>
                         <%-- Main--%>
 
-                        <div class="page-container" id="applicationArea">
-       
-                   <%
-           Application app=(Application)DataParser.getuniqeresault(new Application(), Integer.parseInt("8"));
-                  
-                   %>
-                            <div class="container-fluid">
-    <div class="content-wrapper">	
-		<div class="item-container">	
-			<div class="container">	
-				<div class="col-md-12">
-					<div class="product col-md-3 service-image-left">
-                    
-						<center>
-                                                    <img id="item-display" width="300px;" src="<%=app.getAppImage()%>" alt=""></img>
-						</center>
-					</div>
-					
-					<div class="container service1-items col-sm-2 col-md-2 pull-left">
-						<center>
-							<a id="item-1" class="service1-item">
-                                                            <img width="100px;" src="<%=app.getInterface1()%>" alt=""></img>
-							</a>
-							<a id="item-2" class="service1-item">
-                                                            <img width="100px;" src="<%=app.getInterface2()%>" alt=""></img>
-							</a>
-							<a id="item-3" class="service1-item box">
-                                                            <img width="100px" src="<%=app.getInterface3()%>" alt=""></img>
-							</a>
-						</center>
-					</div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th></th>
+                                                <th class="text-center"></th>
+                                                <th class="text-center">Price</th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                double total=0.00;
+                                                Set<Customerhasapplication> purchaselist = null;
+                                                if (loging) {
+                                                    purchaselist = c.getCustomerhasapplications();
+                                                } else {
 
-				
-					
-				<div class="col-md-7">
-					<div class="product-title"><%=app.getApplicationName()%></div>
-					<div class="product-desc"><%=app.getDescription()%></div>
-					<div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
-					<hr>
-					<div class="product-price">$<%=app.getPrice()%></div>
-					<div class="product-stock">Develop By <%=app.getDeveloper().getDeveloperFname()%></div>
-					<hr>
-					<div class="btn-group cart">
-						<button type="button" class="btn btn-success">
-							Add to cart 
-						</button>
-					</div>
-					<div class="btn-group wishlist">
-						<button type="button" class="btn btn-danger">
-							Add to wishlist 
-						</button>
-					</div>
-				</div>
-			</div> 
-		</div>
-		<div class="container-fluid">		
-			<div class="col-md-12 product-info">
-					<ul id="myTab" class="nav nav-tabs nav_tabs">
-						
-						<li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
-						<li><a href="#service-two" data-toggle="tab">PRODUCT INFO</a></li>
-						<li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
-						
-					</ul>
-				<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade in active" id="service-one">
-						 
-							<section class="container product-info">
-								The Corsair Gaming Series GS600 power supply is the ideal price-performance solution for building or upgrading a Gaming PC. A single +12V rail provides up to 48A of reliable, continuous power for multi-core gaming PCs with multiple graphics cards. The ultra-quiet, dual ball-bearing fan automatically adjusts its speed according to temperature, so it will never intrude on your music and games. Blue LEDs bathe the transparent fan blades in a cool glow. Not feeling blue? You can turn off the lighting with the press of a button.
+                                                }
+                                                for (Customerhasapplication purchesapp : purchaselist) {
+                                                    
+                                                total+=purchesapp.getApplication().getPrice();
+                                               
+                                            %>
+                                            <tr>
+                                                <td class="col-sm-8 col-md-6">
+                                                    <div class="media">
+                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=purchesapp.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading"><a href="#"><%=purchesapp.getApplication().getApplicationName()%></a></h4>
+                                                            <h5 class="media-heading"> by <a href="#"><%=purchesapp.getApplication().getCategory().getCategory()%></a></h5>
+                                                            <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                                        </div>
+                                                    </div></td>
+                                                <td class="col-sm-1 col-md-1" style="text-align: center">
 
-								<h3>Corsair Gaming Series GS600 Features:</h3>
-								<li>It supports the latest ATX12V v2.3 standard and is backward compatible with ATX12V 2.2 and ATX12V 2.01 systems</li>
-								<li>An ultra-quiet 140mm double ball-bearing fan delivers great airflow at an very low noise level by varying fan speed in response to temperature</li>
-								<li>80Plus certified to deliver 80% efficiency or higher at normal load conditions (20% to 100% load)</li>
-								<li>0.99 Active Power Factor Correction provides clean and reliable power</li>
-								<li>Universal AC input from 90~264V — no more hassle of flipping that tiny red switch to select the voltage input!</li>
-								<li>Extra long fully-sleeved cables support full tower chassis</li>
-								<li>A three year warranty and lifetime access to Corsair’s legendary technical support and customer service</li>
-								<li>Over Current/Voltage/Power Protection, Under Voltage Protection and Short Circuit Protection provide complete component safety</li>
-								<li>Dimensions: 150mm(W) x 86mm(H) x 160mm(L)</li>
-								<li>MTBF: 100,000 hours</li>
-								<li>Safety Approvals: UL, CUL, CE, CB, FCC Class B, TÜV, CCC, C-tick</li>
-							</section>
-										  
-						</div>
-					<div class="tab-pane fade" id="service-two">
-						
-						<section class="container">
-								
-						</section>
-						
-					</div>
-					<div class="tab-pane fade" id="service-three">
-												
-					</div>
-				</div>
-				<hr>
-			</div>
-		</div>
-	</div>
-</div>
-                            
-                            
+                                                </td>
+                                                <td class="col-sm-1 col-md-1 text-center"><strong></strong></td>
+                                                <td class="col-sm-1 col-md-1 text-center"><strong>$<%=purchesapp.getApplication().getPrice()%></strong></td>
+                                                <td class="col-sm-1 col-md-1">
+                                                    <button type="button" onclick="downloard(<%=purchesapp.getApplication().getIdApplication()%>)" class="btn btn-link">
+                                                        <span class="glyphicon glyphicon-download"></span> Download
+                                                    </button></td>
+                                            </tr>
+                                            <%}%>
+                                            <tr>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td><h3>Total</h3></td>
+                                                <td class="text-right"><h3><strong>$<%=total%></strong></h3></td>
+                                            </tr>
+                                            <tr>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>   </td>
+                                                <td>
+                                                    <a href="index.jsp">
+                                                    <button type="button" class="btn btn-default">
+                                                        <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                                    </button>
+                                                    </a>
+                                                    </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-              
 
                     </div>
 
 
 
+                </div>   
 
 
+
+                <div class="clearfix"></div>
 
 
 
             </div>
+            <!-- END CONTENT BODY -->
         </div>
+
     </div>
+    <!-- END QUICK SIDEBAR -->
 </div>
-<%-- Main--%>
-
-
-
-</div>
-
-
-
-
-
-
-<div class="clearfix"></div>
-
-
-
-
-
-
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">

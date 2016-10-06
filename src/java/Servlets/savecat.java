@@ -60,13 +60,13 @@ public class savecat extends HttpServlet {
                 String apptype = request.getParameter("newapptype");
                 String appplatform = request.getParameter("appplatform");
                 System.out.println(appplatform+" "+apptype);
-                ArrayList<Object> Searchdata = DataParser.HQLQuary("FROM Appplatform WHERE appplatform='" + appplatform + "'");
-                if (!Searchdata.isEmpty()) {
+                Appplatform c = (Appplatform) DataParser.getuniqeresault(new Appplatform(), Integer.parseInt(appplatform));
+                if (!c.equals(null)) {
                     boolean b = true;
-                    for (Object o : Searchdata) {
-                        Appplatform c = (Appplatform) o;
+                  
+                       
 
-                        if ((c.getAppplatform().equals(appplatform)) & (c.isState()==state)) {
+                        if ((c.isState()==state)) {
                             System.out.println(c.getAppplatform());
                             Object[] toArray = c.getApptypes().toArray();
                             for (Object object : toArray) {
@@ -86,33 +86,33 @@ public class savecat extends HttpServlet {
                                 out.write("Allredy Exist!");
                             }
                         }
-                    }
+                    
 
                 } else {
                     System.out.println("appplatform null");
                 }
 
-            } else if (type.equals("category")) {
-                String apptype = request.getParameter("apptype");
+            }else if(type.equals("category")) {
+                int apptype = Integer.parseInt(request.getParameter("apptype"));
                 String appplatform = request.getParameter("appplatform");
                 String newcategory = request.getParameter("newcategory");
-                ArrayList<Object> Searchdata = DataParser.HQLQuary("FROM Appplatform WHERE appplatform='" + appplatform + "'");
-                if (!Searchdata.isEmpty()) {
+               Appplatform c = (Appplatform) DataParser.getuniqeresault(new Appplatform(), Integer.parseInt(appplatform));
+                if (!c.equals(null)) {
                     boolean b = true;
-                    for (Object o : Searchdata) {
-                        Appplatform c = (Appplatform) o;
+              
 
-                        if ((c.getAppplatform().equals(appplatform)) & (c.isState())) {
+                        if (c.isState()==state) {
                             System.out.println(c.getAppplatform());
                             Object[] provincelist = c.getApptypes().toArray();
                             for (Object object : provincelist) {
                                 Apptype p = (Apptype) object;
-                                if (p.getApptype().equals(apptype)) {
+                                if ((p.getIdApptype()==apptype)&(p.isState()==state)) {
                                     Object[] distrcitlist = p.getCategories().toArray();
                                     for (Object oo : distrcitlist) {
                                         Category d = (Category) oo;
                                         if (d.getCategory().equals(newcategory)) {
                                             b = false;
+                                            break;
                                         }
                                     }
                                     if (b) {
@@ -128,7 +128,7 @@ public class savecat extends HttpServlet {
                             }
 
                         }
-                    }
+                    
 
                 } else {
                     System.out.println("Type null");

@@ -5,7 +5,7 @@
  */
 
 function loardAppplatform() {
-  var Object;
+    var Object;
     if (window.XMLHttpRequest) {
         Object = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
@@ -21,8 +21,8 @@ function loardAppplatform() {
                 if (ResponseText === "false") {
                     alert("Something wrong !");
                 }
-                 
-                 
+
+
                 document.getElementById("Appplatformlist").innerHTML = ResponseText;
             }
         };
@@ -36,7 +36,7 @@ function loardAppplatform() {
 
 
 function SaveAppplatform() {
-   var Object;
+    var Object;
     if (window.XMLHttpRequest) {
         Object = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
@@ -53,13 +53,13 @@ function SaveAppplatform() {
                     alert("Something wrong !");
                 }
                 if (ResponseText === "Allredy Exist!") {
-                    alert(document.getElementById("NewCountry").value + " " + ResponseText);
+                    alert(document.getElementById("NewAppplatform").value + " " + ResponseText);
                 }
-
+                document.getElementById("NewAppplatform").value = "";
                 loardAppplatform();
             }
         };
-       
+
         var newcountry = document.getElementById("NewAppplatform").value;
         if (document.getElementById("NewAppplatform").value === "") {
             alert("is null");
@@ -89,12 +89,12 @@ function saveAptype() {
                     alert("Something wrong !");
                 }
                 if (ResponseText === "Allredy Exist!") {
-                    alert(document.getElementById("newprovince").value + " " + ResponseText);
+                    alert(document.getElementById("newapptype").value + " " + ResponseText);
                 }
                 loardApptype();
             }
         };
-        
+
         var apptype = document.getElementById("newapptype").value;
         var appplatform = document.getElementById("Appplatformlist").value;
         if (document.getElementById("Appplatformlist").value === "" | document.getElementById("Appplatformlist").value === "Select Country") {
@@ -111,10 +111,10 @@ function saveAptype() {
     }
 
 }
- 
+
 
 function saveAppplatcategory() {
-   var Object;
+    var Object;
     if (window.XMLHttpRequest) {
         Object = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
@@ -136,7 +136,7 @@ function saveAppplatcategory() {
                 loardApptype();
             }
         };
-       var appplatform = document.getElementById("Appplatformlist").value;
+        var appplatform = document.getElementById("Appplatformlist").value;
         var newcity = document.getElementById("newcategory").value;
         if (document.getElementById("apptypelist").value === "" | document.getElementById("apptypelist").value === "Select Country") {
             alert("Select Country");
@@ -151,7 +151,91 @@ function saveAppplatcategory() {
         }
     }
 }
-
+function deactiveCatogory(categoryid,state) {
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if(Object!==null){
+        Object.onreadystatechange =function (){
+            if(Object.readyState<4){
+                
+            }else if(Object.readyState===4){
+                        var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+            }
+            
+            if(ResponseText==="true"){
+                location.reload();
+            }
+        }
+    };
+    Object.open("POST","../deactivecategory",true);
+    Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    Object.send("state="+state+"&categoryid="+categoryid+"&type=category");
+}
+}
+function deactiveApptypes(typeid,state) {
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if(Object!==null){
+        Object.onreadystatechange =function (){
+            if(Object.readyState<4){
+                
+            }else if(Object.readyState===4){
+                        var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+            }
+            
+            if(ResponseText==="true"){
+                location.reload();
+            }
+        }
+    };
+    Object.open("POST","../deactivecategory",true);
+    Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    Object.send("state="+state+"&typeid="+typeid+"&type=apptype");
+}
+}
+function deactiveplatform(platformid,state) {
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if(Object!==null){
+        Object.onreadystatechange =function (){
+            if(Object.readyState<4){
+                
+            }else if(Object.readyState===4){
+                        var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+            }
+            if(ResponseText==="true"){
+                location.reload();
+            }
+            
+        }
+    };
+        
+    Object.open("POST","../deactivecategory",true);
+    Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    Object.send("state="+state+"&platformid="+platformid+"&type=platform");
+}
+}
 
 
 function loardApptype() {
@@ -171,11 +255,11 @@ function loardApptype() {
                 if (ResponseText === "false") {
                     alert("Something wrong !");
                 }
-                 
+
                 document.getElementById("apptypelist").innerHTML = ResponseText;
             }
         };
-         
+
         Object.open("POST", "../loardcat", true);
         Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         Object.send("Appplatform=" + document.getElementById("Appplatformlist").value + "&state=" + true + "&type=apptype");
@@ -199,8 +283,8 @@ function loardAppplatcategory() {
                 if (ResponseText === "false") {
                     alert("Something wrong !");
                 }
-              
-                
+
+
                 document.getElementById("appcategorylist").innerHTML = ResponseText;
             }
         };

@@ -593,7 +593,7 @@
 
                                 </select>
 
-                                <input type="submit" onclick="" value="Deactive AppPlatform "  class="form-control right">
+                                <input type="submit" onclick="deactiveplatform(document.getElementById('Appplatformlist').value, false)" value="Deactive AppPlatform "  class="form-control right">
 
                             </span>  
                         </div>
@@ -610,6 +610,8 @@
                             <select class="form-control" onchange="loardAppplatcategory()" id="apptypelist">
 
                             </select>
+                            <input type="submit" onclick="deactiveApptypes(document.getElementById('apptypelist').value, false)" value="Deactive App type"  class="form-control right">
+
                         </div>
 
 
@@ -624,6 +626,8 @@
                             <select class="form-control"   id="appcategorylist">
 
                             </select>
+                            <input type="submit" onclick="deactiveCatogory(document.getElementById('appcategorylist').value, false)" value="Deactive App Category"  class="form-control right">
+
                         </div>
 
 
