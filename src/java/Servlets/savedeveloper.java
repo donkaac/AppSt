@@ -64,7 +64,7 @@ public class savedeveloper extends HttpServlet {
                 boolean Savedata = DataParser.Savedata(developer);
                 writer.write(""+Savedata);
             }
-        } catch (Exception e) {
+        } catch (Exception e) { 
         }
     }
 

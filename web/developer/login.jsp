@@ -44,7 +44,8 @@
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
-    <script type="text/javascript" src="../ajaxjs/customeraddressdetails.js"></script>
+    <script type="text/javascript" src="../ajaxjs/developeraddressdetails.js"></script>
+ 
     
        <%
       try{
@@ -217,7 +218,7 @@
                  
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Country</label>
-                    <select name="country" onchange="loardProvince()" id="Countrylist" class="select2 form-control">
+                    <select name="country"  onchange="loardProvince()" id="Countrylist" class="select2 form-control">
                      
                     </select>
                 </div>

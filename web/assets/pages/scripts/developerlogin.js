@@ -226,7 +226,7 @@ var Login = function () {
                 Pace.track(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'saveuser',
+                        url: 'savedeveloper',
                         data: data,
                         beforeSend: function ()
                         {

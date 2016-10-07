@@ -546,7 +546,6 @@
                                                                                 <option value="<%=c.getCity().getIdCity()%>"><%=c.getCity().getCityName()%></option>
                                                                             </select>
                                                                             <div class="form-control-focus"> </div>
-
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group form-md-line-input">
@@ -560,39 +559,23 @@
 
 
                                                                     <div class="form-group form-md-radios  ">
-                                                                        <label class="col-md-3 control-label"  for="form_control_1">Select Gender</label>
+                                                                        <label class="col-md-3 control-label"  for="form_control_1">Gender</label>
                                                                         <div class="col-md-6">
-                                                                            <%
-                                                                                ArrayList<Object> Searchdata = DataParser.Searchdata(new Gender());
-                                                                                for (Object o : Searchdata) {
-                                                                                    Gender gen = (Gender) o;
 
-
-                                                                            %>
                                                                             <div class="md-radio-inline">
 
-                                                                                <% if (c.getGender().getIdgender()==(gen.getIdgender())) {
 
-                                                                                %>
                                                                                 <div class="md-radio">
-                                                                                    <input type="radio" id="checkbox1_8" checked="false" name="gender" value="<%=gen.getIdgender()%>" class="md-radiobtn">
+                                                                                    <input type="radio" id="checkbox1_8" checked="false" name="gender" value="<%=c.getGender().getGender()%>" class="md-radiobtn">
                                                                                     <label for="checkbox1_8">
                                                                                         <span class="inc"></span>
                                                                                         <span class="check"></span>
-                                                                                        <span class="box"></span><%=gen.getGender()%></label>
-                                                                                </div>
-                                                                                <%} else {%>
-                                                                                <div class="md-radio">
-                                                                                    <input type="radio"  id="checkbox1_8" name="gender" value="<%=gen.getIdgender()%>" class="md-radiobtn">
-                                                                                    <label for="checkbox1_8">
-                                                                                        <span class="inc"></span>
-                                                                                        <span class="check"></span>
-                                                                                        <span class="box"></span><%=gen.getGender()%></label>
+                                                                                        <span class="box"></span><%=c.getGender().getGender()%></label>
                                                                                 </div>
 
-                                                                                <%}%>
 
-                                                                                <%}%>
+
+
                                                                             </div>
                                                                         </div>
                                                                     </div>

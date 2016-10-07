@@ -45,28 +45,28 @@ public class updatecustomerdata extends HttpServlet {
                 String mname = request.getParameter("mname");
                 String lname = request.getParameter("lname");
                 String address = request.getParameter("address");
-                String cityid = request.getParameter("city");
-                int genid = Integer.parseInt(request.getParameter("gender"));
-                boolean emailexist = true;
+                String cityid = request.getParameter("citylist");
+                System.out.println(fname+mname+lname+address+cityid);
+                
                 HttpSession s = request.getSession();
                 int cusid = Integer.parseInt(s.getAttribute("userid").toString());
                 System.out.println("Customer ID :"+cusid+" "+fname);
-                if (!(fname == null | mname.equals("") | mname == null | lname.equals("") | lname == null | address.equals("") | address == null | cityid.equals("") | cityid == null)) {
+                if (!(fname == null | mname == null |  lname == null | address.equals("") | address == null | cityid.equals("") | cityid == null)) {
                     try {
-                        Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(cityid));
-                        System.out.println(c.getCustomerFname());
+                        Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
+                      
                         City city = (City) Datacontroller.DataParser.getuniqeresault(new City(), Integer.parseInt(cityid));
                         System.out.println(city.getCityName());
-                        Gender gender = (Gender) Datacontroller.DataParser.getuniqeresault(new Gender(), genid);
+                       
                         c.setCustomerFname(fname);
                         c.setCustomerMname(mname);
                         c.setCustomerLname(lname);
                         c.setCustomerRegDateAndTime(new Date());
                         c.setCity(city);
-                        c.setGender(gender);
+                        
                         c.setAddress(address);
                         c.setState(true);
-                        boolean Savedata = Datacontroller.DataParser.Savedata(c);
+                        boolean Savedata = Datacontroller.DataParser.UpdateData(c);
                         System.out.println(Savedata);
                         writer.write("" + Savedata);
                     } catch (Exception e) {
@@ -79,7 +79,7 @@ public class updatecustomerdata extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            response.sendRedirect("profile.jsp");
+            
         }
     }
 }
