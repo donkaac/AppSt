@@ -77,17 +77,17 @@
                     } catch (Exception e) {
 
                     }
-                }else{
-                response.sendRedirect("index.jsp");
-            }
-String cartqty ="";
-if(!c.getCarts().isEmpty()){
-        cartqty=""+c.getCarts().size();
-}
-String wishlistqty ="";
-if(!c.getWishlists().isEmpty()){
-        wishlistqty=""+c.getWishlists().size();
-}
+                } else {
+                    response.sendRedirect("index.jsp");
+                }
+                String cartqty = "";
+                if (!c.getCarts().isEmpty()) {
+                    cartqty = "" + c.getCarts().size();
+                }
+                String wishlistqty = "";
+                if (!c.getWishlists().isEmpty()) {
+                    wishlistqty = "" + c.getWishlists().size();
+                }
 
             %>
 
@@ -278,7 +278,8 @@ if(!c.getWishlists().isEmpty()){
                                 </ul>
 
                             </li>
-                            <%}}
+                            <%}
+                                }
                             %>
                         </ul>
                         <!-- END SIDEBAR MENU -->
@@ -410,7 +411,7 @@ if(!c.getWishlists().isEmpty()){
                                         </thead>
                                         <tbody>
                                             <%
-                                                double total=0.00;
+                                                double total = 0.00;
                                                 Set<Customerhasapplication> purchaselist = null;
                                                 if (loging) {
                                                     purchaselist = c.getCustomerhasapplications();
@@ -418,9 +419,9 @@ if(!c.getWishlists().isEmpty()){
 
                                                 }
                                                 for (Customerhasapplication purchesapp : purchaselist) {
-                                                    
-                                                total+=purchesapp.getApplication().getPrice();
-                                               
+
+                                                    total += purchesapp.getApplication().getPrice();
+
                                             %>
                                             <tr>
                                                 <td class="col-sm-8 col-md-6">
@@ -456,11 +457,11 @@ if(!c.getWishlists().isEmpty()){
                                                 <td>   </td>
                                                 <td>
                                                     <a href="index.jsp">
-                                                    <button type="button" class="btn btn-default">
-                                                        <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                                                    </button>
+                                                        <button type="button" class="btn btn-default">
+                                                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                                        </button>
                                                     </a>
-                                                    </td>
+                                                </td>
                                                 <td>
                                                 </td>
                                             </tr>

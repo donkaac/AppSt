@@ -26,9 +26,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * @author Ish
  */
 public class changeprofileimage extends HttpServlet {
- 
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-   
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -40,40 +39,39 @@ public class changeprofileimage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
 
             try {
-          Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
+                Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
 
                 FileItemFactory f1 = new DiskFileItemFactory();
                 ServletFileUpload up = new ServletFileUpload(f1);
 
                 List<FileItem> li = up.parseRequest(request);
-                
+
                 String Image_Title = null;
                 String fn = null;
                 String Image_Path = null;
-                int i=0;
+                int i = 0;
                 for (FileItem item : li) {
- 
-    String[] split = item.getName().split(".");
-                        Image_Path = "appinterface/cusimage/"+System.currentTimeMillis()+""+item.getName();
-                        System.out.println(item.getName());
-                        File f = new File(request.getServletContext().getRealPath("/") + Image_Path);
-                         
-                        item.write(f);
 
-                      c.setCustomerImage(Image_Path);
- 
-                    }
+                    String[] split = item.getName().split(".");
+                    Image_Path = "appinterface/cusimage/" + System.currentTimeMillis() + "" + item.getName();
+                    System.out.println(item.getName());
+                    File f = new File(request.getServletContext().getRealPath("/") + Image_Path);
+
+                    item.write(f);
+
+                    c.setCustomerImage(Image_Path);
+
+                }
                 boolean UpdateData = DataParser.UpdateData(c);
                 if (UpdateData) {
                     response.sendRedirect("profile.jsp");
                 }
-if(i==4){i=0;}
-               
-                
-                
+                if (i == 4) {
+                    i = 0;
+                }
 
             } catch (Exception e) {
 
