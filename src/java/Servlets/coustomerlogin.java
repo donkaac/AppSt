@@ -43,7 +43,7 @@ public class coustomerlogin extends HttpServlet {
             String remember = "";
             if (request.getParameter("remember") != null) {
                 remember = request.getParameter("remember");
-            }else{
+            } else {
                 remember = "0";
             }
             System.out.println(email + "" + password);
@@ -70,7 +70,7 @@ public class coustomerlogin extends HttpServlet {
                     passwordCookie.setHttpOnly(true);
                     response.addCookie(usernameCookie);
                     response.addCookie(passwordCookie);
-                } else if(remember.equals("0")){
+                } else if (remember.equals("0")) {
                     Cookie cookie = null;
                     Cookie[] cookiess = request.getCookies();
                     if (cookies != null) {
@@ -80,10 +80,10 @@ public class coustomerlogin extends HttpServlet {
                             if (cookie.getName().equals("username-cookie") || cookie.getName().equals("password-cookie")) {
                                 cookie.setMaxAge(0);
                                 response.addCookie(cookie);
-                            }else{
+                            } else {
                                 System.out.println("NOT Found");
                             }
-                            
+
                         }
                     }
                 }
@@ -103,9 +103,9 @@ public class coustomerlogin extends HttpServlet {
                 out.print("error");
                 System.out.println("error");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             response.getWriter().print(e.getMessage());
-        } 
+        }
     }
 
     /**
