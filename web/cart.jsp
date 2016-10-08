@@ -22,7 +22,7 @@
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Metronic | Admin Dashboard Template</title>
+            <title>APPS CART</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -77,14 +77,14 @@
 
                     }
                 }
-String cartqty ="";
-if(!c.getCarts().isEmpty()){
-        cartqty=""+c.getCarts().size();
-}
-String wishlistqty ="";
-if(!c.getWishlists().isEmpty()){
-        wishlistqty=""+c.getWishlists().size();
-}
+                String cartqty = "";
+                if (!c.getCarts().isEmpty()) {
+                    cartqty = "" + c.getCarts().size();
+                }
+                String wishlistqty = "";
+                if (!c.getWishlists().isEmpty()) {
+                    wishlistqty = "" + c.getWishlists().size();
+                }
 
             %>
 
@@ -274,7 +274,8 @@ if(!c.getWishlists().isEmpty()){
                                 </ul>
 
                             </li>
-                            <%}}
+                            <%}
+                                }
                             %>
                         </ul>
                         <!-- END SIDEBAR MENU -->
@@ -375,7 +376,7 @@ if(!c.getWishlists().isEmpty()){
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="index.jsp">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
@@ -387,6 +388,11 @@ if(!c.getWishlists().isEmpty()){
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="page-header">Application</h1>
+
+                            </div>
+                            <div class="alert alert-success display-hide">
+                                <button class="close" data-close="alert"></button>
+                                <span id="msgwindow"></span>
                             </div>
                         </div>
                         <%-- Main--%>
@@ -406,7 +412,7 @@ if(!c.getWishlists().isEmpty()){
                                         </thead>
                                         <tbody>
                                             <%
-                                                double total=0.00;
+                                                double total = 0.00;
                                                 Set<Cart> carts = null;
                                                 if (loging) {
                                                     carts = c.getCarts();
@@ -414,9 +420,9 @@ if(!c.getWishlists().isEmpty()){
 
                                                 }
                                                 for (Cart cart : carts) {
-                                                    
-                                                total+=cart.getApplication().getPrice();
-                                               
+
+                                                    total += cart.getApplication().getPrice();
+
                                             %>
                                             <tr>
                                                 <td class="col-sm-8 col-md-6">
@@ -452,11 +458,11 @@ if(!c.getWishlists().isEmpty()){
                                                 <td>   </td>
                                                 <td>
                                                     <a href="index.jsp">
-                                                    <button type="button" class="btn btn-default">
-                                                        <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                                                    </button>
+                                                        <button type="button" class="btn btn-default">
+                                                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                                        </button>
                                                     </a>
-                                                    </td>
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-success">
                                                         Checkout <span class="glyphicon glyphicon-play"></span>
@@ -490,8 +496,8 @@ if(!c.getWishlists().isEmpty()){
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    <div class="page-footer-inner"> APPS SOTORE
+        <a href="" title="APPS FOR SALE" target="_blank">APPS</a>
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>

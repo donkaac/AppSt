@@ -43,7 +43,7 @@ public class saveuser extends HttpServlet {
             String fname = request.getParameter("fname");
             String mname = request.getParameter("mname");
             String lname = request.getParameter("lname");
-            
+
             String address = request.getParameter("address");
             String cityid = request.getParameter("city");
             String username = request.getParameter("email");
@@ -80,25 +80,26 @@ public class saveuser extends HttpServlet {
                             c.setUsername(username);
                             c.setAddress(address);
                             c.setState(true);
-                            
-                            String EmailValidationCode = Oparation.EmailValidationCodeGenaration.EmailValidationCode();
-                                Emailvarified emailvarified = new Emailvarified();
-                                emailvarified.setToken(EmailValidationCode);
-                                emailvarified.setEmailvarifiedDate(new Date());
-                                emailvarified.setEmail(username);
-                               emailvarified.setState(true);
-                             c.setEmailvarified(emailvarified);
-                            
-                            String[] reviver = {username};
 
+                            String EmailValidationCode = Oparation.EmailValidationCodeGenaration.EmailValidationCode();
+                            Emailvarified emailvarified = new Emailvarified();
+                            emailvarified.setToken(EmailValidationCode);
+                            emailvarified.setEmailvarifiedDate(new Date());
+                            emailvarified.setEmail(username);
+                            emailvarified.setState(true);
+                            c.setEmailvarified(emailvarified);
+                            boolean emailvarifi = DataParser.Savedata(emailvarified);
+                            String[] reviver = {username};
+                            System.out.println("email "+emailvarifi );
                             boolean Savedata = Datacontroller.DataParser.Savedata(c);
                             System.out.println(Savedata);
                             writer.write("" + Savedata);
                             try {
-                                
-                                Oparation.Mails.sendFromGMail(reviver, "Email Conform", "Your Account Activation Code Is :");
+
+                                Oparation.Mails.sendFromGMail(reviver, "Email Conform", "Your Account Activation Code Is :"+EmailValidationCode);
 
                             } catch (Exception e) {
+                                e.printStackTrace();
                             }
 
                         } else {

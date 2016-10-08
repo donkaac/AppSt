@@ -108,7 +108,7 @@ function addtowishlist(appid){
                  
                  
                 alert(ResponseText);
-                location.reload();
+              
             }
         };
          
@@ -132,13 +132,14 @@ function removecart(appid){
             } else if (Object.readyState === 4) {
                 var ResponseText = Object.responseText;
                 if (ResponseText === "false") {
-                    alert("Something wrong !");
+                  $('#msgwindow').val(ResponseText);
                 }
                  
-                 
-                alert(ResponseText);
                 if(ResponseText==="true"){
-                    location.reload();
+                     $('#msgwindow').val("Success");
+                  $('.alert-success').show(500);
+                  
+                     
                 }
             }
         };

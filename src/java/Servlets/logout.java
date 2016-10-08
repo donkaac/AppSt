@@ -31,8 +31,16 @@ public class logout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            if(request.getSession().getAttribute("usertype")=="developer"){
            request.getSession().invalidate();
-           response.sendRedirect("login.jsp");
+           response.sendRedirect("developer/login.jsp");
+            }else if(request.getSession().getAttribute("usertype")=="staff"){
+                request.getSession().invalidate();
+           response.sendRedirect("staff/login.jsp");
+            }else{
+                request.getSession().invalidate();
+                response.sendRedirect("login.jsp");
+            }
         }
     }
 

@@ -93,7 +93,8 @@
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.html">
-                <img src="../assets/pages/img/logo-big.png" alt="" />
+                <%--<img sr alt="" />--%>
+                <h1>APPSHOP DEVELOPERS</h1>
             </a>
         </div>
         <!-- END LOGO -->
@@ -101,7 +102,7 @@
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
             <form class="login-form" action="javascript:;" method="post">
-                <h3 class="form-title">Login to your account</h3>
+                <h3 class="form-title">Login to Developer account</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
                     <span> Enter any username and password. </span>
@@ -119,7 +120,7 @@
                     <label class="control-label visible-ie8 visible-ie9">Username</label>
                     <div class="input-icon">
                         <i class="fa fa-user"></i>
-                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" id="loginemail" placeholder="Email" name="username" /> </div>
+                        <input class="form-control placeholder-no-fix" type="email" autocomplete="off" id="loginemail" placeholder="Email" name="username" /> </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>

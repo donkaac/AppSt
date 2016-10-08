@@ -6,10 +6,13 @@
 package Servlets;
 
 import Datacontroller.DB;
+import Datacontroller.DataParser;
 import Entities.Application;
+import Entities.Cart;
 import Entities.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,12 +40,22 @@ public class removecart extends HttpServlet {
             try {
                 if (!request.getSession().equals(null)) {
                     int appid = Integer.parseInt(request.getParameter("appid").toString());
+                    System.out.println("cart p id"+appid);
                     int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
                     Customer customer = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
-                    Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
-
-                    DB.getConnection().createStatement().executeUpdate("Delete  FROM cart where Customer_idCustomer=" + customer.getIdCustomer() + " and Application_idApplication=" + app.getIdApplication());
-
+                    Set<Cart> carts = customer.getCarts();
+                    
+                    for (Cart cart : carts) {
+                        if((cart.getCustomer().getIdCustomer()==cusid)&(cart.getApplication().getIdApplication()==appid)){
+                            
+                            int executeUpdate = DB.getConnection().createStatement().executeUpdate("DELETE FROM cart WHERE Customer_idCustomer='"+cusid+"' AND Application_idApplication='"+appid+"'");
+                            System.out.println("Delete Cart :"+executeUpdate);
+                            if(executeUpdate==1){
+                                
+                            }
+                        }
+                    }
+                    
                     out.write("true");
                 }
 

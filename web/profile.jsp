@@ -165,7 +165,7 @@
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                                <form class="sidebar-search  " action="" method="POST">
                                     <a href="javascript:;" class="remove">
                                         <i class="icon-close"></i>
                                     </a>
@@ -512,7 +512,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label"  for="form_control_1">Country</label>
                                                                         <div class="col-md-6">
-                                                                            <select class="form-control" id="Countrylist" onclick="loardcountry()" onchange="loardProvince()" name="Countrylist">
+                                                                            <select class="form-control" id="Countrylist" onchange="loardProvince()" name="Countrylist">
                                                                                 <option><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></option>
                                                                             </select>
                                                                             <div class="form-control-focus"> </div>

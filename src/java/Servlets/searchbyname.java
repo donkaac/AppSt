@@ -5,13 +5,8 @@
  */
 package Servlets;
 
-import Entities.Application;
-import Entities.Cart;
-import Entities.CartId;
-import Entities.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ish
  */
-public class addtocart extends HttpServlet {
+public class searchbyname extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,26 +31,16 @@ public class addtocart extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            try {
-                if(!request.getSession().equals(null)){
-                int appid = Integer.parseInt(request.getParameter("appid").toString());
-                    int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
-                    Customer customer = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
-                    Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
-                 
-                    CartId cartid=new CartId(customer.getIdCustomer(),app.getIdApplication());
-                    Cart cart = new Cart(cartid, app, customer,true);
-                   
-                    
-                    
-                    boolean Savedata = Datacontroller.DataParser.Savedata(cart);
-                  
-                    out.write(""+Savedata);
-                }
-                
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet for apps search by name</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet searchbyname at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

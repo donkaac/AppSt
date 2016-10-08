@@ -8,7 +8,9 @@ var Login = function () {
             focusInvalid: !1,
             rules: {
                 username: {
-                    required: !0
+                    required: !0,
+                    email: !0
+                    
                 },
                 password: {
                     required: !0
@@ -39,7 +41,7 @@ var Login = function () {
                 Pace.track(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'coustomerlogin',
+                        url: '../developerlogin',
                         data: data,
                         beforeSend: function ()
                         {
@@ -53,7 +55,7 @@ var Login = function () {
                             if (response == "ok") {
                                 $("#btn-login").html('<img src="css/btn-ajax-loader.gif" /> &nbsp; Signing In ...');
                                 $('.alert-success', $('.login-form')).show(500);
-                                setTimeout(' window.location.href = "index.jsp"; ', 4000);
+                                setTimeout(' window.location.href = "dashboard.jsp"; ', 4000);
 
                             } else if (response == "error") {
                                 $('.alert-warning', $('.login-form')).show(500);
@@ -64,7 +66,7 @@ var Login = function () {
                     });
                 });
 
-
+                
                 e.submit();
             }}), $(".login-form input").keypress(function (e) {
             return 13 == e.which ? ($(".login-form").validate().form() && $(".login-form").submit(), !1) : void 0;

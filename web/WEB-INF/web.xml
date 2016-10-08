@@ -100,6 +100,14 @@
         <servlet-name>deactivecategory</servlet-name>
         <servlet-class>Servlets.deactivecategory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>developerlogin</servlet-name>
+        <servlet-class>Servlets.developerlogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchbyname</servlet-name>
+        <servlet-class>Servlets.searchbyname</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -199,6 +207,14 @@
     <servlet-mapping>
         <servlet-name>deactivecategory</servlet-name>
         <url-pattern>/deactivecategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>developerlogin</servlet-name>
+        <url-pattern>/developerlogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchbyname</servlet-name>
+        <url-pattern>/searchbyname</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

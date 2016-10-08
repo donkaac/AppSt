@@ -32,6 +32,7 @@ public class search extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter writer = response.getWriter();
         try {
+            /// loard side panel app by id index page in sigle app 
             boolean state = Boolean.parseBoolean(request.getParameter("state"));
             String type = request.getParameter("type");
             if(type.equals("appid")){

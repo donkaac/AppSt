@@ -89,7 +89,8 @@
     </script>
         <!-- BEGIN LOGO -->
         <div class="logo">
-            <a href="index.html">
+            <a href="index.jsp">
+                <h3>Customer Login</h3>
                 <!--<img src="./assets/pages/img/logo-big.png" alt="" />--> 
             </a>
         </div>
@@ -145,10 +146,7 @@
                     </ul>
                 </div>
                 <div class="forget-password">
-                    <div class="alert alert-success display-hide">
-                    <button class="close" data-close="alert"></button>
-                    <span>Successfully Login In.</span>
-                </div>
+               
                     <h4>Forgot your password ?</h4>
                     <p> no worries, click
                         <a href="javascript:;" id="forget-password"> here </a> to reset your password. </p>
@@ -293,7 +291,7 @@
         </div>
         <!-- END LOGIN -->
         <!-- BEGIN COPYRIGHT -->
-        <div class="copyright"> 2014 &copy; Metronic - Admin Dashboard Template. </div>
+        <div class="copyright"> Apps Store </div>
         <!-- END COPYRIGHT -->
         <!--[if lt IE 9]>
 <script src="./assets/global/plugins/respond.min.js"></script>

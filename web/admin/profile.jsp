@@ -1,6 +1,6 @@
 <%-- 
-    Document   : appsfeedback
-    Created on : Oct 4, 2016, 9:52:20 PM
+    Document   : profile
+    Created on : Oct 8, 2016, 7:35:19 AM
     Author     : Ish
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Purchase Application Set Comments Ratings  </h1>
+        <h1>Staff member Profile Page</h1>
     </body>
 </html>
