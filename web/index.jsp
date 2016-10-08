@@ -61,30 +61,30 @@
 
         </head>
         <%
-            String appid="";
-            try{
-            if(!request.getParameter("appid").equals(null)){
-       appid= request.getParameter("appid");
-            }
-            }catch(Exception e){
-            
+            String appid = "";
+            try {
+                if (!request.getParameter("appid").equals(null)) {
+                    appid = request.getParameter("appid");
+                }
+            } catch (Exception e) {
+
             }
         %>
         <!-- END HEAD -->
-        
+
         <body onload="loardapp()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
             <input type="hidden" name="appid" id="appid" value="<%=appid%>"/>
             <script type="text/javascript">
-            function loardapp(){
-                if(!document.getElementById("appid").value==""){
-                   
-                    loardsingleapplication(document.getElementById("appid").value);
+                function loardapp() {
+                    if (!document.getElementById("appid").value == "") {
+
+                        loardsingleapplication(document.getElementById("appid").value);
+                    }
                 }
-            }
-        </script>
+            </script>
             <%
                 String username = "Guest";
-                boolean loging=false;
+                boolean loging = false;
                 Customer c = new Customer();
                 if (!request.getSession().equals(null)) {
                     try {
@@ -94,20 +94,20 @@
                         int cusid = Integer.parseInt(s.getAttribute("userid").toString());
                         c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
                         username = c.getCustomerFname();
-                        loging=true;
+                        loging = true;
                     } catch (Exception e) {
 
                     }
                 }
-String cartqty ="";
-if(!c.getCarts().isEmpty()){
-        cartqty=""+c.getCarts().size();
-}
+                String cartqty = "";
+                if (!c.getCarts().isEmpty()) {
+                    cartqty = "" + c.getCarts().size();
+                }
 
-String wishlistqty ="";
-if(!c.getWishlists().isEmpty()){
-        wishlistqty=""+c.getWishlists().size();
-}
+                String wishlistqty = "";
+                if (!c.getWishlists().isEmpty()) {
+                    wishlistqty = "" + c.getWishlists().size();
+                }
             %>
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
@@ -119,7 +119,7 @@ if(!c.getWishlists().isEmpty()){
                             <img src="assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
-                    
+
                     <!-- END LOGO -->
                     <!-- BEGIN RESPONSIVE MENU TOGGLER -->
                     <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
@@ -139,12 +139,12 @@ if(!c.getWishlists().isEmpty()){
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
-                                    <%if(loging){%>
+                                    <%if (loging) {%>
                                     <li>
                                         <a href="profile.jsp">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
-<%}%>
+                                    <%}%>
                                     <li>
                                         <a href="cart.jsp">
                                             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
@@ -157,7 +157,7 @@ if(!c.getWishlists().isEmpty()){
                                             <span class="badge badge-default"> <%=wishlistqty%> </span>
                                         </a>
                                     </li>
-<%if(loging){%>
+                                    <%if (loging) {%>
                                     <li>
 
                                         <a href="logout">
@@ -410,33 +410,13 @@ if(!c.getWishlists().isEmpty()){
                             </div>
                         </div>
                         <%-- Main--%>
-
                         <div class="page-container" id="applicationArea">
-
-
-
-
                         </div>
                     </div>
                 </div>
                 <%-- Main--%>
-
-
-
             </div>
-
-
-
-
-
-
             <div class="clearfix"></div>
-
-
-
-
-
-
             <!-- END CONTAINER -->
             <!-- BEGIN FOOTER -->
             <div class="page-footer">

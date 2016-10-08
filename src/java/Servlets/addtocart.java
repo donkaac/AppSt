@@ -37,22 +37,20 @@ public class addtocart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
-                if(!request.getSession().equals(null)){
-                int appid = Integer.parseInt(request.getParameter("appid").toString());
+                if (request.getSession() != null) {
+                    int appid = Integer.parseInt(request.getParameter("appid"));
                     int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
                     Customer customer = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
                     Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
-                 
-                    CartId cartid=new CartId(customer.getIdCustomer(),app.getIdApplication());
-                    Cart cart = new Cart(cartid, app, customer,true);
-                   
-                    
-                    
+
+                    CartId cartid = new CartId(customer.getIdCustomer(), app.getIdApplication());
+                    Cart cart = new Cart(cartid, app, customer, true);
+
                     boolean Savedata = Datacontroller.DataParser.Savedata(cart);
-                  
-                    out.write(""+Savedata);
+
+                    out.write("" + Savedata);
                 }
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -45,48 +45,49 @@
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
     <script type="text/javascript" src="ajaxjs/customeraddressdetails.js"></script>
-    
-       <%
-      try{
-          
-        HttpSession s= request.getSession();
-        if(!s.getAttribute("userid").toString().equals(null)){
-        response.sendRedirect("index.jsp");
-        }
-        
-          
-      }catch(Exception e){}
-          
-     
-     
-       String email="";
-        String password = "";
-       try{
-        Cookie[] cookies = request.getCookies();
-      
-        if (cookies != null) {
-            for (int i = 0; i < cookies.length; i++) {
-                Cookie cookie = cookies[i];
-                if (cookie.getName().equals("username-cookie")) {
-                    email = cookie.getValue();
-                } else if (cookie.getName().equals("password-cookie")) {
-                    password = cookie.getValue();
-                }
-                
+
+    <%
+        try {
+
+            HttpSession s = request.getSession();
+            if (!s.getAttribute("userid").toString().equals(null)) {
+                response.sendRedirect("index.jsp");
             }
+
+        } catch (Exception e) {
         }
-       }catch(Exception e){
-       e.printStackTrace();
-       }
+
+        String email = "";
+        String password = "";
+        boolean rmb = false;
+        try {
+            Cookie[] cookies = request.getCookies();
+
+            if (cookies != null) {
+                for (int i = 0; i < cookies.length; i++) {
+                    Cookie cookie = cookies[i];
+                    if (cookie.getName().equals("username-cookie")) {
+                        email = cookie.getValue();
+                        rmb = true;
+                    } else if (cookie.getName().equals("password-cookie")) {
+                        password = cookie.getValue();
+                        rmb = true;
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     %>
 
-    <body class="login" onload="loardcountry(),setcokiesdata('<%=email%>','<%=password%>')">
-         <script type="text/javascript">
-        function setcokiesdata(email,pass){
-            document.getElementById("loginemail").value=email;
-            document.getElementById("loginpassword").value=pass;
-        }
-    </script>
+    <body class="login" onload="loardcountry(), setcokiesdata('<%=email%>', '<%=password%>')">
+        <script type="text/javascript">
+            function setcokiesdata(email, pass) {
+                document.getElementById("loginemail").value = email;
+                document.getElementById("loginpassword").value = pass;
+            }
+        </script>
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.jsp">
@@ -134,19 +135,29 @@
                         <i class="fa fa-lock"></i>
                         <input class="form-control placeholder-no-fix" type="password" id="loginpassword" autocomplete="off" placeholder="Password" name="password" /> </div>
                 </div>
+                <% if (rmb) {%>
                 <div class="form-actions">
                     <label class="checkbox">
-                        <input type="checkbox" name="remember" value="1" /> Remember me </label>
+                        <input type="checkbox" checked="checked" name="remember" value="1"/> Remember me </label>
                     <button type="submit" class="btn green pull-right"> Login </button>
                 </div>
+                <%
+                } else {
+                %>
+                <div class="form-actions">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember" value="1"/> Remember me </label>
+                    <button type="submit" class="btn green pull-right"> Login </button>
+                </div>
+                <%}%>
                 <div class="login-options">
                     <h4>Or login with</h4>
                     <ul class="social-icons">
-                         
+
                     </ul>
                 </div>
                 <div class="forget-password">
-               
+
                     <h4>Forgot your password ?</h4>
                     <p> no worries, click
                         <a href="javascript:;" id="forget-password"> here </a> to reset your password. </p>
@@ -195,59 +206,59 @@
                         <i class="fa fa-font"></i>
                         <input class="form-control placeholder-no-fix" type="text" placeholder="Last Name" name="lname" /> </div>
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Gender</label>
                     <select name="gender" class="form-control" id="gender" class="select2 form-control">
                         <option>Select Gender</option>
-                     <%
-                    ArrayList<Object> genderobject= Datacontroller.DataParser.Searchdata(new Gender());
-                    for(Object genobject:genderobject){
-                        Gender gen=(Gender)genobject;
-                    
-                     %>
-                     
-                     <option value="<%=gen.getIdgender()%>"><%=gen.getGender()%></option>
-                     
-                     <%}%>
+                        <%
+                            ArrayList<Object> genderobject = Datacontroller.DataParser.Searchdata(new Gender());
+                            for (Object genobject : genderobject) {
+                                Gender gen = (Gender) genobject;
+
+                        %>
+
+                        <option value="<%=gen.getIdgender()%>"><%=gen.getGender()%></option>
+
+                        <%}%>
                     </select>
                 </div>
-                   <div class="form-group">
+                <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Mobile</label>
                     <div class="input-icon">
                         <i class="fa fa-mobile-phone"></i>
                         <input class="form-control placeholder-no-fix" type="text" placeholder="Mobile" name="mobile" /> </div>
                 </div>
-             
-                 
+
+
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Country</label>
                     <select name="country" onchange="loardProvince()" id="Countrylist" class="select2 form-control">
-                     
+
                     </select>
                 </div>
-                  
+
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Province</label>
                     <select name="province"  onchange="loardDistrict()" id="provincelist" class="select2 form-control">
-                     
+
                     </select>
                 </div>
-                   
+
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">District</label>
                     <select name="district"  onchange="loardCity()" id="districtlist" class="select2 form-control">
-                     
+
                     </select>
                 </div>
-                   
+
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">City</label>
                     <select name="city" class="form-control" id="citylist" class="select2 form-control">
-                     
+
                     </select>
                 </div>
-                   <div class="form-group">
+                <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Address</label>
                     <div class="input-icon">
                         <i class="fa fa-check"></i>
