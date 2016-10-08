@@ -89,8 +89,9 @@ public class coustomerlogin extends HttpServlet {
                 }
                 try {
                     HttpSession s = request.getSession();
-                    s.setAttribute("userid", c.getIdCustomer());
-                    s.setAttribute("username", c.getUsername());
+                    s.setAttribute("user", c);
+//                    s.setAttribute("userid", c.getIdCustomer());
+//                    s.setAttribute("username", c.getUsername());
                     s.setAttribute("usertype", "customer");
                 } catch (Exception e) {
                     System.out.println("exception");

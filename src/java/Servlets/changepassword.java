@@ -40,7 +40,8 @@ public class changepassword extends HttpServlet {
                 
               if (pass1 == null ? pass2 == null : pass1.equals(pass2)) {
                 int cusid = Integer.parseInt(s.getAttribute("userid").toString());
-                Customer cusObject = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
+                //Customer cusObject = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
+                Customer cusObject = (Customer) s.getAttribute("user");
                   System.out.println("ok");
                 if (!(null == cusObject.getPassword() ? null == Datacontroller.EncryptUtils.base64encode(oldapass) : (cusObject.getPassword() == null ? (Datacontroller.EncryptUtils.base64encode(oldapass)) == null : cusObject.getPassword().equals(Datacontroller.EncryptUtils.base64encode(oldapass))))) {
                 } else {

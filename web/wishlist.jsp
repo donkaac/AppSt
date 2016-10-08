@@ -57,31 +57,36 @@
 
         </head>
         <%
-                String username = "Guest";
-                boolean loging=false;
-                Customer c = new Customer();
-                if (!request.getSession().equals(null)) {
-                    try {
+            String username = "Guest";
+            boolean loging = false;
+            Customer c = new Customer();
+            if (!request.getSession().equals(null)) {
+                try {
 
-                        HttpSession s = request.getSession();
+                    HttpSession s = request.getSession();
 
-                        int cusid = Integer.parseInt(s.getAttribute("userid").toString());
-                        c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
+                    if (s.getAttribute("user") != null) {
+                        c = (Customer) s.getAttribute("user");
+                        c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
                         username = c.getCustomerFname();
-                        loging=true;
-                    } catch (Exception e) {
-
+                        loging = true;
                     }
+                    //int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+
+                    
+                } catch (Exception e) {
+
                 }
-String cartqty ="";
-if(!c.getCarts().isEmpty()){
-        cartqty=""+c.getCarts().size();
-}
-String wishlistqty ="";
-if(!c.getWishlists().isEmpty()){
-        wishlistqty=""+c.getWishlists().size();
-}
-            %>
+            }
+            String cartqty = "";
+            if (!c.getCarts().isEmpty()) {
+                cartqty = "" + c.getCarts().size();
+            }
+            String wishlistqty = "";
+            if (!c.getWishlists().isEmpty()) {
+                wishlistqty = "" + c.getWishlists().size();
+            }
+        %>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
             <!-- BEGIN HEADER -->
@@ -213,7 +218,7 @@ if(!c.getWishlists().isEmpty()){
                                     <li class="nav-item start">
                                         <a href="javascript:;" class="nav-link nav-toggle">
                                             <i class="icon-tag"></i>
-                                            
+
                                             <span class="title"><%=apptype.getApptype()%></span>
                                             <span class="selected"></span>
                                             <span class="arrow open"></span>
@@ -226,7 +231,7 @@ if(!c.getWishlists().isEmpty()){
                                             %>
                                             <li class="nav-item start">
                                                 <a href="javascript:;" class="nav-link nav-toggle">
-                                                     
+
                                                     <i class="icon-folder"></i>
                                                     <span class="title"><%=category.getCategory()%></span>
                                                     <span class="selected"></span>
@@ -237,18 +242,18 @@ if(!c.getWishlists().isEmpty()){
                                                         Set<Application> applications = category.getApplications();
                                                         for (Application appl : applications) {
                                                             if (appl.isState()) {
-                                                             
-                                                             
+
+
                                                     %>
-                                                     <li class="nav-item start">
-                                                         <a href="index.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
-                                                    
-                                                    <i class="icon-game-controller"></i>
-                                                    <span class="title"><%=  appl.getApplicationName()%></span>
-                                                    <span class="selected"></span>
-                                                    <span class="views"></span>
-                                                </a>
-                                                     </li>
+                                                    <li class="nav-item start">
+                                                        <a href="index.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
+
+                                                            <i class="icon-game-controller"></i>
+                                                            <span class="title"><%=  appl.getApplicationName()%></span>
+                                                            <span class="selected"></span>
+                                                            <span class="views"></span>
+                                                        </a>
+                                                    </li>
 
                                                     <%
                                                             }
@@ -258,10 +263,10 @@ if(!c.getWishlists().isEmpty()){
                                                 </ul>
                                             </li>
                                             <%}
-                                         }%>
+                                                }%>
                                         </ul>
                                         <%}
-     }%>
+                                            }%>
 
                                 </ul>
 
@@ -384,141 +389,141 @@ if(!c.getWishlists().isEmpty()){
                         <%-- Main--%>
 
                         <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th></th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center"></th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                    Set<Wishlist> wishlists = c.getWishlists();
-        for (Wishlist wishlist : wishlists) {
-           
-                    %>
-                    <tr>
-                        <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=wishlist.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#"><%=wishlist.getApplication().getApplicationName()%></a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th></th>
+                                                <th class="text-center">Price</th>
+                                                <th class="text-center"></th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                Set<Wishlist> wishlists = c.getWishlists();
+                                                for (Wishlist wishlist : wishlists) {
+
+                                            %>
+                                            <tr>
+                                                <td class="col-sm-8 col-md-6">
+                                                    <div class="media">
+                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=wishlist.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading"><a href="#"><%=wishlist.getApplication().getApplicationName()%></a></h4>
+                                                            <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
+                                                            <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                                        </div>
+                                                    </div></td>
+                                                <td class="col-sm-1 col-md-1" style="text-align: center">
+
+                                                </td>
+                                                <td class="col-sm-1 col-md-1 text-center"><strong>$<%=wishlist.getApplication().getPrice()%></strong></td>
+
+                                                <td class="col-sm-1 col-md-1">
+                                                    <button type="button" onclick="removewishlist(<%=wishlist.getApplication().getIdApplication()%>)" class="btn btn-danger">
+                                                        <span class="glyphicon glyphicon-remove"></span> Remove
+                                                    </button></td>
+                                                <td class="col-sm-1 col-md-1">
+                                                    <button type="button" class="btn btn-default" onclick="addtocart(<%=wishlist.getApplication().getIdApplication()%>)">
+                                                        <span  class="glyphicon glyphicon-shopping-cart"></span> Add To Cart
+                                                    </button></td>
+                                            </tr>
+                                            <%}%>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$<%=wishlist.getApplication().getPrice()%></strong></td>
-                       
-                        <td class="col-sm-1 col-md-1">
-                            <button type="button" onclick="removewishlist(<%=wishlist.getApplication().getIdApplication()%>)" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                         <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-default" onclick="addtocart(<%=wishlist.getApplication().getIdApplication()%>)">
-                            <span  class="glyphicon glyphicon-shopping-cart"></span> Add To Cart
-                        </button></td>
-                    </tr>
-                   <%}%>
-                </tbody>
-            </table>
+                        </div>
+
+                    </div>
+
+
+
+                </div>   
+
+
+
+                <div class="clearfix"></div>
+
+
+
+            </div>
+            <!-- END CONTENT BODY -->
         </div>
+
+    </div>
+    <!-- END QUICK SIDEBAR -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
+        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
     </div>
 </div>
-                            
-                    </div>
-                            
-                            
-                          
-                        </div>   
-
-
-
-                        <div class="clearfix"></div>
-
-
-
-                    </div>
-                    <!-- END CONTENT BODY -->
-                </div>
-
-            </div>
-            <!-- END QUICK SIDEBAR -->
-        </div>
-        <!-- END CONTAINER -->
-        <!-- BEGIN FOOTER -->
-        <div class="page-footer">
-            <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-            </div>
-            <div class="scroll-to-top">
-                <i class="icon-arrow-up"></i>
-            </div>
-        </div>
-        <!-- END FOOTER -->
-        <!--[if lt IE 9]>
+<!-- END FOOTER -->
+<!--[if lt IE 9]>
 <script src="./assets/global/plugins/respond.min.js"></script>
 <script src="./assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
-        <!-- BEGIN CORE PLUGINS -->
-        <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-        <script src="assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-        <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-        <!-- END THEME LAYOUT SCRIPTS -->
-    </body>
+<!-- BEGIN CORE PLUGINS -->
+<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+<script src="assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+<script src="assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN THEME LAYOUT SCRIPTS -->
+<script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+<script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+<script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<!-- END THEME LAYOUT SCRIPTS -->
+</body>
 
 </html>

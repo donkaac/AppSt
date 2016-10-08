@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,24 +40,33 @@ public class removecart extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             try {
                 if (!request.getSession().equals(null)) {
-                    int appid = Integer.parseInt(request.getParameter("appid").toString());
-                    System.out.println("cart p id"+appid);
-                    int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
-                    Customer customer = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
+
+                    HttpSession session = request.getSession();
+                    int appid = Integer.parseInt(request.getParameter("appid"));
+                    System.out.println("cart p id" + appid);
+                    //int cusid = Integer.parseInt(session.getAttribute("userid").toString());
+                    Customer customer = (Customer) session.getAttribute("user");
+                    System.out.println("OK");
+                    int cusid = customer.getIdCustomer();
+                    customer = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), customer.getIdCustomer());
+                    System.out.println(cusid);
                     Set<Cart> carts = customer.getCarts();
-                    
+
                     for (Cart cart : carts) {
-                        if((cart.getCustomer().getIdCustomer()==cusid)&(cart.getApplication().getIdApplication()==appid)){
-                            
-                            int executeUpdate = DB.getConnection().createStatement().executeUpdate("DELETE FROM cart WHERE Customer_idCustomer='"+cusid+"' AND Application_idApplication='"+appid+"'");
-                            System.out.println("Delete Cart :"+executeUpdate);
-                            if(executeUpdate==1){
-                                
+                        System.out.println("ok1");
+                        if ((cart.getCustomer().getIdCustomer() == cusid) & (cart.getApplication().getIdApplication() == appid)) {
+                            int executeUpdate = DB.getConnection().createStatement().executeUpdate("DELETE FROM cart WHERE Customer_idCustomer='" + cusid + "' AND Application_idApplication='" + appid + "'");
+                            System.out.println("Delete Cart :" + executeUpdate);
+                            if (executeUpdate == 1) {
+                                out.write("true");
+                            } else {
+                                out.write("false");
                             }
+                            break;
                         }
+        
                     }
-                    
-                    out.write("true");
+
                 }
 
             } catch (Exception e) {

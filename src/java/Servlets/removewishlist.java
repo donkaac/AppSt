@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,16 +35,22 @@ public class removewishlist extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           try {
+            try {
                 if (!request.getSession().equals(null)) {
-                    int appid = Integer.parseInt(request.getParameter("appid").toString());
-                    int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
-                    Customer customer = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
-                    Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
+                    HttpSession session = request.getSession();
 
-                    DB.getConnection().createStatement().executeUpdate("Delete  FROM wishlist where Customer_idCustomer=" + customer.getIdCustomer() + " and Application_idApplication=" + app.getIdApplication());
+                    if (session.getAttribute("user") != null) {
+                        Customer customer = (Customer) session.getAttribute("user");
+                        int appid = Integer.parseInt(request.getParameter("appid"));
+                        int cusid = customer.getIdCustomer();
+                        customer = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
+                        Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
 
-                    out.write("true");
+                        DB.getConnection().createStatement().executeUpdate("Delete  FROM wishlist where Customer_idCustomer=" + customer.getIdCustomer() + " and Application_idApplication=" + app.getIdApplication());
+
+                        out.write("true");
+                    }
+
                 }
 
             } catch (Exception e) {

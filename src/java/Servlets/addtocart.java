@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,15 +39,20 @@ public class addtocart extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             try {
                 if (request.getSession() != null) {
+                    HttpSession session = request.getSession();
                     int appid = Integer.parseInt(request.getParameter("appid"));
-                    int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
-                    Customer customer = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
+                    //int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
+                    Customer customer = (Customer) session.getAttribute("user");
                     Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
-
                     CartId cartid = new CartId(customer.getIdCustomer(), app.getIdApplication());
                     Cart cart = new Cart(cartid, app, customer, true);
 
                     boolean Savedata = Datacontroller.DataParser.Savedata(cart);
+                    
+                    if (Savedata) {
+                        customer = (Customer)Datacontroller.DataParser.getuniqeresault(new Customer(), customer.getIdCustomer());
+                        session.setAttribute("user", customer);
+                    }
 
                     out.write("" + Savedata);
                 }

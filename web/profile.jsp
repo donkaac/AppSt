@@ -18,8 +18,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-    <html>   
+<% if(session.getAttribute("user")!= null){%>
+<html lang="en">  
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
@@ -64,8 +64,10 @@
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
             <%
                 try {
-                    Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
-                    if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
+                   // Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
+                    Customer c = (Customer) session.getAttribute("user");
+                    //if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
+                    if (c != null) {
                         String image = "assets/layouts/layout/img/avatar3_small.jpg";
                         if (!(c.getCustomerImage() == null)) {
                             image = c.getCustomerImage();
@@ -694,3 +696,4 @@
         response.sendRedirect("index.jsp");
     }%>
 </html>
+<% }else{ response.sendRedirect("index.jsp");}%>

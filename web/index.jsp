@@ -91,10 +91,18 @@
 
                         HttpSession s = request.getSession();
 
-                        int cusid = Integer.parseInt(s.getAttribute("userid").toString());
-                        c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
-                        username = c.getCustomerFname();
-                        loging = true;
+                        if (s.getAttribute("user") != null) {
+                            c = (Customer) s.getAttribute("user");
+                            c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
+                            username = c.getCustomerFname();
+                            loging = true;
+                        }else{
+                            c.setIdCustomer(s.hashCode());
+                            c.setCustomerFname(username);
+                            s.setAttribute("guest", c);
+                        }
+                        //int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+                        // c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);                       
                     } catch (Exception e) {
 
                     }
@@ -134,7 +142,12 @@
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <% if (c.getCustomerImage() != null) {
+                                    %><img alt="" class="img-circle" src="<%=c.getCustomerImage()%>" /><%
+                                    } else {
+                                    %>
                                     <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <%}%>
                                     <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>

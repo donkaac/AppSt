@@ -61,18 +61,24 @@
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 
             <%
-                String username = "Guest";
+                String username = "";
                 boolean loging = false;
                 Customer c = new Customer();
                 if (!request.getSession().equals(null)) {
                     try {
-
                         HttpSession s = request.getSession();
-
-                        int cusid = Integer.parseInt(s.getAttribute("userid").toString());
-                        c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
-                        username = c.getCustomerFname();
-                        loging = true;
+                        //int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+                        //c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
+                        if (s.getAttribute("user") != null) {
+                            c = (Customer) s.getAttribute("user");
+                            c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
+                            username = c.getCustomerFname();
+                            loging = true;
+                        }else{
+                            c = (Customer) s.getAttribute("guest");
+                            username = c.getCustomerFname();
+                            //c.getCarts();
+                        }
                     } catch (Exception e) {
 
                     }
@@ -388,16 +394,27 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="page-header">Application</h1>
+                            </div>
 
-                            </div>
-                            <div class="alert alert-success display-hide">
-                                <button class="close" data-close="alert"></button>
-                                <span id="msgwindow"></span>
-                            </div>
                         </div>
                         <%-- Main--%>
 
                         <div class="container">
+                            <div class="col-sm-5">
+                                <div class="alert alert-success display-hide">
+                                    <button class="close" data-close="alert"></button>
+                                    <span> Item Has Been Removed. </span>
+                                </div>
+                                <div class="alert alert-danger display-hide">
+                                    <button class="close" data-close="alert"></button>
+                                    <span> Item Not Removed. </span>
+                                </div>
+                                <div class="alert alert-warning display-hide">
+                                    <button class="close" data-close="alert"></button>
+                                    <span class="allert-message">Invalid username or password. </span>
+                                </div> 
+                            </div>
+
                             <div class="row">
                                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                                     <table class="table table-hover">
@@ -417,14 +434,14 @@
                                                 if (loging) {
                                                     carts = c.getCarts();
                                                 } else {
-
+                                                    //carts = c.getCarts();
                                                 }
                                                 for (Cart cart : carts) {
 
                                                     total += cart.getApplication().getPrice();
 
                                             %>
-                                            <tr>
+                                            <tr id="data">
                                                 <td class="col-sm-8 col-md-6">
                                                     <div class="media">
                                                         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=cart.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
