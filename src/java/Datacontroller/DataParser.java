@@ -97,7 +97,7 @@ public class DataParser {
             resualt = (ArrayList<Object>) list;
             s.flush();
         } catch (Exception e) {
-
+            
             return null;
         }
         return resualt;

@@ -6,16 +6,15 @@
 package Servlets;
 
 import Datacontroller.DataParser;
-import Entities.Customer;
 import Entities.Staff;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,22 +35,26 @@ public class admin_login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        System.out.println("OK");
         try{
-
+            HttpSession session = request.getSession();
+            
             String email = request.getParameter("username");
             String password = request.getParameter("password");
 
            
             boolean loginstate = false;
             ArrayList<Object> Searchdata = DataParser.Searchdata(new Staff());
+            Staff s = new Staff();
             for (Object staff : Searchdata) {
-                Staff s = (Staff) staff;
+                s = (Staff) staff;
                 if ((s.getUsername().equals(email)) & (s.getStaffPassword().equals(password))) {
                     loginstate = true;
                     break;
                 }
             }
             if (loginstate) {
+                session.setAttribute("staff", s);
                 out.print("ok");
             } else {
                 out.print("error");

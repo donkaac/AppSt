@@ -41,7 +41,7 @@ var Login = function () {
                 Pace.track(function () {
                     $.ajax({
                         type: 'POST',
-                        url: '../developerlogin',
+                        url: '/developerlogin',
                         data: data,
                         beforeSend: function ()
                         {

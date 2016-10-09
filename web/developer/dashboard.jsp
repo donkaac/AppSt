@@ -396,26 +396,9 @@
                             </div>
                         </div>
                         <%-- Main--%>
-
-                        
-                        
-                        
-                        
-                        
-                        
-
                     </div>
-
-
-
                 </div>   
-
-
-
                 <div class="clearfix"></div>
-
-
-
             </div>
             <!-- END CONTENT BODY -->
         </div>
