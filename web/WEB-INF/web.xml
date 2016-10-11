@@ -112,6 +112,14 @@
         <servlet-name>deactiveoractive</servlet-name>
         <servlet-class>Servlets.deactiveoractive</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>developeractiveordeactive</servlet-name>
+        <servlet-class>Servlets.developeractiveordeactive</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>staffactiveordeactive</servlet-name>
+        <servlet-class>Servlets.staffactiveordeactive</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -223,6 +231,14 @@
     <servlet-mapping>
         <servlet-name>deactiveoractive</servlet-name>
         <url-pattern>/deactiveoractive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>developeractiveordeactive</servlet-name>
+        <url-pattern>/developeractiveordeactive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>staffactiveordeactive</servlet-name>
+        <url-pattern>/staffactiveordeactive</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

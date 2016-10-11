@@ -612,7 +612,7 @@
                             <h2>Active Customers</h2>
                             <p>Customer List</p>
                             <div class="scrollit" style="width: 1000px">
-                                <table class="table">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -658,7 +658,7 @@
                             <h2>Disabled Customers</h2>
                             <p>Customer List</p>
                             <div class="scrollit" style="width: 1000px">
-                                <table class="table">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>ID</th>

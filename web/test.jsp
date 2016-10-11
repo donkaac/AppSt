@@ -99,10 +99,5 @@
                         </div>
                     </div>
         
-        
-         <video controls="true" autoplay="true" class="video-playing" width="400px" src="C:\Users\Ish\Videos\Deviyanda Mawwe (Gerua Cover) - Ramz, Sanduni (Derana eTunes) - YouTube.MP4"/>
-
-        
-        
-    </body>
+         </body>
 </html>

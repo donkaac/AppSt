@@ -1,10 +1,9 @@
 <%-- 
-    Document   : staffmangment
-    Created on : Oct 4, 2016, 9:54:55 PM
+    Document   : developers
+    Created on : Oct 11, 2016, 5:08:39 PM
     Author     : Ish
 --%>
-
-<%@page import="Entities.Staff"%>
+ 
 <%@page import="Entities.Developer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entities.Customer"%>
@@ -16,7 +15,7 @@
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Staff Members Maintains</title>
+            <title>Developer Maintains</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -580,7 +579,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Staff Members details </h1>
+                                <h1 class="page-header">Developer details </h1>
                             </div>
                         </div>
                         <%-- Main--%> 
@@ -611,8 +610,8 @@
 
 
                         <div class="container">
-                            <h2>Active Staff Members</h2>
-                            <p>Staff Members List</p>
+                            <h2>Active Developers</h2>
+                            <p>Developer List</p>
                             <div class="scrollit" style="width: 1000px">
                                 <table class="table table-hover">
                                     <thead>
@@ -622,7 +621,6 @@
                                             <th>Middle name</th>
                                             <th>Last name</th>
                                             <th>Email</th>
-                                            <th>Role</th>
                                             <th>Gender</th>
                                             <th>Country</th>
                                             <th>Province</th>
@@ -632,26 +630,25 @@
                                     </thead>
                                     <tbody>
                                         <%
-                                            ArrayList<Object> stafflist = Datacontroller.DataParser.Searchdata(new Staff());
-                                            for (Object cob : stafflist) {
-                                                Staff c = (Staff) cob;
+                                            ArrayList<Object> cuslist = Datacontroller.DataParser.Searchdata(new Developer());
+                                            for (Object cob : cuslist) {
+                                                Developer c = (Developer) cob;
                                                 if (c.isState()) {
-                                                    
+
 
                                         %>
                                         <tr>
-                                            <td><%=c.getIdStaff()%></td>
-                                            <td><%=c.getStaffFname()%></td>
-                                            <td><%=c.getStaffMname()%></td>
-                                            <td><%=c.getStaffLname()%></td>
+                                            <td><%=c.getIdDeveloper()%></td>
+                                            <td><%=c.getDeveloperFname()%></td>
+                                            <td><%=c.getDeveloperMname()%></td>
+                                            <td><%=c.getDeveloperLname()%></td>
                                             <td><%=c.getUsername()%></td>
-                                            <td><%=c.getRoles().getRoles()%></td>
                                             <td><%=c.getGender().getGender()%></td>
                                             <td><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
                                             <td><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></td>
                                             <td><%=c.getCity().getDiscrict().getDiscrictName()%></td>
                                             <td><%=c.getCity().getCityName()%></td>
-                                            <td><form action="../staffactiveordeactive" method="POST"><input type="hidden" name="staffid" value="<%=c.getIdStaff()%>"/><input type="hidden" name="statevaluve" value="Deactive" /><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-eject"> Disable Staff member </span></button></a></form></td>
+                                            <td><form action="../developeractiveordeactive" method="POST"><input type="hidden" name="developerid" value="<%=c.getIdDeveloper()%>"/><input type="hidden" name="statevaluve" value="Deactive" /><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-eject"> Disable Developer </span></button></a></form></td>
                                         </tr>
                                         <%}
                                         }%>
@@ -659,8 +656,8 @@
                                 </table>
                             </div>
 
-                            <h2>Disabled Staff Members</h2>
-                            <p>Staff Members List</p>
+                            <h2>Disabled Developers</h2>
+                            <p>Developer List</p>
                             <div class="scrollit" style="width: 1000px">
                                 <table class="table table-hover">
                                     <thead>
@@ -670,7 +667,6 @@
                                             <th>Middle name</th>
                                             <th>Last name</th>
                                             <th>Email</th>
-                                            <th>Role</th>
                                             <th>Gender</th>
                                             <th>Country</th>
                                             <th>Province</th>
@@ -681,25 +677,24 @@
                                     <tbody>
                                         <%
 
-                                            for (Object cob : stafflist) {
-                                                Staff c = (Staff) cob;
+                                            for (Object cob : cuslist) {
+                                                Developer c = (Developer) cob;
                                                 if (c.isState() == false) {
 
 
                                         %>
                                         <tr>
-                                            <td><%=c.getIdStaff()%></td>
-                                            <td><%=c.getStaffFname()%></td>
-                                            <td><%=c.getStaffMname()%></td>
-                                            <td><%=c.getStaffLname()%></td>
+                                            <td><%=c.getIdDeveloper()%></td>
+                                            <td><%=c.getDeveloperFname()%></td>
+                                            <td><%=c.getDeveloperMname()%></td>
+                                            <td><%=c.getDeveloperLname()%></td>
                                             <td><%=c.getUsername()%></td>
-                                            <td><%=c.getRoles().getRoles()%></td>
                                             <td><%=c.getGender().getGender()%></td>
                                             <td><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
                                             <td><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></td>
                                             <td><%=c.getCity().getDiscrict().getDiscrictName()%></td>
                                             <td><%=c.getCity().getCityName()%></td>
-                                            <td><form action="../staffactiveordeactive" method="POST"><input type="hidden" name="staffid" value="<%=c.getIdStaff()%>"/><input type="hidden" name="statevaluve" value="Active" /><a class="btn-default" ><button type="submit"><span class="glyphicon glyphicon-ok"> Enable staff Member </span></button></a></form></td>
+                                            <td><form action="../developeractiveordeactive" method="POST"><input type="hidden" name="developerid" value="<%=c.getIdDeveloper()%>"/><input type="hidden" name="statevaluve" value="Active" /><a class="btn-default" ><button type="submit"><span class="glyphicon glyphicon-ok"> Enable Developer </span></button></a></form></td>
                                         </tr>
                                         <%}
                                         }%>
