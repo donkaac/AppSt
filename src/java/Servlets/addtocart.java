@@ -11,6 +11,7 @@ import Entities.CartId;
 import Entities.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +39,7 @@ public class addtocart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
-                if (request.getSession() != null) {
+                if (request.getSession().getAttribute("user") != null) {
                     HttpSession session = request.getSession();
                     int appid = Integer.parseInt(request.getParameter("appid"));
                     //int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
@@ -55,6 +56,17 @@ public class addtocart extends HttpServlet {
                     }
 
                     out.write("" + Savedata);
+                }else{
+                     List <Integer>cartitem=null;
+                     
+                    if(!(request.getSession().getAttribute("cartitems")==null)){
+                       cartitem=(List<Integer>) request.getSession().getAttribute("cartitems");
+                    }
+                   
+                    boolean add = cartitem.add(Integer.parseInt(request.getParameter("appid")));
+                    System.out.println(add+"ADDEWD");
+                    request.getSession().setAttribute("cartitems", cartitem);
+                    out.write(""+add);
                 }
 
             } catch (Exception e) {

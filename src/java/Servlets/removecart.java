@@ -12,6 +12,7 @@ import Entities.Cart;
 import Entities.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,7 @@ public class removecart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
-                if (!request.getSession().equals(null)) {
+                if (request.getSession().getAttribute("cartitems")==null) {
 
                     HttpSession session = request.getSession();
                     int appid = Integer.parseInt(request.getParameter("appid"));
@@ -67,6 +68,17 @@ public class removecart extends HttpServlet {
         
                     }
 
+                }else{
+                     List<Integer> cartitem=(List) request.getSession().getAttribute("cartitems");
+                     int appid = Integer.parseInt(request.getParameter("appid"));
+                    for (int i = 0; i < cartitem.size(); i++) {
+                        
+                        if (cartitem.get(i)==appid) {
+                            
+                        }
+                        
+                    }
+                    
                 }
 
             } catch (Exception e) {

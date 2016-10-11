@@ -6,9 +6,7 @@
  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-    <html>   
-        <!-- BEGIN HEAD -->
+       <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Metronic | Admin Dashboard Template</title>
@@ -47,7 +45,7 @@
             
         </head>
         <!-- END HEAD -->
-        <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" onload="loardcountry()">
+        
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
@@ -543,6 +541,5 @@
         <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-    </body>
+    
 
-</html>

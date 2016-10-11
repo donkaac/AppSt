@@ -5,14 +5,10 @@
  */
 package Servlets;
 
-import Datacontroller.DataParser;
 import Entities.City;
 import Entities.Customer;
-import Entities.Emailvarified;
-import Entities.Gender;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

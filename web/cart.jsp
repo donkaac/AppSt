@@ -126,7 +126,7 @@
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <%if (loging) {%>
                                     <li>
-                                        <a href="page_user_profile_1.html">
+                                        <a href="profile.jsp">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
                                     <%}%>
@@ -188,7 +188,7 @@
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                                <form class="sidebar-search  " action="search" method="POST">
                                     <a href="javascript:;" class="remove">
                                         <i class="icon-close"></i>
                                     </a>
