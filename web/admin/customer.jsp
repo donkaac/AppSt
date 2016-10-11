@@ -4,6 +4,9 @@
     Author     : Ish
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Entities.Customer"%>
+<%@page import="com.sun.xml.rpc.processor.generator.CustomClassGenerator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +14,7 @@
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Metronic | Admin Dashboard Template</title>
+            <title>Customer Maintains</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -31,7 +34,7 @@
             <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
             <!-- END PAGE LEVEL PLUGIN STYLES -->
             <!-- BEGIN PAGE STYLES -->
-            <link href="../assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+         
             <!-- END PAGE STYLES -->
             <!-- BEGIN THEME STYLES -->
             <link href="../assets/global/css/components.css" rel="stylesheet" type="text/css"/>
@@ -575,26 +578,29 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Category details </h1>
+                                <h1 class="page-header">Customer details </h1>
                             </div>
                         </div>
                         <%-- Main--%> 
-                        <style>
+                        <style type="text/css">
                             .table-fixed thead {
-  width: 97%;
-}
-.table-fixed tbody {
-  height: 230px;
-  overflow-y: auto;
-  width: 100%;
-}
-.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-  display: block;
-}
-.table-fixed tbody td, .table-fixed thead > tr> th {
-  float: left;
-  border-bottom-width: 0;
-}
+                                width: 97%;
+                            }
+                            .table-fixed tbody {
+                                height: 230px;
+                                overflow-y: auto;
+                                width: 100%;
+                            }
+                            .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+                                display: block;
+                            }
+                            .table-fixed tbody td, .table-fixed thead > tr> th {
+                                float: left;
+                                border-bottom-width: 0;
+                            }.scrollit {
+                                overflow:scroll;
+                                height:400px;
+                            }
                         </style>
 
 
@@ -602,118 +608,181 @@
 
 
 
-<div class="container">
-  <h2>Basic Table</h2>
-  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+                        <div class="container">
+                            <h2>Active Customers</h2>
+                            <p>Customer List</p>
+                            <div class="scrollit" style="width: 1000px">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First name</th>
+                                            <th>Middle name</th>
+                                            <th>Last name</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Country</th>
+                                            <th>Province</th>
+                                            <th>District</th>
+                                            <th>City</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            ArrayList<Object> cuslist = Datacontroller.DataParser.Searchdata(new Customer());
+                                            for (Object cob : cuslist) {
+                                                Customer c = (Customer) cob;
+                                                if (c.isState()) {
 
 
-                        
-                        
+                                        %>
+                                        <tr>
+                                            <td><%=c.getIdCustomer()%></td>
+                                            <td><%=c.getCustomerFname()%></td>
+                                            <td><%=c.getCustomerMname()%></td>
+                                            <td><%=c.getCustomerLname()%></td>
+                                            <td><%=c.getUsername()%></td>
+                                            <td><%=c.getGender().getGender()%></td>
+                                            <td><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
+                                            <td><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></td>
+                                            <td><%=c.getCity().getDiscrict().getDiscrictName()%></td>
+                                            <td><%=c.getCity().getCityName()%></td>
+                                            <td><form action="../deactiveoractive" method="POST"><input type="hidden" name="cusid" value="<%=c.getIdCustomer()%>"/><input type="hidden" name="statevaluve" value="Deactive" /><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-eject"> Disable Customer </span></button></a></form></td>
+                                        </tr>
+                                        <%}
+                                        }%>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h2>Disabled Customers</h2>
+                            <p>Customer List</p>
+                            <div class="scrollit" style="width: 1000px">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First name</th>
+                                            <th>Middle name</th>
+                                            <th>Last name</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Country</th>
+                                            <th>Province</th>
+                                            <th>District</th>
+                                            <th>City</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+
+                                            for (Object cob : cuslist) {
+                                                Customer c = (Customer) cob;
+                                                if (c.isState() == false) {
+
+
+                                        %>
+                                        <tr>
+                                            <td><%=c.getIdCustomer()%></td>
+                                            <td><%=c.getCustomerFname()%></td>
+                                            <td><%=c.getCustomerMname()%></td>
+                                            <td><%=c.getCustomerLname()%></td>
+                                            <td><%=c.getUsername()%></td>
+                                            <td><%=c.getGender().getGender()%></td>
+                                            <td><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
+                                            <td><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></td>
+                                            <td><%=c.getCity().getDiscrict().getDiscrictName()%></td>
+                                            <td><%=c.getCity().getCityName()%></td>
+                                            <td><form action="../deactiveoractive" method="POST"><input type="hidden" name="cusid" value="<%=c.getIdCustomer()%>"/><input type="hidden" name="statevaluve" value="Active" /><a class="btn-default" ><button type="submit"><span class="glyphicon glyphicon-ok"> Enable Customer </span></button></a></form></td>
+                                        </tr>
+                                        <%}
+                                        }%>
+                                    </tbody>
+                                </table>
+                            </div>     
+                        </div>
 
 
 
-                   
+
+
+
+
+
+                    </div>
+                    <!-- END CONTENT BODY -->
                 </div>
-                <!-- END CONTENT BODY -->
+
             </div>
+            <!-- END QUICK SIDEBAR -->
 
-        </div>
-        <!-- END QUICK SIDEBAR -->
-    </div>
-    <!-- END CONTAINER -->
-    <!-- BEGIN FOOTER -->
-    <div class="page-footer">
-        <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-            <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-        </div>
-        <div class="scroll-to-top">
-            <i class="icon-arrow-up"></i>
-        </div>
-    </div>
-    <!-- END FOOTER -->
-    <!--[if lt IE 9]>
-<script src="./assets/global/plugins/respond.min.js"></script>
-<script src="./assets/global/plugins/excanvas.min.js"></script> 
-<![endif]-->
-    <!-- BEGIN CORE PLUGINS -->
-    <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-    <script src="../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
-    <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
-    <!-- END THEME GLOBAL SCRIPTS -->
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="../assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <!-- BEGIN THEME LAYOUT SCRIPTS -->
-    <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-    <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-    <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-    <!-- END THEME LAYOUT SCRIPTS -->
-</body>
+            <!-- END CONTAINER -->
+            <!-- BEGIN FOOTER -->
+            <div class="page-footer">
+                <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
+                    <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+                </div>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
+            </div>
+            <!-- END FOOTER -->
+            <!--[if lt IE 9]>
+        <script src="./assets/global/plugins/respond.min.js"></script>
+        <script src="./assets/global/plugins/excanvas.min.js"></script> 
+        <![endif]-->
+            <!-- BEGIN CORE PLUGINS -->
+            <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+            <!-- END CORE PLUGINS -->
+            <!-- BEGIN PAGE LEVEL PLUGINS -->
+            <script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+            <script src="../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+            <!-- END PAGE LEVEL PLUGINS -->
+            <!-- BEGIN THEME GLOBAL SCRIPTS -->
+            <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+            <!-- END THEME GLOBAL SCRIPTS -->
+            <!-- BEGIN PAGE LEVEL SCRIPTS -->
+            <script src="../assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+            <!-- END PAGE LEVEL SCRIPTS -->
+            <!-- BEGIN THEME LAYOUT SCRIPTS -->
+            <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+            <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+            <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+            <!-- END THEME LAYOUT SCRIPTS -->
+        </body>
 
-</html>
+    </html>

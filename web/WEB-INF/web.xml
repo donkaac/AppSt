@@ -108,6 +108,10 @@
         <servlet-name>searchbyname</servlet-name>
         <servlet-class>Servlets.searchbyname</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deactiveoractive</servlet-name>
+        <servlet-class>Servlets.deactiveoractive</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>searchbyname</servlet-name>
         <url-pattern>/searchbyname</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deactiveoractive</servlet-name>
+        <url-pattern>/deactiveoractive</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
