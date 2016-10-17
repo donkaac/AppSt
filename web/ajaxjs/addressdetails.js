@@ -31,6 +31,7 @@ function loardcountry() {
         Object.send("state=" + true + "&type=country");
     }
 }
+ 
 
 
 
@@ -55,7 +56,7 @@ function savecountry() {
                 if (ResponseText === "Allredy Exist!") {
                     alert(document.getElementById("NewCountry").value + " " + ResponseText);
                 }
-
+  document.getElementById("NewCountry").value="";
                 loardcountry();
             }
         };
@@ -91,6 +92,7 @@ function saveProvince(country) {
                 if (ResponseText === "Allredy Exist!") {
                     alert(document.getElementById("newprovince").value + " " + ResponseText);
                 }
+                 document.getElementById("newprovince").value="";
                 loardProvince();
             }
         };
@@ -131,6 +133,7 @@ function saveDistrict(country, province) {
                 if (ResponseText === "Allredy Exist!") {
                     alert(document.getElementById("newdistrict").value + " " + ResponseText);
                 }
+                 document.getElementById("newdistrict").value="";
                 loardDistrict();
             }
         };
@@ -174,6 +177,7 @@ function saveCity(country, province, distrcit) {
                 if (ResponseText === "Allredy Exist!") {
                     alert(document.getElementById("newcity").value + " " + ResponseText);
                 }
+           document.getElementById("newcity").value="";
                 loardCity();
             }
         };
@@ -276,5 +280,312 @@ function loardCity() {
         Object.open("POST", "../loard", true);
         Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         Object.send("country=" + document.getElementById("Countrylist").value + "&province=" + document.getElementById("provincelist").value + "&district=" + document.getElementById("districtlist").value + "&state=" + true + "&type=city");
+    }
+}
+
+function Countrysetselectedtoupdate(){
+    
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    document.getElementById("SelectedCountry").value="";
+                    loardcountry();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        if(document.getElementById("SelectedCountry").value===""){
+            alert("Country Name Is Null!");
+        }else{
+        Object.open("POST", "../getaddressbyid", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");        
+        Object.send("id=" +document.getElementById("Countrylist").value + "&text=" + document.getElementById("SelectedCountry").value + "&type=country");
+        }
+}}
+
+
+function Provincesetselectedtoupdate(){
+    
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    document.getElementById("SelectedProvince").value="";
+                    loardcountry();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        if(document.getElementById("SelectedProvince").value===""){
+            alert("Country Name Is Null!");
+        }else{
+        Object.open("POST", "../getaddressbyid", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");        
+        Object.send("id=" +document.getElementById("provincelist").value + "&text=" + document.getElementById("SelectedProvince").value + "&type=province");
+        }
+}}
+
+function Districtsetselectedtoupdate(){
+    
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    document.getElementById("SelectedDistrict").value="";
+                    loardcountry();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        if(document.getElementById("SelectedDistrict").value===""){
+            alert("Country Name Is Null!");
+        }else{
+        Object.open("POST", "../getaddressbyid", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");        
+        Object.send("id=" +document.getElementById("districtlist").value + "&text=" + document.getElementById("SelectedDistrict").value + "&type=district");
+        }
+}}
+function Citysetselectedtoupdate(){
+    
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    document.getElementById("SelectedCity").value="";
+                    loardcountry();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        if(document.getElementById("SelectedCity").value===""){
+            alert("Country Name Is Null!");
+        }else{
+        Object.open("POST", "../getaddressbyid", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");        
+        Object.send("id=" +document.getElementById("citylist").value + "&text=" + document.getElementById("SelectedCity").value + "&type=city");
+        }
+}}
+function activeordeactiveCountry(state,id) {
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    loardcountry();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        Object.open("POST", "../deactive", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        if(state===true){
+            
+        Object.send("countryid=" +id + "&state=" + true + "&type=country");
+    }else if(state===false){
+          
+          Object.send("countryid=" + id+ "&state=" + false + "&type=country");
+    }
+    }
+}
+
+function activeordeactiveprovince(state,id) {
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    loardProvince();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        Object.open("POST", "../deactive", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        if(state===true){
+           
+        Object.send("provinceid=" +id + "&state=" + true + "&type=province");
+    }else if(state===false){
+         
+          Object.send("provinceid=" +id + "&state=" + false + "&type=province");
+    }
+    }
+}
+
+function activeordeactivedistrict(state,id) {
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    loardDistrict();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        Object.open("POST", "../deactive", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        if(state===true){
+           
+        Object.send("districtid=" + id + "&state=" + true + "&type=district");
+    }else if(state===false){
+         
+          Object.send("districtid=" + id+ "&state=" + false + "&type=district");
+    }
+    }
+}
+
+function activeordeactivecity(state,id) {
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    loardCity();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        Object.open("POST", "../deactive", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        if(state===true){
+            
+        Object.send("cityid=" +id+ "&state=" + true + "&type=city");
+    }else if(state===false){
+         
+          Object.send("cityid=" +id + "&state=" + false + "&type=city");
+    }
     }
 }

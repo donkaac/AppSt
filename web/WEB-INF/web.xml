@@ -120,6 +120,22 @@
         <servlet-name>staffactiveordeactive</servlet-name>
         <servlet-class>Servlets.staffactiveordeactive</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getaddressbyid</servlet-name>
+        <servlet-class>Servlets.getaddressbyid</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>categoryupdatebyid</servlet-name>
+        <servlet-class>Servlets.categoryupdatebyid</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>setdevelopervalid</servlet-name>
+        <servlet-class>Servlets.setdevelopervalid</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>developerValidAciveOrDeactive</servlet-name>
+        <servlet-class>Servlets.developerValidAciveOrDeactive</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -239,6 +255,22 @@
     <servlet-mapping>
         <servlet-name>staffactiveordeactive</servlet-name>
         <url-pattern>/staffactiveordeactive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getaddressbyid</servlet-name>
+        <url-pattern>/getaddressbyid</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>categoryupdatebyid</servlet-name>
+        <url-pattern>/categoryupdatebyid</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setdevelopervalid</servlet-name>
+        <url-pattern>/setdevelopervalid</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>developerValidAciveOrDeactive</servlet-name>
+        <url-pattern>/developerValidAciveOrDeactive</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

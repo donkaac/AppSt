@@ -10,6 +10,7 @@ import Entities.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,7 @@ public class loard extends HttpServlet {
                     for (Object resualt : Searchdata) {
                         Country c = (Country) resualt;
                         if (c.isState() == state) {
-                            out.write("<option>" + c.getCountryName() + "</option>");
+                            out.write("<option value='"+c.getIdCountry()+"'>" + c.getCountryName() + "</option>");
                         }
                     }
                 } catch (Exception e) {
@@ -46,20 +47,21 @@ public class loard extends HttpServlet {
             } else if ("Province".equals(type)) {
                 System.out.println(type);
                 try {
-                    ArrayList<Object> Searchdata = DataParser.Searchdata(new Province());
+                    Country Searchdata = (Country) DataParser.getuniqeresault(new Country(),Integer.parseInt(request.getParameter("country")));
 
                     boolean b = true;
-                    for (Object resualt : Searchdata) {
+                    Set<Province> provinces = Searchdata.getProvinces();
+                    for (Province p : provinces) {
 
-                        Province p = (Province) resualt;
+                      
 
                         if (p.isState() == state) {
-                            if ((p.isState()==state)&(p.getCountry().getCountryName().equals(request.getParameter("country")))) {
+                            if (p.isState()==state) {
                                 if (b) {
                                     out.write("<option>Select Province</option>");
                                     b = false;
                                 }
-                                out.write("<option>" + p.getProvinceName() + "</option>");
+                                out.write("<option value='"+p.getIdprovince()+"'>" + p.getProvinceName() + "</option>");
                             }
                         }
                     }
@@ -69,20 +71,18 @@ public class loard extends HttpServlet {
             } else if ("district".equals(type)) {
                 System.out.println(type);
                 try {
-                    ArrayList<Object> Searchdata = DataParser.Searchdata(new Discrict());
+                    Province Searchdata = (Province) DataParser.getuniqeresault(new Province(),Integer.parseInt(request.getParameter("province")));
    boolean b = true;
-                   
-                    for (Object resualt : Searchdata) {
-
-                        Discrict d = (Discrict) resualt;
+                    Set<Discrict> discricts = Searchdata.getDiscricts();
+                    for (Discrict d : discricts) {
 
                         if (d.isState() == state) {
-                            if ((d.getProvince().getCountry().isState()==state)&(d.getProvince().getCountry().getCountryName().equals(request.getParameter("country")))) {
-                                if ((d.isState()==state)&(d.getProvince().getProvinceName().equals(request.getParameter("province")))) {
+                            if ((d.getProvince().getCountry().isState()==state)&(d.getProvince().isState()==state)) {
+                                if ((d.isState()==state)) {
                                     if(b){ out.write("<option>Select District</option>");
                                     b=false;
                                     }
-                                    out.write("<option>" + d.getDiscrictName() + "</option>");
+                                    out.write("<option value='"+d.getIdDiscrict()+"'>" + d.getDiscrictName() + "</option>");
                                 }
                             }
                         }
@@ -94,18 +94,18 @@ public class loard extends HttpServlet {
             } else if ("city".equals(type)) {
                 System.out.println(type);
                 try {
-                    ArrayList<Object> Searchdata = DataParser.Searchdata(new City());
+                   Discrict Searchdata =  (Discrict) DataParser.getuniqeresault(new Discrict(),Integer.parseInt(request.getParameter("district")));
    boolean b = true;
-                  
+                    Set<City> cities = Searchdata.getCities();
 
-                    for (Object resualt : Searchdata) {
+                    for (City d : cities) {
 
-                        City d = (City) resualt;
+                      
                         System.out.println(d.getCityName());
                         if (d.isState() == state) {
-                            if ((d.getDiscrict().getProvince().getCountry().isState()==state)&(d.getDiscrict().getProvince().getCountry().getCountryName().equals(request.getParameter("country")))) {
-                                if ((d.getDiscrict().getProvince().isState()==state)&(d.getDiscrict().getProvince().getProvinceName().equals(request.getParameter("province")))) {
-                                    if ((d.getDiscrict().isState()==state)&(d.getDiscrict().getDiscrictName().equals(request.getParameter("district")))) {
+                            if ((d.getDiscrict().getProvince().getCountry().isState()==state)) {
+                                if ((d.getDiscrict().getProvince().isState()==state)) {
+                                    if ((d.getDiscrict().isState()==state)) {
                                         if(b){
                                           out.write("<option>Select City</option>");
                                           b=false;

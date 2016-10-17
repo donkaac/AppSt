@@ -4,6 +4,9 @@
     Author     : Ish
 --%>
 
+<%@page import="Entities.Roles"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Entities.Gender"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +14,7 @@
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Metronic | Admin Dashboard Template</title>
+            <title>Save Staff</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -44,7 +47,7 @@
             <script type="text/javascript" src="../ajaxjs/addressdetails.js"></script>
             <script type="text/javascript" src="../validation/registrationvalidation.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
-            
+
         </head>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" onload="loardcountry()">
@@ -67,8 +70,8 @@
                         <ul class="nav navbar-nav pull-right">
                             <!-- BEGIN NOTIFICATION DROPDOWN -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                          
-                            
+
+
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
@@ -290,9 +293,9 @@
                                     <span>Dashboard</span>
                                 </li>
                             </ul>
-                             
+
                         </div>
-                        
+
                         <div class="row">
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
@@ -302,7 +305,7 @@
                                         <span class="caption-subject font-green sbold uppercase">Register New Staff Members</span>
                                     </div>
                                     <div class="actions">
-                                       
+
                                     </div>
                                 </div>
                                 <div class="portlet-body">
@@ -325,8 +328,8 @@
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                            
-                                            
+
+
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Last Name</label>
                                                 <div class="col-md-9">
@@ -335,7 +338,7 @@
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                         
+
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Input Group</label>
                                                 <div class="col-md-9">
@@ -348,8 +351,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                             <div class="form-group form-md-line-input">
+
+                                            <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Password</label>
                                                 <div class="col-md-9">
                                                     <input type="password" name="pass1" id="pass1" class="form-control" placeholder="">
@@ -365,33 +368,50 @@
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                            
-                                            
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label" for="form_control_1">Role</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" name="role">
+                                                        <%
+                                                            ArrayList<Object> roleoblist = Datacontroller.DataParser.Searchdata(new Roles());
+                                                            for (Object roleob : roleoblist) {
+                                                                Roles role = (Roles) roleob;
+
+
+                                                        %>
+                                                        <option value="<%=role.getIdroles()%>"><%= role.getRoles()%></option>
+                                                        <%}%>
+                                                    </select>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">Some help goes here...</span>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Country</label>
                                                 <div class="col-md-9">
                                                     <select class="form-control" id="Countrylist" onchange="loardProvince()" name="Countrylist">
-                                                         
+
                                                     </select>
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                             <div class="form-group form-md-line-input">
-                                                 <label class="col-md-3 control-label"   for="form_control_1">Province</label>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label"   for="form_control_1">Province</label>
                                                 <div class="col-md-9">
                                                     <select class="form-control" id="provincelist" onchange="loardDistrict()" name="provincelist">
-                                                        
+
                                                     </select>
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                             <div class="form-group form-md-line-input">
-                                                 <label class="col-md-3 control-label"   for="form_control_1">District</label>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-3 control-label"   for="form_control_1">District</label>
                                                 <div class="col-md-9">
                                                     <select class="form-control" id="districtlist" onchange="loardCity()" name="districtlist">
-                                                        
+
                                                     </select>
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
@@ -401,13 +421,13 @@
                                                 <label class="col-md-3 control-label"  for="form_control_1">City</label>
                                                 <div class="col-md-9">
                                                     <select class="form-control" id="citylist" name="citylist">
-                                                        
+
                                                     </select>
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                               <div class="form-group form-md-line-input">
+                                            <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Address</label>
                                                 <div class="col-md-9">
                                                     <input type="text" name="address" id="address" class="form-control" placeholder="">
@@ -415,27 +435,26 @@
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                            
-                                            
-                                            <div class="form-group form-md-radios  ">
+
+
+                                            <div class="form-group form-md-line-input  ">
                                                 <label class="col-md-3 control-label" for="form_control_1">Select Gender</label>
                                                 <div class="col-md-9">
-                                                    <div class="md-radio-inline">
-                                                        <div class="md-radio">
-                                                            <input type="radio" id="checkbox1_8" checked="" name="gender" value="male" class="md-radiobtn">
-                                                            <label for="checkbox1_8">
-                                                                <span class="inc"></span>
-                                                                <span class="check"></span>
-                                                                <span class="box"></span> Male</label>
-                                                        </div>
-                                                        <div class="md-radio">
-                                                            <input type="radio" id="checkbox1_9" name="gender" value="female" class="md-radiobtn">
-                                                            <label for="checkbox1_9">
-                                                                <span class="inc"></span>
-                                                                <span class="check"></span>
-                                                                <span class="box"></span> Female </label>
-                                                        </div>
-                                                    </div>
+
+
+                                                    <select name="gender"  class="form-control">
+                                                        <%
+                                                            ArrayList<Object> serch = Datacontroller.DataParser.Searchdata(new Gender());
+                                                            for (Object ob : serch) {
+                                                                Gender gen = (Gender) ob;
+
+                                                        %>
+                                                        <option value="<%=gen.getIdgender()%>"><%=gen.getGender()%></option>
+                                                        <%}%>
+                                                    </select>
+
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -448,17 +467,17 @@
                                             </div>
                                         </div>
                                         <div class="alert alert-danger display-hide">
-                                <button class="close" data-close="alert"></button>
-                                <span>Enter any username and password. </span>
-                            </div>                            
-                            <div class="alert alert-warning display-hide">
-                                <button class="close" data-close="alert"></button>
-                                <span class="allert-message">Invalid username or password. </span>
-                            </div>                            
-                            <div class="alert alert-success display-hide">
-                                <button class="close" data-close="alert"></button>
-                                <span>Successfully Login</span>
-                            </div>
+                                            <button class="close" data-close="alert"></button>
+                                            <span>Enter any username and password. </span>
+                                        </div>                            
+                                        <div class="alert alert-warning display-hide">
+                                            <button class="close" data-close="alert"></button>
+                                            <span class="allert-message">Invalid username or password. </span>
+                                        </div>                            
+                                        <div class="alert alert-success display-hide">
+                                            <button class="close" data-close="alert"></button>
+                                            <span>Successfully Login</span>
+                                        </div>
                                     </form>
                                     <!-- END FORM-->
                                 </div>

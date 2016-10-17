@@ -171,7 +171,7 @@ function deactiveCatogory(categoryid,state) {
             
             if(ResponseText==="true"){
                 location.reload();
-            }
+            } location.reload();
         }
     };
     Object.open("POST","../deactivecategory",true);
@@ -199,7 +199,7 @@ function deactiveApptypes(typeid,state) {
             
             if(ResponseText==="true"){
                 location.reload();
-            }
+            } location.reload();
         }
     };
     Object.open("POST","../deactivecategory",true);
@@ -227,7 +227,7 @@ function deactiveplatform(platformid,state) {
             if(ResponseText==="true"){
                 location.reload();
             }
-            
+             location.reload();
         }
     };
         
@@ -295,3 +295,117 @@ function loardAppplatcategory() {
 }
 
  
+function Platformsetselectedtoupdate(){
+    
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    document.getElementById("SelectedPlatform").value="";
+                    loardAppplatform();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        if(document.getElementById("SelectedPlatform").value===""){
+            alert("Platform Name Is Null!");
+        }else{
+        Object.open("POST", "../categoryupdatebyid", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");        
+        Object.send("id=" +document.getElementById("Appplatformlist").value + "&text=" + document.getElementById("SelectedPlatform").value + "&type=platform");
+        }
+}}
+
+ 
+function Typesetselectedtoupdate(){
+    
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    document.getElementById("SelectedType").value="";
+                    loardApptype();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        if(document.getElementById("SelectedType").value===""){
+            alert("Platform Name Is Null!");
+        }else{
+        Object.open("POST", "../categoryupdatebyid", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");        
+        Object.send("id=" +document.getElementById("apptypelist").value + "&text=" + document.getElementById("SelectedType").value + "&type=type");
+        }
+}}
+
+function Categorysetselectedtoupdate(){
+    
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+              if (ResponseText === "true") {
+                    alert("Success!");
+                    document.getElementById("SelectedCategory").value="";
+                    loardAppplatcategory();
+                }else{
+                    alert(ResponseText);
+                }
+                
+                 
+            }
+        };
+        if(document.getElementById("SelectedCategory").value===""){
+            alert("Platform Name Is Null!");
+        }else{
+        Object.open("POST", "../categoryupdatebyid", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");        
+        Object.send("id=" +document.getElementById("appcategorylist").value + "&text=" + document.getElementById("SelectedCategory").value + "&type=category");
+        }
+}}

@@ -280,7 +280,11 @@
 
                             <div class="form-inline panel-info">
                                 <input type="text" id="NewAppplatform" class="form-control right" placeholder="New App platform">
-                                <input type="submit" onclick="SaveAppplatform()" value="Save New App platform "  class="form-control left" placeholder="Add">
+                                <input type="button" onclick="SaveAppplatform()" value="Save New App platform "  class="form-control left" placeholder="Add">
+                             <span style="width: 50px"></span>
+                                <input type="text" id="SelectedPlatform" class="form-control right" placeholder="">
+                                <input type="button" onclick="Platformsetselectedtoupdate()" value="Update  Platform Name "  class="form-control left btn-default"/>
+                            
                             </div>
 
                             <label>Selects App platform</label>
@@ -290,7 +294,7 @@
                                 </select>
 
                                 <input type="submit" onclick="deactiveplatform(document.getElementById('Appplatformlist').value, false)" value="Deactive AppPlatform "  class="form-control right">
-
+                                
                             </span>  
                         </div>
 
@@ -299,7 +303,11 @@
                             <form role="">
                                 <div class="form-inline panel-info">
                                     <input id="newapptype" type="text" class="form-control left" placeholder="New Apptype">
-                                    <input onclick="saveAptype()" type="submit" value="Save New App Type"  class="form-control right" placeholder="Add">
+                                    <input onclick="saveAptype()" type="button" value="Save New App Type"  class="form-control right" placeholder="Add">
+                                   <span style="width: 50px"></span>
+                                <input type="text" id="SelectedType" class="form-control right" placeholder="">
+                                <input type="button" onclick="Typesetselectedtoupdate()" value="Update  Type Name "  class="form-control left btn-default"/>
+                            
                                 </div>
                             </form>
                             <label>Selects app Type </label>
@@ -315,7 +323,11 @@
                             <form role="search">
                                 <div class="form-inline panel-info">
                                     <input type="text" id="newcategory" class="form-control left" placeholder="New Categoty">
-                                    <input type="submit" value=" Save New app Category   " onclick="saveAppplatcategory()" class="form-control right" placeholder="Add">
+                                    <input type="button" value=" Save New app Category   " onclick="saveAppplatcategory()" class="form-control right" placeholder="Add">
+                                   <span style="width: 50px"></span>
+                                <input type="text" id="SelectedCategory" class="form-control right" placeholder="">
+                                <input type="button" onclick="Categorysetselectedtoupdate()" value="Update  Category Name "  class="form-control left btn-default"/>
+                            
                                 </div>
                             </form>
                             <label>Selects App Category</label>

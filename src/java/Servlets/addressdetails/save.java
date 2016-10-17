@@ -10,6 +10,7 @@ import Entities.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,20 +47,19 @@ public class save extends HttpServlet {
 
                 }
             } else if (type.equals("Province")) {
+                   if (!(request.getParameter("country")==null)) {
                 String provincename = request.getParameter("province");
-                String countryname = request.getParameter("country");
-                ArrayList<Object> Searchdata = DataParser.Searchdata(new Country());
-                if (!Searchdata.isEmpty()) {
+                int countryid = Integer.parseInt(request.getParameter("country"));
+                Country c = (Country) DataParser.getuniqeresault(new Country(),countryid);
+             
                     boolean b = true;
-                    for (Object o : Searchdata) {
-                        Country c = (Country) o;
-
-                        if ((c.getCountryName().equals(countryname)) & (c.isState())) {
+                    
+                        
                             System.out.println(c.getCountryName());
                             Object[] toArray = c.getProvinces().toArray();
                             for (Object object : toArray) {
                                 Province p = (Province) object;
-                                if (p.getProvinceName().equals(provincename)) {
+                                if ((p.getProvinceName().equals(provincename))&(p.getCountry().getIdCountry()==countryid)) {
                                     b = false;
                                 }
                             }
@@ -72,81 +72,63 @@ public class save extends HttpServlet {
                             } else {
                                 out.write("Allredy Exist!");
                             }
-                        }
-                    }
+                        
+                    
 
                 } else {
                     System.out.println("country null");
                 }
 
             } else if (type.equals("District")) {
-                String provincename = request.getParameter("province");
-                String countryname = request.getParameter("country");
+                  if (!(request.getParameter("province").equals(null))) {
+                int provinceid =Integer.parseInt(request.getParameter("province"));
+                int countryid = Integer.parseInt(request.getParameter("country"));
                 String newdistrictname = request.getParameter("newdistrict");
-                ArrayList<Object> Searchdata = DataParser.Searchdata(new Country());
-                if (!Searchdata.isEmpty()) {
+                Province provi = (Province) DataParser.getuniqeresault(new Province(),provinceid);
+              
+                      Set<Discrict> discricts = provi.getDiscricts();
                     boolean b = true;
-                    for (Object o : Searchdata) {
-                        Country c = (Country) o;
-
-                        if ((c.getCountryName().equals(countryname)) & (c.isState())) {
-                            System.out.println(c.getCountryName());
-                            Object[] provincelist = c.getProvinces().toArray();
-                            for (Object object : provincelist) {
-                                Province p = (Province) object;
-                                if (p.getProvinceName().equals(provincename)) {
-                                    Object[] distrcitlist = p.getDiscricts().toArray();
-                                    for (Object oo : distrcitlist) {
-                                        Discrict d = (Discrict) oo;
-                                        if (d.getDiscrictName().equals(newdistrictname)) {
+                    for (Discrict d : discricts) {
+                                        if ((d.getDiscrictName().equals(newdistrictname))&(d.getProvince().getIdprovince()==provinceid)&(d.getProvince().getCountry().getIdCountry()==countryid)) {
                                             b = false;
+                                            System.out.println("save district if fail");
                                         }
                                     }
+                 
                                     if (b) {
                                         Discrict district = new Discrict();
                                         district.setDiscrictName(newdistrictname);
                                         district.setState(true);
-                                        district.setProvince(p);
-                                        DataParser.Savedata(district);
+                                        district.setProvince(provi);
+                    boolean Savedata = DataParser.Savedata(district);
+                    out.write(""+Savedata);
                                     } else {
                                         out.write("Allredy Exist!");
                                     }
-                                }
-                            }
+                                
+                            
 
-                        }
-                    }
+                        
+                    
 
                 } else {
                     System.out.println("country null");
                 }
 
             } else if (type.equals("City")) {
-                String provincename = request.getParameter("province");
-                String countryname = request.getParameter("country");
-                String districtname = request.getParameter("district");
+                    if (!request.getParameter("district").equals(null)) {
+                int provinceid = Integer.parseInt(request.getParameter("province"));
+                int countryid = Integer.parseInt(request.getParameter("country"));
+                int districtid = Integer.parseInt(request.getParameter("district"));
                 String newcityname = request.getParameter("newcity");
-                ArrayList<Object> Searchdata = DataParser.Searchdata(new Country());
-                if (!Searchdata.isEmpty()) {
+               Discrict discrict = (Discrict) DataParser.getuniqeresault(new Discrict(),districtid);
+            
                     boolean b = true;
-                    for (Object o : Searchdata) {
-                        Country c = (Country) o;
-
-                        if ((c.getCountryName().equals(countryname)) & (c.isState()==state)) {
-                            System.out.println(c.getCountryName());
-                            Object[] provincelist = c.getProvinces().toArray();
-                            for (Object object : provincelist) {
-                                Province p = (Province) object;
-                                if ((p.getProvinceName().equals(provincename))&(p.isState()==state)) {
-                                    Object[] distrcitlist = p.getDiscricts().toArray();
-                                    for (Object oo : distrcitlist) {
-                                        Discrict d = (Discrict) oo;
-                                        if ((d.getDiscrictName().equals(districtname))&(d.isState()==state)) {
-                                            Object[] citylist = d.getCities().toArray();
-                                            for (Object ooo : citylist) {
-                                                City ct = (City) ooo;
+                        Set<City> cities = discrict.getCities();
+                                            for (City ct : cities) {
+                                                
                                                 System.out.println(ct.getCityName());
-                                                if (ct.getCityName().equals(newcityname)) {
+                                                if ((ct.getCityName().equals(newcityname)&(ct.getDiscrict().getIdDiscrict()==districtid)&(ct.getDiscrict().getProvince().getIdprovince()==provinceid)&(ct.getDiscrict().getProvince().getCountry().getIdCountry()==countryid))) {
                                                     b = false;
                                                 }
                                             }
@@ -154,20 +136,17 @@ public class save extends HttpServlet {
                                             City City = new City();
                                             City.setCityName(newcityname);
                                             City.setState(true);
-                                            City.setDiscrict(d);
+                                            City.setDiscrict(discrict);
                                             DataParser.Savedata(City);
                                         } else {
                                             out.write("Allredy Exist!");
                                         }    
-                                        }
-                                       
-                                    }
+                                        
+                                   
+                         
 
-                                }
-                            }
-
-                        }
-                    }
+                        
+                     
 
                 } else {
                     System.out.println("country null");
@@ -178,7 +157,8 @@ public class save extends HttpServlet {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
+            
         }
     }
     }
