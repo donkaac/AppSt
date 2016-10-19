@@ -41,7 +41,7 @@ var Login = function () {
                 Pace.track(function () {
                     $.ajax({
                         type: 'POST',
-                        url: '/developerlogin',
+                        url: '../developerlogin',
                         data: data,
                         beforeSend: function ()
                         {
@@ -50,7 +50,7 @@ var Login = function () {
                             $("#btn-login").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; sending ...');
                         },
                         success: function (response)
-                        {
+                        { 
                             alert(response);
                             if (response == "ok") {
                                 $("#btn-login").html('<img src="css/btn-ajax-loader.gif" /> &nbsp; Signing In ...');
@@ -65,7 +65,7 @@ var Login = function () {
                         }
                     });
                 });
-
+                
                 
                 e.submit();
             }}), $(".login-form input").keypress(function (e) {

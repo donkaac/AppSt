@@ -1,6 +1,6 @@
 <%-- 
-    Document   : staffloginhistory
-    Created on : Oct 5, 2016, 8:18:23 PM
+    Document   : privilagesManagment
+    Created on : Oct 18, 2016, 9:44:14 PM
     Author     : Ish
 --%>
  
@@ -14,7 +14,7 @@
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Staff Login History</title>
+            <title>Privielages Maintains</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -647,7 +647,7 @@
                                             <td><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></td>
                                             <td><%=c.getCity().getDiscrict().getDiscrictName()%></td>
                                             <td><%=c.getCity().getCityName()%></td>
-                                            
+                                            <td><form action="../deactiveoractive" method="POST"><input type="hidden" name="cusid" value="<%=c.getIdCustomer()%>"/><input type="hidden" name="statevaluve" value="Deactive" /><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-eject"> Disable Customer </span></button></a></form></td>
                                         </tr>
                                         <%}
                                         }%>
@@ -655,7 +655,51 @@
                                 </table>
                             </div>
 
-                             
+                            <h2>Disabled Customers</h2>
+                            <p>Customer List</p>
+                            <div class="scrollit" style="width: 1000px">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First name</th>
+                                            <th>Middle name</th>
+                                            <th>Last name</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Country</th>
+                                            <th>Province</th>
+                                            <th>District</th>
+                                            <th>City</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+
+                                            for (Object cob : cuslist) {
+                                                Customer c = (Customer) cob;
+                                                if (c.isState() == false) {
+
+
+                                        %>
+                                        <tr>
+                                            <td><%=c.getIdCustomer()%></td>
+                                            <td><%=c.getCustomerFname()%></td>
+                                            <td><%=c.getCustomerMname()%></td>
+                                            <td><%=c.getCustomerLname()%></td>
+                                            <td><%=c.getUsername()%></td>
+                                            <td><%=c.getGender().getGender()%></td>
+                                            <td><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
+                                            <td><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></td>
+                                            <td><%=c.getCity().getDiscrict().getDiscrictName()%></td>
+                                            <td><%=c.getCity().getCityName()%></td>
+                                            <td><form action="../deactiveoractive" method="POST"><input type="hidden" name="cusid" value="<%=c.getIdCustomer()%>"/><input type="hidden" name="statevaluve" value="Active" /><a class="btn-default" ><button type="submit"><span class="glyphicon glyphicon-ok"> Enable Customer </span></button></a></form></td>
+                                        </tr>
+                                        <%}
+                                        }%>
+                                    </tbody>
+                                </table>
+                            </div>     
                         </div>
 
 

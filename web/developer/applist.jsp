@@ -1,8 +1,9 @@
 <%-- 
-    Document   : dashboard
-    Created on : Oct 3, 2016, 8:58:34 PM
+    Document   : applist
+    Created on : Oct 19, 2016, 9:17:49 AM
     Author     : Ish
 --%>
+ 
 
 <%@page import="Entities.Developer"%>
 <%@page import="java.util.List"%>
@@ -23,7 +24,7 @@
         <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Developer Dashboard</title>
+            <title>App LIST</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -54,30 +55,13 @@
             <!-- END THEME STYLES -->
             <!-- AJAX FILE -->
             <script type="text/javascript" src="../ajaxjs/category.js"></script>
-            <script type="text/javascript" src="../ajaxjs/developerapploard.js"></script>
+            <script type="text/javascript" src="../ajaxjs/loardapplication.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
-   <%
-            String appid = "";
-            try {
-                if (!request.getParameter("appid").equals(null)) {
-                    appid = request.getParameter("appid");
-                }
-            } catch (Exception e) {
 
-            }
-        %>
         </head>
         <!-- END HEAD -->
-        <body onload="loardsingleapplication()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
- <input type="hidden" name="appid" id="appid" value="<%=appid%>"/>
-            <script type="text/javascript">
-                function loardapp() {
-                    if (!document.getElementById("appid").value == "") {
-                        alert(document.getElementById("appid").value);
-                        loardappbyid(document.getElementById("appid").value);
-                    }
-                }
-            </script>
+        <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+
             <%
                 String username = "Guest";
                 boolean loging = false;
@@ -149,12 +133,6 @@
                                         <a href="applist.jsp">
                                             <i class="glyphicon glyphicon-list"></i> App List
                                             <span class="badge badge-danger"> <%=appqty%> </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="commentsbox.jsp">
-                                            <i class="glyphicon glyphicon-comment"></i> Comment Box
-                                            
                                         </a>
                                     </li>
                                     <li> 
@@ -266,7 +244,7 @@
                                                     <%
                                                         Set<Application> applications = category.getApplications();
                                                         for (Application appl : applications) {
-                                                            if (appl.isState() ) {
+                                                            if (appl.getDeveloper().getIdDeveloper()==c.getIdDeveloper()) {
 
 
                                                     %>
@@ -408,18 +386,79 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Application</h1>
+                                <h1 class="page-header">Application List</h1>
+                                 <style type="text/css">
+                            .table-fixed thead {
+                                width: 97%;
+                            }
+                            .table-fixed tbody {
+                                height: 230px;
+                                overflow-y: auto;
+                                width: 100%;
+                            }
+                            .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+                                display: block;
+                            }
+                            .table-fixed tbody td, .table-fixed thead > tr> th {
+                                float: left;
+                                border-bottom-width: 0;
+                            }.scrollit {
+                                overflow:scroll;
+                                height:400px;
+                            }
+                        </style>
+ 
 
+
+                        <div class="container">
+                           
+                            <div class="scrollit" style="width: 1000px">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>App name</th>
+                                            <th>Icon</th>
+                                            <th>Category</th>
+                                            <th>Type</th>
+                                            <th>Platform</th>
+                                            <th>Selling Qty</th>
+                                            <th>Price</th>
+                                            <th> Total Earn</th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                           try{
+                                            Developer dl=(Developer)DataParser.getuniqeresault(new Developer(), 6);
+                                           Set<Application> l= dl.getApplications();
+                                            for (Application cob :l ) {
+                                          
+                                        %>
+                                        <tr>
+                                            <td><%=cob.getIdApplication()%></td>
+                                            <td><%=cob.getApplicationName()%></td>
+                                            <td><img width="20px" height="20px" src="../<%=cob.getAppImage()%>"/></td>
+                                            <td><%=cob.getCategory().getCategory()%></td>
+                                            <td><%=cob.getCategory().getApptype().getApptype()%></td>
+                                            <td><%=cob.getCategory().getApptype().getAppplatform().getAppplatform()%></td>
+                                            <td><%=cob.getCustomerhasapplications().size()%></td>
+                                            <td><%=cob.getPrice()%></td>
+                                            <td><%=cob.getPrice()*cob.getCustomerhasapplications().size()%></td>
+                                            <td><a class="btn-default"><button type="button" class="form-control btn-default" onclick="loardcomments(<%=cob.getIdApplication()%>)"><span class="glyphicon glyphicon-eject"> View Comments </span></button></a></td>
+                                        </tr>
+                                        <% 
+                                        }}catch(Exception e){e.printStackTrace();}%>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="alert alert-success display-hide">
-                                <button class="close" data-close="alert"></button>
-                                <span id="msgwindow"></span>
-                            </div>
+
+                                
                         </div>
-                  
-                             <%-- Main--%>
-                        <div class="page-container" id="applicationArea">
+                         
                         </div>
+                        <%-- Main--%>
                     </div>
                 </div>   
                 <div class="clearfix"></div>

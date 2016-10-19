@@ -310,7 +310,7 @@
                                 </div>
                                 <div class="portlet-body">
                                     <!-- BEGIN FORM-->
-                                    <form action="../savestaff"  method="POST"  class="form-horizontal">
+                                    <form action="javascript:;"  method="POST"  class="form-horizontal">
                                         <div class="form-body">
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">First Name</label>
@@ -461,7 +461,7 @@
                                         <div class="form-actions">
                                             <div class="row">
                                                 <div class="col-md-offset-3 col-md-9">
-                                                    <input type="submit"  class="btn green"/>
+                                                    <input onclick="javascript:;" type="submit"  class="btn green"/>
                                                     <a href="" class="btn default">Cancel</a>
                                                 </div>
                                             </div>
@@ -561,6 +561,7 @@
         <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../validation/staffRegValidation.js"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>
 

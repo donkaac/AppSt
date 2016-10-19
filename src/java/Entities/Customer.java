@@ -1,5 +1,5 @@
 package Entities;
-// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
+// Generated Oct 19, 2016 3:46:26 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -44,7 +44,6 @@ public class Customer  implements java.io.Serializable {
         this.username = username;
         this.state = state;
         this.address = address;
-        
     }
     public Customer(City city, Emailvarified emailvarified, Gender gender, String customerFname, String customerMname, String customerLname, Date customerRegDateAndTime, String password, String username, boolean state, String address, String customerImage, Set<Coustomercokiesid> coustomercokiesids, Set<Wishlist> wishlists, Set<Cart> carts, Set<Comment> comments, Set<Customerhasapplication> customerhasapplications) {
        this.city = city;
@@ -59,7 +58,6 @@ public class Customer  implements java.io.Serializable {
        this.state = state;
        this.address = address;
        this.customerImage = customerImage;
-       
        this.coustomercokiesids = coustomercokiesids;
        this.wishlists = wishlists;
        this.carts = carts;

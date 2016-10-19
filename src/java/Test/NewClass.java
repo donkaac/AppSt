@@ -7,14 +7,7 @@ package Test;
 
 import Datacontroller.DataParser;
 import Entities.Application;
-import Entities.Appplatform;
-import Entities.Apptype;
-import Entities.Category;
-import Entities.Comment;
-import Entities.Commenthasreply;
-import Entities.Country;
-import com.sun.tools.jxc.ApBasedTask;
-import java.util.ArrayList;
+import Entities.Developer;
 import java.util.Set;
 
 /**
@@ -28,16 +21,13 @@ public class NewClass {
         String base64decode = Datacontroller.EncryptUtils.base64encode("hhjk");
         System.out.println(base64decode);
         try {
-            
-        Application uniqeresault = (Application) DataParser.getuniqeresault(new Application(), 8);
-        Set<Comment> comments = uniqeresault.getComments();
-        for (Comment comment : comments) {
-             System.out.println("Comment : "+comment.getComment());
-            Set<Commenthasreply> commenthasreplies = comment.getCommenthasreplies();
-            for (Commenthasreply commenthasreply : commenthasreplies) {
-                System.out.println("Reply : "+commenthasreply.getReplyComment());
+          
+             
+            Developer uniqeresault = (Developer) DataParser.getuniqeresault(new Developer(), 6);
+            Set<Application> applications = uniqeresault.getApplications();
+            for (Application application : applications) {
+                System.out.println(""+application.getApplicationName());
             }
-        }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -136,6 +136,22 @@
         <servlet-name>developerValidAciveOrDeactive</servlet-name>
         <servlet-class>Servlets.developerValidAciveOrDeactive</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addappvalidation</servlet-name>
+        <servlet-class>Servlets.addappvalidation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deactiveoractiveAppValidations</servlet-name>
+        <servlet-class>Servlets.deactiveoractiveAppValidations</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AppValidSearchForAddDeveloperID</servlet-name>
+        <servlet-class>Servlets.AppValidSearchForAddDeveloperID</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loardcomment</servlet-name>
+        <servlet-class>Servlets.loardcomment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -271,6 +287,22 @@
     <servlet-mapping>
         <servlet-name>developerValidAciveOrDeactive</servlet-name>
         <url-pattern>/developerValidAciveOrDeactive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addappvalidation</servlet-name>
+        <url-pattern>/addappvalidation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deactiveoractiveAppValidations</servlet-name>
+        <url-pattern>/deactiveoractiveAppValidations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AppValidSearchForAddDeveloperID</servlet-name>
+        <url-pattern>/AppValidSearchForAddDeveloperID</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loardcomment</servlet-name>
+        <url-pattern>/loardcomment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

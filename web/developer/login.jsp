@@ -140,10 +140,7 @@
                     </ul>
                 </div>
                 <div class="forget-password">
-                    <div class="alert alert-success display-hide">
-                    <button class="close" data-close="alert"></button>
-                    <span>Successfully Login In.</span>
-                </div>
+                    
                     <h4>Forgot your password ?</h4>
                     <p> no worries, click
                         <a href="javascript:;" id="forget-password"> here </a> to reset your password. </p>

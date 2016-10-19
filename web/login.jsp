@@ -286,11 +286,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="tnc" /> I agree to the
-                        <a href="javascript:;"> Terms of Service </a> and
-                        <a href="javascript:;"> Privacy Policy </a>
-                    </label>
+                    
                     <div id="register_tnc_error"> </div>
                 </div>
                 <div class="form-actions">

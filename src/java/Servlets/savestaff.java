@@ -35,7 +35,7 @@ public class savestaff extends HttpServlet {
                 staff.setUsername(request.getParameter("email"));
                 staff.setStaffPassword(Datacontroller.EncryptUtils.base64encode(request.getParameter("pass1")));
 
-                int cityid = Integer.parseInt(request.getParameter("citylist"));
+                int cityid = Integer.parseInt(request.getParameter("city"));
                 City city = (City) DataParser.getuniqeresault(new City(), cityid);
                 Gender gender = (Gender) DataParser.getuniqeresault(new Gender(), Integer.parseInt(request.getParameter("gender")));
                 Roles role = (Roles) DataParser.getuniqeresault(new Roles(), Integer.parseInt(request.getParameter("role")));

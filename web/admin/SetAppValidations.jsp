@@ -4,6 +4,7 @@
     Author     : Ish
 --%>
 
+<%@page import="Entities.Apphasstaffvalid"%>
 <%@page import="Entities.Application"%>
 <%@page import="Entities.Developervalid"%>
 <%@page import="Entities.Developer"%>
@@ -37,7 +38,7 @@
             <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
             <!-- END PAGE LEVEL PLUGIN STYLES -->
             <!-- BEGIN PAGE STYLES -->
-         
+
             <!-- END PAGE STYLES -->
             <!-- BEGIN THEME STYLES -->
             <link href="../assets/global/css/components.css" rel="stylesheet" type="text/css"/>
@@ -582,6 +583,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="page-header">App Validation Details </h1>
+                                <br>
+                                <h3>Search By Developer ID:<form method="POST" action="../AppValidSearchForAddDeveloperID"><input type="number" name="developerid" placeholder="Enter Developer ID"> <input type="submit" value="Search"></form></h3>
                             </div>
                         </div>
                         <%-- Main--%> 
@@ -632,36 +635,39 @@
                                     </thead>
                                     <tbody>
                                         <%
-                                            ArrayList<Object> applist = Datacontroller.DataParser.Searchdata(new Application());
+                                            ArrayList<Object> applist =null; 
+                                            
+                                           applist= Datacontroller.DataParser.Searchdata(new Application());
+                                            
                                             for (Object cob : applist) {
                                                 Application c = (Application) cob;
-                                                if (c.isState()&(c.getApphasstaffvalids().size()==0)) {
-                                     
+                                                if (c.isState() & (c.getApphasstaffvalids().size() == 0)) {
+
                                         %>
                                         <tr>
                                             <td><%=c.getIdApplication()%></td>
                                             <td><%=c.getApplicationName()%></td>
                                             <td><%=c.getApplicationLuanchDate()%></td>
                                             <td><%=c.getDeveloper().getIdDeveloper()%></td>
-                                            <td><%=c.getDeveloper().getDeveloperFname()+" "+c.getDeveloper().getDeveloperLname()%></td>
+                                            <td><%=c.getDeveloper().getDeveloperFname() + " " + c.getDeveloper().getDeveloperLname()%></td>
                                             <td><%=c.getPrice()%></td>
                                             <td><%=c.getCategory().getApptype().getAppplatform().getAppplatform()%></td>
                                             <td><%=c.getCategory().getApptype().getApptype()%></td>
                                             <td><%=c.getCategory().getCategory()%></td>
-                                            
-                                            <form action="../setdevelopervalid" method="POST">
-                                           
-                                            <td><input type="hidden" name="developerid" value="<%=c.getIdApplication()%>"/><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-chevron-down">Set Valid Developer </span></button></a></td></form>
-                                        </tr>
-                                        <%}
-                                        }%>
+
+                                    <form action="../addappvalidation" method="POST">
+
+                                        <td><input type="hidden" name="appid" value="<%=c.getIdApplication()%>"/><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-chevron-down">Set Valid App </span></button></a></td></form>
+                                    </tr>
+                                    <%}
+                                            }%>
                                     </tbody>
                                 </table>
                             </div>
 
-                           
+
                         </div>
-             <div class="container">
+                        <div class="container">
                             <h2>Active Developers Validations</h2>
                             <p>Developer List</p>
                             <div class="scrollit">
@@ -669,62 +675,49 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>First name</th>
-                                          
-                                            <th>Last name</th>
-                                            <th>Email</th>
-                                     
-                                            <th>Country</th>
-                                            <th>Province</th>
-                                            <th>District</th>
-                                            <th>City</th>
-                                            <th>Credit Cart No</th>
-                                            <th>Mobile</th>
-                                    
-                                            <th>Reg Date</th>
-                                            <th>Staff ID</th>
-                                            <th>Staff Member                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </th>
+                                            <th>App name</th>
+                                            <th>App Lunch Date</th>
+                                            <th>Developer ID</th>
+                                            <th>Developer Name</th>
+                                            <th>Price</th>
+                                            <th>Platform</th>
+                                            <th>Type</th>
+                                            <th>Category</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%
-                                            ArrayList<Object> dlist = Datacontroller.DataParser.Searchdata(new Developervalid());
-                                            for (Object cob : dlist) {
-                                                Developervalid c = (Developervalid) cob;
-                                                if (c.isDeveloperValidState()&(c.getDeveloper().isState())) {
-                                   
+                                           ArrayList<Object> appvalidlist= Datacontroller.DataParser.Searchdata(new Apphasstaffvalid());
+                                            for (Object cob : appvalidlist) {
+                                                Apphasstaffvalid c = (Apphasstaffvalid) cob;
+                                                if (c.isAppHasStaffValidState()) {
+
                                         %>
                                         <tr>
-                                            <td><%=c.getDeveloper().getIdDeveloper()%></td>
-                                            <td><%=c.getDeveloper().getDeveloperFname()%></td>
-                                        
-                                            <td><%=c.getDeveloper().getDeveloperLname()%></td>
-                                            <td><%=c.getDeveloper().getUsername()%></td>
-                 
-                                            <td><%=c.getDeveloper().getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
-                                            <td><%=c.getDeveloper().getCity().getDiscrict().getProvince().getProvinceName()%></td>
-                                            <td><%=c.getDeveloper().getCity().getDiscrict().getDiscrictName()%></td>
-                                            <td><%=c.getDeveloper().getCity().getCityName()%></td>
-                                            <td><%=c.getDeveloper().getDevelopercreditcartNo()%></td>
-                                            <td><%=c.getDeveloper().getDeveloperMobile()%></td>
-                                          
-                                            <td><%= c.getDeveloper().getDeveloperRegdate()%></td>
-                                            <td><%=  c.getStaff().getIdStaff()%></td>
-                                            <td><%= c.getStaff().getStaffFname()+" "+c.getStaff().getStaffLname()%></td>
-                                      
-                                            <form action="../developerValidAciveOrDeactive" method="POST">
-                                                <td><input type="hidden" name="developervalidid" value="<%=c.getIdDeveloperValid()%>"/><input type="hidden" value="false" name="state"><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-chevron-down">Disable Validation Developer </span></button></a></td></form>
-                                        </tr>
-                                        <%}
-                                        }%>
+                                            <td><%=c.getApplication().getIdApplication()%></td>
+                                            <td><%=c.getApplication().getApplicationName()%></td>
+                                            <td><%=c.getApplication().getApplicationLuanchDate()%></td>
+                                            <td><%=c.getApplication().getDeveloper().getIdDeveloper()%></td>
+                                            <td><%=c.getApplication().getDeveloper().getDeveloperFname() + " " + c.getApplication().getDeveloper().getDeveloperLname()%></td>
+                                            <td><%=c.getApplication().getPrice()%></td>
+                                            <td><%=c.getApplication().getCategory().getApptype().getAppplatform().getAppplatform()%></td>
+                                            <td><%=c.getApplication().getCategory().getApptype().getApptype()%></td>
+                                            <td><%=c.getApplication().getCategory().getCategory()%></td>
+
+                                    <form action="../deactiveoractiveAppValidations" method="POST">
+
+                                        <td><input type="hidden" name="appvalidid" value="<%=c.getIdAppHasStaffValid()%>"/><input type="hidden" name="state" value="false"><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-remove-circle">Disable Valid App </span></button></a></td></form>
+                                    </tr>
+                                    <%}
+                                            }%>
                                     </tbody>
                                 </table>
                             </div>
 
-                           
+
                         </div>
-   <div class="container">
+                        <div class="container">
                             <h2>Disabled Developers Validations</h2>
                             <p>Developer List</p>
                             <div class="scrollit">
@@ -732,59 +725,47 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>First name</th>
-                                          
-                                            <th>Last name</th>
-                                            <th>Email</th>
-                                     
-                                            <th>Country</th>
-                                            <th>Province</th>
-                                            <th>District</th>
-                                            <th>City</th>
-                                            <th>Credit Cart No</th>
-                                            <th>Mobile</th>
-                                    
-                                            <th>Reg Date</th>
-                                            <th>Staff ID</th>
-                                            <th>Staff Member                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </th>
+                                            <th>App name</th>
+                                            <th>App Lunch Date</th>
+                                            <th>Developer ID</th>
+                                            <th>Developer Name</th>
+                                            <th>Price</th>
+                                            <th>Platform</th>
+                                            <th>Type</th>
+                                            <th>Category</th>
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                     <tbody>
                                         <%
-                                            for (Object cob : dlist) {
-                                                Developervalid c = (Developervalid) cob;
-                                                if (!c.isDeveloperValidState()&(c.getDeveloper().isState())) {
-                                   
+                                          
+                                            for (Object cob : appvalidlist) {
+                                                Apphasstaffvalid c = (Apphasstaffvalid) cob;
+                                                if (!c.isAppHasStaffValidState()) {
+                                                 
                                         %>
                                         <tr>
-                                            <td><%=c.getDeveloper().getIdDeveloper()%></td>
-                                            <td><%=c.getDeveloper().getDeveloperFname()%></td>
-                                        
-                                            <td><%=c.getDeveloper().getDeveloperLname()%></td>
-                                            <td><%=c.getDeveloper().getUsername()%></td>
-                 
-                                            <td><%=c.getDeveloper().getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
-                                            <td><%=c.getDeveloper().getCity().getDiscrict().getProvince().getProvinceName()%></td>
-                                            <td><%=c.getDeveloper().getCity().getDiscrict().getDiscrictName()%></td>
-                                            <td><%=c.getDeveloper().getCity().getCityName()%></td>
-                                            <td><%=c.getDeveloper().getDevelopercreditcartNo()%></td>
-                                            <td><%=c.getDeveloper().getDeveloperMobile()%></td>
-                                          
-                                            <td><%= c.getDeveloper().getDeveloperRegdate()%></td>
-                                            <td><%=  c.getStaff().getIdStaff()%></td>
-                                            <td><%= c.getStaff().getStaffFname()+" "+c.getStaff().getStaffLname()%></td>
-                                      
-                                            <form action="../developerValidAciveOrDeactive" method="POST">
-                                                <td><input type="hidden" name="developervalidid" value="<%=c.getIdDeveloperValid()%>"/><input type="hidden" value="true" name="state"><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-chevron-down">Enable Validation Developer </span></button></a></td></form>
-                                        </tr>
-                                        <%}
-                                        }%>
+                                            <td><%=c.getApplication().getIdApplication()%></td>
+                                            <td><%=c.getApplication().getApplicationName()%></td>
+                                            <td><%=c.getApplication().getApplicationLuanchDate()%></td>
+                                            <td><%=c.getApplication().getDeveloper().getIdDeveloper()%></td>
+                                            <td><%=c.getApplication().getDeveloper().getDeveloperFname() + " " + c.getApplication().getDeveloper().getDeveloperLname()%></td>
+                                            <td><%=c.getApplication().getPrice()%></td>
+                                            <td><%=c.getApplication().getCategory().getApptype().getAppplatform().getAppplatform()%></td>
+                                            <td><%=c.getApplication().getCategory().getApptype().getApptype()%></td>
+                                            <td><%=c.getApplication().getCategory().getCategory()%></td>
+
+                                    <form action="../deactiveoractiveAppValidations" method="POST">
+
+                                        <td><input type="hidden" name="appvalidid" value="<%=c.getIdAppHasStaffValid()%>"/><input type="hidden" name="state" value="true"><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-chevron-down">Enable App Validation </span></button></a></td></form>
+                                    </tr>
+                                    <%}
+                                            }%>
                                     </tbody>
                                 </table>
                             </div>
 
-                           
+
                         </div>
 
 

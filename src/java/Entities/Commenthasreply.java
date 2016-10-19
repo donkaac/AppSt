@@ -1,5 +1,5 @@
 package Entities;
-// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
+// Generated Oct 19, 2016 3:46:26 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package Entities;
 public class Commenthasreply  implements java.io.Serializable {
 
 
-     private int idcommenthasreply;
+     private Integer idcommenthasreply;
      private Comment comment;
      private Developer developer;
      private String replyComment;
@@ -18,19 +18,18 @@ public class Commenthasreply  implements java.io.Serializable {
     public Commenthasreply() {
     }
 
-    public Commenthasreply(int idcommenthasreply, Comment comment, Developer developer, String replyComment, boolean state) {
-       this.idcommenthasreply = idcommenthasreply;
+    public Commenthasreply(Comment comment, Developer developer, String replyComment, boolean state) {
        this.comment = comment;
        this.developer = developer;
        this.replyComment = replyComment;
        this.state = state;
     }
    
-    public int getIdcommenthasreply() {
+    public Integer getIdcommenthasreply() {
         return this.idcommenthasreply;
     }
     
-    public void setIdcommenthasreply(int idcommenthasreply) {
+    public void setIdcommenthasreply(Integer idcommenthasreply) {
         this.idcommenthasreply = idcommenthasreply;
     }
     public Comment getComment() {

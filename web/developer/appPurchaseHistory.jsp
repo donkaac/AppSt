@@ -1,10 +1,9 @@
 <%-- 
-    Document   : profile
-    Created on : Oct 8, 2016, 7:35:19 AM
+    Document   : appPurchaseHistory
+    Created on : Oct 18, 2016, 10:27:29 PM
     Author     : Ish
 --%>
 
-<%@page import="Oparation.SessionCounterListener"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,8 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Staff member Profile Page</h1>
-        <%=SessionCounterListener.getTotalActiveSession()
-        %>
+        <h1>Hello World!</h1>
     </body>
 </html>

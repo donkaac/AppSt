@@ -1,5 +1,5 @@
 package Entities;
-// Generated Oct 2, 2016 12:23:07 PM by Hibernate Tools 4.3.1
+// Generated Oct 19, 2016 3:46:26 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Gender  implements java.io.Serializable {
 
 
-     private int idgender;
+     private Integer idgender;
      private String gender;
      private Set<Customer> customers = new HashSet<Customer>(0);
      private Set<Staff> staffs = new HashSet<Staff>(0);
@@ -21,23 +21,21 @@ public class Gender  implements java.io.Serializable {
     }
 
 	
-    public Gender(int idgender, String gender) {
-        this.idgender = idgender;
+    public Gender(String gender) {
         this.gender = gender;
     }
-    public Gender(int idgender, String gender, Set<Customer> customers, Set<Staff> staffs, Set<Developer> developers) {
-       this.idgender = idgender;
+    public Gender(String gender, Set<Customer> customers, Set<Staff> staffs, Set<Developer> developers) {
        this.gender = gender;
        this.customers = customers;
        this.staffs = staffs;
        this.developers = developers;
     }
    
-    public int getIdgender() {
+    public Integer getIdgender() {
         return this.idgender;
     }
     
-    public void setIdgender(int idgender) {
+    public void setIdgender(Integer idgender) {
         this.idgender = idgender;
     }
     public String getGender() {

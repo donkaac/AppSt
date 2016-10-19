@@ -40,23 +40,28 @@ public class developerlogin extends HttpServlet {
             String email = request.getParameter("username");
             String password = request.getParameter("password");
             Cookie[] cookies = request.getCookies();
-            System.out.println(request.getParameter("remember"));
+            String remember = "";
+            if (request.getParameter("remember") != null) {
+                remember = request.getParameter("remember");
+            } else {
+                remember = "0";
+            }
 
             System.out.println(email + "" + password);
             boolean loginstate = false;
             Developer c = null;
             String[][] ar = {{"username", email}, {"password", Datacontroller.EncryptUtils.base64encode(password)}};
             ArrayList<Object> Searchdata = DataParser.Searchdata(new Developer(), ar);
-            for (Object customer : Searchdata) {
-                c = (Developer) customer;
+            for (Object deObject : Searchdata) {
+                c = (Developer) deObject;
                 System.out.println(c.getPassword() + c.getUsername());
                 if ((c.getUsername().equals(email)) & (c.getPassword().equals(Datacontroller.EncryptUtils.base64encode(password))) & (c.isState() == true)) {
                     loginstate = true;
                     break;
                 }
             }
-            if (loginstate) {
-                if (request.getParameter("remember").equals("1")) {
+            if(loginstate){
+             if (remember.equals("1")) {
                     System.out.println("Set cokies");
                     Cookie usernameCookie = new Cookie("username-cookie", email);
                     Cookie passwordCookie = new Cookie("password-cookie", password);
@@ -66,22 +71,20 @@ public class developerlogin extends HttpServlet {
                     passwordCookie.setHttpOnly(true);
                     response.addCookie(usernameCookie);
                     response.addCookie(passwordCookie);
-                } else {
-
+                } else if (remember.equals("0")) {
                     Cookie cookie = null;
                     Cookie[] cookiess = request.getCookies();
                     if (cookies != null) {
-                        out.println("<h2> Found Cookies Name and Value</h2>");
+                        System.out.println("<h2> Found Cookies Name and Value</h2>");
                         for (int i = 0; i < cookiess.length; i++) {
                             cookie = cookies[i];
-                            if ((cookie.getName()).compareTo("first_name") == 0) {
+                            if (cookie.getName().equals("username-cookie") || cookie.getName().equals("password-cookie")) {
                                 cookie.setMaxAge(0);
                                 response.addCookie(cookie);
-                                out.print("Deleted cookie: "
-                                        + cookie.getName() + "<br/>");
+                            } else {
+                                System.out.println("NOT Found");
                             }
-                            out.print("Name : " + cookie.getName() + ",  ");
-                            out.print("Value: " + cookie.getValue() + " <br/>");
+
                         }
                     }
                 }
@@ -90,8 +93,9 @@ public class developerlogin extends HttpServlet {
             
             try {
                 HttpSession s = request.getSession();
-                s.setAttribute("userid", c.getIdDeveloper());
-                s.setAttribute("username", c.getUsername());
+                s.setAttribute("developer", c);
+//                s.setAttribute("userid", c.getIdDeveloper());
+//                s.setAttribute("username", c.getUsername());
                 s.setAttribute("usertype", "developer");
             } catch (Exception e) {
                 System.out.println("exception");
