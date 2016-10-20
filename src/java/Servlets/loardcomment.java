@@ -114,9 +114,9 @@ public class loardcomment extends HttpServlet {
                         out.write("<td></td>");
                         out.write("<td></td>");
                         out.write("<td></td>");
-                        out.write("<td><input class=\"form-control\" id=\""+comment.getIdComment()+"\" type=\"text\"</td>");
+                        out.write("<td><input class=\"form-control\" id=\""+comment.getIdComment()+"\" type=\"text\"/></td>");
                      
-                        out.write("<td colspan=\"2\"><input onclick=\"addcommentreply("+comment.getIdComment()+"alert('ds'))\"  class=\"btn default\" type=\"button\" value=\"Save\"></td>");
+                        out.write("<td colspan=\"2\"><input onclick=\"addcommentreply("+comment.getIdComment()+")\"  class=\"btn default\" type=\"button\" value=\"Save\"/></td>");
                         out.write("</tr>");
                 }
             }

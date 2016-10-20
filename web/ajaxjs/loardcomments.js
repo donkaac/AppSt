@@ -83,13 +83,14 @@ function loardcomment(appid){
             }
             }
         };
-        if(!document.getElementById(""+commentid).value===null){
-      var commettext=  document.getElementById(""+commentid).value;
-        alert(commettext);
+         var commettext=  document.getElementById(""+commentid).value;
+        if((commettext == null || commettext == "")){
+            
+        }else{
         Object.open("POST", "../addcommentreply", true);
         Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       Object.send("&commentid=" + commentid+"&text="+commettext);
-        }
+        } 
     }  
   } 
 

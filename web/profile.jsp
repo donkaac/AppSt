@@ -386,7 +386,7 @@
                                         <form onsubmit="return checkpassword()" action="changepassword" method="POST"><div class="form-group form-md-line-input" >
                                                 <label class="col-md-3 control-label"  for="form_control_1">Current Password</label>
                                                 <div class="col-md-6">
-                                                    <input type="password" name="oldpassword" id="pass1" class="form-control" placeholder="">
+                                                    <input type="password" name="oldpassword" id="pass1" class="form-control" placeholder="" required>
                                                     <div class="form-control-focus"> </div>
 
                                                 </div>
@@ -394,7 +394,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label"  for="form_control_1">Password</label>
                                                 <div class="col-md-6">
-                                                    <input type="password" name="pass1" id="pass1" class="form-control" placeholder="">
+                                                    <input type="password" name="pass1" id="pass1" class="form-control" placeholder="" required>
                                                     <div class="form-control-focus"> </div>
 
                                                 </div>
@@ -402,7 +402,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Retype Password</label>
                                                 <div class="col-md-6">
-                                                    <input type="password" name="pass2" id="pass2" class="form-control" placeholder="">
+                                                    <input type="password" name="pass2" id="pass2" class="form-control" placeholder="" required>
                                                     <div class="form-control-focus"> </div>
 
                                                 </div>
@@ -472,7 +472,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label" for="form_control_1">First Name</label>
                                                                         <div class="col-md-6">
-                                                                            <input type="text" id="fname" name="fname" value="<%=c.getCustomerFname()%>" class="form-control" placeholder="">
+                                                                            <input type="text" id="fname" name="fname" value="<%=c.getCustomerFname()%>" class="form-control" placeholder="" required>
                                                                             <div class="form-control-focus"> </div>
 
                                                                         </div>
@@ -490,7 +490,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label" for="form_control_1">Last Name</label>
                                                                         <div class="col-md-6">
-                                                                            <input type="text" name="lname" value="<%=c.getCustomerLname()%>" id="lname" class="form-control" placeholder="">
+                                                                            <input type="text" name="lname" value="<%=c.getCustomerLname()%>" id="lname" class="form-control" placeholder="" required>
                                                                             <div class="form-control-focus"> </div>
 
                                                                         </div>
@@ -514,7 +514,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label"  for="form_control_1">Country</label>
                                                                         <div class="col-md-6">
-                                                                            <select class="form-control" id="Countrylist" onchange="loardProvince()" name="Countrylist">
+                                                                            <select class="form-control" id="Countrylist" onchange="loardProvince()" name="Countrylist" required>
                                                                                 <option><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></option>
                                                                             </select>
                                                                             <div class="form-control-focus"> </div>
@@ -524,7 +524,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label"   for="form_control_1">Province</label>
                                                                         <div class="col-md-6">
-                                                                            <select class="form-control"  id="provincelist" onchange="loardDistrict()" name="provincelist">
+                                                                            <select class="form-control"  id="provincelist" onchange="loardDistrict()" name="provincelist" required>
                                                                                 <option><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></option>
                                                                             </select>
                                                                             <div class="form-control-focus"> </div>
@@ -534,7 +534,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label"   for="form_control_1">District</label>
                                                                         <div class="col-md-6">
-                                                                            <select class="form-control"  id="districtlist" onchange="loardCity()" name="districtlist">
+                                                                            <select class="form-control"  id="districtlist" onchange="loardCity()" name="districtlist" required>
                                                                                 <option><%=c.getCity().getDiscrict().getDiscrictName()%></option>
                                                                             </select>
                                                                             <div class="form-control-focus"> </div>
@@ -544,7 +544,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label"  for="form_control_1">City</label>
                                                                         <div class="col-md-6">
-                                                                            <select class="form-control"  id="citylist" name="citylist">
+                                                                            <select class="form-control"  id="citylist" name="citylist" required>
                                                                                 <option value="<%=c.getCity().getIdCity()%>"><%=c.getCity().getCityName()%></option>
                                                                             </select>
                                                                             <div class="form-control-focus"> </div>
@@ -553,7 +553,7 @@
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label" for="form_control_1">Address</label>
                                                                         <div class="col-md-6">
-                                                                            <input type="text" name="address"value="<%=c.getAddress()%>" id="address" class="form-control" placeholder="">
+                                                                            <input type="text" name="address"value="<%=c.getAddress()%>" id="address" class="form-control" placeholder="" required>
                                                                             <div class="form-control-focus"> </div>
 
                                                                         </div>
