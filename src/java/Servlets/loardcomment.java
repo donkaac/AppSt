@@ -56,8 +56,7 @@ public class loardcomment extends HttpServlet {
 "                                            <th>Customer Name</th>\n" +
 "                                            <th></th>\n" +
 "                                            <th>Replay ID </th>\n" +
-"                                            <th>Reply</th>\n" +
-"                                            <th>Date</th>\n" +
+"                                            <th>Reply</th>\n" +                           
 "                                            <th></th>\n" +
 "                                        </tr>\n" +
 "                                    </thead>\n" +
@@ -76,18 +75,57 @@ public class loardcomment extends HttpServlet {
                 out.write("<td>"+comment.getCustomer().getIdCustomer()+"</td>");
                 out.write("<td>"+comment.getCustomer().getCustomerFname()+" "+comment.getCustomer().getCustomerLname()+"</td>");
                 out.write("<td></td>");
+                out.write("<td></td>");
+                out.write("<td></td>");
+                out.write("<td><input onclick=\"removecomment('"+comment.getIdComment()+"')\"  class=\"btn btn-danger\" type=\"button\" value=\"Remove\"></td>");
                 
                 out.write("</tr>");
                     Set<Commenthasreply> commenthasreplies = comment.getCommenthasreplies();
                     for (Commenthasreply commenthasreply : commenthasreplies) {
-                        
+                        if(commenthasreply.isState()==state){
+                        out.write("<tr>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td>"+commenthasreply.getIdcommenthasreply()+"</td>");
+                        out.write("<td>"+commenthasreply.getReplyComment()+"</td>");
+                        out.write("<td><input onclick=\"removecommentreply("+commenthasreply.getIdcommenthasreply()+")\"  class=\"btn btn-danger\" type=\"button\" value=\"Remove\"></td>");
+                        out.write("</tr>");
+                        }
                     }
+                     out.write("<tr>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td></td>");
+                        out.write("<td><input class=\"form-control\" id=\""+comment.getIdComment()+"\" type=\"text\"</td>");
+                     
+                        out.write("<td colspan=\"2\"><input onclick=\"addcommentreply("+comment.getIdComment()+"alert('ds'))\"  class=\"btn default\" type=\"button\" value=\"Save\"></td>");
+                        out.write("</tr>");
                 }
             }
            
            out.write("  </tbody>\n" +
 "                                </table>\n" +
 "                            </div>");
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 

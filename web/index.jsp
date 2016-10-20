@@ -55,7 +55,7 @@
             <link href="assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
             <!-- END THEME STYLES -->
             <!-- AJAX FILE -->
-            <script type="text/javascript" src="ajaxjs/category.js"></script>
+            
             <script type="text/javascript" src="ajaxjs/loardapplication.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
 

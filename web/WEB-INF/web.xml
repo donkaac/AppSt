@@ -152,6 +152,14 @@
         <servlet-name>loardcomment</servlet-name>
         <servlet-class>Servlets.loardcomment</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>removecomment</servlet-name>
+        <servlet-class>Servlets.removecomment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>removecommentreply</servlet-name>
+        <servlet-class>Servlets.removecommentreply</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -303,6 +311,14 @@
     <servlet-mapping>
         <servlet-name>loardcomment</servlet-name>
         <url-pattern>/loardcomment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>removecomment</servlet-name>
+        <url-pattern>/removecomment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>removecommentreply</servlet-name>
+        <url-pattern>/removecommentreply</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

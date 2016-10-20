@@ -1,16 +1,15 @@
 function loardcomment(appid){
-  var object;
-  if(window.XMLHttpRequest){
-      object=new XMLHttpRequest();
-  }else if(window.ActiveXObject){
-      object=new ActiveXObject();
-  }else{
-        alert("This Browser Not Support Ajax!");
-  }
-    
-  if(object!=null){
-      object.onreadystatechange=function (){
-          if (Object.readyState < 4) {
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
             } else if (Object.readyState === 4) {
                 var ResponseText = Object.responseText;
                 if (ResponseText === "false") {
@@ -20,14 +19,107 @@ function loardcomment(appid){
                 
                 document.getElementById("applicationArea").innerHTML = ResponseText;
             }
-      };
-    
-        Object.open("POST", "search", true);
+        };
+
+        Object.open("POST", "../loardcomment", true);
         Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        Object.send("state=" + true + "&type=appid&appid=" + applicationid);
+      Object.send("state=" + true + "&appid=" + appid);
     }  
   }
     
-    
+   function removecomment(commentid){
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }else if(ResponseText==="true"){
+                   loardcomment(document.getElementById('selectapplist').value);
+                }
 
+                
+                
+            }
+        };
 
+        Object.open("POST", "../removecomment", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      Object.send("state=" + true + "&commentid=" + commentid);
+    }  
+  } 
+
+  
+   function addcommentreply(commentid){
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }else if(ResponseText==="true"){
+                   loardcomment(document.getElementById('selectapplist').value);
+                }else{
+
+                alert(ResponseText);
+            }
+            }
+        };
+        if(!document.getElementById(""+commentid).value===null){
+      var commettext=  document.getElementById(""+commentid).value;
+        alert(commettext);
+        Object.open("POST", "../addcommentreply", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      Object.send("&commentid=" + commentid+"&text="+commettext);
+        }
+    }  
+  } 
+
+ function removecommentreply(commentreplyid){
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }else if(ResponseText==="true"){
+                   loardcomment(document.getElementById('selectapplist').value);
+                }else{
+
+                alert(ResponseText);
+            }
+            }
+        };
+
+        Object.open("POST", "../removecommentreply", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      Object.send("&commentreplyid=" + commentreplyid);
+    }  
+  } 

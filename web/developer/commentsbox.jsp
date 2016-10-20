@@ -52,9 +52,9 @@
             <link href="../assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
             <link href="../assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
             <!-- END THEME STYLES -->
-            <!-- AJAX FILE -->
-            <script type="text/javascript" src="../ajaxjs/category.js"></script>
+            <!-- AJAX FILE --> 
             <script type="text/javascript" src="../ajaxjs/loardapplication.js"></script>
+            <script type="text/javascript" src="../ajaxjs/loardcomments.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head>
@@ -413,7 +413,7 @@
                             <h2>Your Applications</h2>
                             <p>App List</p>
                            
-                            <select class="form-group" onchange="">
+                            <select class="form-group" onchange="loardcomment(document.getElementById('selectapplist').value)" id="selectapplist">
                                
                                     <option class="form-control">Select Your App</option>
                                         <%
@@ -424,10 +424,8 @@
                                           
                                         %>
                                         <option value="<%=cob.getIdApplication()%>" class="form-control">
-                                        
-                                            NO:<%=cob.getIdApplication()%>- 
-                                            <%=cob.getApplicationName()%>- 
-                                        <span><img width="20px" height="20px" src="../<%=cob.getAppImage()%>"/></span>
+                                       <%=cob.getApplicationName()%> 
+                                       
                                             <%=cob.getCategory().getCategory()%> 
                                           <%=cob.getCategory().getApptype().getApptype()%>
                                            <%=cob.getCategory().getApptype().getAppplatform().getAppplatform()%> 
