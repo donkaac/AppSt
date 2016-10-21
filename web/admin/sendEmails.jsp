@@ -391,7 +391,7 @@
                         <div class="page-container" id="applicationArea">
                             <form action="sendmails" onsubmit="return checksendingmail()">
 
-                                <select id="reviever" class="form-control">
+                                <select id="reviever" name="reviever" class="form-control">
                                     <option value="0">Select Massage Ricievers</option>
                                     <option value="allcustomer">All Costomers</option>
                                     <option value="alldeveloper">All Developer</option>
