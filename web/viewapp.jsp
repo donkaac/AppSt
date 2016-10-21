@@ -21,6 +21,7 @@
 </script>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html lang="en">
     <html>   
         <!-- BEGIN HEAD -->
@@ -75,16 +76,9 @@
         %>
         <!-- END HEAD -->
 
-        <body onload="loardapp()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-            <input type="hidden" name="appid" id="appid" value="<%=appid%>"/>
-            <script type="text/javascript">
-                function loardapp() {
-                    if (!document.getElementById("appid").value == "") {
-
-                        loardsingleapplication(document.getElementById("appid").value);
-                    }
-                }
-            </script>
+        <body  class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+            
+             
             <%
                 String username = "Guest";
                 boolean loging = false;
@@ -94,10 +88,14 @@
 
                         HttpSession s = request.getSession();
 
-                        int cusid = Integer.parseInt(s.getAttribute("userid").toString());
-                        c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
-                        username = c.getCustomerFname();
-                        loging = true;
+                        if (s.getAttribute("user") != null) {
+                            c = (Customer) s.getAttribute("user");
+                            c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
+                            username = c.getCustomerFname();
+                            loging = true;
+                        } 
+                        //int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+                        // c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);                       
                     } catch (Exception e) {
 
                     }
@@ -417,7 +415,8 @@
                         <div class="page-container" id="applicationArea">
 
                             <%
-                                Application app = (Application) DataParser.getuniqeresault(new Application(), Integer.parseInt("8"));
+                                if(appid!=""){
+                                Application app = (Application) DataParser.getuniqeresault(new Application(), Integer.parseInt(appid));
 
                             %>
                             <div class="container-fluid">
@@ -451,18 +450,46 @@
                                                 <div class="col-md-7">
                                                     <div class="product-title"><%=app.getApplicationName()%></div>
                                                     <div class="product-desc"><%=app.getDescription()%></div>
-                                                    <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+                                                    <div class="product-rating">
+                                                        <%try{
+                                                        int rate= Oparation.getRates.getRate(app.getIdApplication());
+                                                         if(rate>=1){%>
+                                                        <i class="fa fa-star gold"></i>
+                                                        <%}else{%>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                         <%   if(rate>=2){%>
+                                                        <i class="fa fa-star gold"></i>
+                                                        <%}else{%>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                         <%   if(rate>=3){%>
+                                                        <i class="fa fa-star gold"></i>
+                                                        <%}else{%>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                         <%   if(rate>=4){%>
+                                                        <i class="fa fa-star gold"></i>
+                                                        <%}else{%>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                         <%   if(rate==5){%>
+                                                        <i class="fa fa-star gold"></i>
+                                                        <%}else{%>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <%}}catch(Exception e){}%>
+                                                    </div>
                                                     <hr>
                                                     <div class="product-price">$<%=app.getPrice()%></div>
                                                     <div class="product-stock">Develop By <%=app.getDeveloper().getDeveloperFname()%></div>
                                                     <hr>
                                                     <div class="btn-group cart">
-                                                        <button type="button" class="btn btn-success">
+                                                        <button onclick="addtocart(<%=app.getIdApplication()%>)" type="button" class="btn btn-success">
                                                             Add to cart 
                                                         </button>
                                                     </div>
                                                     <div class="btn-group wishlist">
-                                                        <button type="button" class="btn btn-danger">
+                                                        <button  onclick="addtowishlist(<%=app.getIdApplication()%>)" type="button" class="btn btn-danger">
                                                             Add to wishlist 
                                                         </button>
                                                     </div>
@@ -526,6 +553,7 @@
 
 
                             </div>
+                                                        <%}%>
                         </div>
 
 

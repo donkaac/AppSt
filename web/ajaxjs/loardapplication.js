@@ -149,6 +149,37 @@ function removecart(appid) {
         Object.send("appid=" + appid);
     }
 }
+function buyapp(appid) {
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+                alert(ResponseText);
+                if (ResponseText == "true") {
+                    removecart(appid);
+                    removewishlist(appid);
+                }
+                location.reload();
+            }
+        };
+        
+        Object.open("POST", "buyApp", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        Object.send("appid=" + appid);
+    }
+}
 function removewishlist(appid) {
     var Object;
     if (window.XMLHttpRequest) {

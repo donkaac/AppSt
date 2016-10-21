@@ -8,6 +8,7 @@
 <%@page import="Entities.Gender"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% if(session.getAttribute("user")== null){%>
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -332,3 +333,4 @@
     </body>
 
 </html>
+<% }else{ response.sendRedirect("index.jsp");}%>

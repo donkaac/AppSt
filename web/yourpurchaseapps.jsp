@@ -18,6 +18,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% if(session.getAttribute("user")!= null){%>
 <html lang="en">
     <html>   
         <!-- BEGIN HEAD -->
@@ -65,20 +66,22 @@
                 String username = "Guest";
                 boolean loging = false;
                 Customer c = new Customer();
-                if (!request.getSession().equals(null)) {
+                 if (!request.getSession().equals(null)) {
                     try {
 
                         HttpSession s = request.getSession();
 
-                        int cusid = Integer.parseInt(s.getAttribute("userid").toString());
-                        c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);
-                        username = c.getCustomerFname();
-                        loging = true;
+                        if (s.getAttribute("user") != null) {
+                            c = (Customer) s.getAttribute("user");
+                            c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
+                            username = c.getCustomerFname();
+                            loging = true;
+                        } 
+                        //int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+                        // c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);                       
                     } catch (Exception e) {
 
                     }
-                } else {
-                    response.sendRedirect("index.jsp");
                 }
                 String cartqty = "";
                 if (!c.getCarts().isEmpty()) {
@@ -421,16 +424,16 @@
                                                 for (Customerhasapplication purchesapp : purchaselist) {
 
                                                     total += purchesapp.getApplication().getPrice();
-
+                                                    
                                             %>
                                             <tr>
                                                 <td class="col-sm-8 col-md-6">
                                                     <div class="media">
-                                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=purchesapp.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
+                                                        <a class="thumbnail pull-left" href="viewapp.jsp?appid=<%=purchesapp.getApplication().getIdApplication()%>"> <img class="media-object" src="<%=purchesapp.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
                                                         <div class="media-body">
                                                             <h4 class="media-heading"><a href="#"><%=purchesapp.getApplication().getApplicationName()%></a></h4>
                                                             <h5 class="media-heading"> by <a href="#"><%=purchesapp.getApplication().getCategory().getCategory()%></a></h5>
-                                                            <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                                            <span>Serial No: </span><span class="text-success"><strong><%=purchesapp.getSerialkeys().getSerialkey()%></strong></span>
                                                         </div>
                                                     </div></td>
                                                 <td class="col-sm-1 col-md-1" style="text-align: center">
@@ -558,5 +561,6 @@
 <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
-
+    
 </html>
+<% }else{ response.sendRedirect("index.jsp");}%>

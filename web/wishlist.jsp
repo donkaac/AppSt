@@ -412,7 +412,7 @@
                                                     <div class="media">
                                                         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=wishlist.getApplication().getAppImage()%>" style="width: 72px; height: 72px;"> </a>
                                                         <div class="media-body">
-                                                            <h4 class="media-heading"><a href="#"><%=wishlist.getApplication().getApplicationName()%></a></h4>
+                                                            <h4 class="media-heading"><a href="viewapp.jsp?appid=<%=wishlist.getApplication().getIdApplication()%>"><%=wishlist.getApplication().getApplicationName()%></a></h4>
                                                             <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
                                                             <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                                                         </div>

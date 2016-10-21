@@ -40,12 +40,12 @@ public class search extends HttpServlet {
                 Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
                  writer.write("<div class=\"col-sm-3\">\n" +
 "            <article class=\"col-item\">\n" +
-"        		<div class=\"photo\">\n" +
+"        		<div  class=\"photo\">\n" +
 "        			<div class=\"options\">\n" +
 "        				<button class=\"btn btn-default\" onclick=\"addtowishlist("+app.getIdApplication()+")\"  type=\"submit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add to wish list\">\n" +
 "        					<i class=\"fa fa-heart\"></i>\n" +
 "        				</button>\n" +
-"        				<button class=\"btn btn-default\" type=\"submit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Buy\">\n" +
+"        				<button class=\"btn btn-default\" onclick=\"buyapp("+app.getIdApplication()+")\" type=\"submit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Buy\">\n" +
 "        					<i class=\"fa fa-dollar\"></i>\n" +
 "        				</button>\n" +
 "        			</div>\n" +
@@ -54,7 +54,7 @@ public class search extends HttpServlet {
 "        					<span class=\"fa fa-shopping-cart\"></span>\n" +
 "        				</button>\n" +
 "        			</div>\n" +
-"        			<a href=\"#\"> <img src=\""+app.getAppImage()+"\" class=\"img-responsive\" alt=\"Product Image\" /> </a>\n" +
+"        			<a href=\"viewapp.jsp?appid="+app.getIdApplication()+"\"> <img src=\""+app.getAppImage()+"\" class=\"img-responsive\" alt=\"Product Image\" /> </a>\n" +
 "        		</div>\n" +
 "        		<div class=\"info\">\n" +
 "        			<div class=\"row\">\n" +

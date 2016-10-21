@@ -160,6 +160,14 @@
         <servlet-name>removecommentreply</servlet-name>
         <servlet-class>Servlets.removecommentreply</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>buyApp</servlet-name>
+        <servlet-class>Servlets.buyApp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sendmails</servlet-name>
+        <servlet-class>Servlets.sendmails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -320,6 +328,14 @@
         <servlet-name>removecommentreply</servlet-name>
         <url-pattern>/removecommentreply</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buyApp</servlet-name>
+        <url-pattern>/buyApp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sendmails</servlet-name>
+        <url-pattern>/sendmails</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -333,4 +349,7 @@
         <error-code>500</error-code>
         <location>/system_500.jsp</location>
     </error-page>
+    <listener>
+        <listener-class>Oparation.SessionCounterListener</listener-class>
+    </listener>
 </web-app>
