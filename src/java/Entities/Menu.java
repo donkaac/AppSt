@@ -1,5 +1,5 @@
 package Entities;
-// Generated Oct 19, 2016 3:46:26 PM by Hibernate Tools 4.3.1
+// Generated Oct 22, 2016 1:21:43 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,17 +13,20 @@ public class Menu  implements java.io.Serializable {
 
      private Integer idmenu;
      private String menu;
+     private boolean state;
      private Set<Submenu> submenus = new HashSet<Submenu>(0);
 
     public Menu() {
     }
 
 	
-    public Menu(String menu) {
+    public Menu(String menu, boolean state) {
         this.menu = menu;
+        this.state = state;
     }
-    public Menu(String menu, Set<Submenu> submenus) {
+    public Menu(String menu, boolean state, Set<Submenu> submenus) {
        this.menu = menu;
+       this.state = state;
        this.submenus = submenus;
     }
    
@@ -40,6 +43,13 @@ public class Menu  implements java.io.Serializable {
     
     public void setMenu(String menu) {
         this.menu = menu;
+    }
+    public boolean isState() {
+        return this.state;
+    }
+    
+    public void setState(boolean state) {
+        this.state = state;
     }
     public Set<Submenu> getSubmenus() {
         return this.submenus;

@@ -27,8 +27,10 @@ public static getRates getRates;
     double totalrate=0;
     int rateqty=0;
         for (Customerhasapplication customerhasapplication : customerhasapplications) {
+            if(customerhasapplication.getRate()!=null){
             totalrate+=customerhasapplication.getRate();
             rateqty++;
+            }
         }
   int rate=(int) (totalrate/rateqty);
         return rate;

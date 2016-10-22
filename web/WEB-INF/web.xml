@@ -180,6 +180,14 @@
         <servlet-name>deleterole</servlet-name>
         <servlet-class>Servlets.deleterole</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteprivilages</servlet-name>
+        <servlet-class>Servlets.deleteprivilages</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>saveprivilages</servlet-name>
+        <servlet-class>Servlets.saveprivilages</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -359,6 +367,14 @@
     <servlet-mapping>
         <servlet-name>deleterole</servlet-name>
         <url-pattern>/deleterole</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteprivilages</servlet-name>
+        <url-pattern>/deleteprivilages</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveprivilages</servlet-name>
+        <url-pattern>/saveprivilages</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

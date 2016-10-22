@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 19, 2016 3:46:28 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 22, 2016 1:21:45 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Submenu" table="submenu" catalog="appstore" optimistic-lock="version">
-        <id name="idsubmenu" type="int">
+        <id name="idsubmenu" type="java.lang.Integer">
             <column name="idsubmenu" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="menu" class="Entities.Menu" fetch="select">
             <column name="menu_idmenu" not-null="true" />
@@ -16,6 +16,9 @@
         </property>
         <property name="pageurl" type="string">
             <column name="pageurl" length="45" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
         </property>
         <set name="rolehassubmenus" table="rolehassubmenu" inverse="true" lazy="true" fetch="select">
             <key>

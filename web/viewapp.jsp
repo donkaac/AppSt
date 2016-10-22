@@ -457,7 +457,7 @@
                                                     <div class="product-title"><%=app.getApplicationName()%></div>
                                                     <div class="product-desc"><%=app.getDescription()%></div>
                                                     <div class="product-rating">
-                                                        <%try{
+                                                        <%
                                                         int rate= Oparation.getRates.getRate(app.getIdApplication());
                                                          if(rate>=1){%>
                                                         <i class="fa fa-star gold"></i>
@@ -483,7 +483,7 @@
                                                         <i class="fa fa-star gold"></i>
                                                         <%}else{%>
                                                         <i class="fa fa-star-o"></i>
-                                                        <%}}catch(Exception e){}%>
+                                                        <%}%>
                                                     </div>
                                                     <hr>
                                                     <div class="product-price">$<%=app.getPrice()%></div>

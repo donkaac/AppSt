@@ -308,7 +308,9 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Privilages name</th>
+                                            <th>Main Menu</th>
                                             <th>Page URL</th>
+                                            
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -318,34 +320,38 @@
                                             ArrayList<Object> cuslist = Datacontroller.DataParser.Searchdata(new Submenu());
                                             for (Object cob : cuslist) {
                                                 c = (Submenu) cob;
+                                                 
                                         %>
                                         <tr>
                                             <td><%=c.getIdsubmenu()%></td>
                                             <td><%=c.getSubmenu()%></td>
+                                            <td><%=c.getMenu().getMenu()%></td>
                                             <td><%=c.getPageurl()%></td>
+                                            
 
-                                            <td><form action="../deleteprivi" method="POST"><input type="hidden" name="roleid" value="<%=c.getIdsubmenu()%>"/><a class="btn-default"><button class="form-control btn-default" type="submit"><span class="glyphicon glyphicon-eject"> Delete Role </span></button></a></form></td>
+                                            <td><form action="../deleteprivilages" method="POST"><input type="hidden" name="submenuid" value="<%=c.getIdsubmenu()%>"/><a class="btn-default"><button class="form-control btn-default" type="submit"><span class="glyphicon glyphicon-eject"> Delete Privilage </span></button></a></form></td>
                                         </tr>
                                         <%}
                                         %>
                                         <tr>
-                                    <form action="../SaveNewRole" method="POST">
-                                        <td>New Role</td>
-                                        <td><input type="text" name="newrole" placeholder="Enter Privilage Name" /></td>
-                                        <td><input type="url" name="pageurl" placeholder="Enter Page URL" /></td>
-                                        <td><select name="manuid">
-                                                <option>select menu</option>
+                                    <form action="../saveprivilages" method="POST">
+                                       
+                                        <td><input class="form-control" type="text" name="newprivilage" placeholder="Enter Privilage Name" required/></td>
+                                        <td><input class="form-control" type="text" name="pageurl" placeholder="Enter Page URL" required /></td>
+                                        <td colspan="2"><select name="menuid" class="form-control">
+                                                <option class="form-control">select menu</option>
                                                 <%
                                               ArrayList<Object> menulist=  Datacontroller.DataParser.Searchdata(new Menu());
                                               for(Object menuObject:menulist){
                                                 Menu menu=(Menu)menuObject;
                                                 
                                                 %>
-                                                <option value="<%=menu.getIdmenu()%>"><%=menu.getMenu()%></option>
+                                                <option class="form-control" value="<%=menu.getIdmenu()%>"><%=menu.getMenu()%></option>
                                                 <%}%>
                                             </select>
                                         </td>
-                                        <td><a class="btn-default"><button class="form-control btn-default" type="submit"><span class="glyphicon glyphicon-floppy-save"> Save Role </span></button></a></td>
+                                       
+                                        <td><a class="btn-default"><button class="form-control btn-default" type="submit"><span class="glyphicon glyphicon-floppy-save"> Save Privilage </span></button></a></td>
                                     </form>
                                     </tr>
                                     </tbody>

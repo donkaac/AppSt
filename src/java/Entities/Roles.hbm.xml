@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 19, 2016 3:46:28 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Oct 22, 2016 1:21:45 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Entities.Roles" table="roles" catalog="appstore" optimistic-lock="version">
         <id name="idroles" type="java.lang.Integer">
@@ -10,6 +10,9 @@
         </id>
         <property name="roles" type="string">
             <column name="roles" length="45" not-null="true" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="state" not-null="true" />
         </property>
         <set name="staffs" table="staff" inverse="true" lazy="true" fetch="select">
             <key>

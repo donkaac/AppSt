@@ -1,5 +1,5 @@
 package Entities;
-// Generated Oct 19, 2016 3:46:26 PM by Hibernate Tools 4.3.1
+// Generated Oct 22, 2016 1:21:43 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,6 +13,7 @@ public class Roles  implements java.io.Serializable {
 
      private Integer idroles;
      private String roles;
+     private boolean state;
      private Set<Staff> staffs = new HashSet<Staff>(0);
      private Set<Rolehassubmenu> rolehassubmenus = new HashSet<Rolehassubmenu>(0);
 
@@ -20,11 +21,13 @@ public class Roles  implements java.io.Serializable {
     }
 
 	
-    public Roles(String roles) {
+    public Roles(String roles, boolean state) {
         this.roles = roles;
+        this.state = state;
     }
-    public Roles(String roles, Set<Staff> staffs, Set<Rolehassubmenu> rolehassubmenus) {
+    public Roles(String roles, boolean state, Set<Staff> staffs, Set<Rolehassubmenu> rolehassubmenus) {
        this.roles = roles;
+       this.state = state;
        this.staffs = staffs;
        this.rolehassubmenus = rolehassubmenus;
     }
@@ -42,6 +45,13 @@ public class Roles  implements java.io.Serializable {
     
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+    public boolean isState() {
+        return this.state;
+    }
+    
+    public void setState(boolean state) {
+        this.state = state;
     }
     public Set<Staff> getStaffs() {
         return this.staffs;

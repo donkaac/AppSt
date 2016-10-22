@@ -1,5 +1,5 @@
 package Entities;
-// Generated Oct 19, 2016 3:46:26 PM by Hibernate Tools 4.3.1
+// Generated Oct 22, 2016 1:21:43 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,34 +11,35 @@ import java.util.Set;
 public class Submenu  implements java.io.Serializable {
 
 
-     private int idsubmenu;
+     private Integer idsubmenu;
      private Menu menu;
      private String submenu;
      private String pageurl;
+     private boolean state;
      private Set<Rolehassubmenu> rolehassubmenus = new HashSet<Rolehassubmenu>(0);
 
     public Submenu() {
     }
 
 	
-    public Submenu(int idsubmenu, Menu menu, String submenu) {
-        this.idsubmenu = idsubmenu;
+    public Submenu(Menu menu, String submenu, boolean state) {
         this.menu = menu;
         this.submenu = submenu;
+        this.state = state;
     }
-    public Submenu(int idsubmenu, Menu menu, String submenu, String pageurl, Set<Rolehassubmenu> rolehassubmenus) {
-       this.idsubmenu = idsubmenu;
+    public Submenu(Menu menu, String submenu, String pageurl, boolean state, Set<Rolehassubmenu> rolehassubmenus) {
        this.menu = menu;
        this.submenu = submenu;
        this.pageurl = pageurl;
+       this.state = state;
        this.rolehassubmenus = rolehassubmenus;
     }
    
-    public int getIdsubmenu() {
+    public Integer getIdsubmenu() {
         return this.idsubmenu;
     }
     
-    public void setIdsubmenu(int idsubmenu) {
+    public void setIdsubmenu(Integer idsubmenu) {
         this.idsubmenu = idsubmenu;
     }
     public Menu getMenu() {
@@ -61,6 +62,13 @@ public class Submenu  implements java.io.Serializable {
     
     public void setPageurl(String pageurl) {
         this.pageurl = pageurl;
+    }
+    public boolean isState() {
+        return this.state;
+    }
+    
+    public void setState(boolean state) {
+        this.state = state;
     }
     public Set<Rolehassubmenu> getRolehassubmenus() {
         return this.rolehassubmenus;
