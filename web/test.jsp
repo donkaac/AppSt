@@ -49,7 +49,7 @@
                 <tr>
 
                     <td>Select File</td>
-                    <td><input type="file" name="image_file"></td>
+                    <td><input type="file" name="image_file1"></td>
                     <td><input type="file" name="image_file"></td>
                     <td><input type="file" name="image_file"></td>
                     <td><input type="file" name="image_file"></td>

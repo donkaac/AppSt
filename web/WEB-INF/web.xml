@@ -168,6 +168,10 @@
         <servlet-name>sendmails</servlet-name>
         <servlet-class>Servlets.sendmails</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>buycartallapps</servlet-name>
+        <servlet-class>Servlets.buycartallapps</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -335,6 +339,10 @@
     <servlet-mapping>
         <servlet-name>sendmails</servlet-name>
         <url-pattern>/sendmails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>buycartallapps</servlet-name>
+        <url-pattern>/buycartallapps</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

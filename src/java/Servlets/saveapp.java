@@ -6,7 +6,9 @@
 package Servlets;
 
 import Entities.Category;
+import Entities.Customer;
 import Entities.Developer;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -15,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
 
 /**
  *
@@ -22,20 +25,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "saveapp", urlPatterns = {"/saveapp"})
 public class saveapp extends HttpServlet {
-     private Category category;
-     private Developer developer;
-     private String applicationName;
-     private Double price;
-     private String description;
-     private String userManualUrl;
-     private String videoUrl;
-     private String interface1;
-     private String interface2;
-     private String interface3;
-     private Date lastmodifiedDate;
-     private Date applicationLuanchDate;
-     private boolean state;
-  
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -49,6 +38,19 @@ public class saveapp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            String appname = request.getParameter("appname");
+            String description = request.getParameter("description");
+            String usermanualurl = request.getParameter("usermanualurl");
+            String videourl = request.getParameter("videourl");
+            Double price = Double.parseDouble(request.getParameter("price"));
+            Category category = (Category) Datacontroller.DataParser.getuniqeresault(new Category(), Integer.parseInt(request.getParameter("appcategorylist")));
+            Developer developer = (Developer) request.getSession().getAttribute("developer");
+            int developerid = developer.getIdDeveloper();
+            developer = (Developer) Datacontroller.DataParser.getuniqeresault(new Developer(), developerid);
+            
+            
+            
+            
             
         } catch (Exception e) {
         }

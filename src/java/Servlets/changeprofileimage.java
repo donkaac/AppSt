@@ -57,7 +57,7 @@ public class changeprofileimage extends HttpServlet {
                 int i = 0;
                 for (FileItem item : li) {
 
-                    String[] split = item.getName().split(".");
+                   
                     Image_Path = "appinterface/cusimage/" + System.currentTimeMillis() + "" + item.getName();
                     System.out.println(item.getName());
                     File f = new File(request.getServletContext().getRealPath("/") + Image_Path);

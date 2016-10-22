@@ -46,14 +46,14 @@ function loardapplicationByName(appname) {
                     alert("Something wrong !");
                 }
 
-
+               
                 document.getElementById("applicationArea").innerHTML = ResponseText;
             }
         };
-
-        Object.open("POST", "search", true);
+     
+        Object.open("POST", "searchbyname", true);
         Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        Object.send("state=" + true + "&type=appname&appid=" + appname);
+        Object.send("appname=" + appname);
     }
 }
 function addtocart(appid) {

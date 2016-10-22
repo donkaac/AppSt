@@ -123,23 +123,29 @@
                                     <span class="username username-hide-on-mobile"> <%=username%> </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
+                               <ul class="dropdown-menu dropdown-menu-default">
                                     <%if (loging) {%>
                                     <li>
                                         <a href="profile.jsp">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
                                     <%}%>
+                                    <%if (loging) {%>
+                                    <li>
+                                        <a href="yourpurchaseapps.jsp">
+                                            <i class="icon-briefcase"></i> My Purchase App List  </a>
+                                    </li>
+                                    <%}%>
                                     <li>
                                         <a href="cart.jsp">
                                             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
-                                            <span class="badge badge-danger"> <%=cartqty%> </span>
+                                            <span class="badge badge-danger"> <%=cartqty%></span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="wishlist.jsp">
                                             <i class="icon-wallet"></i> WishList
-                                            <span class="badge badge-default"><%=wishlistqty%> </span>
+                                            <span class="badge badge-default"> <%=wishlistqty%> </span>
                                         </a>
                                     </li>
                                     <%if (loging) {%>
@@ -149,7 +155,6 @@
                                             <i class="icon-key"></i> Log Out </a>
                                     </li>
                                     <%}%>
-
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
@@ -188,12 +193,12 @@
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                <form class="sidebar-search  " action="search" method="POST">
+                                 <form class="sidebar-search  "   method="POST">
                                     <a href="javascript:;" class="remove">
                                         <i class="icon-close"></i>
                                     </a>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search...">
+                                        <input type="text" id="nametext" onkeyup="loardapplicationByName(document.getElementById('nametext').value)" class="form-control" placeholder="Search...">
                                         <span class="input-group-btn">
                                             <a href="javascript:;" class="btn submit">
                                                 <i class="icon-magnifier"></i>
@@ -437,7 +442,7 @@
                                                     //carts = c.getCarts();
                                                 }
                                                 for (Cart cart : carts) {
-
+                                                    if(cart.isState()){
                                                     total += cart.getApplication().getPrice();
 
                                             %>
@@ -461,7 +466,7 @@
                                                         <span class="glyphicon glyphicon-remove"></span> Remove
                                                     </button></td>
                                             </tr>
-                                            <%}%>
+                                            <%}}%>
                                             <tr>
                                                 <td>   </td>
                                                 <td>   </td>
@@ -481,9 +486,12 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-success">
+                                                    <form action="buycartallapps" method="POST">
+                                                        <button type="submit" class="btn btn-success">
                                                         Checkout <span class="glyphicon glyphicon-play"></span>
-                                                    </button></td>
+                                                    </button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

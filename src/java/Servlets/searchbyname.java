@@ -5,12 +5,22 @@
  */
 package Servlets;
 
+import Datacontroller.HibernateUtil;
+import Entities.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -31,16 +41,57 @@ public class searchbyname extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet for apps search by name</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet searchbyname at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            if (request.getParameter("appname") != null) {
+                System.out.println("Request send");
+                String name = request.getParameter("appname");
+                System.out.println("NAME ::::::"+name);
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                Criteria cr = session.createCriteria(Application.class);
+
+                
+               
+                Criterion namecr = Restrictions.ilike("applicationName", "%"+name + "%");
+               
+                cr.add(namecr);
+               
+                List list = cr.list();
+                for (Object object : list) {
+                    System.out.println("for loop");
+                    Application app = (Application) object;
+                    if(app.isState()){
+                    out.write("<div class=\"col-sm-3\">\n"
+                            + "            <article class=\"col-item\">\n"
+                            + "        		<div  class=\"photo\">\n"
+                            + "        			<div class=\"options\">\n"
+                            + "        				<button class=\"btn btn-default\" onclick=\"addtowishlist(" + app.getIdApplication() + ")\"  type=\"submit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Add to wish list\">\n"
+                            + "        					<i class=\"fa fa-heart\"></i>\n"
+                            + "        				</button>\n"
+                            + "        				<button class=\"btn btn-default\" onclick=\"buyapp(" + app.getIdApplication() + ")\" type=\"submit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Buy\">\n"
+                            + "        					<i class=\"fa fa-dollar\"></i>\n"
+                            + "        				</button>\n"
+                            + "        			</div>\n"
+                            + "        			<div class=\"options-cart\">\n"
+                            + "        				<button onclick=\"addtocart(" + app.getIdApplication() + ")\" class=\"btn btn-default\" title=\"Add to cart\">\n"
+                            + "        					<span class=\"fa fa-shopping-cart\"></span>\n"
+                            + "        				</button>\n"
+                            + "        			</div>\n"
+                            + "        			<a href=\"viewapp.jsp?appid=" + app.getIdApplication() + "\"> <img src=\"" + app.getAppImage() + "\" class=\"img-responsive\" alt=\"Product Image\" /> </a>\n"
+                            + "        		</div>\n"
+                            + "        		<div class=\"info\">\n"
+                            + "        			<div class=\"row\">\n"
+                            + "        				<div class=\"price-details col-md-6\">\n"
+                            + "        					<p class=\"details\">\n"
+                            + "        					" + app.getDescription() + "\n"
+                            + "        					</p>\n"
+                            + "        					<h1>" + app.getApplicationName() + "</h1>\n"
+                            + "        					<span class=\"price-new\">$" + app.getPrice() + "</span>\n"
+                            + "        				</div>\n"
+                            + "        			</div>\n"
+                            + "        		</div>\n"
+                            + "        	</article>\n"
+                            + "        </div>");
+                }}
+            }
         }
     }
 

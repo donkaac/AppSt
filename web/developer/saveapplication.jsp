@@ -76,7 +76,7 @@
                                     <li class="external">
                                         <h3>
                                             <span class="bold">12 pending</span> notifications</h3>
-                                        <a href="page_user_profile_1.html">view all</a>
+                                            <a href="profile.jsp">view all</a>
                                     </li>
                                     <li>
                                         <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
@@ -565,7 +565,7 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="dashboard.jsp">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
@@ -589,7 +589,7 @@
                                 </div>
                                 <div class="portlet-body">
                                     <!-- BEGIN FORM-->
-                                    <form action="../savestaff" onsubmit="return checkregistration()" method="POST" class="form-horizontal">
+                                    <form action="../saveapp" onsubmit="return checkAppregistration()" method="POST" class="form-horizontal">
                                         <div class="form-body">
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Applicatoin Name</label>
@@ -621,7 +621,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Application File</label>
                                                 <div class="col-md-9">
-                                                    <input type="url" name="applicationfile" id="applicationfile" class="form-control" placeholder="">
+                                                    <input type="file" name="applicationfile" id="applicationfile" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
