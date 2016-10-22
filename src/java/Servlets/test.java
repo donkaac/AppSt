@@ -13,6 +13,7 @@ import Entities.Wishlist;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -45,13 +46,14 @@ public class test extends HttpServlet {
                 ServletFileUpload up = new ServletFileUpload(f1);
 
                 List<FileItem> li = up.parseRequest(request);
-                
+                String parameter = request.getParameter("image1");
+                System.out.println("image 1 "+parameter);
                 String Image_Title = null;
                 String fn = null;
                 String Image_Path = null;
-                int i=0;
+               
                 for (FileItem item : li) {
-++i;
+ 
                     if (item.isFormField()) {
 
                         if (item.getFieldName().equals("image_title")) {
@@ -64,47 +66,35 @@ public class test extends HttpServlet {
                             fn = item.getString();
 
                         }
-                        if (item.getFieldName().equals("image_file1")) {
+                        if (item.getFieldName().equals("image1")) {
 
                             System.out.println("this is work ???"+item.getString());
-
+                            a1=item.getString();
                         }
 
                     } else {
-                        
-                        Image_Path = "appinterface/"+i+""+item.getName();
-                        System.out.println(item.getName());
-                        File f = new File(request.getServletContext().getRealPath("/") + Image_Path);
+                          
+                             Date date = new Date();
+                             long time = date.getTime();
+                             Image_Path = "appinterface/"+time+item.getName();
+                             System.out.println(item.getName());
+                             File f = new File(request.getServletContext().getRealPath("/") + Image_Path);
+                             
+                             item.write(f);
+                             
+                           
                          
-                        item.write(f);
-    switch (i) {
-        case 1:
-            a4=Image_Path;
-            break;
-        case 2:
-            a3=Image_Path;
-            break;
-        case 3:
-            a2=Image_Path;
-            break;
-        case 4:
-            a1=Image_Path;
-            break;
-        default:
-            break;
-    }
-                        System.out.println("");
-                       out.write(Image_Title + "','" + Image_Path+" "+fn);
-                       
+                        if(parameter==item.getName()){
+                              System.out.println("Checking Done this is Path ::"+Image_Path);
+                        }
+                        
+     
                     }
-if(i==4){i=0;}
+ 
                 }
                 
                 Application application = new Application();
-                System.out.println("Image 1 ="+a1);
-                System.out.println("Image 2 ="+a2);
-                System.out.println("Image 3 ="+a3);
-                System.out.println("Image 4 ="+a4);
+              
             } catch (Exception e) {
 
                 throw new ServletException(e);

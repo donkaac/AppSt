@@ -16,7 +16,7 @@
 
                 var input = document.forms['file_upload']['image_file'];
 
-                if (input.files[0].size > 600000) {
+                if (input.files[0].size > 6000000) {
 
                     document.getElementById('msg').innerHTML = "File Size Too Large..";
                     document.getElementById('msg').style.color = "RED";
@@ -49,10 +49,8 @@
                 <tr>
 
                     <td>Select File</td>
-                    <td><input type="file" name="image_file1"></td>
-                    <td><input type="file" name="image_file"></td>
-                    <td><input type="file" name="image_file"></td>
-                    <td><input type="file" name="image_file"></td>
+                    <td><input type="file" id="image_file1" onchange="setname()" name="image_file"><input id="image1" type="hidden" name="image1"/></td>
+                    
 
                 </tr>
 
@@ -73,7 +71,12 @@
             </table>
 
         </form>
-
+        <script type="text/javascript">
+            function setname(){
+               document.getElementById("image1").value=document.getElementById("image_file1").value;
+            }
+            
+        </script>
         <style>
             
             body{ margin-top:20px;}

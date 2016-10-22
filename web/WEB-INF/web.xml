@@ -172,6 +172,14 @@
         <servlet-name>buycartallapps</servlet-name>
         <servlet-class>Servlets.buycartallapps</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveNewRole</servlet-name>
+        <servlet-class>Servlets.SaveNewRole</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleterole</servlet-name>
+        <servlet-class>Servlets.deleterole</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -343,6 +351,14 @@
     <servlet-mapping>
         <servlet-name>buycartallapps</servlet-name>
         <url-pattern>/buycartallapps</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveNewRole</servlet-name>
+        <url-pattern>/SaveNewRole</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleterole</servlet-name>
+        <url-pattern>/deleterole</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
