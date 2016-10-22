@@ -40,7 +40,13 @@ public class saveapp extends HttpServlet {
 
     public void init() {
         // Get the file location where it would be stored.
-        filePath = getServletContext().getInitParameter("file-upload");
+        //filePath = getServletContext().getInitParameter("file-upload");
+        
+        filePath = getServletContext().getContextPath();
+        filePath +="/build/web/appinterface/";
+        
+        filePath = "C:/Users/Ish/Documents/NetBeansProjects/AppS"+filePath;
+        System.out.println(filePath);
     }
 
     /**
@@ -108,18 +114,20 @@ public class saveapp extends HttpServlet {
                         boolean isInMemory = fi.isInMemory();
                         long sizeInBytes = fi.getSize();
                         // Write the file
+                        
+                        String milisec = System.currentTimeMillis()+"";
 
                         if (fileName.lastIndexOf("\\") >= 0) {
-                            fileurl = filePath + System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("\\"));
+                            fileurl = filePath + milisec + fileName.substring(fileName.lastIndexOf("\\"));
                             file = new File(fileurl);
                         } else {
-                            fileurl = filePath + System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("\\") + 1);
+                            fileurl = filePath + milisec + fileName.substring(fileName.lastIndexOf("\\") + 1);
                             file = new File(fileurl);
                         }
 
                         if (!fileName.isEmpty()) {
                             fi.write(file);
-                            l.add(fileurl);
+                            l.add("appinterface\\"+milisec+fileName);
                             out.println("Uploaded Filename: " + fileName + "<br>");
                         }
 
