@@ -37,6 +37,8 @@ public class loardpurchase extends HttpServlet {
             boolean state = Boolean.parseBoolean(request.getParameter("state"));
             Application uniqeresault = (Application) Datacontroller.DataParser.getuniqeresault(new  Application(),Integer.parseInt(request.getParameter("appid")));
             Set<Customerhasapplication> comments = uniqeresault.getCustomerhasapplications();
+            Double total=0.0;
+            Double duetotal=0.0;
             
            out.write("<div class=\"scrollit\" style=\"width: 1000px\">\n" +
 "                                <table class=\"table table-hover\">\n" +
@@ -50,36 +52,43 @@ public class loardpurchase extends HttpServlet {
 "                                            <th>Type</th>\n" +
 "                                            <th>Platform</th>\n" +
 "                                            <th>Price</th>\n" +
+"                                            <th>Your Price</th>\n" +
 "                                            <th>Customer ID </th>\n" +
 "                                            <th>Customer Name</th>\n" +                         
-"                                            <th></th>\n" +
+"                                            <th>Payed Date</th>\n" +
 "                                        </tr>\n" +
 "                                    </thead>\n" +
 "                                    <tbody>");
             for (Customerhasapplication comment : comments) {
-                if(comment.getIsPayedDeveloper()==state){
+             
                 out.write("<tr>");
                 out.write("<td>"+comment.getIdCustomerHasApplication()+"</td>");
-                out.write("<td>"+comment.getPayedDateAndTimeToDeveloper()+"</td>");
+                out.write("<td>"+comment.getCustomerHasApplicationDateAndTime()+"</td>");
                 out.write("<td>"+comment.getApplication().getIdApplication()+"</td>");             
                 out.write("<td>"+comment.getApplication().getApplicationName()+"</td>");
                 out.write("<td>"+comment.getApplication().getCategory().getCategory()+"</td>");
                 out.write("<td>"+comment.getApplication().getCategory().getApptype().getApptype()+"</td>");
                 out.write("<td>"+comment.getApplication().getCategory().getApptype().getAppplatform().getAppplatform()+"</td>");
                 out.write("<td>"+comment.getApplication().getPrice()+"</td>");
+                out.write("<td>"+comment.getDeveloperPayementPrice()+"</td>");
                 out.write("<td>"+comment.getCustomer().getIdCustomer()+"</td>");
                 out.write("<td>"+comment.getCustomer().getCustomerFname()+" "+comment.getCustomer().getCustomerLname()+"</td>");
-                out.write("<td></td>");
-                out.write("<td></td>");
-                out.write("<td></td>");
-               out.write("<form action=\"withdarwAppPayments\" method=\"POST\"><input type=\"hidden\" value=\""+comment.getIdCustomerHasApplication()+"\" name=\"cushasid\"/><input class=\"form-control btn-default\" type=\"submit\" value=\"Withdraw\"/></form>");
+               
+                out.write("<td>"+comment.getPayedDateAndTimeToDeveloper()+"</td>");
                 
+                total+=comment.getDeveloperPayementPrice();
+                if(!comment.getIsPayedDeveloper().booleanValue()){
+                duetotal+=comment.getDeveloperPayementPrice();
+                }
+               
                 out.write("</tr>");  
                 }
-            }
+            
            
            out.write("  </tbody>\n" +
 "                                </table>\n" +
+"                                <h3>Your Earn Total Amount :"+total+"</h3>\n" +
+"                                <h3>Due Total Amount :"+duetotal+"</h3>\n" +
 "                            </div>");
         }catch(Exception e){
             e.printStackTrace();

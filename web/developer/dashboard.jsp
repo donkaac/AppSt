@@ -52,7 +52,7 @@
             <link href="../assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
             <link href="../assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
             <!-- END THEME STYLES -->
-            <!-- AJAX FILE -->
+            <!-- AJAX FILE -->  <script type="text/javascript" src="../ajaxjs/loardapplicationforinfolder.js"></script>
             <script type="text/javascript" src="../ajaxjs/category.js"></script>
             <script type="text/javascript" src="../ajaxjs/developerapploard.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
@@ -204,12 +204,12 @@
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                               <form class="sidebar-search  "   method="POST">
                                     <a href="javascript:;" class="remove">
                                         <i class="icon-close"></i>
                                     </a>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search...">
+                                        <input type="text" id="nametext" onkeyup="loardapplicationByName(document.getElementById('nametext').value)" class="form-control" placeholder="Search...">
                                         <span class="input-group-btn">
                                             <a href="javascript:;" class="btn submit">
                                                 <i class="icon-magnifier"></i>

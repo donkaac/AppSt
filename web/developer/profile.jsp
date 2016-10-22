@@ -31,32 +31,32 @@
             <meta content="" name="author"/>
             <!-- BEGIN GLOBAL MANDATORY STYLES -->
             <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
             <!-- END GLOBAL MANDATORY STYLES -->
             <!-- BEGIN PGE LEVEL PLUGIN STYLES -->
-            <link href="assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
             <!-- END PAGE LEVEL PLUGIN STYLES -->
             <!-- BEGIN PAGE STYLES -->
-            <link href="assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
             <!-- END PAGE STYLES -->
             <!-- BEGIN THEME STYLES -->
-            <link href="assets/global/css/components.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-            <link href="assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+            <link href="../assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
             <!-- END THEME STYLES -->
             <!-- AJAX FILE -->
-            <script type="text/javascript" src="ajaxjs/category.js"></script>
-            <script type="text/javascript" src="ajaxjs/loardapplication.js"></script>
-            <script type="text/javascript" src="ajaxjs/customeraddressdetails.js"></script>
+            <script type="text/javascript" src="../ajaxjs/category.js"></script>
+             <script type="text/javascript" src="../ajaxjs/loardapplicationforinfolder.js"></script>
+             <script type="text/javascript" src="../ajaxjs/developeraddressdetails.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head>
@@ -73,7 +73,7 @@
                         if (!(c.getDeveloperImage() == null)) {
                             image = c.getDeveloperImage();
                         }
-                        String cartqty = "";
+                        String appqty = ""+c.getApplications().size();
                         String wishlistqty = "";
                         String username = c.getDeveloperFname();
 
@@ -84,8 +84,8 @@
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.jsp">
-                            <img src="assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                        <a href="dashboard.jsp">
+                            <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
                     <!-- END LOGO -->
@@ -93,7 +93,7 @@
                     <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
                     <!-- END RESPONSIVE MENU TOGGLER -->
                     <!-- BEGIN TOP NAVIGATION MENU -->
-                    <div class="top-menu">
+                     <div class="top-menu">
                         <ul class="nav navbar-nav pull-right">
 
                             <!-- END NOTIFICATION DROPDOWN -->
@@ -102,41 +102,41 @@
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="<%=image%>" />
-                                    <span class="username username-hide-on-mobile"><%=username%></span>
+                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <span class="username username-hide-on-mobile"> <%=username%> </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
-                                
+                               <ul class="dropdown-menu dropdown-menu-default">
+                                  
                                     <li>
                                         <a href="profile.jsp">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
-                                 
-                                    <li>
-                                        <a href="yourpurchaseapps.jsp">
-                                            <i class="icon-briefcase"></i> My Purchase App List  </a>
+                                     <li>
+                                         <a href="appPurchaseHistory.jsp">
+                                            <i class="glyphicon glyphicon-bitcoin"></i> Purchase History </a>
                                     </li>
-                                  
                                     <li>
-                                        <a href="cart.jsp">
-                                            <i class="glyphicon glyphicon-shopping-cart"></i> Cart
-                                            <span class="badge badge-danger"> <%=cartqty%></span>
+                                        <a href="applist.jsp">
+                                            <i class="glyphicon glyphicon-list"></i> App List
+                                            <span class="badge badge-danger"> <%=appqty%> </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="wishlist.jsp">
-                                            <i class="icon-wallet"></i> WishList
-                                            <span class="badge badge-default"> <%=wishlistqty%> </span>
+                                        <a href="commentsbox.jsp">
+                                            <i class="glyphicon glyphicon-comment"></i> Comment Box
+                                            
                                         </a>
                                     </li>
+                                    <li> 
                                     
                                     <li>
 
-                                        <a href="logout">
+                                        <a href="../logout">
                                             <i class="icon-key"></i> Log Out </a>
                                     </li>
-                                    
+                                  
+
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
@@ -368,7 +368,7 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.jsp">Home</a>
+                                    <a href="dashboard.jsp">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
@@ -654,61 +654,61 @@
 <script src="./assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
 <!-- BEGIN CORE PLUGINS -->
-<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
-<script src="assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
-<script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
+<script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+<script src="../assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
-<script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-<script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-<script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+<script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+<script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
 <%}
     } catch (Exception e) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("login.jsp");
     }%>
 </html>
-<% }else{ response.sendRedirect("index.jsp");}%>
+<% }else{ response.sendRedirect("login.jsp");}%>
