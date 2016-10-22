@@ -76,7 +76,7 @@
                                     <li class="external">
                                         <h3>
                                             <span class="bold">12 pending</span> notifications</h3>
-                                            <a href="profile.jsp">view all</a>
+                                        <a href="profile.jsp">view all</a>
                                     </li>
                                     <li>
                                         <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
@@ -589,7 +589,7 @@
                                 </div>
                                 <div class="portlet-body">
                                     <!-- BEGIN FORM-->
-                                    <form action="../saveapp" onsubmit="return checkAppregistration()" method="POST" class="form-horizontal">
+                                    <form action="../saveapp" onsubmit="return checkAppregistration()" method="POST" class="form-horizontal" enctype="multipart/form-data">
                                         <div class="form-body">
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Applicatoin Name</label>
@@ -603,7 +603,7 @@
                                                 <label class="col-md-3 control-label" for="form_control_1">App Price</label>
                                                 <div class="col-md-9">
                                                     <input type="number" id="price" name="price" class="form-control " placeholder="">
-                                                   
+
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -650,8 +650,8 @@
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                            
-                                             <div class="form-group form-md-line-input">
+
+                                            <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 1</label>
                                                 <div class="col-md-9">
                                                     <input type="file" name="images1" id="images1" class="form-control" placeholder="">
@@ -659,7 +659,7 @@
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                             <div class="form-group form-md-line-input">
+                                            <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 2</label>
                                                 <div class="col-md-9">
                                                     <input type="file" name="images2" id="images2" class="form-control" placeholder="">
@@ -667,7 +667,7 @@
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
                                             </div>
-                                             <div class="form-group form-md-line-input">
+                                            <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 3</label>
                                                 <div class="col-md-9">
                                                     <input type="file" name="images3" id="images3" class="form-control" placeholder="">
@@ -705,8 +705,8 @@
                                                 <div class="col-md-9">
 
                                                     <span>
-                                                        <select class="form-control"   id="appcategorylist">
-
+                                                        <select class="form-control" name="appcategorylist" id="appcategorylist">
+                                                            
                                                         </select>
 
                                                     </span> 
@@ -714,7 +714,7 @@
                                             </div>
 
 
-                                            
+
                                         </div>
                                         <div class="form-actions">
                                             <div class="row">
