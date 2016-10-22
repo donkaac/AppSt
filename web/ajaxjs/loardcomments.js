@@ -48,10 +48,10 @@ function loardcomment(appid){
                 document.getElementById("applicationArea").innerHTML = ResponseText;
             }
         };
-
+       
         Object.open("POST", "../loardpurchase", true);
         Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      Object.send("state=" + true + "&appid=" + appid);
+      Object.send("state=" + false + "&appid=" + appid);
     }  
   } 
    function removecomment(commentid){

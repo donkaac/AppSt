@@ -196,6 +196,10 @@
         <servlet-name>withdarwAppPayments</servlet-name>
         <servlet-class>Servlets.withdarwAppPayments</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>searchappbynameonfolder</servlet-name>
+        <servlet-class>Servlets.searchappbynameonfolder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -391,6 +395,10 @@
     <servlet-mapping>
         <servlet-name>withdarwAppPayments</servlet-name>
         <url-pattern>/withdarwAppPayments</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchappbynameonfolder</servlet-name>
+        <url-pattern>/searchappbynameonfolder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -70,7 +70,7 @@ public class buycartallapps extends HttpServlet {
                            double developerprice = app.getPrice()/100*80;
                     double incomeprice = app.getPrice()/100*20;
                     Customerhasapplication customerhasapplication = new Customerhasapplication(app, customer, serialkeys, new Date(),developerprice ,incomeprice);
-                    
+                    customerhasapplication.setIsPayedDeveloper(false);
                       Savedata = Datacontroller.DataParser.Savedata(customerhasapplication);
                       cart.setState(false);
                         
