@@ -77,8 +77,8 @@
         <!-- END HEAD -->
 
         <body  class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-            
-             
+
+
             <%
                 String username = "Guest";
                 boolean loging = false;
@@ -93,7 +93,7 @@
                             c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
                             username = c.getCustomerFname();
                             loging = true;
-                        } 
+                        }
                         //int cusid = Integer.parseInt(s.getAttribute("userid").toString());
                         // c = (Customer) DataParser.getuniqeresault(new Customer(), cusid);                       
                     } catch (Exception e) {
@@ -139,7 +139,7 @@
                                     <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
-                               <ul class="dropdown-menu dropdown-menu-default">
+                                <ul class="dropdown-menu dropdown-menu-default">
                                     <%if (loging) {%>
                                     <li>
                                         <a href="profile.jsp">
@@ -209,7 +209,7 @@
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                 <form class="sidebar-search  "   method="POST">
+                                <form class="sidebar-search  "   method="POST">
                                     <a href="javascript:;" class="remove">
                                         <i class="icon-close"></i>
                                     </a>
@@ -421,9 +421,9 @@
                         <div class="page-container" id="applicationArea">
 
                             <%
-                                if(appid!=""){
-                                Application app = (Application) DataParser.getuniqeresault(new Application(), Integer.parseInt(appid));
-
+                                if (appid != "") {
+                                    Application app = (Application) DataParser.getuniqeresault(new Application(), Integer.parseInt(appid));
+                                    
                             %>
                             <div class="container-fluid">
                                 <div class="content-wrapper">	
@@ -458,30 +458,30 @@
                                                     <div class="product-desc"><%=app.getDescription()%></div>
                                                     <div class="product-rating">
                                                         <%
-                                                        int rate= Oparation.getRates.getRate(app.getIdApplication());
-                                                         if(rate>=1){%>
+                                                            int rate = Oparation.getRates.getRate(app.getIdApplication());
+                                                            if (rate >= 1) {%>
                                                         <i class="fa fa-star gold"></i>
-                                                        <%}else{%>
+                                                        <%} else {%>
                                                         <i class="fa fa-star-o"></i>
                                                         <%}%>
-                                                         <%   if(rate>=2){%>
+                                                        <%   if (rate >= 2) {%>
                                                         <i class="fa fa-star gold"></i>
-                                                        <%}else{%>
+                                                        <%} else {%>
                                                         <i class="fa fa-star-o"></i>
                                                         <%}%>
-                                                         <%   if(rate>=3){%>
+                                                        <%   if (rate >= 3) {%>
                                                         <i class="fa fa-star gold"></i>
-                                                        <%}else{%>
+                                                        <%} else {%>
                                                         <i class="fa fa-star-o"></i>
                                                         <%}%>
-                                                         <%   if(rate>=4){%>
+                                                        <%   if (rate >= 4) {%>
                                                         <i class="fa fa-star gold"></i>
-                                                        <%}else{%>
+                                                        <%} else {%>
                                                         <i class="fa fa-star-o"></i>
                                                         <%}%>
-                                                         <%   if(rate==5){%>
+                                                        <%   if (rate == 5) {%>
                                                         <i class="fa fa-star gold"></i>
-                                                        <%}else{%>
+                                                        <%} else {%>
                                                         <i class="fa fa-star-o"></i>
                                                         <%}%>
                                                     </div>
@@ -518,38 +518,51 @@
                                                             <p>
                                                                 <%=app.getDescription()%>
                                                             </p>
+                                                            <a href="<%=app.getUserManualUrl()%>"><button class="form-control btn-default">Download User Manual</button></a>
                                                         </section>
 
                                                     </div>
                                                     <div class="tab-pane fade" id="service-two">
 
                                                         <section class="container">
+                                                            <iframe title="YouTube video player" class="youtube-player" type="text/html" 
+                                                                    width="640" height="390" src="<%=app.getVideoUrl()%>"
+                                                                    frameborder="0" allowFullScreen>
+                                                            </iframe>
                                                         </section>
-
+                                                             
                                                     </div>
                                                     <div class="tab-pane fade" id="service-three">
                                                         <ul class="comment">
                                                             <%   Set<Comment> comments = app.getComments();
                                                                 for (Comment comment : comments) {
+                                                                    if (comment.isState()) {
                                                             %>
                                                             <li><%=comment.getComment()%>
                                                                 <ul class="list-group-item-text">
                                                                     <%
                                                                         Set<Commenthasreply> commenthasreplies = comment.getCommenthasreplies();
                                                                         for (Commenthasreply commenthasreply : commenthasreplies) {
+
+                                                                            if (commenthasreply.isState()) {
                                                                     %>
 
                                                                     <li><%=commenthasreply.getReplyComment()%></li>
 
-                                                                    <%}%>
+                                                                    <%}
+                                                                        }%>
                                                                 </ul>
                                                             </li>
 
 
-                                                            <%
-                                                            }%>				
+                                                            <%}
+                                                                }%>				
                                                         </ul>
-                                                        
+                                                        <form action="SaveComment" method="POST">
+                                                            <input type="text" class="form-control" name="text" required/>
+                                                            <input type="hidden" value="<%=app.getIdApplication()%>" name="appid"/>
+                                                            <input type="submit" class="form-control btn-default"  value="Set Comment" />
+                                                        </form>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -560,7 +573,7 @@
 
 
                             </div>
-                                                        <%}%>
+                            <%}%>
                         </div>
 
 

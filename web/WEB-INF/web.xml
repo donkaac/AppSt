@@ -188,6 +188,14 @@
         <servlet-name>saveprivilages</servlet-name>
         <servlet-class>Servlets.saveprivilages</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loardpurchase</servlet-name>
+        <servlet-class>Servlets.loardpurchase</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>withdarwAppPayments</servlet-name>
+        <servlet-class>Servlets.withdarwAppPayments</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -375,6 +383,14 @@
     <servlet-mapping>
         <servlet-name>saveprivilages</servlet-name>
         <url-pattern>/saveprivilages</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loardpurchase</servlet-name>
+        <url-pattern>/loardpurchase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>withdarwAppPayments</servlet-name>
+        <url-pattern>/withdarwAppPayments</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

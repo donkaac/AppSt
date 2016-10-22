@@ -82,7 +82,7 @@ public class loardcomment extends HttpServlet {
                 out.write("</tr>");
                     Set<Commenthasreply> commenthasreplies = comment.getCommenthasreplies();
                     for (Commenthasreply commenthasreply : commenthasreplies) {
-                        if(commenthasreply.isState()==state){
+                        if(commenthasreply.isState()){
                         out.write("<tr>");
                         out.write("<td></td>");
                         out.write("<td></td>");

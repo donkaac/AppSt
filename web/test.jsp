@@ -71,6 +71,8 @@
             </table>
 
         </form>
+        
+        
         <script type="text/javascript">
             function setname(){
                document.getElementById("image1").value=document.getElementById("image_file1").value;
