@@ -59,7 +59,7 @@ public class buycartallapps extends HttpServlet {
                     if(SaveSerial){
                         
                         ArrayList<Object> Searchdata = Datacontroller.DataParser.Searchdata(new Serialkeys());
-                       Serialkeys serialkeys =null;
+                       Serialkeys serialkeys =new Serialkeys();
                         for (Object object : Searchdata) {
                            serialkeys= (Serialkeys) object;
                             System.out.println(""+serialkeys.getSerialkey()+" "+serialkeys.getApplication().getApplicationName());
@@ -73,7 +73,7 @@ public class buycartallapps extends HttpServlet {
                     customerhasapplication.setIsPayedDeveloper(false);
                       Savedata = Datacontroller.DataParser.Savedata(customerhasapplication);
                       cart.setState(false);
-                        
+                        DataParser.UpdateData(cart);
                             int executeUpdate = DB.getConnection().createStatement().executeUpdate("DELETE FROM cart WHERE Customer_idCustomer='" + customer.getIdCustomer() + "' AND Application_idApplication='" + app.getIdApplication() + "'");
                            
                     }

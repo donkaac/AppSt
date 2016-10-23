@@ -24,6 +24,7 @@ public class Serialkeys  implements java.io.Serializable {
     public Serialkeys(Application application, String serialkey) {
         this.application = application;
         this.serialkey = serialkey;
+        this.state = true;
     }
     public Serialkeys(Application application, String serialkey, Boolean state, Set<Customerhasapplication> customerhasapplications) {
        this.application = application;

@@ -3,6 +3,7 @@
     Created on : Oct 8, 2016, 7:35:19 AM
     Author     : Ish
 --%> 
+<%@page import="Entities.Rolehassubmenu"%>
 <%@page import="Entities.Staff"%>
 <%@page import="Entities.Gender"%>
 <%@page import="Entities.Wishlist"%>
@@ -17,7 +18,25 @@
 <%@ page import="java.io.*,java.util.*" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html><%
+            Set<Rolehassubmenu>  list=null;
+            try{
+      Staff staff=(Staff)request.getSession().getAttribute("staff");
+       list=staff.getRoles().getRolehassubmenus();
+     boolean states=false;
+      for(Rolehassubmenu rhs:list){
+        if(  rhs.getSubmenu().getPageurl()=="profile.jsp"){
+            System.out.println(rhs.getSubmenu().getPageurl());
+            states=true;
+        }
+      }
+      if(states){
+          response.sendRedirect("dashboard.jsp?msg=NeedPermission");
+      }
+            }catch(NullPointerException e){
+                 response.sendRedirect("dashboard.jsp");
+            }
+        %>
 <% if(session.getAttribute("staff")!= null){%>
 <html lang="en">  
         <!-- BEGIN HEAD -->
@@ -30,32 +49,32 @@
             <meta content="" name="author"/>
             <!-- BEGIN GLOBAL MANDATORY STYLES -->
             <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
             <!-- END GLOBAL MANDATORY STYLES -->
             <!-- BEGIN PGE LEVEL PLUGIN STYLES -->
-            <link href="assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
             <!-- END PAGE LEVEL PLUGIN STYLES -->
             <!-- BEGIN PAGE STYLES -->
-            <link href="assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
             <!-- END PAGE STYLES -->
             <!-- BEGIN THEME STYLES -->
-            <link href="assets/global/css/components.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-            <link href="assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-            <link href="assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+            <link href="../assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+            <link href="../assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css"/>
             <!-- END THEME STYLES -->
             <!-- AJAX FILE -->
-            <script type="text/javascript" src="ajaxjs/category.js"></script>
-            <script type="text/javascript" src="ajaxjs/loardapplication.js"></script>
-            <script type="text/javascript" src="ajaxjs/customeraddressdetails.js"></script>
+            <script type="text/javascript" src="../ajaxjs/category.js"></script>
+            <script type="text/javascript" src="../ajaxjs/loardapplication.js"></script>
+            <script type="text/javascript" src="../ajaxjs/customeraddressdetails.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head>
@@ -83,8 +102,8 @@
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.jsp">
-                            <img src="assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                        <a href="dashboard.jsp">
+                            <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
                     <!-- END LOGO -->
@@ -112,23 +131,7 @@
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
                                  
-                                    <li>
-                                        <a href="yourpurchaseapps.jsp">
-                                            <i class="icon-briefcase"></i> My Purchase App List  </a>
-                                    </li>
-                                  
-                                    <li>
-                                        <a href="cart.jsp">
-                                            <i class="glyphicon glyphicon-shopping-cart"></i> Cart
-                                            <span class="badge badge-danger"> <%=cartqty%></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="wishlist.jsp">
-                                            <i class="icon-wallet"></i> WishList
-                                            <span class="badge badge-default"> <%=wishlistqty%> </span>
-                                        </a>
-                                    </li>
+                                     
                                     
                                     <li>
 
@@ -189,85 +192,17 @@
                                 </form>
                                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                             </li>
-                            <%
-                                ArrayList<Object> apps = Datacontroller.DataParser.Searchdata(new Appplatform());
-                                for (Object o : apps) {
-                                    Appplatform app = (Appplatform) o;
-                                    if (app.isState()) {
-                            %>
-                            <li class="nav-item start">
-                                <a href="javascript:;" class="nav-link nav-toggle">
-                                    <i class="icon-home"></i>
-                                    <span class="title"><%=app.getAppplatform()%></span>
-                                    <span class="selected"></span>
-                                    <span class="arrow open"></span>
-                                </a>
-
-                                <ul class="sub-menu">
-                                    <%
-
-                                        Set<Apptype> apptypes = app.getApptypes();
-                                        for (Apptype apptype : apptypes) {
-                                            if (apptype.isState()) {
-                                    %>
-                                    <li class="nav-item start">
-                                        <a href="javascript:;" class="nav-link nav-toggle">
-                                            <i class="icon-tag"></i>
-
-                                            <span class="title"><%=apptype.getApptype()%></span>
-                                            <span class="selected"></span>
-                                            <span class="arrow open"></span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <%
-                                                Set<Category> categories = apptype.getCategories();
-                                                for (Category category : categories) {
-                                                    if (category.isState()) {
-                                            %>
-                                            <li class="nav-item start">
-                                                <a href="javascript:;" class="nav-link nav-toggle">
-
-                                                    <i class="icon-folder"></i>
-                                                    <span class="title"><%=category.getCategory()%></span>
-                                                    <span class="selected"></span>
-                                                    <span class="arrow open"></span>
-                                                </a>
-                                                <ul>
-                                                    <%
-                                                        Set<Application> applications = category.getApplications();
-                                                        for (Application appl : applications) {
-                                                            if (appl.isState()) {
-
-
-                                                    %>
-                                                    <li class="nav-item start">
-                                                        <a href="index.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
-
-                                                            <i class="icon-game-controller"></i>
-                                                            <span class="title"><%=  appl.getApplicationName()%></span>
-                                                            <span class="selected"></span>
-                                                            <span class="views"></span>
-                                                        </a>
-                                                    </li>
-
-                                                    <%
-                                                            }
-
-                                                        }
-                                                    %>
-                                                </ul>
-                                            </li>
-                                            <%}
-                                                }%>
-                                        </ul>
-                                        <%}
-                                            }%>
-
+                           <ul class="dropdown-menu dropdown-menu-default">
+                                    <%for(Rolehassubmenu rhs:list){
+                                        
+                                                                             %>
+                                    <li>
+                                        <a href="<%=rhs.getSubmenu().getPageurl()%>">
+                                            <i class="icon-user"></i> <%=rhs.getSubmenu().getSubmenu()%> </a>
+                                    </li>
+                                    <%}%>
+                                      
                                 </ul>
-
-                            </li>
-                            <%}
-                                }%>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->
@@ -642,61 +577,61 @@
 <script src="./assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
 <!-- BEGIN CORE PLUGINS -->
-<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-<script src="assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
-<script src="assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/moment.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
-<script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
+<script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+<script src="../assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
-<script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-<script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-<script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+<script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+<script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
 <%}
     } catch (Exception e) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("login.jsp");
     }%>
 </html>
-<% }else{ response.sendRedirect("index.jsp");}%>
+<% }else{ response.sendRedirect("login.jsp");}%>

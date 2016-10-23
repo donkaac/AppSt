@@ -4,6 +4,9 @@
     Author     : Ish
 --%>
 
+<%@page import="Entities.Staff"%>
+<%@page import="java.util.Set"%>
+<%@page import="Entities.Rolehassubmenu"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +48,25 @@
         <link rel="shortcut icon" href="favicon.ico"/>
 
     </head>
+    <%
+            Set<Rolehassubmenu>  list=null;
+            try{
+      Staff staff=(Staff)request.getSession().getAttribute("staff");
+       list=staff.getRoles().getRolehassubmenus();
+     boolean states=false;
+      for(Rolehassubmenu rhs:list){
+        if(  rhs.getSubmenu().getPageurl()=="adderssdetails.jsp"){
+            System.out.println(rhs.getSubmenu().getPageurl());
+            states=true;
+        }
+      }
+      if(states){
+          response.sendRedirect("dashboard.jsp?msg=NeedPermission");
+      }
+            }catch(NullPointerException e){
+                 response.sendRedirect("dashboard.jsp");
+            }
+        %>
     <!-- END HEAD -->
     <body onload="loardcountry()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <!-- BEGIN HEADER -->
@@ -119,46 +141,32 @@
                             <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                             <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                             <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                            <form class="sidebar-search  " action="searchbyname" method="POST">
-                                <a href="javascript:;" class="remove">
-                                    <i class="icon-close"></i>
-                                </a>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <a href="javascript:;" class="btn submit">
-                                            <i class="icon-magnifier"></i>
-                                        </a>
-                                    </span>
-                                </div>
-                            </form>
+                            <form class="sidebar-search  "   method="POST">
+                                    <a href="javascript:;" class="remove">
+                                        <i class="icon-close"></i>
+                                    </a>
+                                    <div class="input-group">
+                                        <input type="text" id="nametext" onkeyup="loardapplicationByName(document.getElementById('nametext').value)" class="form-control" placeholder="Search...">
+                                        <span class="input-group-btn">
+                                            <a href="javascript:;" class="btn submit">
+                                                <i class="icon-magnifier"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </form>
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
-                        <li class="nav-item start active open">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-home"></i>
-                                <span class="title">Dashboard</span>
-                                <span class="selected"></span>
-                                <span class="arrow open"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item start active open">
-                                    <a href="index.html" class="nav-link ">
-                                        <i class="icon-bar-chart"></i>
-                                        <span class="title">Dashboard 1</span>
-                                        <span class="selected"></span>
-                                    </a>
-                                </li>
-                                <li class="nav-item start ">
-                                    <a href="dashboard_2.html" class="nav-link ">
-                                        <i class="icon-bulb"></i>
-                                        <span class="title">Dashboard 2</span>
-                                        <span class="badge badge-success">1</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                                    <%for(Rolehassubmenu rhs:list){
+                                        
+                                                                             %>
+                                    <li>
+                                        <a href="<%=rhs.getSubmenu().getPageurl()%>">
+                                            <i class="icon-user"></i> <%=rhs.getSubmenu().getSubmenu()%> </a>
+                                    </li>
+                                    <%}%>
+                                      
+                                </ul>
 
                     </ul>
                     <!-- END SIDEBAR MENU -->

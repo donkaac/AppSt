@@ -331,7 +331,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Applicatoin Name</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="appname" name="appname" class="form-control" placeholder="">
+                                                    <input type="text" id="appname" name="appname" class="form-control" required placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -339,7 +339,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">App Price</label>
                                                 <div class="col-md-9">
-                                                    <input type="number" id="price" name="price" class="form-control " placeholder="">
+                                                    <input type="number" id="price" name="price" class="form-control " required placeholder="">
 
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
@@ -350,7 +350,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Descriptions</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" name="description" id="description" class="form-control" placeholder="">
+                                                    <input type="text" name="description" id="description" class="form-control" required placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -358,7 +358,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Application File</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="applicationfile" id="applicationfile" class="form-control" placeholder="">
+                                                    <input type="file" name="applicationfile" id="applicationfile" required class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -366,7 +366,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">User Manual URL</label>
                                                 <div class="col-md-9">
-                                                    <input type="url" name="usermanualurl" id="usermanualurl" class="form-control" placeholder="">
+                                                    <input type="url" name="usermanualurl" id="usermanualurl" required class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -374,7 +374,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">App Icon</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="appicon" id="appicon" class="form-control" placeholder="">
+                                                    <input type="file" name="appicon" id="appicon" class="form-control" required placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -382,7 +382,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Video URL</label>
                                                 <div class="col-md-9">
-                                                    <input type="url" name="videourl" id="videourl" class="form-control" placeholder="">
+                                                    <input type="url" name="videourl" id="videourl" class="form-control" required placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -391,7 +391,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 1</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images1" id="images1" class="form-control" placeholder="">
+                                                    <input type="file" name="images1" id="images1" class="form-control" required placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -399,7 +399,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 2</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images2" id="images2" class="form-control" placeholder="">
+                                                    <input type="file" name="images2" id="images2" class="form-control" required placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -407,7 +407,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 3</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images3" id="images3" class="form-control" placeholder="">
+                                                    <input type="file" name="images3" id="images3" class="form-control" required placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -418,7 +418,7 @@
                                                 <div class="col-md-9">
 
                                                     <span>
-                                                        <select style="width:80%px" class="form-control form-inline" onchange="loardApptype()"    id="Appplatformlist">
+                                                        <select style="width:80%px" class="form-control form-inline" onchange="loardApptype()"  required  id="Appplatformlist">
 
                                                         </select>
 
@@ -430,7 +430,7 @@
                                                 <div class="col-md-9">
 
                                                     <span>
-                                                        <select class="form-control" onchange="loardAppplatcategory()" id="apptypelist">
+                                                        <select class="form-control" onchange="loardAppplatcategory()" id="apptypelist" required>
 
                                                         </select>
 
@@ -442,7 +442,7 @@
                                                 <div class="col-md-9">
 
                                                     <span>
-                                                        <select class="form-control" name="appcategorylist" id="appcategorylist">
+                                                        <select class="form-control" name="appcategorylist" id="appcategorylist" required>
                                                             
                                                         </select>
 
@@ -546,5 +546,7 @@
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>
-<%}%>
+<%}else{
+response.sendRedirect("login.jsp");
+}%>
 </html>

@@ -446,9 +446,9 @@
                                                 <td class="col-sm-1 col-md-1 text-center"><strong></strong></td>
                                                 <td class="col-sm-1 col-md-1 text-center"><strong>$<%=purchesapp.getApplication().getPrice()%></strong></td>
                                                 <td class="col-sm-1 col-md-1">
-                                                    <button type="button" onclick="downloard(<%=purchesapp.getApplication().getIdApplication()%>)" class="btn btn-link">
+                                                    <a type="button" href="<%=purchesapp.getApplication().getAppurl()%>" class="btn btn-link">
                                                         <span class="glyphicon glyphicon-download"></span> Download
-                                                    </button></td>
+                                                    </a></td>
                                             </tr>
                                             <%}%>
                                             <tr>

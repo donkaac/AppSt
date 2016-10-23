@@ -46,21 +46,24 @@ public class admin_login extends HttpServlet {
             boolean loginstate = false;
             ArrayList<Object> Searchdata = DataParser.Searchdata(new Staff());
             Staff s = new Staff();
+           
             for (Object staff : Searchdata) {
                 s = (Staff) staff;
-                if ((s.getUsername().equals(email)) & (s.getStaffPassword().equals(password))) {
+                if ((s.getUsername().equals(email)) & (s.getStaffPassword().equals( Datacontroller.EncryptUtils.base64encode(password)))) {
                     loginstate = true;
                     break;
                 }
             }
+            
             if (loginstate) {
+                System.out.println("Login Success");
                 session.setAttribute("staff", s);
                 out.print("ok");
             } else {
-                out.print("error");
+               out.print("error");
             }
         } catch (Exception e) {
-            out.print(e.getMessage());
+              e.printStackTrace();
         }
     }
 

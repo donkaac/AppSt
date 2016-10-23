@@ -5,6 +5,9 @@
 --%>
 
 
+<%@page import="Entities.Staff"%>
+<%@page import="java.util.Set"%>
+<%@page import="Entities.Rolehassubmenu"%>
 <%@page import="Entities.Menu"%>
 <%@page import="Entities.Submenu"%>
 <%@page import="java.util.ArrayList"%>
@@ -49,7 +52,25 @@
             <script type="text/javascript" src="../ajaxjs/category.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
 
-        </head>
+        </head><%
+            Set<Rolehassubmenu>  list=null;
+            try{
+      Staff staff=(Staff)request.getSession().getAttribute("staff");
+       list=staff.getRoles().getRolehassubmenus();
+     boolean states=false;
+      for(Rolehassubmenu rhs:list){
+        if(  rhs.getSubmenu().getPageurl()=="privilages.jsp"){
+            System.out.println(rhs.getSubmenu().getPageurl());
+            states=true;
+        }
+      }
+      if(states){
+          response.sendRedirect("dashboard.jsp?msg=NeedPermission");
+      }
+            }catch(NullPointerException e){
+                 response.sendRedirect("dashboard.jsp");
+            }
+        %>
         <!-- END HEAD -->
         <body onload="loardAppplatform()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
             <!-- BEGIN HEADER -->
@@ -132,31 +153,17 @@
                                 </form>
                                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                             </li>
-                            <li class="nav-item start active open">
-                                <a href="javascript:;" class="nav-link nav-toggle">
-                                    <i class="icon-home"></i>
-                                    <span class="title">Dashboard</span>
-                                    <span class="selected"></span>
-                                    <span class="arrow open"></span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item start active open">
-                                        <a href="index.html" class="nav-link ">
-                                            <i class="icon-bar-chart"></i>
-                                            <span class="title">Dashboard 1</span>
-                                            <span class="selected"></span>
-                                        </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                    <%for(Rolehassubmenu rhs:list){
+                                        
+                                                                             %>
+                                    <li>
+                                        <a href="<%=rhs.getSubmenu().getPageurl()%>">
+                                            <i class="icon-user"></i> <%=rhs.getSubmenu().getSubmenu()%> </a>
                                     </li>
-                                    <li class="nav-item start ">
-                                        <a href="dashboard_2.html" class="nav-link ">
-                                            <i class="icon-bulb"></i>
-                                            <span class="title">Dashboard 2</span>
-                                            <span class="badge badge-success">1</span>
-                                        </a>
-                                    </li>
-
+                                    <%}%>
+                                      
                                 </ul>
-                            </li>
 
                         </ul>
                         <!-- END SIDEBAR MENU -->

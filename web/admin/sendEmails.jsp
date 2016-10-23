@@ -3,6 +3,8 @@
     Created on : Oct 4, 2016, 9:56:00 PM
     Author     : Ish
 --%>
+<%@page import="Entities.Staff"%>
+<%@page import="Entities.Rolehassubmenu"%>
 <%@page import="Entities.Developer"%>
 <%@page import="java.util.List"%>
 <%@page import="Entities.Cart"%>
@@ -16,7 +18,25 @@
 <%@page import="java.util.ArrayList"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html><%
+            Set<Rolehassubmenu>  list=null;
+            try{
+      Staff staff=(Staff)request.getSession().getAttribute("staff");
+       list=staff.getRoles().getRolehassubmenus();
+     boolean states=false;
+      for(Rolehassubmenu rhs:list){
+        if(  rhs.getSubmenu().getPageurl()=="sendEmails.jsp"){
+            System.out.println(rhs.getSubmenu().getPageurl());
+            states=true;
+        }
+      }
+      if(states){
+          response.sendRedirect("dashboard.jsp?msg=NeedPermission");
+      }
+            }catch(NullPointerException e){
+                 response.sendRedirect("dashboard.jsp");
+            }
+        %>
 <html lang="en">
     <html>   
         <!-- BEGIN HEAD -->
@@ -185,85 +205,17 @@
                                 </form>
                                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                             </li>
-                            <%
-                                ArrayList<Object> apps = Datacontroller.DataParser.Searchdata(new Appplatform());
-                                for (Object o : apps) {
-                                    Appplatform app = (Appplatform) o;
-                                    if (app.isState()) {
-                            %>
-                            <li class="nav-item start">
-                                <a href="javascript:;" class="nav-link nav-toggle">
-                                    <i class="icon-home"></i>
-                                    <span class="title"><%=app.getAppplatform()%></span>
-                                    <span class="selected"></span>
-                                    <span class="arrow open"></span>
-                                </a>
-
-                                <ul class="sub-menu">
-                                    <%
-
-                                        Set<Apptype> apptypes = app.getApptypes();
-                                        for (Apptype apptype : apptypes) {
-                                            if (apptype.isState()) {
-                                    %>
-                                    <li class="nav-item start">
-                                        <a href="javascript:;" class="nav-link nav-toggle">
-                                            <i class="icon-tag"></i>
-
-                                            <span class="title"><%=apptype.getApptype()%></span>
-                                            <span class="selected"></span>
-                                            <span class="arrow open"></span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <%
-                                                Set<Category> categories = apptype.getCategories();
-                                                for (Category category : categories) {
-                                                    if (category.isState()) {
-                                            %>
-                                            <li class="nav-item start">
-                                                <a href="javascript:;" class="nav-link nav-toggle">
-
-                                                    <i class="icon-folder"></i>
-                                                    <span class="title"><%=category.getCategory()%></span>
-                                                    <span class="selected"></span>
-                                                    <span class="arrow open"></span>
-                                                </a>
-                                                <ul>
-                                                    <%
-                                                        Set<Application> applications = category.getApplications();
-                                                        for (Application appl : applications) {
-                                                            if (appl.isState()) {
-
-
-                                                    %>
-                                                    <li class="nav-item start">
-                                                        <a href="dashboard.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
-
-                                                            <i class="icon-game-controller"></i>
-                                                            <span class="title"><%=  appl.getApplicationName()%></span>
-                                                            <span class="selected"></span>
-                                                            <span class="views"></span>
-                                                        </a>
-                                                    </li>
-
-                                                    <%
-                                                            }
-                                                        }
-                                                    %>
-                                                </ul>
-                                            </li>
-                                            <%}
-                                                }%>
-                                        </ul>
-                                        <%}
-                                            }%>
-
+                           <ul class="dropdown-menu dropdown-menu-default">
+                                    <%for(Rolehassubmenu rhs:list){
+                                        
+                                                                             %>
+                                    <li>
+                                        <a href="<%=rhs.getSubmenu().getPageurl()%>">
+                                            <i class="icon-user"></i> <%=rhs.getSubmenu().getSubmenu()%> </a>
+                                    </li>
+                                    <%}%>
+                                      
                                 </ul>
-
-                            </li>
-                            <%}
-                                }
-                            %>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->

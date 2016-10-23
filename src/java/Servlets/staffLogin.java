@@ -41,8 +41,7 @@ public class staffLogin extends HttpServlet {
             try {
                 String USERNAME = request.getParameter("username");
                 String PASSWORD = request.getParameter("password");
-                
-                System.out.println(USERNAME+""+PASSWORD);
+                 
             } catch (Exception e) {
             }
         } catch (Exception e) {

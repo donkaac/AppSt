@@ -200,6 +200,10 @@
         <servlet-name>searchappbynameonfolder</servlet-name>
         <servlet-class>Servlets.searchappbynameonfolder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>setprivilagestorole</servlet-name>
+        <servlet-class>Servlets.setprivilagestorole</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -399,6 +403,10 @@
     <servlet-mapping>
         <servlet-name>searchappbynameonfolder</servlet-name>
         <url-pattern>/searchappbynameonfolder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setprivilagestorole</servlet-name>
+        <url-pattern>/setprivilagestorole</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

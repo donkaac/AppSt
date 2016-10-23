@@ -103,7 +103,7 @@ function addtowishlist(appid) {
                 if (ResponseText === "false") {
                     alert("Something wrong !");
                 }
-                alert(ResponseText);
+                 
                 location.reload();
             }
         };
@@ -199,7 +199,7 @@ function removewishlist(appid) {
                 }
 
 
-                alert(ResponseText);
+               
                 if (ResponseText === "true") {
                     location.reload();
                 }

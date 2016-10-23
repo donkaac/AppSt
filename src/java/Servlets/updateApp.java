@@ -29,7 +29,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * @author Ish
  */
 @WebServlet(name = "saveapp", urlPatterns = {"/saveapp"})
-public class saveapp extends HttpServlet {
+public class updateApp extends HttpServlet {
 
     private boolean isMultipart;
     private String filePath;
@@ -62,6 +62,7 @@ public class saveapp extends HttpServlet {
 
         isMultipart = ServletFileUpload.isMultipartContent(request);
         String appname = null;
+        String appid = null;
         String description = null;
         String usermanualurl = null;
         String videourl = null;
@@ -137,6 +138,9 @@ public class saveapp extends HttpServlet {
                         String inputName = (String) fi.getFieldName();
 
                         switch (inputName) {
+                               case "appid":
+                                appid = fi.getString();
+                                break;
                             case "appname":
                                 appname = fi.getString();
                                 break;
@@ -168,7 +172,7 @@ public class saveapp extends HttpServlet {
                     int developerid = developer.getIdDeveloper();
                     developer = (Developer) Datacontroller.DataParser.getuniqeresault(new Developer(), developerid);
                     
-                    Application app = new Application();
+                    Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), Integer.parseInt(appid));
                     app.setApplicationName(appname);
                     app.setPrice(price);
                     app.setDescription(description);
@@ -184,7 +188,7 @@ public class saveapp extends HttpServlet {
                     app.setAppurl((String)l.get(0));
                     app.setAppImage((String)l.get(1));
                     
-                    boolean Savedata = Datacontroller.DataParser.Savedata(app);
+                    boolean Savedata = Datacontroller.DataParser.UpdateData(app);
                     
                     if (Savedata) {
                        response.sendRedirect("applist.jsp");

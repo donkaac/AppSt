@@ -431,6 +431,173 @@
                         <%-- Main--%>
                         <div class="page-container" id="applicationArea">
                         </div>
+                        
+                        <div class="general">
+            <h4 class="latest-text w3_latest_text">Featured Movies</h4>
+            <div class="container">
+                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Featured</a></li>
+                        <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Top viewed</a></li>
+                        <li role="presentation"><a href="#rating" id="rating-tab" role="tab" data-toggle="tab" aria-controls="rating" aria-expanded="true">Top Rating</a></li>
+                        <li role="presentation"><a href="#imdb" role="tab" id="imdb-tab" data-toggle="tab" aria-controls="imdb" aria-expanded="false">Recently Added</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                            <div class="w3_agile_featured_movies">
+                                <%for(int i=0;i<10;++i){%>
+                                <div class="col-md-2 w3l-movie-gride-agile">
+            <article class="col-item">
+        		<div class="photo">
+        			<div class="options">
+        				<button class="btn btn-default" onclick="addtowishlist(8)" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
+        					<i class="fa fa-heart"></i>
+        				</button>
+        				<button class="btn btn-default" onclick="buyapp(8)" type="submit" data-toggle="tooltip" data-placement="top" title="Buy">
+        					<i class="fa fa-dollar"></i>
+        				</button>
+        			</div>
+        			<div class="options-cart">
+        				<button onclick="addtocart(8)" class="btn btn-default" title="Add to cart">
+        					<span class="fa fa-shopping-cart"></span>
+        				</button>
+        			</div>
+        			<a href="viewapp.jsp?appid=8"> <img src="appinterface\KMPlayer-1.png" class="img-responsive" alt="Product Image"> </a>
+        		</div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        					Video and music player support Sub
+        					</p>
+        					<h1>KM Player</h1>
+        					<span class="price-new">$50.0</span>
+        				</div>
+        			</div>
+        		</div>
+        	</article>
+        
+                            </div>
+                               <%}%>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                             <%for(int i=0; i<3;++i){%>
+                            <div class="col-md-2 w3l-movie-gride-agile">
+            <article class="col-item">
+        		<div class="photo">
+        			<div class="options">
+        				<button class="btn btn-default" onclick="addtowishlist(8)" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
+        					<i class="fa fa-heart"></i>
+        				</button>
+        				<button class="btn btn-default" onclick="buyapp(8)" type="submit" data-toggle="tooltip" data-placement="top" title="Buy">
+        					<i class="fa fa-dollar"></i>
+        				</button>
+        			</div>
+        			<div class="options-cart">
+        				<button onclick="addtocart(8)" class="btn btn-default" title="Add to cart">
+        					<span class="fa fa-shopping-cart"></span>
+        				</button>
+        			</div>
+        			<a href="viewapp.jsp?appid=8"> <img src="appinterface\KMPlayer-1.png" class="img-responsive" alt="Product Image"> </a>
+        		</div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        					Video and music player support Sub
+        					</p>
+        					<h1>KM Player</h1>
+        					<span class="price-new">$50.0</span>
+        				</div>
+        			</div>
+        		</div>
+        	</article>
+        
+                            </div>
+                            <%}%>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
+                             <%for(int i=0; i<3;++i){%>
+                            <div class="col-md-2 w3l-movie-gride-agile">
+            <article class="col-item">
+        		<div class="photo">
+        			<div class="options">
+        				<button class="btn btn-default" onclick="addtowishlist(8)" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
+        					<i class="fa fa-heart"></i>
+        				</button>
+        				<button class="btn btn-default" onclick="buyapp(8)" type="submit" data-toggle="tooltip" data-placement="top" title="Buy">
+        					<i class="fa fa-dollar"></i>
+        				</button>
+        			</div>
+        			<div class="options-cart">
+        				<button onclick="addtocart(8)" class="btn btn-default" title="Add to cart">
+        					<span class="fa fa-shopping-cart"></span>
+        				</button>
+        			</div>
+        			<a href="viewapp.jsp?appid=8"> <img src="appinterface\KMPlayer-1.png" class="img-responsive" alt="Product Image"> </a>
+        		</div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        					Video and music player support Sub
+        					</p>
+        					<h1>KM Player</h1>
+        					<span class="price-new">$50.0</span>
+        				</div>
+        			</div>
+        		</div>
+        	</article>
+        
+                            </div>
+                            <%}%>
+                            
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="imdb" aria-labelledby="imdb-tab">
+                             <%for(int i=0; i<3;++i){%><div class="col-md-2 w3l-movie-gride-agile">
+            <article class="col-item">
+        		<div class="photo">
+        			<div class="options">
+        				<button class="btn btn-default" onclick="addtowishlist(8)" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
+        					<i class="fa fa-heart"></i>
+        				</button>
+        				<button class="btn btn-default" onclick="buyapp(8)" type="submit" data-toggle="tooltip" data-placement="top" title="Buy">
+        					<i class="fa fa-dollar"></i>
+        				</button>
+        			</div>
+        			<div class="options-cart">
+        				<button onclick="addtocart(8)" class="btn btn-default" title="Add to cart">
+        					<span class="fa fa-shopping-cart"></span>
+        				</button>
+        			</div>
+        			<a href="viewapp.jsp?appid=8"> <img src="appinterface\KMPlayer-1.png" class="img-responsive" alt="Product Image"> </a>
+        		</div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        					Video and music player support Sub
+        					</p>
+        					<h1>KM Player</h1>
+        					<span class="price-new">$50.0</span>
+        				</div>
+        			</div>
+        		</div>
+        	</article>
+        
+                            </div>
+                            <%}%>
+                          
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                     </div>
                 </div>
                 <%-- Main--%>
