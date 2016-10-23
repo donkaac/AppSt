@@ -22,6 +22,7 @@
             Set<Rolehassubmenu>  list=null;
             try{
       Staff staff=(Staff)request.getSession().getAttribute("staff");
+     staff=(Staff) DataParser.getuniqeresault(new Staff(), staff.getIdStaff());
        list=staff.getRoles().getRolehassubmenus();
      boolean states=false;
       for(Rolehassubmenu rhs:list){
