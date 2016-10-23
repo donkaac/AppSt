@@ -174,33 +174,23 @@
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
-                                    <a href="javascript:;" class="remove">
-                                        <i class="icon-close"></i>
-                                    </a>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search...">
-                                        <span class="input-group-btn">
-                                            <a href="javascript:;" class="btn submit">
-                                                <i class="icon-magnifier"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </form>
+                                 
                                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                             </li>
-                            <ul class="dropdown-menu dropdown-menu-default">
-                                    <%for(Rolehassubmenu rhs:list){
-                                        
-                                                                             %>
-                                    <li>
-                                        <a href="<%=rhs.getSubmenu().getPageurl()%>">
-                                            <i class="icon-user"></i> <%=rhs.getSubmenu().getSubmenu()%> </a>
-                                    </li>
-                                    <%}%>
-                                      
-                                </ul>
-
+                            <%for(Rolehassubmenu rhs:list){
+                                
+                            
+                                  %>
+                            <li class="nav-item start active open">
+                                <a href="<%= rhs.getSubmenu().getPageurl()%>" class="nav-link nav-toggle">
+                                    <i class="icon-home"></i>
+                                    <span class="title"><%=  rhs.getSubmenu().getSubmenu()%></span>
+                                    <span class="selected"></span>
+                                    <span class="arrow open"></span>
+                                </a>
+                                 
+                            </li>
+                            <%}%>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->

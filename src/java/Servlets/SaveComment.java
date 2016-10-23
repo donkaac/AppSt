@@ -35,6 +35,7 @@ public class SaveComment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(request.getSession().getAttribute("user")!=null){
          if((request.getParameter("text")!=null)&(request.getParameter("appid")!=null)){
              Customer customer=(Customer) request.getSession().getAttribute("user");
             customer=(Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), customer.getIdCustomer());
@@ -48,7 +49,9 @@ public class SaveComment extends HttpServlet {
                  response.sendRedirect("viewapp.jsp");
              }
          }
-    }
+    }else{
+            response.sendRedirect("login.jsp");
+        }}
 
     /**
      * Returns a short description of the servlet.
