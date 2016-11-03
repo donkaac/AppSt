@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <html>   
-        <!-- BEGIN HEAD -->
+    <%if(!request.getSession().getAttribute("developer").equals(null)){%>    <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>App LIST</title>
@@ -128,6 +128,10 @@
                                      <li>
                                          <a href="appPurchaseHistory.jsp">
                                             <i class="glyphicon glyphicon-bitcoin"></i> Purchase History </a>
+                                    </li>
+                                     <li>
+                                         <a href="saveapplication.jsp">
+                                            <i class="glyphicon glyphicon-pencil"></i> New Apps </a>
                                     </li>
                                     <li>
                                         <a href="applist.jsp">
@@ -452,7 +456,7 @@
                                             <td><%=cob.getCustomerhasapplications().size()%></td>
                                             <td><%=cob.getPrice()%></td>
                                             <td><%=cob.getPrice()*cob.getCustomerhasapplications().size()%></td>
-                                            <td><a class="btn-default"><button type="button" class="form-control btn-default" onclick="loardcomments(<%=cob.getIdApplication()%>)"><span class="glyphicon glyphicon-eject"> View Comments </span></button></a></td>
+                                            <td><a href="updateApplication.jsp?appid<%=cob.getIdApplication()%>" class="btn-default"><button type="button" class="form-control btn-default" ><span class="glyphicon glyphicon-eject"> View Comments </span></button></a></td>
                                         </tr>
                                         <% 
                                         }}catch(Exception e){e.printStackTrace();}%>
@@ -543,5 +547,7 @@
 <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
-
+<%}else{
+response.sendRedirect("login.jsp");
+}%>
 </html>

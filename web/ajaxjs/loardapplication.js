@@ -26,7 +26,37 @@ function loardsingleapplication(applicationid) {
         Object.send("state=" + true + "&type=appid&appid=" + applicationid);
     }
 }
-
+function setRateApplication(id,rate) {
+    var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+                if(ResponseText==="true"){
+                    window.reload();
+                }
+            }
+        };
+if(rate<6&rate>0){
+        Object.open("POST", "setrate", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        Object.send("rate=" +rate + "&id=" + id);
+    }else{
+            alert("Rate Not Valid");
+    }
+}
+}
 
 function loardapplicationByName(appname) {
     var Object;

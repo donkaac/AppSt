@@ -4,6 +4,7 @@
     Author     : Ish
 --%>
  
+<%@page import="Servlets.staffLogin"%>
 <%@page import="Entities.Rolehassubmenu"%>
 <%@page import="Entities.Staff"%>
 <%@page import="java.util.Set"%>
@@ -12,7 +13,10 @@
 <%@page import="com.sun.xml.rpc.processor.generator.CustomClassGenerator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html><%
-            Set<Rolehassubmenu>  list=null;
+    try{
+            Set<Rolehassubmenu>  list=null;  if(request.getSession().getAttribute("staff").equals(null)){
+                    response.sendRedirect("login.jsp");
+                }
             try{
       Staff staff=(Staff)request.getSession().getAttribute("staff");
        list=staff.getRoles().getRolehassubmenus();
@@ -338,6 +342,9 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
+                                            <th>Log Time</th>
+                                            <th>LogOut Time</th>
+                                            <th>Staff ID</th>
                                             <th>First name</th>
                                             <th>Middle name</th>
                                             <th>Last name</th>
@@ -351,27 +358,30 @@
                                     </thead>
                                     <tbody>
                                         <%
-                                            ArrayList<Object> cuslist = Datacontroller.DataParser.Searchdata(new Customer());
+                                            ArrayList<Object> cuslist = Datacontroller.DataParser.Searchdata(new Entities.Login());
                                             for (Object cob : cuslist) {
-                                                Customer c = (Customer) cob;
-                                                if (c.isState()) {
-
-
+                                                Entities.Login c = (Entities.Login) cob;
+                                                
+                                                
+                                               
+                                                
                                         %>
                                         <tr>
-                                            <td><%=c.getIdCustomer()%></td>
-                                            <td><%=c.getCustomerFname()%></td>
-                                            <td><%=c.getCustomerMname()%></td>
-                                            <td><%=c.getCustomerLname()%></td>
-                                            <td><%=c.getUsername()%></td>
-                                            <td><%=c.getGender().getGender()%></td>
-                                            <td><%=c.getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
-                                            <td><%=c.getCity().getDiscrict().getProvince().getProvinceName()%></td>
-                                            <td><%=c.getCity().getDiscrict().getDiscrictName()%></td>
-                                            <td><%=c.getCity().getCityName()%></td>
+                                            <td><%= c.getIdLogin()%></td>
+                                            <td><%= c.getLoginDateAndTime()%></td>
+                                            <td><%= c.getLogOutDateAndTime()%></td>
+                                            <td><%=c.getStaff().getIdStaff()%></td>
+                                            <td><%=c.getStaff().getStaffFname()%></td>
+                                            
+                                            <td><%= c.getStaff().getUsername()%></td>
+                                            <td><%=c.getStaff().getGender().getGender()%></td>
+                                            <td><%=c.getStaff().getCity().getDiscrict().getProvince().getCountry().getCountryName()%></td>
+                                            <td><%=c.getStaff().getCity().getDiscrict().getProvince().getProvinceName()%></td>
+                                            <td><%=c.getStaff().getCity().getDiscrict().getDiscrictName()%></td>
+                                            <td><%=c.getStaff().getCity().getCityName()%></td>
                                             
                                         </tr>
-                                        <%}
+                                        <%
                                         }%>
                                     </tbody>
                                 </table>
@@ -462,5 +472,9 @@
             <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
             <!-- END THEME LAYOUT SCRIPTS -->
         </body>
-
+<%}catch(NullPointerException e){
+                 response.sendRedirect("login.jsp");
+            }catch(java.lang.IllegalStateException e){
+response.sendRedirect("login.jsp");
+}%>
     </html>

@@ -9,10 +9,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <html>   
-        <!-- BEGIN HEAD -->
+ <%if(!request.getSession().getAttribute("developer").equals(null)){%>          <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-            <title>Metronic | Admin Dashboard Template</title>
+            
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content="width=device-width, initial-scale=1" name="viewport"/>
             <meta content="" name="description"/>
@@ -49,28 +49,42 @@
         </head>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" onload="loardAppplatform()">
-             <%
-                 
-                   // Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
-                    Developer c = (Developer) session.getAttribute("developer");
-                    //if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
-                    if (c != null) {
-                        String image = "assets/layouts/layout/img/avatar3_small.jpg";
-                        if (!(c.getDeveloperImage() == null)) {
-                            image = c.getDeveloperImage();
-                        }
-                        String appqty = ""+c.getApplications().size();
-                        String wishlistqty = "";
-                        String username = c.getDeveloperFname();
+            <%
+                String username = "Guest";
+                boolean loging = false;
+                Developer c = new Developer();
+                if (!request.getSession().equals(null)) {
+                    try {
+
+                        HttpSession s = request.getSession();
+
+                         c= (Developer)s.getAttribute("developer");
+                       
+                        username = c.getDeveloperFname();
+                        loging = true;
+                    } catch (Exception e) {
+
+                    }
+                }
+                if(!loging){
+                    response.sendRedirect("developer/login.jsp");
+                }
+                String appqty = "";
+                if (!c.getApplications().isEmpty()) {
+                    appqty = "" + c.getApplications().size();
+                }
+                
 
             %>
+
+
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.html">
+                        <a href="index.jsp">
                             <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
@@ -81,19 +95,18 @@
                     <!-- BEGIN TOP NAVIGATION MENU -->
                     <div class="top-menu">
                         <ul class="nav navbar-nav pull-right">
-                            <!-- BEGIN NOTIFICATION DROPDOWN -->
+
+                            <!-- END NOTIFICATION DROPDOWN -->
+                            <!-- BEGIN INBOX DROPDOWN -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                           
-                            <!-- BEGIN TODO DROPDOWN -->
-                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                            
+
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <span class="username username-hide-on-mobile"> <%=username%> </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
+                               <ul class="dropdown-menu dropdown-menu-default">
                                   
                                     <li>
                                         <a href="profile.jsp">
@@ -102,6 +115,10 @@
                                      <li>
                                          <a href="appPurchaseHistory.jsp">
                                             <i class="glyphicon glyphicon-bitcoin"></i> Purchase History </a>
+                                    </li>
+                                     <li>
+                                         <a href="saveapplication.jsp">
+                                            <i class="glyphicon glyphicon-pencil"></i> New Apps </a>
                                     </li>
                                     <li>
                                         <a href="applist.jsp">
@@ -177,28 +194,48 @@
                                 </form>
                                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                             </li>
-                            <li class="nav-item start active open">
-                                <a href="javascript:;" class="nav-link nav-toggle">
-                                    <i class="icon-home"></i>
-                                    <span class="title">Dashboard</span>
-                                    <span class="selected"></span>
-                                    <span class="arrow open"></span>
+                             <li class="dropdown dropdown-user">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <span class="username username-hide-on-mobile"> <%=username%> </span>
+                                    <i class="fa fa-angle-down"></i>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item start active open">
-                                        <a href="index.html" class="nav-link ">
-                                            <i class="icon-bar-chart"></i>
-                                            <span class="title">Dashboard 1</span>
-                                            <span class="selected"></span>
+                               <ul class="dropdown-menu dropdown-menu-default">
+                                  
+                                    <li>
+                                        <a href="profile.jsp">
+                                            <i class="icon-user"></i> My Profile </a>
+                                    </li>
+                                     <li>
+                                         <a href="appPurchaseHistory.jsp">
+                                            <i class="glyphicon glyphicon-bitcoin"></i> Purchase History </a>
+                                    </li>
+                                    <li>
+                                        <a href="applist.jsp">
+                                            <i class="glyphicon glyphicon-list"></i> App List
+                                            <span class="badge badge-danger"> <%=appqty%> </span>
                                         </a>
                                     </li>
-                                    <li class="nav-item start ">
-                                        <a href="dashboard_2.html" class="nav-link ">
-                                            <i class="icon-bulb"></i>
-                                            <span class="title">Dashboard 2</span>
-                                            <span class="badge badge-success">1</span>
+                                    <li>
+                                        <a href="saveapplication.jsp">
+                                            <i class="glyphicon glyphicon-pencil"></i>New App 
+                                             
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="commentsbox.jsp">
+                                            <i class="glyphicon glyphicon-comment"></i> Comment Box
+                                            
+                                        </a>
+                                    </li>
+                                    <li> 
+                                    
+                                    <li>
+
+                                        <a href="../logout">
+                                            <i class="icon-key"></i> Log Out </a>
+                                    </li>
+                                  
 
                                 </ul>
                             </li>

@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <html>   
-        <!-- BEGIN HEAD -->
+ <%try{%>       <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Roles</title>
@@ -52,7 +52,9 @@
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head><%
-            Set<Rolehassubmenu>  list=null;
+            Set<Rolehassubmenu>  list=null;  if(request.getSession().getAttribute("staff").equals(null)){
+                    response.sendRedirect("login.jsp");
+                }
             try{
       Staff staff=(Staff)request.getSession().getAttribute("staff");
        list=staff.getRoles().getRolehassubmenus();
@@ -446,5 +448,9 @@
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>
-
+<%}catch(NullPointerException e){
+                 response.sendRedirect("login.jsp");
+            }catch(java.lang.IllegalStateException e){
+response.sendRedirect("login.jsp");
+}%>
 </html>

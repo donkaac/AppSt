@@ -103,7 +103,7 @@ var Login = function () {
                 Pace.track(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'frogetpasssendmail',
+                        url: '../developerfrogetpassword',
                         data: data,
                         beforeSend: function ()
                         {

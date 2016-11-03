@@ -58,7 +58,10 @@
             <link rel="shortcut icon" href="favicon.ico"/>
 
         </head><%
-            Set<Rolehassubmenu>  list=null;
+            try{
+            Set<Rolehassubmenu>  list=null;  if(request.getSession().getAttribute("staff").equals(null)){
+                    response.sendRedirect("login.jsp");
+                }
            
       Staff staff=(Staff)request.getSession().getAttribute("staff");
       staff=(Staff) DataParser.getuniqeresault(new Staff(), staff.getIdStaff());
@@ -267,7 +270,7 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="dashboard.jsp">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
@@ -278,26 +281,7 @@
                         </div>
                      
                         <%-- Main--%> 
-                        <style type="text/css">
-                            .table-fixed thead {
-                                width: 97%;
-                            }
-                            .table-fixed tbody {
-                                height: 230px;
-                                overflow-y: auto;
-                                width: 100%;
-                            }
-                            .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-                                display: block;
-                            }
-                            .table-fixed tbody td, .table-fixed thead > tr> th {
-                                float: left;
-                                border-bottom-width: 0;
-                            }.scrollit {
-                                overflow:scroll;
-                                
-                            }
-                        </style>
+                       
 
 
 
@@ -305,154 +289,7 @@
 
 
                         <div class="container">
-                            <h2>Deactive County</h2>
-                            
-                            <div class="scrollit table-bordered">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                             
-                                            <th>Country</th>
-                                            <th></th>
-                                             
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <%
-                                            ArrayList<Object> countylist = Datacontroller.DataParser.Searchdata(new Country());
-                                            for (Object cob : countylist) {
-                                                Country c = (Country) cob;
-                                                if (!c.isState()) {
-                                                 
-
-                                        %>
-                                        <tr>
-                                            <td><%=c.getIdCountry()%></td>
-                                            <td><%=c.getCountryName()%></td>
-                                            <td> <a class="btn-default"><button onclick="activeordeactiveCountry(true,<%=c.getIdCountry()%>)" type="submit"><span class="glyphicon glyphicon-send"> Enable Country </span></button></a></form></td>
-                                        </tr>
-                                        <%}
-                                        }%>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <h2>Deactive Province</h2>
-                            
-                            <div class="scrollit table-bordered"  >
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                             
-                                            <th>Country</th>
-                                            <th>Province</th>
-                                            <th></th>
-                                             
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <%
-                                            ArrayList<Object> provincelist = Datacontroller.DataParser.Searchdata(new Province());
-                                            for (Object cob : provincelist) {
-                                                Province c = (Province) cob;
-                                                if (!c.isState()) {
-                                                    
-
-                                        %>
-                                        <tr>
-                                            <td><%=c.getIdprovince()%></td>
-                                            <td><%= c.getCountry().getCountryName()%></td>
-                                            <td><%=c.getProvinceName() %></td>
-                                            <td> <a class="btn-default"><button onclick="activeordeactiveprovince(true,<%=c.getIdprovince()%>)" type="submit"><span class="glyphicon glyphicon-send"> Enable Province </span></button></a></form></td>
-                                        </tr>
-                                        <%}
-                                        }%>
-                                    </tbody>
-                                </table>
-                            </div> 
-                                    
-                                   <h2>Deactive District</h2>
-                            
-                            <div class="scrollit table-bordered" >
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                             
-                                            <th>Country</th>
-                                            <th>Province</th>
-                                            <th>District</th>
-                                            <th></th>
-                                             
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <%
-                                            ArrayList<Object> districtlist = Datacontroller.DataParser.Searchdata(new Discrict());
-                                            for (Object cob : districtlist) {
-                                                Discrict c = (Discrict) cob;
-                                                if (!c.isState()) {
-                                                   
-
-                                        %>
-                                        <tr>
-                                            <td><%=c.getIdDiscrict()%></td>
-                                            <td><%= c.getProvince().getCountry().getCountryName()%></td>
-                                            <td><%=c.getProvince().getProvinceName() %></td>
-                                            <td><%=c.getDiscrictName() %></td>
-                                            <td> <a class="btn-default"><button  onclick="activeordeactivedistrict(true,<%=c.getIdDiscrict()%>)" type="submit"><span class="glyphicon glyphicon-send"> Enable Province </span></button></a></form></td>
-                                        </tr>
-                                        <%}
-                                        }%>
-                                    </tbody>
-                                </table>
-                            </div>      
-                                    
-                                
-                                    
-                                      <h2>Deactive City</h2>
-                            
-                            <div class="scrollit table-bordered" >
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                             
-                                            <th>Country</th>
-                                            <th>Province</th>
-                                            <th>District</th>
-                                            <th>City</th>
-                                            <th></th>
-                                             
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <%
-                                            ArrayList<Object> citylist = Datacontroller.DataParser.Searchdata(new City());
-                                            for (Object cob : citylist) {
-                                                City c = (City) cob;
-                                                if (!c.isState()) {
-                                                   
-
-                                        %>
-                                        <tr>
-                                            <td><%=c.getIdCity()%></td>
-                                            <td><%= c.getDiscrict().getProvince().getCountry().getCountryName()%></td>
-                                            <td><%=c.getDiscrict().getProvince().getProvinceName() %></td>
-                                            <td><%=c.getDiscrict().getDiscrictName() %></td>
-                                            <td><%=c.getIdCity() %></td>
-                                            <td> <a class="btn-default"><button  onclick="activeordeactivecity(true,<%=c.getIdCity()%>)" type="submit"><span class="glyphicon glyphicon-send"> Enable Province </span></button></a></form></td>
-                                        </tr>
-                                        <%}
-                                        }%>
-                                    </tbody>
-                                </table>
-                            </div>
-                                    
-                                    
-                        </div>
+                           </div>
 
 
 
@@ -536,5 +373,9 @@
             <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
             <!-- END THEME LAYOUT SCRIPTS -->
         </body>
-
+<%}catch(NullPointerException e){
+                 response.sendRedirect("login.jsp");
+            }catch(java.lang.IllegalStateException e){
+response.sendRedirect("login.jsp");
+}%>
     </html>

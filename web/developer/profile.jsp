@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <% if(session.getAttribute("developer")!= null){%>
 <html lang="en">  
-        <!-- BEGIN HEAD -->
+   <%if(!request.getSession().getAttribute("developer").equals(null)){%>        <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Profile</title>
@@ -458,7 +458,7 @@
                                                                     }
 
                                                                 </script>
-                                                                <form action="changeprofileimage" onsubmit="return checkimage()" name="file_upload" enctype="multipart/form-data" method="POST">
+                                                                <form action="../changedeveloperprofileimage" onsubmit="return checkimage()" name="file_upload" enctype="multipart/form-data" method="POST">
                                                                     <div class="panel right inline">
                                                                         <div class="col-md-offset-3">
                                                                             <img width="100px" id="pimage" class="pull-xs-left" src="<%=image%>"/>
@@ -709,6 +709,8 @@
 <%}
     } catch (Exception e) {
         response.sendRedirect("login.jsp");
-    }%>
+    }%><%}else{
+response.sendRedirect("login.jsp");
+}%>
 </html>
 <% }else{ response.sendRedirect("login.jsp");}%>

@@ -18,8 +18,11 @@
 <%@ page import="java.io.*,java.util.*" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%try{%>
 <!DOCTYPE html><%
-            Set<Rolehassubmenu>  list=null;
+            Set<Rolehassubmenu>  list=null;  if(request.getSession().getAttribute("staff").equals(null)){
+                    response.sendRedirect("login.jsp");
+                }
             try{
       Staff staff=(Staff)request.getSession().getAttribute("staff");
        list=staff.getRoles().getRolehassubmenus();
@@ -316,7 +319,7 @@
                                     <div class="container">
 
                                         <%--      password chage are       ---%>
-                                        <form onsubmit="return checkpassword()" action="changepassword" method="POST"><div class="form-group form-md-line-input" >
+                                        <form onsubmit="return checkpassword()" action="../changestaffpassword" method="POST"><div class="form-group form-md-line-input" >
                                                 <label class="col-md-3 control-label"  for="form_control_1">Current Password</label>
                                                 <div class="col-md-6">
                                                     <input type="password" name="oldpassword" id="pass1" class="form-control" placeholder="" required>
@@ -383,7 +386,7 @@
                                                                     }
 
                                                                 </script>
-                                                                <form action="changeprofileimage" onsubmit="return checkimage()" name="file_upload" enctype="multipart/form-data" method="POST">
+                                                                <form action="../changestaffprofileimage" onsubmit="return checkimage()" name="file_upload" enctype="multipart/form-data" method="POST">
                                                                     <div class="panel right inline">
                                                                         <div class="col-md-offset-3">
                                                                             <img width="100px" id="pimage" class="pull-xs-left" src="<%=image%>"/>
@@ -400,7 +403,7 @@
                                                                 </form>
                                                             </div>
                                                             <!-- BEGIN FORM-->
-                                                            <form action="updatecustomerdata" onsubmit="return checkprofiledata()" name="updatecusdata"   method="POST"  class="form-horizontal">
+                                                            <form action="../updatestafffdata" onsubmit="return checkprofiledata()" name="updatecusdata"   method="POST"  class="form-horizontal">
                                                                 <div class="form-body">
                                                                     <div class="form-group form-md-line-input">
                                                                         <label class="col-md-3 control-label" for="form_control_1">First Name</label>
@@ -621,8 +624,15 @@
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
 <%}
-    } catch (Exception e) {
-        response.sendRedirect("login.jsp");
-    }%>
+     }catch(NullPointerException e){
+                 response.sendRedirect("login.jsp");
+            }catch(java.lang.IllegalStateException e){
+response.sendRedirect("login.jsp");
+}%>
 </html>
 <% }else{ response.sendRedirect("login.jsp");}%>
+<%}catch(NullPointerException e){
+                 response.sendRedirect("login.jsp");
+            }catch(java.lang.IllegalStateException e){
+response.sendRedirect("login.jsp");
+}%>

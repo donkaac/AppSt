@@ -204,6 +204,42 @@
         <servlet-name>setprivilagestorole</servlet-name>
         <servlet-class>Servlets.setprivilagestorole</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>changestaffpassword</servlet-name>
+        <servlet-class>Servlets.changestaffpassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changestaffprofileimage</servlet-name>
+        <servlet-class>Servlets.changestaffprofileimage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatestafffdata</servlet-name>
+        <servlet-class>Servlets.updatestafffdata</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>setrate</servlet-name>
+        <servlet-class>Servlets.setrate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changedeveloperprofileimage</servlet-name>
+        <servlet-class>Servlets.changedeveloperprofileimage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>developerfrogetpassword</servlet-name>
+        <servlet-class>Servlets.developerfrogetpassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>stafffrogetpassword</servlet-name>
+        <servlet-class>Servlets.stafffrogetpassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>frogotpasschange</servlet-name>
+        <servlet-class>Servlets.frogotpasschange</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>customerpurchasehistoryReport</servlet-name>
+        <servlet-class>Servlets.customerpurchasehistoryReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
         <url-pattern>/admin_login</url-pattern>
@@ -407,6 +443,42 @@
     <servlet-mapping>
         <servlet-name>setprivilagestorole</servlet-name>
         <url-pattern>/setprivilagestorole</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changestaffpassword</servlet-name>
+        <url-pattern>/changestaffpassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changestaffprofileimage</servlet-name>
+        <url-pattern>/changestaffprofileimage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatestafffdata</servlet-name>
+        <url-pattern>/updatestafffdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setrate</servlet-name>
+        <url-pattern>/setrate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changedeveloperprofileimage</servlet-name>
+        <url-pattern>/changedeveloperprofileimage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>developerfrogetpassword</servlet-name>
+        <url-pattern>/developerfrogetpassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>stafffrogetpassword</servlet-name>
+        <url-pattern>/stafffrogetpassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>frogotpasschange</servlet-name>
+        <url-pattern>/frogotpasschange</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>customerpurchasehistoryReport</servlet-name>
+        <url-pattern>/customerpurchasehistoryReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

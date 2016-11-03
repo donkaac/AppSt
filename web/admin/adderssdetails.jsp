@@ -10,7 +10,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
+    <%
+try{
+    %>
     <!-- BEGIN HEAD -->
     <head>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
@@ -48,10 +50,12 @@
         <link rel="shortcut icon" href="favicon.ico"/>
 
     </head>
-    <%
-            Set<Rolehassubmenu>  list=null;
+    <%       Staff staff=null;
+            Set<Rolehassubmenu>  list=null;  if(request.getSession().getAttribute("staff").equals(null)){
+                    response.sendRedirect("login.jsp");
+                }
             try{
-      Staff staff=(Staff)request.getSession().getAttribute("staff");
+       staff=(Staff)request.getSession().getAttribute("staff");
        list=staff.getRoles().getRolehassubmenus();
      boolean states=false;
       for(Rolehassubmenu rhs:list){
@@ -63,8 +67,8 @@
       if(states){
           response.sendRedirect("dashboard.jsp?msg=NeedPermission");
       }
-            }catch(NullPointerException e){
-                 response.sendRedirect("dashboard.jsp");
+            }catch(java.lang.IllegalStateException e){
+                 response.sendRedirect("login.jsp");
             }
         %>
     <!-- END HEAD -->
@@ -92,8 +96,8 @@
 
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                                <span class="username username-hide-on-mobile"> Nick </span>
+                                <img alt="" class="img-circle" src="../<%=staff.getStaffImage()%>" />
+                                <span class="username username-hide-on-mobile"> <%=staff.getStaffFname()%> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -257,7 +261,7 @@
                     <div class="page-bar">
                         <ul class="page-breadcrumb">
                             <li>
-                                <a href="index.html">Home</a>
+                                <a href="dashboard.html">Home</a>
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
@@ -424,5 +428,9 @@
     <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
 </body>
-
+<%}catch(NullPointerException e){
+                 response.sendRedirect("login.jsp");
+            }catch(java.lang.IllegalStateException e){
+response.sendRedirect("login.jsp");
+}%>
 </html>

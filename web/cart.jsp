@@ -20,7 +20,13 @@
 <html lang="en">
     <html>   
         <!-- BEGIN HEAD -->
-        <head>        
+        <head>  
+            <%
+           try{
+                
+              if (request.getAttribute("user") != null) {
+                       
+            %>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>APPS CART</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,8 +86,10 @@
                             //c.getCarts();
                         }
                     } catch (Exception e) {
-
+response.sendRedirect("login..jsp");
                     }
+                }else{
+                    response.sendRedirect("login.jsp");
                 }
                 String cartqty = "";
                 if (!c.getCarts().isEmpty()) {
@@ -136,19 +144,23 @@
                                             <i class="icon-briefcase"></i> My Purchase App List  </a>
                                     </li>
                                     <%}%>
+                                     <%if (loging) {%>
                                     <li>
                                         <a href="cart.jsp">
                                             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
                                             <span class="badge badge-danger"> <%=cartqty%></span>
                                         </a>
                                     </li>
+                                     <%}
+                                         if (loging) {%>
                                     <li>
                                         <a href="wishlist.jsp">
                                             <i class="icon-wallet"></i> WishList
                                             <span class="badge badge-default"> <%=wishlistqty%> </span>
                                         </a>
                                     </li>
-                                    <%if (loging) {%>
+                                    <%}
+                                        if (loging) {%>
                                     <li>
 
                                         <a href="logout">
@@ -586,5 +598,11 @@
 <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
-
+<%     
+                        }else{
+  response.sendRedirect("index.jsp?msg=Pleace Login To System");
+                }
+           }catch(NullPointerException e){
+               response.sendRedirect("index.jsp?msg=Pleace Login To System");
+           }%>
 </html>

@@ -20,7 +20,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <html>   
-        <!-- BEGIN HEAD -->
+   <%if(!request.getSession().getAttribute("developer").equals(null)){%>        <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Developer Dashboard</title>
@@ -498,5 +498,7 @@
 <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
-
+<%}else{
+response.sendRedirect("login.jsp");
+}%>
 </html>

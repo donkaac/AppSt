@@ -180,7 +180,7 @@
                         <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
                 </div>
                 <div class="form-actions">
-                    <button type="button" id="back-btn" class="btn red btn-outline">Back </button>
+                    <button type="button" name="email" id="back-btn" class="btn red btn-outline">Back </button>
                     <button type="submit" class="btn green pull-right"> Submit </button>
                 </div>
             </form>

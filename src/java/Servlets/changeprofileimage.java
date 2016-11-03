@@ -76,7 +76,7 @@ public class changeprofileimage extends HttpServlet {
                 }
 
             } catch (Exception e) {
-
+                response.sendRedirect("profile.jsp?msg=FileUploadIsError");
                 throw new ServletException(e);
 
             }

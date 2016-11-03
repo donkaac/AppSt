@@ -4,11 +4,14 @@
     Author     : Ish
 --%>
 
+<%@page import="Entities.Application"%>
+<%@page import="Entities.Developer"%>
+<%@page import="Entities.Developer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <html>   
-        <!-- BEGIN HEAD -->
+ <%if(!request.getSession().getAttribute("developer").equals(null)){%>          <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Update App Data</title>
@@ -49,13 +52,47 @@
         </head>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white" onload="loardAppplatform()">
+            <%
+                String appid=null;
+                String username = "Guest";
+                boolean loging = false;
+                Developer c = new Developer();
+                if (!request.getSession().equals(null)) {
+                    try {
+
+                        HttpSession s = request.getSession();
+
+                         c= (Developer)s.getAttribute("developer");
+                       
+                        username = c.getDeveloperFname();
+                        loging = true;
+                        appid= request.getParameter("appid");
+                       if(appid==null){
+                              response.sendRedirect("developer/applist.jsp");
+                       }
+                    } catch (Exception e) {
+
+                    }
+                }
+                if(!loging){
+                    response.sendRedirect("developer/login.jsp");
+                }
+                String appqty = "";
+                if (!c.getApplications().isEmpty()) {
+                    appqty = "" + c.getApplications().size();
+                }
+                
+
+            %>
+
+
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.html">
+                        <a href="index.jsp">
                             <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
@@ -66,87 +103,54 @@
                     <!-- BEGIN TOP NAVIGATION MENU -->
                     <div class="top-menu">
                         <ul class="nav navbar-nav pull-right">
-                     
-                            
-                            <!-- END USER LOGIN DROPDOWN -->
-                            <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+
+                            <!-- END NOTIFICATION DROPDOWN -->
+                            <!-- BEGIN INBOX DROPDOWN -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                            <li class="dropdown dropdown-quick-sidebar-toggler">
-                                <a href="javascript:;" class="dropdown-toggle">
-                                    <i class="icon-logout"></i>
+
+                            <li class="dropdown dropdown-user">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <span class="username username-hide-on-mobile"> <%=username%> </span>
+                                    <i class="fa fa-angle-down"></i>
                                 </a>
-                            </li>
-                            <!-- END QUICK SIDEBAR TOGGLER -->
-                        </ul>
-                    </div>
-                    <!-- END TOP NAVIGATION MENU -->
-                </div>
-                <!-- END HEADER INNER -->
-            </div>
-            <!-- END HEADER -->
-            <!-- BEGIN HEADER & CONTENT DIVIDER -->
-            <div class="clearfix"> </div>
-            <!-- END HEADER & CONTENT DIVIDER -->
-            <!-- BEGIN CONTAINER -->
-            <div class="page-container">
-                <!-- BEGIN SIDEBAR -->
-                <div class="page-sidebar-wrapper">
-                    <div class="page-sidebar navbar-collapse collapse">
-                        <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
-                            <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
-                            <li class="sidebar-toggler-wrapper hide">
-                                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                                <div class="sidebar-toggler"> </div>
-                                <!-- END SIDEBAR TOGGLER BUTTON -->
-                            </li>
-                            <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
-                            <li class="sidebar-search-wrapper">
-                                <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-                                <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
-                                <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                 
-                                    <a href="javascript:;" class="remove">
-                                        <i class="icon-close"></i>
-                                    </a>
-                                    <div class="input-group">
-                                        <input type="text" id="nametext" onkeyup="loardapplicationByName(document.getElementById('nametext').value)" class="form-control" placeholder="Search...">
-                                        <span class="input-group-btn">
-                                            <a href="javascript:;" class="btn submit">
-                                                <i class="icon-magnifier"></i>
-                                            </a>
-                                        </span>
+                               <ul class="dropdown-menu dropdown-menu-default">
                                   
-                                    </div>
-                               
-                                <!-- END RESPONSIVE QUICK SEARCH FORM -->
-                            </li>
-                            <li class="nav-item start active open">
-                                <a href="javascript:;" class="nav-link nav-toggle">
-                                    <i class="icon-home"></i>
-                                    <span class="title">Dashboard</span>
-                                    <span class="selected"></span>
-                                    <span class="arrow open"></span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item start active open">
-                                        <a href="index.html" class="nav-link ">
-                                            <i class="icon-bar-chart"></i>
-                                            <span class="title">Dashboard 1</span>
-                                            <span class="selected"></span>
+                                    <li>
+                                        <a href="profile.jsp">
+                                            <i class="icon-user"></i> My Profile </a>
+                                    </li>
+                                     <li>
+                                         <a href="appPurchaseHistory.jsp">
+                                            <i class="glyphicon glyphicon-bitcoin"></i> Purchase History </a>
+                                    </li>
+                                     <li>
+                                         <a href="saveapplication.jsp">
+                                            <i class="glyphicon glyphicon-pencil"></i> New Apps </a>
+                                    </li>
+                                    <li>
+                                        <a href="applist.jsp">
+                                            <i class="glyphicon glyphicon-list"></i> App List
+                                            <span class="badge badge-danger"> <%=appqty%> </span>
                                         </a>
                                     </li>
-                                    <li class="nav-item start ">
-                                        <a href="dashboard_2.html" class="nav-link ">
-                                            <i class="icon-bulb"></i>
-                                            <span class="title">Dashboard 2</span>
-                                            <span class="badge badge-success">1</span>
+                                    <li>
+                                        <a href="commentsbox.jsp">
+                                            <i class="glyphicon glyphicon-comment"></i> Comment Box
+                                            
                                         </a>
                                     </li>
+                                    <li> 
+                                    
+                                    <li>
+
+                                        <a href="../logout">
+                                            <i class="icon-key"></i> Log Out </a>
+                                    </li>
+                                  
 
                                 </ul>
                             </li>
-
-                        </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->
                     </div>
@@ -267,14 +271,19 @@
 
                                     </div>
                                 </div>
+                                <%
+                              Application ap =(Application) Datacontroller.DataParser.getuniqeresault(new Application(), Integer.parseInt(appid));
+                                
+                                %>
                                 <div class="portlet-body">
                                     <!-- BEGIN FORM-->
-                                    <form action="../saveapp" onsubmit="return checkAppregistration()" method="POST" class="form-horizontal">
+                                    <input type="text"  name="appid" class="form-control" placeholder="">
+                                    <form action="../updateApp" onsubmit="return checkAppregistration()" method="POST" class="form-horizontal">
                                         <div class="form-body">
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Applicatoin Name</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="appname" name="appname" class="form-control" placeholder="">
+                                                    <input type="text" id="appname" name="appname" value="<%=%>" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -282,7 +291,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">App Price</label>
                                                 <div class="col-md-9">
-                                                    <input type="number" id="price" name="price" class="form-control " placeholder="">
+                                                    <input type="number" id="price" name="price" value="<%=%>" class="form-control " placeholder="">
                                                    
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
@@ -293,7 +302,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Descriptions</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" name="description" id="description" class="form-control" placeholder="">
+                                                    <input type="text" name="description" value="<%=%>"  id="description" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -301,7 +310,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Application File</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="applicationfile" id="applicationfile" class="form-control" placeholder="">
+                                                    <input type="file" name="applicationfile" value="<%=%>" id="applicationfile" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -309,7 +318,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">User Manual URL</label>
                                                 <div class="col-md-9">
-                                                    <input type="url" name="usermanualurl" id="usermanualurl" class="form-control" placeholder="">
+                                                    <input type="url" name="usermanualurl" value="<%=%>" id="usermanualurl" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -317,7 +326,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">App Icon</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="appicon" id="appicon" class="form-control" placeholder="">
+                                                    <input type="file" name="appicon" value="<%=%>" id="appicon" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -325,7 +334,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Video URL</label>
                                                 <div class="col-md-9">
-                                                    <input type="url" name="videourl" id="videourl" class="form-control" placeholder="">
+                                                    <input type="url" name="videourl" value="<%=%>" id="videourl" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -334,7 +343,7 @@
                                              <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 1</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images1" id="images1" class="form-control" placeholder="">
+                                                    <input type="file" name="images1" value="<%=%>" id="images1" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -342,7 +351,7 @@
                                              <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 2</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images2" id="images2" class="form-control" placeholder="">
+                                                    <input type="file" name="images2" value="<%=%>" id="images2" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -350,7 +359,7 @@
                                              <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 3</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images3" id="images3" class="form-control" placeholder="">
+                                                    <input type="file" name="images3" value="<%=%>" id="images3" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>

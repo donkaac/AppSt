@@ -152,19 +152,21 @@
                                             <i class="icon-briefcase"></i> My Purchase App List  </a>
                                     </li>
                                     <%}%>
+                                     <%if (loging) {%>
                                     <li>
                                         <a href="cart.jsp">
                                             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
                                             <span class="badge badge-danger"> <%=cartqty%></span>
                                         </a>
                                     </li>
+                                     <%} if (loging) {%>
                                     <li>
                                         <a href="wishlist.jsp">
                                             <i class="icon-wallet"></i> WishList
                                             <span class="badge badge-default"> <%=wishlistqty%> </span>
                                         </a>
                                     </li>
-                                    <%if (loging) {%>
+                                    <%} if (loging) {%>
                                     <li>
 
                                         <a href="logout">
@@ -488,6 +490,9 @@
                                                     <hr>
                                                     <div class="product-price">$<%=app.getPrice()%></div>
                                                     <div class="product-stock">Develop By <%=app.getDeveloper().getDeveloperFname()%></div>
+                                                    <%if(app.getApphasstaffvalids().isEmpty()){%>
+                                                    <div class="product-stock">Still Appliation is not valid </div>
+                                                    <%}%>
                                                     <hr>
                                                     <div class="btn-group cart">
                                                         <button onclick="addtocart(<%=app.getIdApplication()%>)" type="button" class="btn btn-success">

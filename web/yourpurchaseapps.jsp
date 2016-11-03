@@ -426,7 +426,7 @@
 
                                                 }
                                                 for (Customerhasapplication purchesapp : purchaselist) {
-
+                                                   
                                                     total += purchesapp.getApplication().getPrice();
                                                     
                                             %>
@@ -441,7 +441,35 @@
                                                         </div>
                                                     </div></td>
                                                 <td class="col-sm-1 col-md-1" style="text-align: center">
-
+                                                    <div class="product-rating">
+                                                        <%
+                                                            int rate = Oparation.getRates.getRate(purchesapp.getApplication().getIdApplication());
+                                                            if (rate >= 1) {%>
+                                                            <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,1)" class="fa fa-star gold"></i>
+                                                        <%} else {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,1)" class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                        <%   if (rate >= 2) {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,2)" class="fa fa-star gold"></i>
+                                                        <%} else {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,2)" class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                        <%   if (rate >= 3) {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,3)" class="fa fa-star gold"></i>
+                                                        <%} else {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,3)" class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                        <%   if (rate >= 4) {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,4)" class="fa fa-star gold"></i>
+                                                        <%} else {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,4)" class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                        <%   if (rate == 5) {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,5)" class="fa fa-star gold"></i>
+                                                        <%} else {%>
+                                                        <i onclick="setRateApplication(<%=purchesapp.getIdCustomerHasApplication()%>,5)" class="fa fa-star-o"></i>
+                                                        <%}%>
+                                                    </div>
                                                 </td>
                                                 <td class="col-sm-1 col-md-1 text-center"><strong></strong></td>
                                                 <td class="col-sm-1 col-md-1 text-center"><strong>$<%=purchesapp.getApplication().getPrice()%></strong></td>

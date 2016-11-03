@@ -4,6 +4,8 @@
     Author     : Ish
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.Vector"%>
 <%@page import="java.util.Set"%>
 <%@page import="Entities.Rolehassubmenu"%>
 <%@page import="Entities.Staff"%>
@@ -19,23 +21,30 @@
 <html lang="en">
     <html>   
         <%
-            Set<Rolehassubmenu>  list=null;
-            try{
-      Staff staff=(Staff)request.getSession().getAttribute("staff");
-       list=staff.getRoles().getRolehassubmenus();
-     boolean states=false;
-      for(Rolehassubmenu rhs:list){
-        if(  rhs.getSubmenu().getPageurl()=="SetAppValidations.jsp"){
-            System.out.println(rhs.getSubmenu().getPageurl());
-            states=true;
-        }
-      }
-      if(states){
-          response.sendRedirect("dashboard.jsp?msg=NeedPermission");
-      }
-            }catch(NullPointerException e){
-                 response.sendRedirect("dashboard.jsp");
-            }
+            try {
+                if (request.getSession().getAttribute("staff").equals(null)) {
+                    response.sendRedirect("login.jsp");
+                }
+
+                Set<Rolehassubmenu> list = null;
+                try {
+                    Staff staff = (Staff) request.getSession().getAttribute("staff");
+                    list = staff.getRoles().getRolehassubmenus();
+                    boolean states = false;
+                    for (Rolehassubmenu rhs : list) {
+                        if (rhs.getSubmenu().getPageurl() == "SetAppValidations.jsp") {
+                            System.out.println(rhs.getSubmenu().getPageurl());
+                            states = true;
+                        }
+                    }
+                    if (states) {
+                        response.sendRedirect("dashboard.jsp?msg=NeedPermission");
+                    }
+                } catch (NullPointerException e) {
+                    response.sendRedirect("login.jsp");
+                } catch (Exception es) {
+                    es.printStackTrace();
+                }
         %>
         <!-- BEGIN HEAD -->
         <head>        
@@ -92,18 +101,7 @@
                     <!-- END RESPONSIVE MENU TOGGLER -->
                     <!-- BEGIN TOP NAVIGATION MENU -->
                     <div class="top-menu">
-                        <ul class="nav navbar-nav pull-right">
-                            <!-- BEGIN NOTIFICATION DROPDOWN -->
-                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                            
-                            <!-- END NOTIFICATION DROPDOWN -->
-                            <!-- BEGIN INBOX DROPDOWN -->
-                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                             
-                            <!-- END INBOX DROPDOWN -->
-                            <!-- BEGIN TODO DROPDOWN -->
-                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                             
+                        <ul class="nav navbar-nav pull-right"> 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
@@ -111,15 +109,15 @@
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
-                                    <%for(Rolehassubmenu rhs:list){
-                                        
-                                                                             %>
+                                    <%for (Rolehassubmenu rhs : list) {
+
+                                    %>
                                     <li>
                                         <a href="<%=rhs.getSubmenu().getPageurl()%>">
                                             <i class="icon-user"></i> <%=rhs.getSubmenu().getSubmenu()%> </a>
                                     </li>
                                     <%}%>
-                                      
+
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
@@ -158,13 +156,13 @@
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                 
+
                                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                             </li>
-                            <%for(Rolehassubmenu rhs:list){
-                                
-                            
-                                  %>
+                            <%for (Rolehassubmenu rhs : list) {
+
+
+                            %>
                             <li class="nav-item start active open">
                                 <a href="<%= rhs.getSubmenu().getPageurl()%>" class="nav-link nav-toggle">
                                     <i class="icon-home"></i>
@@ -172,7 +170,7 @@
                                     <span class="selected"></span>
                                     <span class="arrow open"></span>
                                 </a>
-                                 
+
                             </li>
                             <%}%>
                         </ul>
@@ -283,7 +281,7 @@
                             </ul>
 
                         </div>
-                        <div class="row">
+                        <div class="row"> 
                             <div class="col-lg-12">
                                 <h1 class="page-header">App Validation Details </h1>
                                 <br>
@@ -317,7 +315,7 @@
 
 
 
-                        <div class="container">
+                        <div>
                             <h2>NON Check Apps</h2>
                             <p>App List</p>
                             <div class="scrollit">
@@ -338,14 +336,12 @@
                                     </thead>
                                     <tbody>
                                         <%
-                                            ArrayList<Object> applist =null; 
-                                            
-                                           applist= Datacontroller.DataParser.Searchdata(new Application());
-                                            
-                                            for (Object cob : applist) {
-                                                Application c = (Application) cob;
-                                                if (c.isState() & (c.getApphasstaffvalids().size() == 0)) {
 
+                                            ArrayList<Object> appslistdata = Datacontroller.DataParser.Searchdata(new Application());
+                                   
+                                            for (Object o : appslistdata) {
+                                                Application c=(Application)o;
+                                                if (c.isState() & (c.getApphasstaffvalids().size() == 0)) {
                                         %>
                                         <tr>
                                             <td><%=c.getIdApplication()%></td>
@@ -360,19 +356,18 @@
 
                                     <form action="../addappvalidation" method="POST">
 
-                                        <td><input type="hidden" name="appid" value="<%=c.getIdApplication()%>"/><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-chevron-down">Set Valid App </span></button></a></td></form>
+                                        <td><input type="hidden" name="appid" value="<%=c.getIdApplication()%>"/><a class="btn-default"><button class="form-control btn-success" type="submit"><span class="glyphicon glyphicon-chevron-down">Set Valid App </span></button></a></td></form>
                                     </tr>
                                     <%}
-                                            }%>
+                                        }%>
                                     </tbody>
                                 </table>
                             </div>
-
-
                         </div>
-                        <div class="container">
-                            <h2>Active Developers Validations</h2>
-                            <p>Developer List</p>
+                        <div>
+                        
+                            <h2>Active Application Validations</h2>
+                            <p>Application List</p>
                             <div class="scrollit">
                                 <table class="table table-hover">
                                     <thead>
@@ -391,7 +386,7 @@
                                     </thead>
                                     <tbody>
                                         <%
-                                           ArrayList<Object> appvalidlist= Datacontroller.DataParser.Searchdata(new Apphasstaffvalid());
+                                            ArrayList<Object> appvalidlist = Datacontroller.DataParser.Searchdata(new Apphasstaffvalid());
                                             for (Object cob : appvalidlist) {
                                                 Apphasstaffvalid c = (Apphasstaffvalid) cob;
                                                 if (c.isAppHasStaffValidState()) {
@@ -410,19 +405,18 @@
 
                                     <form action="../deactiveoractiveAppValidations" method="POST">
 
-                                        <td><input type="hidden" name="appvalidid" value="<%=c.getIdAppHasStaffValid()%>"/><input type="hidden" name="state" value="false"><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-remove-circle">Disable Valid App </span></button></a></td></form>
+                                        <td><input class="form-control" type="hidden" name="appvalidid" value="<%=c.getIdAppHasStaffValid()%>"/><input type="hidden" name="state" value="false"><a class="btn-default"><button class="form-control btn-danger" type="submit"><span class="glyphicon glyphicon-remove-circle">Disable Valid App </span></button></a></td></form>
                                     </tr>
                                     <%}
-                                            }%>
+                                        }%>
                                     </tbody>
                                 </table>
                             </div>
-
-
-                        </div>
-                        <div class="container">
-                            <h2>Disabled Developers Validations</h2>
-                            <p>Developer List</p>
+</div>
+                        <div>
+ 
+                            <h2>Disabled Application Validations</h2>
+                            <p>Application List</p>
                             <div class="scrollit">
                                 <table class="table table-hover">
                                     <thead>
@@ -439,13 +433,13 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                     <tbody>
+                                    <tbody>
                                         <%
-                                          
-                                            for (Object cob : appvalidlist) {
-                                                Apphasstaffvalid c = (Apphasstaffvalid) cob;
-                                                if (!c.isAppHasStaffValidState()) {
-                                                 
+                                            try {
+                                                for (Object cob : appvalidlist) {
+                                                    Apphasstaffvalid c = (Apphasstaffvalid) cob;
+                                                    if (!c.isAppHasStaffValidState()) {
+
                                         %>
                                         <tr>
                                             <td><%=c.getApplication().getIdApplication()%></td>
@@ -460,10 +454,13 @@
 
                                     <form action="../deactiveoractiveAppValidations" method="POST">
 
-                                        <td><input type="hidden" name="appvalidid" value="<%=c.getIdAppHasStaffValid()%>"/><input type="hidden" name="state" value="true"><a class="btn-default"><button type="submit"><span class="glyphicon glyphicon-chevron-down">Enable App Validation </span></button></a></td></form>
+                                        <td><input type="hidden" name="appvalidid" value="<%=c.getIdAppHasStaffValid()%>"/><input type="hidden" name="state" value="true"><a class="btn-default"><button class="form-control btn-default" type="submit"><span class="glyphicon glyphicon-chevron-down">Enable App Validation </span></button></a></td></form>
                                     </tr>
                                     <%}
-                                            }%>
+                                            }
+                                        } catch (NullPointerException e) {
+                                            response.sendRedirect("login.jsp");
+                                        }%>
                                     </tbody>
                                 </table>
                             </div>
@@ -552,5 +549,12 @@
             <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
             <!-- END THEME LAYOUT SCRIPTS -->
         </body>
+        <%} catch (NullPointerException e) {
+                System.out.println("NULL EXCEPTION");
+                response.sendRedirect("login.jsp");
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION");
 
+                response.sendRedirect("login.jsp");
+            }%>
     </html>

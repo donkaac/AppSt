@@ -32,9 +32,10 @@ public class AppValidSearchForAddDeveloperID extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
          if(!request.getParameter("developerid").equals(null)){
-             response.sendRedirect("admin/SetAppValidations.jsp?developerid='"+request.getParameter("developerid")+"'");
-         }
+             response.sendRedirect("admin/SetAppValidations.jsp?developerid="+request.getParameter("developerid")+"");
+         }else{
            response.sendRedirect("admin/SetAppValidations.jsp");
+         }
         }
     }
 

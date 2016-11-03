@@ -7,6 +7,8 @@ package Test;
 
 import Datacontroller.HibernateUtil;
 import Entities.Application;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -18,20 +20,18 @@ import org.hibernate.criterion.Restrictions;
  * @author Ish
  */
 public class NewClass1 {
-    public static void main(String[] args) {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-                Criteria cr = session.createCriteria(Application.class);
-String s="k";
-                
-                Criterion stcr = Restrictions.eq("state", true);
-                Criterion namecr = Restrictions.ilike("applicationName", s+"%");
-               
-                cr.add(stcr);
-                cr.add(namecr);
-                List list = cr.list();
-                for (Object object : list) {
-            Application app=(Application) object;
-                    System.out.println("APP NAME ????"+app.getApplicationName());
+    public static void main(String[] args) { 
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY,MM,dd");
+        String tdate = simpleDateFormat.format(date);
+        System.out.println(tdate);
+        String base64encode = Datacontroller.EncryptUtils.base64encode(Datacontroller.EncryptUtils.base64encode(Datacontroller.EncryptUtils.base64encode("123developer♦1♦"+tdate)));
+        String base64dencode = Datacontroller.EncryptUtils.base64decode(Datacontroller.EncryptUtils.base64decode(Datacontroller.EncryptUtils.base64decode("VFhWTFduQnJNVlZUV0hKcGJXRmFXRnBYVVdkVWJUa3lTVVJCZVVsRVJYaFBha0Y1VDJwVk0wbEZiRlJXUTBGNVRVUkZNalJ3YlcxWg0KTTFaNlpFYzVkRnBZU1QwPQ==")));
+        System.out.println( base64encode+ "  \n "+base64dencode);
+        String[] split = base64dencode.split("♦");
+        for (String string : split) {
+            System.out.println("○"+string);
         }
+       
     }
 }

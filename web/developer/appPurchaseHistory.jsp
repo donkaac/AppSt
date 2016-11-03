@@ -18,6 +18,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+ <%try{
+ if(!request.getSession().getAttribute("developer").equals(null)){
+ %>
     <html>   
         <!-- BEGIN HEAD -->
         <head>        
@@ -60,7 +63,7 @@
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 
-            <%
+            <%  
                 String username = "Guest";
                 boolean loging = false;
                 Developer c = new Developer();
@@ -78,7 +81,7 @@
                     }
                 }
                 if(!loging){
-                    response.sendRedirect("developer/login.jsp");
+                    response.sendRedirect("login.jsp");
                 }
                 String appqty = "";
                 if (!c.getApplications().isEmpty()) {
@@ -131,6 +134,12 @@
                                         <a href="applist.jsp">
                                             <i class="glyphicon glyphicon-list"></i> App List
                                             <span class="badge badge-danger"> <%=appqty%> </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="saveapplication.jsp">
+                                            <i class="glyphicon glyphicon-pencil"></i>New App 
+                                             
                                         </a>
                                     </li>
                                     <li>
@@ -422,7 +431,7 @@
                                
                                     <option class="form-control">Select Your App</option>
                                         <%
-                                           try{
+                                           
                                             Developer dl=(Developer)DataParser.getuniqeresault(new Developer(), 6);
                                            Set<Application> l= dl.getApplications();
                                             for (Application cob :l ) {
@@ -441,7 +450,7 @@
                                     
                                             </option>
                                         <% 
-                                        }}catch(Exception e){e.printStackTrace();}%>
+                                        } %>
                                      
                                 </select>
                                         <div id="applicationArea">
@@ -532,5 +541,15 @@
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
 
+
+<%}else{
+response.sendRedirect("login.jsp");
+}
+}catch(NullPointerException e){
+                 response.sendRedirect("login.jsp");
+  }catch(Exception e){
+e.printStackTrace();
+response.sendRedirect("login.jsp");
+}%>
 </html>
 

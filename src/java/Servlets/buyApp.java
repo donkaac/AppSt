@@ -81,8 +81,8 @@ public class buyApp extends HttpServlet {
                     out.write("" + Savedata);
                 } 
 
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (NullPointerException e) {
+                e.printStackTrace(); response.sendRedirect("login.jsp");
             }
             }
         }

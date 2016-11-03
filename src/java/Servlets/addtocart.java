@@ -69,7 +69,8 @@ public class addtocart extends HttpServlet {
                     out.write(""+add);
                 }
 
-            } catch (Exception e) {
+            } catch (NullPointerException e) {
+                response.sendRedirect("login.jsp");
                 e.printStackTrace();
             }
         }

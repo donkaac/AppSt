@@ -19,7 +19,12 @@
 <html lang="en">
     <html>   
         <!-- BEGIN HEAD -->
-        <head>        
+        <head>     <%
+            
+              if (request.getAttribute("user") == null) {
+                            response.sendRedirect("index.jsp?msg=Pleace Login To System");
+                        }
+            %>      
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Wish List</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,7 +80,7 @@
 
                     
                 } catch (Exception e) {
-
+        response.sendRedirect("login.jsp");
                 }
             }
             String cartqty = "";

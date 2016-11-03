@@ -73,9 +73,12 @@ public class loardpurchase extends HttpServlet {
                 out.write("<td>"+comment.getDeveloperPayementPrice()+"</td>");
                 out.write("<td>"+comment.getCustomer().getIdCustomer()+"</td>");
                 out.write("<td>"+comment.getCustomer().getCustomerFname()+" "+comment.getCustomer().getCustomerLname()+"</td>");
+               if(!comment.getIsPayedDeveloper()){
                
-                out.write("<td>"+comment.getPayedDateAndTimeToDeveloper()+"</td>");
-                
+                out.write("<td><form action=\"../withdarwAppPayments\" method=\"POST\"><input name=\"id\" type=\"hidden\" value=\""+comment.getIdCustomerHasApplication()+"\"/><input class=\"form-control btn-default\" type=\"submit\" value=\"withdraw\"/></form> </td>");
+               }else{
+                    out.write("<td>"+comment.getPayedDateAndTimeToDeveloper()+"</td>");
+               }
                 total+=comment.getDeveloperPayementPrice();
                 if(!comment.getIsPayedDeveloper().booleanValue()){
                 duetotal+=comment.getDeveloperPayementPrice();
