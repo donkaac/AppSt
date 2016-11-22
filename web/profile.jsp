@@ -18,7 +18,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<% if(session.getAttribute("user")!= null){%>
+<% try{%>
 <html lang="en">  
         <!-- BEGIN HEAD -->
         <head>        
@@ -65,7 +65,9 @@
             <%
                 try {
                    // Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
-                    Customer c = (Customer) session.getAttribute("user");
+                    Customer c = (Customer) request.getSession().getAttribute("user");
+                     c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
+                     request.getSession().setAttribute("user", c);
                     //if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
                     if (c != null) {
                         String image = "assets/layouts/layout/img/avatar3_small.jpg";
@@ -703,4 +705,6 @@
         response.sendRedirect("index.jsp");
     }%>
 </html>
-<% }else{ response.sendRedirect("index.jsp");}%>
+<% } catch (NullPointerException e) {
+        response.sendRedirect("index.jsp");
+    }%>

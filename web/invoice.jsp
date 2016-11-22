@@ -1,3 +1,8 @@
+<%-- 
+    Document   : invoice
+    Created on : Nov 15, 2016, 4:09:12 PM
+    Author     : Ish
+--%>
 <%@page import="Datacontroller.DataParser"%>
 <%@page import="Entities.Customer"%>
 <%@page import="java.util.Set"%>
@@ -36,7 +41,7 @@
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
         <!-- BEGIN HEADER -->
-        <%                String username = "";
+        <%         try{       String username = "";
             boolean loging = false;
             Customer c = new Customer();
             if (!request.getSession().equals(null)) {
@@ -54,9 +59,14 @@
                         username = c.getCustomerFname();
                         //c.getCarts();
                     }
-                } catch (Exception e) {
-                    response.sendRedirect("login..jsp");
-                }
+               } catch (NullPointerException e) {
+                System.out.println("NULL EXCEPTION");
+                response.sendRedirect("login.jsp");
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION");
+
+                response.sendRedirect("login.jsp");
+            }
             } else {
                 response.sendRedirect("login.jsp");
             }
@@ -220,5 +230,12 @@
         <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
 
+<%} catch (NullPointerException e) {
+                System.out.println("NULL EXCEPTION");
+                response.sendRedirect("login.jsp");
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION");
 
+                response.sendRedirect("login.jsp");
+            }%>
     </body></html>

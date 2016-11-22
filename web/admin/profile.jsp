@@ -296,7 +296,7 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.jsp">Home</a>
+                                    <a href="dashboard.jsp">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>

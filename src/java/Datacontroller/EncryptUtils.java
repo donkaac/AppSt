@@ -35,6 +35,9 @@ public class EncryptUtils {
         String encoded = base64encode(txt);       
         System.out.println(" is encoded to: " + encoded + " and that is decoding to: " + (txt = base64decode(encoded)));
         System.out.print("XOR-ing back to original: " + xorMessage(txt, key));
+        
+        System.out.println("sa");
+        System.out.println(base64decode("MTIzNA=="));
     }
 
     public static String xorMessage(String message, String key) {

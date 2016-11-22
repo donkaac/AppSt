@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,8 +27,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author Ish
  */
-@WebServlet(name = "saveapp", urlPatterns = {"/saveapp"})
-public class updateApp extends HttpServlet {
+public class updateappdata extends HttpServlet {
 
     private boolean isMultipart;
     private String filePath;
@@ -215,11 +213,7 @@ public class updateApp extends HttpServlet {
 
             out.println("</body>");
             out.println("</html>");
-
-            /*Category category = (Category) Datacontroller.DataParser.getuniqeresault(new Category(), Integer.parseInt(request.getParameter("appcategorylist")));
-            Developer developer = (Developer) request.getSession().getAttribute("developer");
-            int developerid = developer.getIdDeveloper();
-            developer = (Developer) Datacontroller.DataParser.getuniqeresault(new Developer(), developerid);*/
+ 
         } catch (Exception ex) {
             System.out.println(ex);
         }

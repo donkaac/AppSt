@@ -21,7 +21,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <html>   
-    <%if(!request.getSession().getAttribute("developer").equals(null)){%>    <!-- BEGIN HEAD -->
+    <%try{
+        if(!request.getSession().getAttribute("developer").equals(null)){%>    <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>App LIST</title>
@@ -456,7 +457,7 @@
                                             <td><%=cob.getCustomerhasapplications().size()%></td>
                                             <td><%=cob.getPrice()%></td>
                                             <td><%=cob.getPrice()*cob.getCustomerhasapplications().size()%></td>
-                                            <td><a href="updateApplication.jsp?appid<%=cob.getIdApplication()%>" class="btn-default"><button type="button" class="form-control btn-default" ><span class="glyphicon glyphicon-eject"> View Comments </span></button></a></td>
+                                            <td><form action="updateApplication.jsp" method="POST"><input type="hidden" value="<%=cob.getIdApplication()%>" name="appid"/><a  class="btn-default"><button type="submit" class="form-control btn-default" ><span class="glyphicon glyphicon-eject"> View Comments </span></button><form></a></td>
                                         </tr>
                                         <% 
                                         }}catch(Exception e){e.printStackTrace();}%>
@@ -482,8 +483,7 @@
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    <div class="page-footer-inner"> Apps Store Developers 
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
@@ -549,5 +549,14 @@
 </body>
 <%}else{
 response.sendRedirect("login.jsp");
-}%>
+}
+} catch (NullPointerException e) {
+                System.out.println("NULL EXCEPTION");
+                response.sendRedirect("login.jsp");
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION");
+
+                response.sendRedirect("login.jsp");
+            }
+%>
 </html>

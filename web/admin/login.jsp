@@ -42,7 +42,12 @@
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
+<%
+if(request.getSession().getAttribute("staff")!=(null)){
+                    response.sendRedirect("dashboard.jsp");
+                }
 
+%>
     <body class=" login">
         <!-- BEGIN : LOGIN PAGE 5-2 -->
         <div class="user-login-5">
@@ -54,9 +59,17 @@
                         <p> Lorem ipsum dolor sit amet, coectetuer adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum dolor sit amet, coectetuer adipiscing. </p>
                         <form action="javascript:;" class="login-form" method="post">
                             <div class="alert alert-danger display-hide">
-                                <button class="close" data-close="alert"></button>
-                                <span>Enter any username and password. </span>
-                            </div>
+                    <button class="close" data-close="alert"></button>
+                    <span> Enter any username and password. </span>
+                </div>
+                <div class="alert alert-warning display-hide">
+                    <button class="close" data-close="alert"></button>
+                    <span class="allert-message">Invalid username or password. </span>
+                </div>                            
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                    <span>Successfully Login In.</span>
+                </div>
                             <div class="row">
                                 <div class="col-xs-6">
                                     <input class="form-control form-control-solid placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="Username" name="username" required/> </div>
@@ -82,9 +95,9 @@
                         <!-- BEGIN FORGOT PASSWORD FORM -->
                         <form class="forget-form" action="javascript:;" method="post">
                             <h3 class="font-green">Forgot Password ?</h3>
-                            <p> Enter your e-mail address below to reset your password. </p>
+                            <p class="alert-warning"> Enter your e-mail address below to reset your password. </p>
                             <div class="form-group">
-                                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
+                                <input class="form-control placeholder-no-fix" type="email" required autocomplete="off" placeholder="Email" name="email" /> </div>
                             <div class="form-actions">
                                 <button type="button" id="back-btn" class="btn grey btn-default">Back</button>
                                 <button type="submit" class="btn blue btn-success uppercase pull-right">Submit</button>

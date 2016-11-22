@@ -20,7 +20,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <html>   
-   <%if(!request.getSession().getAttribute("developer").equals(null)){%>        <!-- BEGIN HEAD -->
+   <%try{
+       if(!request.getSession().getAttribute("developer").equals(null)){%>        <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Developer Dashboard</title>
@@ -113,7 +114,7 @@
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.jsp">
+                        <a href="dashboard.jsp">
                             <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
@@ -271,10 +272,10 @@
 
                                                     %>
                                                     <li class="nav-item start">
-                                                        <a href="dashboard.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
+                                                        <a onclick="loardsingleapplication(<%= appl.getIdApplication()%>)" class="nav-link nav-item">
 
                                                             <i class="icon-game-controller"></i>
-                                                            <span class="title"><%=  appl.getApplicationName()%></span>
+                                                            <span class="title"><%=appl.getApplicationName()%></span>
                                                             <span class="selected"></span>
                                                             <span class="views"></span>
                                                         </a>
@@ -397,11 +398,11 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="dashboard.jsp">Dashboard</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
-                                    <span>Cart</span>
+                                    
                                 </li>
                             </ul>
 
@@ -416,13 +417,41 @@
                                 <span id="msgwindow"></span>
                             </div>
                         </div>
-                  
-                             <%-- Main--%>
+                  <!--Load the AJAX API-->
+                  <font>              Total Earn</font>
+                                        <%
+                                           
+                                            Developer dl=(Developer)DataParser.getuniqeresault(new Developer(), 6);
+                                           Set<Application> l= dl.getApplications();
+                                            for (Application cob :l ) {
+                                          
+                                        %>
+                                        <h3 value="<%=cob.getIdApplication()%>" class="form-control">
+                                       <%="| App Name :"+cob.getApplicationName()+"  "%> 
+                                       
+                                            <%="| Category :"+cob.getCategory().getCategory()+"  "%> 
+                                          <%="| Type :"+cob.getCategory().getApptype().getApptype()+"  "%>
+                                           <%="| Platform : "+cob.getCategory().getApptype().getAppplatform().getAppplatform()+"  "%> 
+                                             <%="| Sales qty : "+cob.getCustomerhasapplications().size()+"  "%> 
+                                            <%="| Price :"+cob.getPrice()+" "%> 
+                                           <%="| Total Sales Amount :"+cob.getPrice()*cob.getCustomerhasapplications().size()%> 
+                                            
+                                    
+                                            </h3>
+                                        <% 
+                                        } %>
+                                     
+
+    
+   
+                             
                         <div class="page-container" id="applicationArea">
                         </div>
-                    </div>
+                        
+                             
                 </div>   
                 <div class="clearfix"></div>
+                
             </div>
             <!-- END CONTENT BODY -->
         </div>
@@ -433,8 +462,7 @@
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    <div class="page-footer-inner"> Apps Store Developers 
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
@@ -500,5 +528,14 @@
 </body>
 <%}else{
 response.sendRedirect("login.jsp");
-}%>
+}
+} catch (NullPointerException e) {
+                System.out.println("NULL EXCEPTION");
+                response.sendRedirect("login.jsp");
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION");
+
+                response.sendRedirect("login.jsp");
+            }
+%>
 </html>

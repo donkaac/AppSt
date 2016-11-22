@@ -36,29 +36,33 @@ public class changepassword extends HttpServlet {
             String pass1 = request.getParameter("pass1");
             String pass2 = request.getParameter("pass2");
             HttpSession s = request.getSession();
-            if (!(s.getAttribute("userid").toString() == null)) {
+            if (!(s.getAttribute("user") == null)) {
                 
               if (pass1 == null ? pass2 == null : pass1.equals(pass2)) {
-                int cusid = Integer.parseInt(s.getAttribute("userid").toString());
-                //Customer cusObject = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
-                Customer cusObject = (Customer) s.getAttribute("user");
-                  System.out.println("ok");
+                Customer c=  (Customer)s.getAttribute("user");
+                int cusid = Integer.parseInt(c.getIdCustomer().toString());
+                Customer cusObject = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), cusid);
+              
+                  System.out.println("ok1");
                 if (!(null == cusObject.getPassword() ? null == Datacontroller.EncryptUtils.base64encode(oldapass) : (cusObject.getPassword() == null ? (Datacontroller.EncryptUtils.base64encode(oldapass)) == null : cusObject.getPassword().equals(Datacontroller.EncryptUtils.base64encode(oldapass))))) {
                 } else {
                     cusObject.setPassword(Datacontroller.EncryptUtils.base64encode(pass2));
-                    System.out.println("ok");
+                    System.out.println("ok2");
                     boolean UpdateData = Datacontroller.DataParser.UpdateData(cusObject);
-                    response.sendRedirect("profle.jsp");
+                    response.sendRedirect("profile.jsp");
                   }
               }else{
-                  response.sendRedirect("profle.jsp");
+                  response.sendRedirect("profile.jsp");
               }
             }else{
                 response.sendRedirect("index.jsp");
             }
             
         } catch (NumberFormatException | IOException e) {
-            e.printStackTrace();
+            System.out.println("error");
+            response.sendRedirect("profile.jsp?msg=Error");
+            
+            
         }
     }
 

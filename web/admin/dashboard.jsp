@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Entities.Application"%>
 <%@page import="Datacontroller.DataParser"%>
 <%@page import="java.util.Set"%>
 <%@page import="Entities.Staff"%>
@@ -294,7 +295,36 @@
 
 
 
-
+<div>
+                          <%  Application [] Alist=Oparation.GetTopSellApps.getTopSellingApps();
+                           for(int i=0; i<Alist.length;i++){
+                                  if(!Alist[i].equals(null)){
+                                Application app=Alist[i];
+                        %>
+                            <div class="col-md-2 w3l-movie-gride-agile">
+            <article class="col-item">
+        		<div class="photo">
+        			 
+        			<a href="../viewapp.jsp?appid=<%=app.getIdApplication()%>"> <img src="../<%= app.getAppImage()%>" class="img-responsive" alt="Product Image"> </a>
+        		</div>
+        		<div class="info">
+        			<div class="row">
+        				<div class="price-details col-md-6">
+        					<p class="details">
+        					<%= app.getDescription()%>
+        					</p>
+        					<h1><%=app.getApplicationName()%></h1>
+        					<span class="price-new">$<%=app.getPrice()%></span>
+        				</div>
+        			</div>
+        		</div>
+        	</article>
+        
+                            </div>
+                            <%}}%>
+                            
+                            <div class="clearfix"> </div>
+                        </div>
 
 
 

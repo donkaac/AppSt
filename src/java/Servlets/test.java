@@ -10,9 +10,11 @@ import Entities.Application;
 import Entities.Cart;
 import Entities.Customer;
 import Entities.Wishlist;
+import com.sun.tools.jxc.ApBasedTask;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -38,9 +40,7 @@ public class test extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
-            try {
+        try (PrintWriter out = response.getWriter()) {      try {
                  String a1="",a2="",a3="",a4="";
                 FileItemFactory f1 = new DiskFileItemFactory();
                 ServletFileUpload up = new ServletFileUpload(f1);
@@ -108,6 +108,8 @@ public class test extends HttpServlet {
         
             
         }
+       Application ap=new Application();
+       
        
     }
  

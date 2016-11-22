@@ -10,6 +10,7 @@ import Entities.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +46,8 @@ public class updatecustomerdata extends HttpServlet {
                 System.out.println(fname+mname+lname+address+cityid);
                 
                 HttpSession s = request.getSession();
-                int cusid = Integer.parseInt(s.getAttribute("userid").toString());
+                 Customer customer = (Customer) s.getAttribute("user");
+                int cusid = customer.getIdCustomer();
                 System.out.println("Customer ID :"+cusid+" "+fname);
                 if (!(fname == null | mname == null |  lname == null | address.equals("") | address == null | cityid.equals("") | cityid == null)) {
                     try {
@@ -65,17 +67,21 @@ public class updatecustomerdata extends HttpServlet {
                         boolean Savedata = Datacontroller.DataParser.UpdateData(c);
                         System.out.println(Savedata);
                         writer.write("" + Savedata);
+                        request.getSession().setAttribute("user", c);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                         
                     }
                 } else {
+                   
                     System.out.println("null data");
                     writer.write("null data");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                
+                
             }
-            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("profile.jsp");
+            dispatcher.forward(request, response);
         }
     }
 }

@@ -51,7 +51,7 @@ var Login = function () {
                         },
                         success: function (response)
                         { 
-                            alert(response);
+                            
                             if (response == "ok") {
                                 $("#btn-login").html('<img src="css/btn-ajax-loader.gif" /> &nbsp; Signing In ...');
                                 $('.alert-success', $('.login-form')).show(500);
@@ -113,13 +113,14 @@ var Login = function () {
                         },
                         success: function (response)
                         {
-                            alert("sending");
+                            
                             if (response == "ok") {
 
                                 $('.alert-success', $('.forget-form')).show(500);
                                 setTimeout(' window.location.href = "login.jsp"; ', 4000);
 
                             } else if (response == "error") {
+                                alert("Check Email");
                                 $('.alert-warning', $('.forget-form')).show(500);
                             } else {
                                 window.location.href = "error/system_500.jsp";

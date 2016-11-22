@@ -38,33 +38,40 @@ public class sendmails extends HttpServlet {
             String parameter = request.getParameter("reviever");
             String hedder = request.getParameter("hedder");
             String message = request.getParameter("message");
-            String []emaillist=null;
+           
+            String[] emaillist=new String[999999];
+            System.out.println(parameter+"  "+hedder+"  "+message);
             int index=0;
-            if(parameter=="allcustomer"){
+            if("allcustomer".equals(parameter)){
                 ArrayList<Object> Searchdata = Datacontroller.DataParser.Searchdata(new Customer());
                 for (Object object : Searchdata) {
                     Customer c=(Customer) object;
                     emaillist[index]=c.getUsername();
+                    System.out.println(c.getUsername());
                     ++index;
                 }
-            }else if(parameter=="alldeveloper"){
+            }else if("alldeveloper".equals(parameter)){
                 ArrayList<Object> Searchdata = Datacontroller.DataParser.Searchdata(new Developer());
                 for (Object object : Searchdata) {
                     Developer c=(Developer) object;
                     emaillist[index]=c.getUsername();
+                     System.out.println(c.getUsername());
                     ++index;
                 }
-            }else if(parameter=="allstaff"){
+            }else if("allstaff".equals(parameter)){
                 ArrayList<Object> Searchdata = Datacontroller.DataParser.Searchdata(new Staff());
                 for (Object object : Searchdata) {
                     Staff c=(Staff) object;
                     emaillist[index]=c.getUsername();
+                     System.out.println(c.getUsername());
                     ++index;
                 }
             }
-            Mails.sendFromGMail(emaillist, hedder, message);
+            System.out.println("EMail Send --" + Mails.sendFromGMail(emaillist, hedder, message));
         } catch (Exception e) {
+            e.printStackTrace();
         }
+        
     }
 
     /**

@@ -3,27 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets;
+package ConectMobile;
 
-import Entities.Application;
-import Entities.Cart;
-import Entities.CartId;
-import Entities.Customer;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Ish
  */
-public class addtocart extends HttpServlet {
+public class Connection extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,33 +33,11 @@ public class addtocart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            try {
-                if (request.getSession().getAttribute("user") != null) {
-                    HttpSession session = request.getSession();
-                    int appid = Integer.parseInt(request.getParameter("appid"));
-                    //int cusid = Integer.parseInt(request.getSession().getAttribute("userid").toString());
-                    Customer customer = (Customer) session.getAttribute("user");
-                    Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
-                    CartId cartid = new CartId(customer.getIdCustomer(), app.getIdApplication());
-                    Cart cart = new Cart(cartid, app, customer, true);
-
-                    boolean Savedata = Datacontroller.DataParser.Savedata(cart);
-                    
-                    if (Savedata) {
-                        customer = (Customer)Datacontroller.DataParser.getuniqeresault(new Customer(), customer.getIdCustomer());
-                        session.setAttribute("user", customer);
-                    }
-
-                    out.write("" + Savedata);
-                }else{
-                    response.sendRedirect("login.jsp");
-                }
-
-            } catch (NullPointerException e) {
-                response.sendRedirect("login.jsp");
-                e.printStackTrace();
-            }
+        try {      
+             ObjectInputStream in=new ObjectInputStream(request.getInputStream());
+             ObjectOutputStream out=new ObjectOutputStream(response.getOutputStream());
+             out.writeObject(DataParseControl.getDataFromServer((HashMap)in.readObject()));
+        } catch (Exception e) {
         }
     }
 

@@ -15,9 +15,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <%
-             
-           
+        <% 
             HttpSession s = request.getSession();
 
             String username = "Guest";

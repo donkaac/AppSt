@@ -8,6 +8,7 @@ package Servlets;
 import Datacontroller.DataParser;
 import Entities.Apphasstaffvalid;
 import Entities.Developervalid;
+import Entities.Staff;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,9 +38,11 @@ public class deactiveoractiveAppValidations extends HttpServlet {
                if((null!=request.getParameter("appvalidid"))&(null!=request.getParameter("state"))){
                 int appvalidid=Integer.parseInt(request.getParameter("appvalidid"));
                 boolean s = Boolean.parseBoolean(request.getParameter("state"));
-                    
+                  Staff staff=(Staff)  request.getSession().getAttribute("staff");
+                 staff=(Staff) DataParser.getuniqeresault(new Staff(), staff.getIdStaff());
                 Apphasstaffvalid appvalid = (Apphasstaffvalid) DataParser.getuniqeresault(new Apphasstaffvalid(), appvalidid);
                 appvalid.setAppHasStaffValidState(s);
+                appvalid.setStaff(staff);
                 boolean Savedata = DataParser.UpdateData(appvalid);
                 if(Savedata){
                     response.sendRedirect("admin/SetAppValidations.jsp");

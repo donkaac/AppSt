@@ -5,12 +5,13 @@
  */
 package Servlets;
 
-import Entities.Customer;
+import Entities.Application;
 import Entities.Customerhasapplication;
 import Entities.Developer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +22,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ish
  */
-public class withdarwAppPayments extends HttpServlet {
-  
+public class withdrawall extends HttpServlet {
+
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -34,21 +36,27 @@ public class withdarwAppPayments extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
          HttpSession session = request.getSession();
                     if (session.getAttribute("developer") != null) {
                         Developer developer = (Developer) session.getAttribute("developer");
                         System.out.println("ss");
-          if(request.getParameter("id")!=null){
-            int cushasid = Integer.parseInt(request.getParameter("id"));
-              System.out.println(cushasid+"");
+          if(request.getParameter("appid")!=null){
+            int appid = Integer.parseInt(request.getParameter("appid"));
+              System.out.println(appid+"");
            
-                Customerhasapplication uniqeresault = (Customerhasapplication) Datacontroller.DataParser.getuniqeresault(new Customerhasapplication(), cushasid);
-           
-                uniqeresault.setIsPayedDeveloper(true);
-                uniqeresault.setPayedDateAndTimeToDeveloper(new Date());
+               Application application= (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
+          Set<Customerhasapplication> cushaslist= application.getCustomerhasapplications();
+          boolean b=false;
+              for (Customerhasapplication cushasob : cushaslist) {
+              
+                cushasob.setIsPayedDeveloper(true);
+                cushasob.setPayedDateAndTimeToDeveloper(new Date());
                
-                boolean UpdateData = Datacontroller.DataParser.UpdateData(uniqeresault);
-                if(UpdateData){
+                b = Datacontroller.DataParser.UpdateData(cushasob);
+             
+              }
+                if(b){
                    response.sendRedirect("developer/appPurchaseHistory.jsp?msg=OK");
                 }else{
                      response.sendRedirect("developer/appPurchaseHistory.jsp?msg=ERORR");
@@ -57,6 +65,7 @@ public class withdarwAppPayments extends HttpServlet {
         }
     
     }
+
     /**
      * Returns a short description of the servlet.
      *

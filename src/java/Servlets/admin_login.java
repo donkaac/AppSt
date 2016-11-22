@@ -35,7 +35,7 @@ public class admin_login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        System.out.println("OK");
+        System.out.println("OK s");
         try{
             HttpSession session = request.getSession();
             
@@ -61,6 +61,7 @@ public class admin_login extends HttpServlet {
                 out.print("ok");
             } else {
                out.print("error");
+               System.out.print("error");
             }
         } catch (Exception e) {
               e.printStackTrace();

@@ -1,9 +1,11 @@
 <%-- 
-    Document   : appPurchaseHistory
-    Created on : Oct 18, 2016, 10:27:29 PM
+    Document   : purchasehistory.jsp
+    Created on : Nov 16, 2016, 12:16:40 PM
     Author     : Ish
 --%>
-<%@page import="Entities.Developer"%>
+
+<%@page import="Entities.Staff"%>
+<%@page import="Entities.Rolehassubmenu"%>
 <%@page import="java.util.List"%>
 <%@page import="Entities.Cart"%>
 <%@page import="Datacontroller.DataParser"%>
@@ -18,8 +20,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
- <%try{
- if(!request.getSession().getAttribute("developer").equals(null)){
+ <% 
+     try{
+  
  %>
     <html>   
         <!-- BEGIN HEAD -->
@@ -59,46 +62,55 @@
             <script type="text/javascript" src="../ajaxjs/loardcomments.js"></script>
             <link rel="shortcut icon" href="favicon.ico"/>
 
-        </head>
-        <!-- END HEAD -->
-        <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-
-            <%  
-                String username = "Guest";
-                boolean loging = false;
-                Developer c = new Developer();
-                if (!request.getSession().equals(null)) {
-                    try {
-
-                        HttpSession s = request.getSession();
-
-                         c= (Developer)s.getAttribute("developer");
-                       
-                        username = c.getDeveloperFname();
-                        loging = true;
-                    } catch (Exception e) {
-
-                    }
-                }
-                if(!loging){
+        </head> 
+               <%
+                 
+            Set<Rolehassubmenu>  list=null;  
+            if(request.getSession().getAttribute("staff").equals(null)){
                     response.sendRedirect("login.jsp");
                 }
-                String appqty = "";
-                if (!c.getApplications().isEmpty()) {
-                    appqty = "" + c.getApplications().size();
-                }
+            try{
+      Staff staff=(Staff)request.getSession().getAttribute("staff");
+       list=staff.getRoles().getRolehassubmenus();
+     boolean states=false;
+      for(Rolehassubmenu rhs:list){
+        if(  rhs.getSubmenu().getPageurl()=="category.jsp"){
+            System.out.println(rhs.getSubmenu().getPageurl());
+            states=true;
+        }
+      }
+      if(states){
+          response.sendRedirect("dashboard.jsp?msg=NeedPermission");
+      }
+            }catch(NullPointerException e){
+                 response.sendRedirect("dashboard.jsp");
+            }
+        %>
+        <!-- END HEAD -->
+        <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+ <!-- BEGIN HEADER -->
+             <%
                 
+                   // Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
+                    Staff c = (Staff) session.getAttribute("staff");
+                    //if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
+                   
+                        String image = "assets/layouts/layout/img/avatar3_small.jpg";
+                        if (!(c.getStaffImage() == null)) {
+                            image = c.getStaffImage();
+                        }
+                        String cartqty = "";
+                        String wishlistqty = "";
+                        String username = c.getStaffFname();
 
             %>
-
-
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.jsp">
+                        <a href="dashboard.jsp">
                             <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
@@ -107,7 +119,7 @@
                     <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
                     <!-- END RESPONSIVE MENU TOGGLER -->
                     <!-- BEGIN TOP NAVIGATION MENU -->
-                     <div class="top-menu">
+                    <div class="top-menu">
                         <ul class="nav navbar-nav pull-right">
 
                             <!-- END NOTIFICATION DROPDOWN -->
@@ -116,47 +128,25 @@
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> <%=username%> </span>
+                                    <img alt="" class="img-circle" src="<%=image%>" />
+                                    <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
-                               <ul class="dropdown-menu dropdown-menu-default">
-                                  
+                                <ul class="dropdown-menu dropdown-menu-default">
+                                
                                     <li>
                                         <a href="profile.jsp">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
-                                     <li>
-                                         <a href="appPurchaseHistory.jsp">
-                                            <i class="glyphicon glyphicon-bitcoin"></i> Purchase History </a>
-                                    </li>
-                                    <li>
-                                        <a href="applist.jsp">
-                                            <i class="glyphicon glyphicon-list"></i> App List
-                                            <span class="badge badge-danger"> <%=appqty%> </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="saveapplication.jsp">
-                                            <i class="glyphicon glyphicon-pencil"></i>New App 
-                                             
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="commentsbox.jsp">
-                                            <i class="glyphicon glyphicon-comment"></i> Comment Box
-                                            
-                                        </a>
-                                    </li>
-                                    <li> 
+                                 
+                                     
                                     
                                     <li>
 
-                                        <a href="../logout">
+                                        <a href="logout">
                                             <i class="icon-key"></i> Log Out </a>
                                     </li>
-                                  
-
+                                    
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
@@ -195,100 +185,23 @@
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                               <form class="sidebar-search  "   method="POST">
-                                    <a href="javascript:;" class="remove">
-                                        <i class="icon-close"></i>
-                                    </a>
-                                    <div class="input-group">
-                                        <input type="text" id="nametext" onkeyup="loardapplicationByName(document.getElementById('nametext').value)" class="form-control" placeholder="Search...">
-                                        <span class="input-group-btn">
-                                            <a href="javascript:;" class="btn submit">
-                                                <i class="icon-magnifier"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </form>
+                                 
                                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                             </li>
-                            <%
-                                ArrayList<Object> apps = Datacontroller.DataParser.Searchdata(new Appplatform());
-                                for (Object o : apps) {
-                                    Appplatform app = (Appplatform) o;
-                                    if (app.isState()) {
-                            %>
-                            <li class="nav-item start">
-                                <a href="javascript:;" class="nav-link nav-toggle">
+                            <%for(Rolehassubmenu rhs:list){
+                                
+                            
+                                  %>
+                            <li class="nav-item start active open">
+                                <a href="<%= rhs.getSubmenu().getPageurl()%>" class="nav-link nav-toggle">
                                     <i class="icon-home"></i>
-                                    <span class="title"><%=app.getAppplatform()%></span>
+                                    <span class="title"><%=  rhs.getSubmenu().getSubmenu()%></span>
                                     <span class="selected"></span>
                                     <span class="arrow open"></span>
                                 </a>
-
-                                <ul class="sub-menu">
-                                    <%
-
-                                        Set<Apptype> apptypes = app.getApptypes();
-                                        for (Apptype apptype : apptypes) {
-                                            if (apptype.isState()) {
-                                    %>
-                                    <li class="nav-item start">
-                                        <a href="javascript:;" class="nav-link nav-toggle">
-                                            <i class="icon-tag"></i>
-
-                                            <span class="title"><%=apptype.getApptype()%></span>
-                                            <span class="selected"></span>
-                                            <span class="arrow open"></span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <%
-                                                Set<Category> categories = apptype.getCategories();
-                                                for (Category category : categories) {
-                                                    if (category.isState()) {
-                                            %>
-                                            <li class="nav-item start">
-                                                <a href="javascript:;" class="nav-link nav-toggle">
-
-                                                    <i class="icon-folder"></i>
-                                                    <span class="title"><%=category.getCategory()%></span>
-                                                    <span class="selected"></span>
-                                                    <span class="arrow open"></span>
-                                                </a>
-                                                <ul>
-                                                    <%
-                                                        Set<Application> applications = category.getApplications();
-                                                        for (Application appl : applications) {
-                                                            if (appl.getDeveloper().getIdDeveloper()==c.getIdDeveloper()) {
-
-
-                                                    %>
-                                                    <li class="nav-item start">
-                                                        <a href="dashboard.jsp?appid=<%= appl.getIdApplication()%>" class="nav-link nav-item">
-
-                                                            <i class="icon-game-controller"></i>
-                                                            <span class="title"><%=  appl.getApplicationName()%></span>
-                                                            <span class="selected"></span>
-                                                            <span class="views"></span>
-                                                        </a>
-                                                    </li>
-
-                                                    <%
-                                                            }
-                                                        }
-                                                    %>
-                                                </ul>
-                                            </li>
-                                            <%}
-                                                }%>
-                                        </ul>
-                                        <%}
-                                            }%>
-
-                                </ul>
-
+                                 
                             </li>
-                            <%}
-                                }
-                            %>
+                            <%}%>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                         <!-- END SIDEBAR MENU -->
@@ -388,7 +301,7 @@
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
                                 <li>
-                                    <a href="dashboard.jsp">Home</a>
+                                    <a href="index.jsp">Home</a>
                                     <i class="fa fa-circle"></i>
                                 </li>
                                  
@@ -425,15 +338,15 @@
                             <h2>Your Applications</h2>
                             <p>App List</p>
                            
-                            <select class="form-group" onchange="loardpurchase(document.getElementById('selectapplist').value,false)" id="selectapplist">
+                            <select class="form-group" onchange="Appsloardpurchase(document.getElementById('selectapplist').value,false)" id="selectapplist">
                                
                                     <option class="form-control">Select Your App</option>
                                         <%
                                            
-                                            Developer dl=(Developer)DataParser.getuniqeresault(new Developer(), 6);
-                                           Set<Application> l= dl.getApplications();
-                                            for (Application cob :l ) {
+                                        ArrayList<Object>dl =  Datacontroller.DataParser.Searchdata(new Application());
                                           
+                                            for (Object ob :dl ) {
+                                          Application cob=(Application)ob; 
                                         %>
                                         <option value="<%=cob.getIdApplication()%>" class="form-control">
                                        <%=cob.getApplicationName()%> 
@@ -441,6 +354,7 @@
                                             <%=cob.getCategory().getCategory()%> 
                                           <%=cob.getCategory().getApptype().getApptype()%>
                                            <%=cob.getCategory().getApptype().getAppplatform().getAppplatform()%> 
+                                           <%=cob.getDeveloper().getIdDeveloper()%> 
                                              <%=cob.getCustomerhasapplications().size()%> 
                                             <%=cob.getPrice()%> 
                                            <%=cob.getPrice()*cob.getCustomerhasapplications().size()%> 
@@ -472,7 +386,8 @@
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> Apps Store Developers 
+    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
+        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
@@ -539,16 +454,10 @@
 </body>
 
 
-<%}else{
+<%}catch(NullPointerException e){
+                 response.sendRedirect("login.jsp");
+            }catch(java.lang.IllegalStateException e){
 response.sendRedirect("login.jsp");
-}
-} catch (NullPointerException e) {
-                System.out.println("NULL EXCEPTION");
-                response.sendRedirect("login.jsp");
-            } catch (Exception ex) {
-                System.out.println("  EXCEPTION");
-
-                response.sendRedirect("login.jsp");
-            }%>
+}%>
 </html>
 

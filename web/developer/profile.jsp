@@ -19,7 +19,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<% if(session.getAttribute("developer")!= null){%>
+<%  if(session.getAttribute("developer")!= null){%>
 <html lang="en">  
    <%if(!request.getSession().getAttribute("developer").equals(null)){%>        <!-- BEGIN HEAD -->
         <head>        
@@ -641,8 +641,7 @@
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner">  
-
+   <div class="page-footer-inner"> Apps Store Developers 
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>

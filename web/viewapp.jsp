@@ -135,7 +135,12 @@
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <% if (c.getCustomerImage() != null) {
+                                    %><img alt="" class="img-circle" src="<%=c.getCustomerImage()%>" /><%
+                                    } else {
+                                    %>
                                     <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <%}%>
                                     <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
@@ -414,8 +419,11 @@
 
                         </div>
                         <div class="row">
+                             <%if(!loging){%>
+                                <h1 class="page-header" onclick="login.jsp"><font style="color: red">Please Login System</font></h1>
+                                <%}%>
                             <div class="col-lg-12">
-                                <h1 class="page-header">Application</h1>
+                                <h1 class="page-header">Application Details</h1>
                             </div>
                         </div>
                         <%-- Main--%>
@@ -425,7 +433,10 @@
                             <%
                                 if (appid != "") {
                                     Application app = (Application) DataParser.getuniqeresault(new Application(), Integer.parseInt(appid));
-                                    
+                                   String developervalid="NO Valid This Developer";
+                                    if(app.getDeveloper().getDevelopervalids().size()>=1){
+                                    developervalid="Varrifid Developer"; 
+                                    }
                             %>
                             <div class="container-fluid">
                                 <div class="content-wrapper">	
@@ -490,10 +501,12 @@
                                                     <hr>
                                                     <div class="product-price">$<%=app.getPrice()%></div>
                                                     <div class="product-stock">Develop By <%=app.getDeveloper().getDeveloperFname()%></div>
+                                                    <div class="product-stock"><font style="color: yellowgreen "><%=developervalid%></font></div>
                                                     <%if(app.getApphasstaffvalids().isEmpty()){%>
-                                                    <div class="product-stock">Still Appliation is not valid </div>
+                                                    <div class="product-stock"><font style="color: yellow ">Still Appliation is not valid </font></div>
                                                     <%}%>
                                                     <hr>
+                                                    <%if(loging){%>
                                                     <div class="btn-group cart">
                                                         <button onclick="addtocart(<%=app.getIdApplication()%>)" type="button" class="btn btn-success">
                                                             Add to cart 
@@ -504,6 +517,13 @@
                                                             Add to wishlist 
                                                         </button>
                                                     </div>
+                                                            <%}else{%>
+                                                           <div class="btn-group signup">
+                                                               <a  href="login.jsp"  class="btn signup">
+                                                                   <h3> Please Sign In</h3> 
+                                                        </a>
+                                                    </div> 
+                                                            <%}%>
                                                 </div>
                                             </div> 
                                         </div>
@@ -562,12 +582,12 @@
 
                                                             <%}
                                                                 }%>				
-                                                        </ul>
+                                                        </ul><%if(loging){%>
                                                         <form action="SaveComment" method="POST">
                                                             <input type="text" class="form-control" name="text" required/>
                                                             <input type="hidden" value="<%=app.getIdApplication()%>" name="appid"/>
                                                             <input type="submit" class="form-control btn-default"  value="Set Comment" />
-                                                        </form>
+                                                        </form><%}%>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -616,8 +636,8 @@
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    <div class="page-footer-inner">App Store
+        
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>

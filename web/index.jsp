@@ -438,7 +438,9 @@ try{
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Application</h1>
+                                <%if(!loging){%>
+                                <h1 class="page-header" onclick="login.jsp"><font style="color: red">Please Login System</font></h1>
+                                <%}%>
                             </div>
                         </div>
                         <%-- Main--%>
@@ -446,14 +448,14 @@ try{
                         </div>
                         <% try{ %>
                         <div class="general">
-            <h4 class="latest-text w3_latest_text">Featured Movies</h4>
+            <h4 class="latest-text w3_latest_text">Featured Application</h4>
             <div class="container">
                 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Top Rated</a></li>
                         <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Less Ten Dollar</a></li>
-                        <li role="presentation"><a href="#rating" id="rating-tab" role="tab" data-toggle="tab" aria-controls="rating" aria-expanded="true"> Today Released Apps</a></li>
-                        <li role="presentation"><a href="#imdb" role="tab" id="imdb-tab" data-toggle="tab" aria-controls="imdb" aria-expanded="false">Recently Added</a></li>
+                        <li role="presentation"><a href="#rating" id="rating-tab" role="tab" data-toggle="tab" aria-controls="rating" aria-expanded="true"> Top Sells Apps</a></li>
+                        
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
@@ -466,6 +468,7 @@ try{
                                 <div class="col-md-2 w3l-movie-gride-agile">
             <article class="col-item">
         		<div class="photo">
+                            <%if(loging){%>
         			<div class="options">
         				<button class="btn btn-default" onclick="addtowishlist(<%=app.getIdApplication()%>)" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
         					<i class="fa fa-heart"></i>
@@ -479,6 +482,7 @@ try{
         					<span class="fa fa-shopping-cart"></span>
         				</button>
         			</div>
+                                                <%}%>
         			<a href="viewapp.jsp?appid=<%=app.getIdApplication()%>"> <img src="<%= app.getAppImage()%>" class="img-responsive" alt="Product Image"> </a>
         		</div>
         		<div class="info">
@@ -509,7 +513,7 @@ try{
                              %>
                             <div class="col-md-2 w3l-movie-gride-agile">
             <article class="col-item">
-        		<div class="photo">
+        		<div class="photo"> <%if(loging){%>
         			<div class="options">
         				<button class="btn btn-default" onclick="addtowishlist(<%=app.getIdApplication()%>)" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
         					<i class="fa fa-heart"></i>
@@ -522,9 +526,9 @@ try{
         				<button onclick="addtocart(<%=app.getIdApplication()%>)" class="btn btn-default" title="Add to cart">
         					<span class="fa fa-shopping-cart"></span>
         				</button>
-        			</div>
+        			</div><%}%>
         			<a href="viewapp.jsp?appid=<%=app.getIdApplication()%>"> <img src="<%= app.getAppImage()%>" class="img-responsive" alt="Product Image"> </a>
-        		</div>
+        		</div><
         		<div class="info">
         			<div class="row">
         				<div class="price-details col-md-6">
@@ -543,13 +547,14 @@ try{
                             <div class="clearfix"> </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
-                            <% for(Object ob:applist){
-                                  
-                                Application app=(Application)ob;
-                       if(app.getApplicationLuanchDate()==new Date()){%>
+                           <%  Application [] Alist=Oparation.GetTopSellApps.getTopSellingApps();
+                           for(int i=0; i<Alist.length;i++){
+                                  if(!Alist[i].equals(null)){
+                                Application app=Alist[i];
+                        %>
                             <div class="col-md-2 w3l-movie-gride-agile">
             <article class="col-item">
-        		<div class="photo">
+        		<div class="photo"> <%if(loging){%>
         			<div class="options">
         				<button class="btn btn-default" onclick="addtowishlist(<%=app.getIdApplication()%>)" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
         					<i class="fa fa-heart"></i>
@@ -562,7 +567,7 @@ try{
         				<button onclick="addtocart(<%=app.getIdApplication()%>)" class="btn btn-default" title="Add to cart">
         					<span class="fa fa-shopping-cart"></span>
         				</button>
-        			</div>
+        			</div><%}%>
         			<a href="viewapp.jsp?appid=<%=app.getIdApplication()%>"> <img src="<%= app.getAppImage()%>" class="img-responsive" alt="Product Image"> </a>
         		</div>
         		<div class="info">
@@ -588,11 +593,11 @@ try{
                              for(Object ob:applist){
                                   
                                 Application app=(Application)ob;
-                              
+                              if(app.isState()){
                              %>
                              <div class="col-md-2 w3l-movie-gride-agile">
             <article class="col-item">
-        		<div class="photo">
+        		<div class="photo"> <%if(loging){%>
         			<div class="options">
         				<button class="btn btn-default" onclick="addtowishlist(<%=app.getIdApplication()%>)" type="submit" data-toggle="tooltip" data-placement="top" title="Add to wish list">
         					<i class="fa fa-heart"></i>
@@ -605,7 +610,7 @@ try{
         				<button onclick="addtocart(<%=app.getIdApplication()%>)" class="btn btn-default" title="Add to cart">
         					<span class="fa fa-shopping-cart"></span>
         				</button>
-        			</div>
+        			</div><%}%>
         			<a href="viewapp.jsp?appid=<%=app.getIdApplication()%>"> <img src="<%= app.getAppImage()%>" class="img-responsive" alt="Product Image"> </a>
         		</div>
         		<div class="info">
@@ -622,7 +627,7 @@ try{
         	</article>
         
                             </div>
-                            <%}%>
+                            <%}}%>
                           
                             <div class="clearfix"> </div>
                         </div>

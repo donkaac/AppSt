@@ -71,12 +71,28 @@
         <!-- END HEAD -->
         <body onload="loardAppplatform()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
             <!-- BEGIN HEADER -->
+             <%
+                
+                   // Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
+                    Staff c = (Staff) session.getAttribute("staff");
+                    //if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
+                   
+                        String image = "assets/layouts/layout/img/avatar3_small.jpg";
+                        if (!(c.getStaffImage() == null)) {
+                            image = c.getStaffImage();
+                        }
+                        String cartqty = "";
+                        String wishlistqty = "";
+                        String username = c.getStaffFname();
+
+            %>
+            <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.html">
+                        <a href="dashboard.jsp">
                             <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
@@ -87,24 +103,32 @@
                     <!-- BEGIN TOP NAVIGATION MENU -->
                     <div class="top-menu">
                         <ul class="nav navbar-nav pull-right">
-                               <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                             
-                            <!-- END INBOX DROPDOWN -->
-                            <!-- BEGIN TODO DROPDOWN -->
+
+                            <!-- END NOTIFICATION DROPDOWN -->
+                            <!-- BEGIN INBOX DROPDOWN -->
                             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                            
+
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <img alt="" class="img-circle" src="<%=image%>" />
+                                    <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
+                                
                                     <li>
-                                        <a href="admin/profile.jsp">
+                                        <a href="profile.jsp">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
+                                 
                                      
+                                    
+                                    <li>
+
+                                        <a href="logout">
+                                            <i class="icon-key"></i> Log Out </a>
+                                    </li>
+                                    
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->

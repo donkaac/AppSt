@@ -38,6 +38,7 @@ public class savedeveloper extends HttpServlet {
         PrintWriter writer = response.getWriter();
          try {
             if(request.getParameter("pass1").equals(request.getParameter("pass2"))){
+                
                 Developer developer = new Developer();
             developer.setDeveloperFname(request.getParameter("fname"));
             developer.setDeveloperMname(request.getParameter("mname"));

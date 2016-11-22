@@ -40,9 +40,10 @@ public class addappvalidation extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
          try {
             if(null!=request.getParameter("appid")){
+              Staff staff=(Staff)  request.getSession().getAttribute("staff");
                 int developerid=Integer.parseInt(request.getParameter("appid"));
                 Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), developerid);
-                Staff staff = (Staff) Datacontroller.DataParser.getuniqeresault(new Staff(), 2);
+                 staff = (Staff) Datacontroller.DataParser.getuniqeresault(new Staff(), staff.getIdStaff());
                 if(app.getApphasstaffvalids().isEmpty()){
                 Apphasstaffvalid appvalid = new Apphasstaffvalid(app, staff, new Date(), true);
                 boolean Savedata = DataParser.Savedata(appvalid);

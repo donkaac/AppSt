@@ -221,6 +221,10 @@
         <servlet-class>Servlets.setrate</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Connection</servlet-name>
+        <servlet-class>ConectMobile.Connection</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>changedeveloperprofileimage</servlet-name>
         <servlet-class>Servlets.changedeveloperprofileimage</servlet-class>
     </servlet>
@@ -239,6 +243,18 @@
     <servlet>
         <servlet-name>customerpurchasehistoryReport</servlet-name>
         <servlet-class>Servlets.customerpurchasehistoryReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateappdata</servlet-name>
+        <servlet-class>Servlets.updateappdata</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loardappspurchase</servlet-name>
+        <servlet-class>Servlets.loardappspurchase</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>withdrawall</servlet-name>
+        <servlet-class>Servlets.withdrawall</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>admin_login</servlet-name>
@@ -479,6 +495,22 @@
     <servlet-mapping>
         <servlet-name>customerpurchasehistoryReport</servlet-name>
         <url-pattern>/customerpurchasehistoryReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateappdata</servlet-name>
+        <url-pattern>/updateappdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loardappspurchase</servlet-name>
+        <url-pattern>/loardappspurchase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>withdrawall</servlet-name>
+        <url-pattern>/withdrawall</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>Connection</servlet-name>
+        <url-pattern>/Connection</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

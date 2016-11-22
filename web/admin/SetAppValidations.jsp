@@ -23,6 +23,7 @@
         <%
             try {
                 if (request.getSession().getAttribute("staff").equals(null)) {
+
                     response.sendRedirect("login.jsp");
                 }
 
@@ -85,6 +86,21 @@
         </head>
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+            <%
+                try {
+                    // Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
+                    Staff ca = (Staff) session.getAttribute("staff");
+                    //if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
+                    if (ca != null) {
+                        String image = "assets/layouts/layout/img/avatar3_small.jpg";
+                        if (!(ca.getStaffImage() == null)) {
+                            image = ca.getStaffImage();
+                        }
+                        String cartqty = "";
+                        String wishlistqty = "";
+                        String username = ca.getStaffFname();
+
+            %>
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
@@ -101,22 +117,32 @@
                     <!-- END RESPONSIVE MENU TOGGLER -->
                     <!-- BEGIN TOP NAVIGATION MENU -->
                     <div class="top-menu">
-                        <ul class="nav navbar-nav pull-right"> 
+                        <ul class="nav navbar-nav pull-right">
+
+                            <!-- END NOTIFICATION DROPDOWN -->
+                            <!-- BEGIN INBOX DROPDOWN -->
+                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <img alt="" class="img-circle" src="<%=image%>" />
+                                    <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
-                                    <%for (Rolehassubmenu rhs : list) {
 
-                                    %>
                                     <li>
-                                        <a href="<%=rhs.getSubmenu().getPageurl()%>">
-                                            <i class="icon-user"></i> <%=rhs.getSubmenu().getSubmenu()%> </a>
+                                        <a href="profile.jsp">
+                                            <i class="icon-user"></i> My Profile </a>
                                     </li>
-                                    <%}%>
+
+
+
+                                    <li>
+
+                                        <a href="logout">
+                                            <i class="icon-key"></i> Log Out </a>
+                                    </li>
 
                                 </ul>
                             </li>
@@ -285,7 +311,7 @@
                             <div class="col-lg-12">
                                 <h1 class="page-header">App Validation Details </h1>
                                 <br>
-                                <h3>Search By Developer ID:<form method="POST" action="../AppValidSearchForAddDeveloperID"><input type="number" name="developerid" placeholder="Enter Developer ID"> <input type="submit" value="Search"></form></h3>
+                                <h3>Search By App ID:<form method="POST" action="../AppValidSearchForAddDeveloperID"><input type="number" name="developerid" placeholder="Enter App ID"> <input type="submit" value="Search"></form></h3>
                             </div>
                         </div>
                         <%-- Main--%> 
@@ -338,9 +364,17 @@
                                         <%
 
                                             ArrayList<Object> appslistdata = Datacontroller.DataParser.Searchdata(new Application());
-                                   
+                                            if (request.getParameter("appid") != null) {
+                                                try {
+                                                    String[][] ar = {{"idApplication", request.getParameter("appid")}};
+                                                    appslistdata = Datacontroller.DataParser.Searchdata(new Application(), ar);
+
+                                                } catch (Exception e) {
+
+                                                }
+                                            }
                                             for (Object o : appslistdata) {
-                                                Application c=(Application)o;
+                                                Application c = (Application) o;
                                                 if (c.isState() & (c.getApphasstaffvalids().size() == 0)) {
                                         %>
                                         <tr>
@@ -365,7 +399,7 @@
                             </div>
                         </div>
                         <div>
-                        
+
                             <h2>Active Application Validations</h2>
                             <p>Application List</p>
                             <div class="scrollit">
@@ -381,6 +415,7 @@
                                             <th>Platform</th>
                                             <th>Type</th>
                                             <th>Category</th>
+                                            <th>Checked Staff Member ID</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -402,6 +437,7 @@
                                             <td><%=c.getApplication().getCategory().getApptype().getAppplatform().getAppplatform()%></td>
                                             <td><%=c.getApplication().getCategory().getApptype().getApptype()%></td>
                                             <td><%=c.getApplication().getCategory().getCategory()%></td>
+                                            <td><%=c.getStaff().getIdStaff()%></td>
 
                                     <form action="../deactiveoractiveAppValidations" method="POST">
 
@@ -412,9 +448,9 @@
                                     </tbody>
                                 </table>
                             </div>
-</div>
+                        </div>
                         <div>
- 
+
                             <h2>Disabled Application Validations</h2>
                             <p>Application List</p>
                             <div class="scrollit">
@@ -430,6 +466,7 @@
                                             <th>Platform</th>
                                             <th>Type</th>
                                             <th>Category</th>
+                                            <th>Checked Staff Member ID</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -451,7 +488,7 @@
                                             <td><%=c.getApplication().getCategory().getApptype().getAppplatform().getAppplatform()%></td>
                                             <td><%=c.getApplication().getCategory().getApptype().getApptype()%></td>
                                             <td><%=c.getApplication().getCategory().getCategory()%></td>
-
+                                            <td><%=c.getStaff().getIdStaff()%></td>
                                     <form action="../deactiveoractiveAppValidations" method="POST">
 
                                         <td><input type="hidden" name="appvalidid" value="<%=c.getIdAppHasStaffValid()%>"/><input type="hidden" name="state" value="true"><a class="btn-default"><button class="form-control btn-default" type="submit"><span class="glyphicon glyphicon-chevron-down">Enable App Validation </span></button></a></td></form>
@@ -549,7 +586,16 @@
             <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
             <!-- END THEME LAYOUT SCRIPTS -->
         </body>
-        <%} catch (NullPointerException e) {
+        <%}
+                } catch (NullPointerException e) {
+                    System.out.println("NULL EXCEPTION");
+                    response.sendRedirect("login.jsp");
+                } catch (Exception ex) {
+                    System.out.println("  EXCEPTION");
+
+                    response.sendRedirect("login.jsp");
+                }
+            } catch (NullPointerException e) {
                 System.out.println("NULL EXCEPTION");
                 response.sendRedirect("login.jsp");
             } catch (Exception ex) {

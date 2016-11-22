@@ -19,7 +19,8 @@ import javax.mail.internet.MimeMessage;
 public class Mails {
      
     
-     public static void sendFromGMail(String[] to, String subject, String body) {
+     public static boolean sendFromGMail(String[] to, String subject, String body) {
+         boolean b =true;
          String from="ishu.nimantha@gmail.com";
         String password="imkthecvheetjula";
         Properties props = System.getProperties();
@@ -57,9 +58,12 @@ public class Mails {
         }
         catch (AddressException ae) {
             ae.printStackTrace();
+            b=false;
         }
         catch (MessagingException me) {
             me.printStackTrace();
+            b=false;
         }
+        return b;
     }
 }

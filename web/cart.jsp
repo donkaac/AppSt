@@ -22,10 +22,11 @@
         <!-- BEGIN HEAD -->
         <head>  
             <%
-           try{
-                
-              if (request.getAttribute("user") != null) {
-                       
+                try {
+
+                    if (session.getAttribute("user")==null) {
+                        response.sendRedirect("login.jsp");
+                    }
             %>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>APPS CART</title>
@@ -66,8 +67,7 @@
         <!-- END HEAD -->
         <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 
-            <%
-                String username = "";
+            <%                String username = "";
                 boolean loging = false;
                 Customer c = new Customer();
                 if (!request.getSession().equals(null)) {
@@ -80,15 +80,15 @@
                             c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
                             username = c.getCustomerFname();
                             loging = true;
-                        }else{
+                        } else {
                             c = (Customer) s.getAttribute("guest");
                             username = c.getCustomerFname();
                             //c.getCarts();
                         }
                     } catch (Exception e) {
-response.sendRedirect("login..jsp");
+                        response.sendRedirect("login.jsp");
                     }
-                }else{
+                } else {
                     response.sendRedirect("login.jsp");
                 }
                 String cartqty = "";
@@ -127,11 +127,16 @@ response.sendRedirect("login..jsp");
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                     <% if (c.getCustomerImage() != null) {
+                                    %><img alt="" class="img-circle" src="<%=c.getCustomerImage()%>" /><%
+                                    } else {
+                                    %>
                                     <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <%}%>
                                     <span class="username username-hide-on-mobile"> <%=username%> </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
-                               <ul class="dropdown-menu dropdown-menu-default">
+                                <ul class="dropdown-menu dropdown-menu-default">
                                     <%if (loging) {%>
                                     <li>
                                         <a href="profile.jsp">
@@ -144,15 +149,15 @@ response.sendRedirect("login..jsp");
                                             <i class="icon-briefcase"></i> My Purchase App List  </a>
                                     </li>
                                     <%}%>
-                                     <%if (loging) {%>
+                                    <%if (loging) {%>
                                     <li>
                                         <a href="cart.jsp">
                                             <i class="glyphicon glyphicon-shopping-cart"></i> Cart
                                             <span class="badge badge-danger"> <%=cartqty%></span>
                                         </a>
                                     </li>
-                                     <%}
-                                         if (loging) {%>
+                                    <%}
+                                        if (loging) {%>
                                     <li>
                                         <a href="wishlist.jsp">
                                             <i class="icon-wallet"></i> WishList
@@ -205,7 +210,7 @@ response.sendRedirect("login..jsp");
                                 <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
                                 <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
                                 <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
-                                 <form class="sidebar-search  "   method="POST">
+                                <form class="sidebar-search  "   method="POST">
                                     <a href="javascript:;" class="remove">
                                         <i class="icon-close"></i>
                                     </a>
@@ -446,6 +451,7 @@ response.sendRedirect("login..jsp");
                                         </thead>
                                         <tbody>
                                             <%
+                                             //   try{
                                                 double total = 0.00;
                                                 Set<Cart> carts = null;
                                                 if (loging) {
@@ -454,8 +460,8 @@ response.sendRedirect("login..jsp");
                                                     //carts = c.getCarts();
                                                 }
                                                 for (Cart cart : carts) {
-                                                    if(cart.isState()){
-                                                    total += cart.getApplication().getPrice();
+                                                    if (cart.isState()) {
+                                                        total += cart.getApplication().getPrice();
 
                                             %>
                                             <tr id="data">
@@ -478,7 +484,8 @@ response.sendRedirect("login..jsp");
                                                         <span class="glyphicon glyphicon-remove"></span> Remove
                                                     </button></td>
                                             </tr>
-                                            <%}}%>
+                                            <%}
+                                                }  %>
                                             <tr>
                                                 <td>   </td>
                                                 <td>   </td>
@@ -498,11 +505,23 @@ response.sendRedirect("login..jsp");
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <form action="buycartallapps" method="POST">
-                                                        <button type="submit" class="btn btn-success">
-                                                        Checkout <span class="glyphicon glyphicon-play"></span>
-                                                    </button>
-                                                    </form>
+                                                    <script>
+
+
+
+                                                        function openNewWindow()
+                                                        {
+                                                            window.open("invoice.jsp");
+
+                                                        }
+                                                    </script>
+
+
+                                                    <a href="javaScript:{openNewWindow();}">
+                                                        <button type="submit" methoad="POST" class="btn btn-success">
+                                                            Checkout <span class="glyphicon glyphicon-play"></span>
+                                                        </button></a>
+
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -512,7 +531,7 @@ response.sendRedirect("login..jsp");
                         </div>
 
                     </div>
-
+<%//}catch(NullPointerException e){response.sendRedirect("login.jsp");}%>
 
 
                 </div>   
@@ -598,11 +617,15 @@ response.sendRedirect("login..jsp");
 <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
-<%     
-                        }else{
-  response.sendRedirect("index.jsp?msg=Pleace Login To System");
-                }
-           }catch(NullPointerException e){
-               response.sendRedirect("index.jsp?msg=Pleace Login To System");
-           }%>
+<%
+} catch (NullPointerException e) {
+                System.out.println("NULL EXCEPTION");
+               e.printStackTrace();
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION");
+
+                response.sendRedirect("login.jsp");
+            }
+%>
 </html>
+ 

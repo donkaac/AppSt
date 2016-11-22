@@ -17,14 +17,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <html>   
-        <!-- BEGIN HEAD -->
-        <head>     <%
+    <html>    <%
             
-              if (request.getAttribute("user") == null) {
-                            response.sendRedirect("index.jsp?msg=Pleace Login To System");
-                        }
-            %>      
+            try{
+                            
+                    
+            %>   
+        <!-- BEGIN HEAD -->
+        <head>       
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Wish List</title>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,18 +70,23 @@
 
                     HttpSession s = request.getSession();
 
-                    if (s.getAttribute("user") != null) {
+                   
                         c = (Customer) s.getAttribute("user");
                         c = (Customer) DataParser.getuniqeresault(new Customer(), c.getIdCustomer());
                         username = c.getCustomerFname();
                         loging = true;
-                    }
+                   
                     //int cusid = Integer.parseInt(s.getAttribute("userid").toString());
 
                     
-                } catch (Exception e) {
-        response.sendRedirect("login.jsp");
-                }
+                } catch (NullPointerException e) {
+                System.out.println("NULL EXCEPTION");
+                response.sendRedirect("login.jsp");
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION");
+
+                response.sendRedirect("login.jsp");
+            }
             }
             String cartqty = "";
             if (!c.getCarts().isEmpty()) {
@@ -118,7 +123,12 @@
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <% if (c.getCustomerImage() != null) {
+                                    %><img alt="" class="img-circle" src="<%=c.getCustomerImage()%>" /><%
+                                    } else {
+                                    %>
                                     <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <%}%>
                                     <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
@@ -389,14 +399,14 @@
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
-                                    <span>Dashboard</span>
+                                    <span>Wish List</span>
                                 </li>
                             </ul>
 
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Application</h1>
+                                <h1 class="page-header">Your Wish List Apps</h1>
                             </div>
                         </div>
                         <%-- Main--%>
@@ -473,8 +483,7 @@
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    <div class="page-footer-inner"> Appstore
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
@@ -538,5 +547,12 @@
 <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
+<%} catch (NullPointerException e) {
+                System.out.println("NULL EXCEPTION");
+               e.printStackTrace();
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION");
 
+                response.sendRedirect("login.jsp");
+            }%>
 </html>

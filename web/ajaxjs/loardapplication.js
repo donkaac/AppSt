@@ -103,7 +103,7 @@ function addtocart(appid) {
                 if (ResponseText === "false") {
                     alert("Something wrong !");
                 }
-                alert(ResponseText);
+                
                 if (ResponseText == "true") {
                     removewishlist(appid);
                 }

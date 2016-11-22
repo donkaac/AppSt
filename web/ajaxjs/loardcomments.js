@@ -26,7 +26,37 @@ function loardcomment(appid){
       Object.send("state=" + true + "&appid=" + appid);
     }  
   }
-   function loardpurchase(appid){
+  
+   function Appsloardpurchase(appid){
+   var Object;
+    if (window.XMLHttpRequest) {
+        Object = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        Object = new ActiveXObject();
+    } else {
+        alert("Your Browser Doesn't Support AJAX Technology!");
+    }
+    if (Object !== null) {
+        Object.onreadystatechange = function () {
+            if (Object.readyState < 4) {
+            } else if (Object.readyState === 4) {
+                var ResponseText = Object.responseText;
+                if (ResponseText === "false") {
+                    alert("Something wrong !");
+                }
+
+                alert(ResponseText);
+                document.getElementById("applicationArea").innerHTML = ResponseText;
+            }
+        };
+       
+        Object.open("POST", "../loardappspurchase", true);
+        Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      Object.send("state=" + true + "&appid=" + appid);
+    }  
+  }
+  
+   function loardpurchase(appid,state){
    var Object;
     if (window.XMLHttpRequest) {
         Object = new XMLHttpRequest();
@@ -51,7 +81,7 @@ function loardcomment(appid){
        
         Object.open("POST", "../loardpurchase", true);
         Object.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      Object.send("state=" + false + "&appid=" + appid);
+      Object.send("state=" + state + "&appid=" + appid);
     }  
   } 
    function removecomment(commentid){

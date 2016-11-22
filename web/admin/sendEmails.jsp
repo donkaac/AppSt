@@ -103,12 +103,28 @@
             </script>
             
             <!-- BEGIN HEADER -->
+             <%
+                
+                   // Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
+                    Staff c = (Staff) session.getAttribute("staff");
+                    //if (request.getSession().getAttribute("userid").equals(c.getIdCustomer())) {
+                   
+                        String image = "assets/layouts/layout/img/avatar3_small.jpg";
+                        if (!(c.getStaffImage() == null)) {
+                            image = c.getStaffImage();
+                        }
+                        String cartqty = "";
+                        String wishlistqty = "";
+                        String username = c.getStaffFname();
+
+            %>
+            <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
                 <!-- BEGIN HEADER INNER -->
                 <div class="page-header-inner ">
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
-                        <a href="index.jsp">
+                        <a href="dashboard.jsp">
                             <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
                         <div class="menu-toggler sidebar-toggler"> </div>
                     </div>
@@ -126,36 +142,25 @@
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                                    <span class="username username-hide-on-mobile"> <%%> </span>
+                                    <img alt="" class="img-circle" src="<%=image%>" />
+                                    <span class="username username-hide-on-mobile"><%=username%></span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
-
+                                
                                     <li>
                                         <a href="profile.jsp">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>
-                                    <li>
-                                        <a href="appPurchaseHistory.jsp">
-                                            <i class="glyphicon glyphicon-bitcoin"></i> Purchase History </a>
-                                    </li>
-               
-                                    <li>
-                                        <a href="commentsbox.jsp">
-                                            <i class="glyphicon glyphicon-comment"></i> Comment Box
-
-                                        </a>
-                                    </li>
-                                    <li> 
-
+                                 
+                                     
+                                    
                                     <li>
 
-                                        <a href="../logout">
+                                        <a href="logout">
                                             <i class="icon-key"></i> Log Out </a>
                                     </li>
-
-
+                                    
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->
@@ -336,7 +341,7 @@
 
                         <%-- Main--%>
                         <div class="page-container" id="applicationArea">
-                            <form action="../sendmails" onsubmit="return checksendingmail()">
+                            <form action="../sendmails" method="POST" onsubmit="return checksendingmail()">
 
                                 <select id="reviever" name="reviever" class="form-control">
                                     <option value="0">Select Massage Ricievers</option>

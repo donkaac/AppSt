@@ -187,9 +187,9 @@ public class saveapp extends HttpServlet {
                     boolean Savedata = Datacontroller.DataParser.Savedata(app);
                     
                     if (Savedata) {
-                       response.sendRedirect("applist.jsp");
+                       response.sendRedirect("developer/applist.jsp");
                     }else{
-                        response.sendRedirect("saveapplication.jsp");
+                        response.sendRedirect("developer/saveapplication.jsp");
                     }
                     
                       

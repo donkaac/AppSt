@@ -45,9 +45,7 @@ public class stafffrogetpassword extends HttpServlet {
 
             response.sendRedirect("login.jsp");
         }
-        if (!loging) {
-            response.sendRedirect("index.jsp");
-        }
+        
         try (PrintWriter out = response.getWriter()) {
             String email = request.getParameter("email");
             String[][] ar = {{"username", email}};
@@ -68,11 +66,14 @@ public class stafffrogetpassword extends HttpServlet {
                 String tdate = simpleDateFormat.format(date);
                 String base64encode = Datacontroller.EncryptUtils.base64encode(Datacontroller.EncryptUtils.base64encode(Datacontroller.EncryptUtils.base64encode(c.getIdStaff() +"♦" + tdate + "♦staff")));
                 try {
-                    Mails.sendFromGMail(cemail, "Froget Password Request ", "Froget Password Request for Pin : " + base64encode);
+                    Mails.sendFromGMail(cemail, "Froget Password Request ", "Froget Password Request for Pin : " + base64encode+" Go to this Link::<a href=' http://localhost:8080/AppSt/frogetpasswordchange.jsp'>Click here</a>");
                out.write("ok");
                 } catch (Exception e) {
                     e.printStackTrace();
+                     out.write("error");
                 }
+            }else{
+                out.write("error");
             }
             System.out.println("Froget Password");
         }

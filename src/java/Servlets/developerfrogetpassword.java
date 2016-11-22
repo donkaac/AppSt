@@ -60,7 +60,7 @@ public class developerfrogetpassword extends HttpServlet {
                 String tdate = simpleDateFormat.format(date);
                 String base64encode = Datacontroller.EncryptUtils.base64encode(Datacontroller.EncryptUtils.base64encode(Datacontroller.EncryptUtils.base64encode(c.getIdDeveloper() + "♦" + tdate + "♦developer")));
                 try {
-                    Mails.sendFromGMail(cemail, "Froget Password Request ", "Froget Password Request for Pin : " + base64encode);
+                    Mails.sendFromGMail(cemail, "Froget Password Request ", "Froget Password Request for Pin : " + base64encode+"Go to this Link::<a href=' http://localhost:8080/AppSt/frogetpasswordchange.jsp'>Click here</a>");
                     out.write("ok");
                 } catch (Exception e) {
                     e.printStackTrace();

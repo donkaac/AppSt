@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,13 +33,19 @@ public class search extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter writer = response.getWriter();
         try {
+               HttpSession s = request.getSession();
+               boolean loging=false;
+                        if (s.getAttribute("user") != null) {
+                            loging = true;
+                        }
             /// loard side panel app by id index page in sigle app 
             boolean state = Boolean.parseBoolean(request.getParameter("state"));
             String type = request.getParameter("type");
             if(type.equals("appid")){
             int appid = Integer.parseInt(request.getParameter("appid"));
                 Application app = (Application) Datacontroller.DataParser.getuniqeresault(new Application(), appid);
-                 writer.write("<div class=\"col-sm-3\">\n" +
+                if(loging){ writer.write(
+                "<div class=\"col-sm-3\">\n" +
 "            <article class=\"col-item\">\n" +
 "        		<div  class=\"photo\">\n" +
 "        			<div class=\"options\">\n" +
@@ -68,7 +75,29 @@ public class search extends HttpServlet {
 "        			</div>\n" +
 "        		</div>\n" +
 "        	</article>\n" +
+"        </div>"
+                );}else{
+                    writer.write("<div class=\"col-sm-3\">\n" +
+"            \n" +
+"        		<div  class=\"photo\">\n" +
+"        			 \n" +
+"        			 \n" +
+"        			<a href=\"viewapp.jsp?appid="+app.getIdApplication()+"\"> <img src=\""+app.getAppImage()+"\" class=\"img-responsive\" alt=\"Product Image\" /> </a>\n" +
+"        		</div>\n" +
+"        		<div class=\"info\">\n" +
+"        			<div class=\"row\">\n" +
+"        				<div class=\"price-details col-md-6\">\n" +
+"        					<p class=\"details\">\n" +
+"        					"+app.getDescription()+"\n" +
+"        					</p>\n" +
+"        					<h1>"+app.getApplicationName()+"</h1>\n" +
+"        					<span class=\"price-new\">$"+app.getPrice()+"</span>\n" +
+"        				</div>\n" +
+"        			</div>\n" +
+"        		</div>\n" +
+"        	 \n" +
 "        </div>");
+                }
             
             }else if(type.equals("appname")){
                 

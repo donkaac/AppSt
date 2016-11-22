@@ -119,7 +119,12 @@
 
                             <li class="dropdown dropdown-user">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                   <% if (c.getCustomerImage() != null) {
+                                    %><img alt="" class="img-circle" src="<%=c.getCustomerImage()%>" /><%
+                                    } else {
+                                    %>
                                     <img alt="" class="img-circle" src="assets/layouts/layout/img/avatar3_small.jpg" />
+                                    <%}%>
                                     <span class="username username-hide-on-mobile"> <%=username%> </span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
@@ -391,14 +396,14 @@
                                     <i class="fa fa-circle"></i>
                                 </li>
                                 <li>
-                                    <span>Cart</span>
+                                    <span>Purchase Apps</span>
                                 </li>
                             </ul>
 
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Application</h1>
+                                <h1 class="page-header"> App List</h1>
                             </div>
                         </div>
                         <%-- Main--%>
@@ -474,7 +479,7 @@
                                                 <td class="col-sm-1 col-md-1 text-center"><strong></strong></td>
                                                 <td class="col-sm-1 col-md-1 text-center"><strong>$<%=purchesapp.getApplication().getPrice()%></strong></td>
                                                 <td class="col-sm-1 col-md-1">
-                                                    <a type="button" href="<%=purchesapp.getApplication().getAppurl()%>" class="btn btn-link">
+                                                    <a type="button" href="<%=""+purchesapp.getApplication().getAppurl()%>" class="btn btn-link">
                                                         <span class="glyphicon glyphicon-download"></span> Download
                                                     </a></td>
                                             </tr>
@@ -528,8 +533,8 @@
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+    <div class="page-footer-inner">  
+        <a   title="Apps Store" target="_blank"></a>
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>

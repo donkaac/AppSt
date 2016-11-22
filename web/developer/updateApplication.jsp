@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <html>   
- <%if(!request.getSession().getAttribute("developer").equals(null)){%>          <!-- BEGIN HEAD -->
+ <%try{if(!request.getSession().getAttribute("developer").equals(null)){%>          <!-- BEGIN HEAD -->
         <head>        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
             <title>Update App Data</title>
@@ -56,7 +56,7 @@
                 String appid=null;
                 String username = "Guest";
                 boolean loging = false;
-                Developer c = new Developer();
+                Developer c =  (Developer)request.getSession().getAttribute("developer");
                 if (!request.getSession().equals(null)) {
                     try {
 
@@ -278,12 +278,12 @@
                                 <div class="portlet-body">
                                     <!-- BEGIN FORM-->
                                     <input type="text"  name="appid" class="form-control" placeholder="">
-                                    <form action="../updateApp" onsubmit="return checkAppregistration()" method="POST" class="form-horizontal">
+                                    <form action="../updateappdata" onsubmit="return checkAppregistration()" method="POST" class="form-horizontal">
                                         <div class="form-body">
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Applicatoin Name</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="appname" name="appname" value="<%=%>" class="form-control" placeholder="">
+                                                    <input required type="text" id="appname" name="appname" value="<%=ap.getApplicationName()%>" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -291,7 +291,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">App Price</label>
                                                 <div class="col-md-9">
-                                                    <input type="number" id="price" name="price" value="<%=%>" class="form-control " placeholder="">
+                                                    <input type="number" required id="price" name="price" value="<%=ap.getPrice()%>" class="form-control " placeholder="">
                                                    
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
@@ -302,7 +302,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Descriptions</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" name="description" value="<%=%>"  id="description" class="form-control" placeholder="">
+                                                    <input type="text" required name="description" value="<%=ap.getDescription()%>"  id="description" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -310,7 +310,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Application File</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="applicationfile" value="<%=%>" id="applicationfile" class="form-control" placeholder="">
+                                                    <input type="file" required name="applicationfile" value="<%=ap.getAppurl()%>" id="applicationfile" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -318,7 +318,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">User Manual URL</label>
                                                 <div class="col-md-9">
-                                                    <input type="url" name="usermanualurl" value="<%=%>" id="usermanualurl" class="form-control" placeholder="">
+                                                    <input type="url" required name="usermanualurl" value="<%=ap.getUserManualUrl()%>" id="usermanualurl" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -326,7 +326,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">App Icon</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="appicon" value="<%=%>" id="appicon" class="form-control" placeholder="">
+                                                    <input type="file" required name="appicon" value="<%=ap.getAppImage()%>" id="appicon" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -334,7 +334,7 @@
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Video URL</label>
                                                 <div class="col-md-9">
-                                                    <input type="url" name="videourl" value="<%=%>" id="videourl" class="form-control" placeholder="">
+                                                    <input type="url" required name="videourl" value="<%=ap.getVideoUrl()%>" id="videourl" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -343,7 +343,7 @@
                                              <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 1</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images1" value="<%=%>" id="images1" class="form-control" placeholder="">
+                                                    <input type="file" required name="images1" value="<%=ap.getInterface1()%>" id="images1" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -351,7 +351,7 @@
                                              <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 2</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images2" value="<%=%>" id="images2" class="form-control" placeholder="">
+                                                    <input type="file" required name="images2" value="<%=ap.getInterface2()%>" id="images2" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -359,7 +359,7 @@
                                              <div class="form-group form-md-line-input">
                                                 <label class="col-md-3 control-label" for="form_control_1">Images 3</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" name="images3" value="<%=%>" id="images3" class="form-control" placeholder="">
+                                                    <input type="file" required name="images3" value="<%=ap.getInterface3()%>" id="images3" class="form-control" placeholder="">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Some help goes here...</span>
                                                 </div>
@@ -370,7 +370,7 @@
                                                 <div class="col-md-9">
 
                                                     <span>
-                                                        <select style="width:80%px" class="form-control form-inline" onchange="loardApptype()"    id="Appplatformlist">
+                                                        <select required style="width:80%px" class="form-control form-inline" onchange="loardApptype()"    id="Appplatformlist">
 
                                                         </select>
 
@@ -382,7 +382,7 @@
                                                 <div class="col-md-9">
 
                                                     <span>
-                                                        <select class="form-control" onchange="loardAppplatcategory()" id="apptypelist">
+                                                        <select required class="form-control" onchange="loardAppplatcategory()" id="apptypelist">
 
                                                         </select>
 
@@ -394,7 +394,7 @@
                                                 <div class="col-md-9">
 
                                                     <span>
-                                                        <select class="form-control"   id="appcategorylist">
+                                                        <select required class="form-control"   id="appcategorylist">
 
                                                         </select>
 
@@ -433,9 +433,8 @@
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
-            <div class="page-footer-inner"> 2014 &copy; Metronic by keenthemes.
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-            </div>
+           <div class="page-footer-inner"> Apps Store Developers 
+    </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>
             </div>
@@ -498,5 +497,7 @@
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>
-
+<%}}catch(Exception e){
+response.sendRedirect("applist.jsp");
+}%>
 </html>

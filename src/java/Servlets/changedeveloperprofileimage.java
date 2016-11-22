@@ -43,9 +43,9 @@ public class changedeveloperprofileimage extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
            HttpSession session = request.getSession();
             try {
-               // Customer c = (Customer) Datacontroller.DataParser.getuniqeresault(new Customer(), Integer.parseInt(request.getSession().getAttribute("userid").toString()));
-                Developer c = (Developer) session.getAttribute("developer");
-
+              
+                Developer c = (Developer) request.getSession().getAttribute("developer");
+  c = (Developer) Datacontroller.DataParser.getuniqeresault(new Customer(), c.getIdDeveloper());
                 FileItemFactory f1 = new DiskFileItemFactory();
                 ServletFileUpload up = new ServletFileUpload(f1);
 
@@ -65,7 +65,7 @@ public class changedeveloperprofileimage extends HttpServlet {
                     item.write(f);
 
                     c.setDeveloperImage(Image_Path);
-
+                    System.out.println(Image_Path);
                 }
                 boolean UpdateData = DataParser.UpdateData(c);
                 if (UpdateData) {
@@ -77,8 +77,8 @@ public class changedeveloperprofileimage extends HttpServlet {
                 }
 
             } catch (Exception e) {
-                response.sendRedirect("profile.jsp?msg=FileUploadIsError");
-                throw new ServletException(e);
+                response.sendRedirect("developer/profile.jsp?msg=FileUploadIsError");
+               
 
             }
 
